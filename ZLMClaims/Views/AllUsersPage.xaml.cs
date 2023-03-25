@@ -1,15 +1,15 @@
 using ZLMClaims.ViewModels;
 namespace ZLMClaims.Views;
 
-public partial class MainUserPage : ContentPage
+public partial class AllUsersPage : ContentPage
 {
 
-    private readonly MainViewModel _viewModel;
+    private readonly AllUsersViewModel _viewModel;
 
-    public MainUserPage()
+    public AllUsersPage()
 	{
 		InitializeComponent();
-        _viewModel = new MainViewModel();
+        _viewModel = new AllUsersViewModel();
         BindingContext = _viewModel;
     }
 

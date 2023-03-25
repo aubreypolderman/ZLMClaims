@@ -4,7 +4,7 @@ using ZLMClaims.Models;
 
 namespace ZLMClaims.ViewModels
 {
-    public class MainViewModel : BindableObject   
+    public class AllUsersViewModel : BindableObject   
     {
         private readonly HttpClient _client = new HttpClient();
         private ObservableCollection<User> _users;
@@ -21,7 +21,7 @@ namespace ZLMClaims.ViewModels
 
         public Command GetUsersCommand { get; }
 
-        public MainViewModel()
+        public AllUsersViewModel()
         {
             Console.WriteLine("[MVM] Console: MainViewModel");
         }

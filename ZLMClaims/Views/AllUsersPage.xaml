@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
              xmlns:models="clr-namespace:ZLMClaims.Models"
-             x:Class="ZLMClaims.Views.MainUserPage"
+             x:Class="ZLMClaims.Views.AllUsersPage"
              Title="All users"
-             x:DataType="viewmodels:MainViewModel">
+             x:DataType="viewmodels:AllUsersViewModel">
 
     <!-- Add an + icon to the toolbar -->
     <ContentPage.ToolbarItems>
@@ -13,7 +13,7 @@
     </ContentPage.ToolbarItems>
 
     <!-- Display users in a list -->
-    <CollectionView x:Name="usCollection"
+    <CollectionView x:Name="usersCollection"
                     ItemsSource="{Binding Users}"
                     Margin="20"
                     SelectionMode="Single">
