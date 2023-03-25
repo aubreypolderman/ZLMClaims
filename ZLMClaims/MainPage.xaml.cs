@@ -33,8 +33,6 @@ public partial class MainPage : ContentPage
         if (!loginResult.IsError)
         {
             UsernameLbl.Text = loginResult.User.Identity.Name;
-            UserPictureImg.Source = loginResult.User
-              .Claims.FirstOrDefault(c => c.Type == "picture")?.Value;
             LoginView.IsVisible = false;
             HomeView.IsVisible = true;
         }
@@ -44,7 +42,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-    // logout button 
+    // Auth0 logout button 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
         var logoutResult = await auth0Client.LogoutAsync();

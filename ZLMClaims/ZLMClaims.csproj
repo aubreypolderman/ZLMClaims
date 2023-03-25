@@ -49,12 +49,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\claim.svg" />
+	  <None Remove="Resources\Images\contracts.svg" />
+	  <None Remove="Resources\Images\profile.svg" />
+	  <None Remove="Resources\Images\search.svg" />
+	  <None Remove="Resources\Raw\monkeydata.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="IdentityModel.OidcClient" Version="5.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.59" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Syncfusion.Maui.Inputs" Version="21.1.35" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="MainPage.xaml.cs">
+	    <DependentUpon>MainPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\MainUserPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

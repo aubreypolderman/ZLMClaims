@@ -50,12 +50,6 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
-                <Image
-                x:Name="UserPictureImg"
-                SemanticProperties.Description="User's picture"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
                 <Label 
                 x:Name="UsernameLbl"
                 Text=""
