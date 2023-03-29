@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             x:Class="ZLMClaims.Views.UserPage"
+             Title="Profile"
+             x:DataType="viewmodels:UserViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodels:UserViewModel />
+    </ContentPage.BindingContext>
+    <VerticalStackLayout Padding="20" Spacing="10" Margin="10">
+        <Border WidthRequest="100"
+                    HeightRequest="100"
+                    Stroke="{AppThemeBinding Light=Blue, Dark=Black}"
+                    StrokeThickness="4"
+                    BackgroundColor="{AppThemeBinding Light=Orange, Dark=Pink}"
+                    StrokeShape="RoundRectangle 50">
+            <Border.Shadow>
+                <Shadow Brush="red"
+                            Offset="10,1"
+                            Opacity=".8"/>
+            </Border.Shadow>
+            <Image
+                    Source="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg"
+                    HeightRequest="98"
+                    WidthRequest="98" />
+        </Border>
+        <Border WidthRequest="300"
+                    HeightRequest="100"
+                    Stroke="{AppThemeBinding Light=Blue, Dark=Black}"
+                    StrokeThickness="4"
+                    BackgroundColor="{AppThemeBinding Light=Orange, Dark=Pink}"
+                    StrokeShape="RoundRectangle 10">
+            <Border.Shadow>
+                <Shadow Brush="red"
+                            Offset="10,1"
+                            Opacity=".8"/>
+            </Border.Shadow>
+
+            <Label
+                Text="Hello, World!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+        </Border>
+
+        <Grid>
+            <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" --> 
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- customer id-->
+            <BoxView Grid.Row="0"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="0"
+                   Text="Customer number"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="0"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   Text="{Binding User.Id}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Name-->
+            <BoxView Grid.Row="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="1"
+                   Text="Name"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="1"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding User.Name}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Address-->
+            <BoxView Grid.Row="2"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="2"
+                   Text="Address"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="2"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding User.Address.Street}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Zipcode-->
+            <BoxView Grid.Row="3"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="3"
+                   Text="ZipCode"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="3"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding User.Address.Zipcode}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- City-->
+            <BoxView Grid.Row="4"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="4"
+                   Text="City"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="4"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   Text="{Binding User.Address.City}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+        </Grid>
+
+        <Label Text="{Binding User.Company.Name}" />
+        <Button Text="MijnZLM"/>
+    </VerticalStackLayout>
+</ContentPage>

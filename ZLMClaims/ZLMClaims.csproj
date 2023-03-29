@@ -15,7 +15,7 @@
 		<ApplicationTitle>ZLMClaims</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.zlmclaims</ApplicationId>
+		<ApplicationId>com.zlm.zlmclaims</ApplicationId>
 		<ApplicationIdGuid>a2e9fe61-9475-4f5c-8747-802ba7e3efd7</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -32,10 +32,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\acclaim.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\acclaim.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -49,9 +49,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\bestelauto.jpg" />
 	  <None Remove="Resources\Images\claim.svg" />
 	  <None Remove="Resources\Images\contracts.svg" />
+	  <None Remove="Resources\Images\personenauto2.png" />
 	  <None Remove="Resources\Images\profile.svg" />
+	  <None Remove="Resources\Images\scooter.png" />
 	  <None Remove="Resources\Images\search.svg" />
 	  <None Remove="Resources\Raw\monkeydata.json" />
 	</ItemGroup>
@@ -69,17 +72,31 @@
 	  <Compile Update="MainPage.xaml.cs">
 	    <DependentUpon>MainPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\AllPhotosPage.xaml.cs">
+	    <DependentUpon>AllPhotosPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AllProductsPage.xaml.cs">
+	    <DependentUpon>AllProductsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\AllUsersPage.xaml.cs">
 	    <DependentUpon>AllUsersPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\UserPage.xaml.cs">
+	    <DependentUpon>UserPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Services\" />
-	</ItemGroup>
-
-	<ItemGroup>
+	  <MauiXaml Update="Views\AllPhotosPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AllProductsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AllUsersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UserPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

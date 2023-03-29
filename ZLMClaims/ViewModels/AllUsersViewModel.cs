@@ -23,14 +23,16 @@ namespace ZLMClaims.ViewModels
 
         public AllUsersViewModel()
         {
-            Console.WriteLine("[MVM] Console: MainViewModel");
+            Console.WriteLine("[AllUsersViewModel] Constructor");
         }
 
        public async Task LoadPostsAsync()
         {
-            Console.WriteLine("[MVM] LoadPostsAsync");
+            Console.WriteLine("[AllUsersViewModel] LoadPostsAsync");
             var response = await _client.GetAsync("https://jsonplaceholder.typicode.com/users");
+            Console.WriteLine("[AllUsersViewModel] Response: " + response);
             var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("[AllUsersViewModel] Content: " + content);
             Users = JsonConvert.DeserializeObject<ObservableCollection<User>>(content);
         }
     }

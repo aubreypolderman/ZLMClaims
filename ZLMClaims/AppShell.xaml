@@ -16,9 +16,13 @@
 
         <ShellContent 
             Title="Users"
+            Icon="search.svg"
+            ContentTemplate="{DataTemplate views:AllPhotosPage}"/>
+
+        <ShellContent 
+            Title="Profile"
             Icon="profile.svg"
-            Route="MainUserPage"
-            ContentTemplate="{DataTemplate views:AllUsersPage}"/>
+            ContentTemplate="{DataTemplate views:UserPage}"/>
     </TabBar>
 
 </Shell>
