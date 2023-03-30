@@ -23,16 +23,16 @@ namespace ZLMClaims.ViewModels
 
         public AllPhotosViewModel()
         {
-            Console.WriteLine("[AllAlbumsViewModel] [==============] Constructor");
+            Console.WriteLine("[AllPhotosViewModel] [==============] Constructor");
         }
 
        public async Task LoadPostsAsync()
         {
-            Console.WriteLine("[AllAlbumsViewModel] [==============] LoadPostsAsync");
+            Console.WriteLine("[AllPhotosViewModel] [==============] LoadPostsAsync");
             var response = await _client.GetAsync("https://jsonplaceholder.typicode.com/photos");
-            Console.WriteLine("[AllAlbumsViewModel] [==============] reponse 1 " + response);
+            Console.WriteLine("[AllPhotosViewModel] [==============] reponse 1 " + response);
             var content = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("[AllProAllAlbumsViewModelductsViewModel] [==============] content 1 " + content);
+           // Console.WriteLine("[AllProAllAlbumsViewModelductsViewModel] [==============] content 1 " + content);
             Photos = JsonConvert.DeserializeObject<ObservableCollection<Photo>>(content);
         }
     }

@@ -39,7 +39,7 @@ using ZLMClaims.Models;
         response.EnsureSuccessStatusCode();
         Console.WriteLine("[UserViewModel] [==============] reponse 2 " + response);
         string json = await response.Content.ReadAsStringAsync();
-        Console.WriteLine("[UserViewModel] [==============] string json " + json);
+        //Console.WriteLine("[UserViewModel] [==============] string json " + json);
         User = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(json);
         }
     }
