@@ -3,21 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
              xmlns:models="clr-namespace:ZLMClaims.Models"
-             x:Class="ZLMClaims.Views.AllPhotosPage"
-             Title="All photos"
-             x:DataType="viewmodels:AllPhotosViewModel">
+             x:Class="ZLMClaims.Views.AllClaimsPage"
+             Title="All claims"
+             x:DataType="viewmodels:AllClaimsViewModel">
     <ContentPage.BindingContext>
-        <viewmodels:AllPhotosViewModel />
+        <viewmodels:AllClaimsViewModel />
     </ContentPage.BindingContext>
 
     <!-- Add an + icon to the toolbar -->
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="{FontImage Glyph='+', Color=White, Size=22}" />
+        <ToolbarItem Command="{Binding NewClaimCommand}" IconImageSource="{FontImage Glyph='+', Color=White, Size=22}" />
     </ContentPage.ToolbarItems>
 
-    <!-- Display users in a list -->
-    <CollectionView x:Name="usersCollection"
-                    ItemsSource="{Binding Photos}"
+    <!-- Display claims in a list -->
+    <CollectionView x:Name="claimsCollection"
+                    ItemsSource="{Binding Claims}"
                     Margin="20"
                     SelectionMode="Single">
         <!-- Designate how the collection of items are laid out -->
@@ -27,13 +27,14 @@
 
         <!-- Define the appearance of each item in the list -->
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Photo">
+            <DataTemplate x:DataType="models:Claim">
                 <SwipeView>
                     <Frame BorderColor="Red" 
                            CornerRadius="10"
                            Padding="15">
 
                         <StackLayout Orientation="Horizontal">
+                            
                             <Image 
                            Source="personenauto2.png"
                            Aspect="AspectFill"

@@ -10,14 +10,28 @@
     <TabBar>
         <ShellContent
             Title="Home"
-            Icon="claim.svg"
+            Icon="logo.svg"
             Route="MainPage"
             ContentTemplate="{DataTemplate local:MainPage}"/>
 
         <ShellContent 
-            Title="Users"
-            Icon="search.svg"
-            ContentTemplate="{DataTemplate views:AllPhotosPage}"/>
+            Title="Claims"
+            Icon="claim.svg"
+            Route="AllPhotosPage"
+            ContentTemplate="{DataTemplate views:AllClaimsPage}"/>
+
+        <Tab 
+            Title="Repair" 
+            Icon="search.svg">
+
+            <ShellContent
+                Title="Cooperative"
+                ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
+
+            <ShellContent
+                Title="Uncooperative"
+                ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
+        </Tab>
 
         <ShellContent 
             Title="Profile"

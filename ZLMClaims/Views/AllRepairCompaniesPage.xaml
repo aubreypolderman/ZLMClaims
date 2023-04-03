@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             xmlns:models="clr-namespace:ZLMClaims.Models"
+             x:Class="ZLMClaims.Views.AllRepairCompaniesPage"
+             Title="All repair companies"
+             x:DataType="viewmodels:AllRepairCompaniesViewModel">
+    <ContentPage.BindingContext>
+        <viewmodels:AllRepairCompaniesViewModel />
+    </ContentPage.BindingContext>
+
+    <!-- Display reaircompanies in a list -->
+    <CollectionView x:Name="repairCompaniesCollection"
+                    ItemsSource="{Binding RepairCompanies}"
+                    Margin="20"
+                    SelectionMode="Single">
+
+        <!-- Designate how the collection of items are laid out -->
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+        </CollectionView.ItemsLayout>
+
+        <!-- Define the appearance of each item in the list -->
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:RepairCompany">
+                <SwipeView>
+                    <Frame BorderColor="{StaticResource Primary}" 
+                           CornerRadius="10"
+                           Padding="15">
+
+                        <StackLayout Orientation="Horizontal">
+                            
+                            <Image 
+                           Source="personenauto2.png"
+                           Aspect="AspectFill"
+                           WidthRequest="50" 
+                           HeightRequest="50"/>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="      " />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Address.Street}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Address.Suite}" />
+                                            <Span Text=" " />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Address.Zipcode}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Address.City}" />
+                                            <Span Text=" " />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label></Label>
+                                <Label FontSize="10" TextColor="Silver">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Distance " />
+                                            <Span Text="{Binding Id}" />
+                                            <Span Text=" km" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>

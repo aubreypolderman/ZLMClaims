@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZLMClaims.Views.ClaimFormStep1Page"
+             Title="Claimform">
+    <VerticalStackLayout Spacing="10" Margin="5">
+        <Label 
+            Text="1. Damage detais"
+            FontSize="25"
+            TextColor="Red"
+            FontAttributes="Bold"
+            VerticalOptions="Start" 
+            HorizontalOptions="Start" />
+        
+        <!-- Vehice-->
+        <Editor x:Name="TextEditor"
+                Placeholder="What is damaged?"
+                Text="{Binding Text}"
+                HeightRequest="100" />
+
+        <!-- Date of occurrence-->
+        <Label Text="What is the date of occurrence?"
+               VerticalOptions="Start" 
+               HorizontalOptions="Start" />
+
+        <!--  MaximumDate="{x:Static sys:DateTime.Now}" -->
+        <DatePicker MinimumDate="01/01/2020"
+	                MaximumDate="01/01/2025"
+	                Date="02/10/2022"
+	                DateSelected="OnDateSelected" />
+
+        <!-- previous and next page-->
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
+
+            <Button Grid.Column="0"
+                    Text="Previous"
+                    BackgroundColor="#d8172a"
+                    SemanticProperties.Hint="Navigate to previous page when you click"
+                    Clicked="OnPrevBtnClicked"/>
+
+            <Button Grid.Column="1"
+                    Text="Next"
+                    BackgroundColor="#d8172a"
+                    SemanticProperties.Hint="Navigate to next page when you click"
+                    Clicked="OnNextBtnClicked"/>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

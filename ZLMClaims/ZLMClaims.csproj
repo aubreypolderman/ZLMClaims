@@ -32,10 +32,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\acclaim.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\acclaim.svg" Color="#0f92be" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\acclaim.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\acclaim.svg" Color="#0f92be" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -49,9 +49,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\.editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\bestelauto.jpg" />
+	  <None Remove="Resources\Images\camera.png" />
 	  <None Remove="Resources\Images\claim.svg" />
 	  <None Remove="Resources\Images\contracts.svg" />
+	  <None Remove="Resources\Images\image.webp" />
+	  <None Remove="Resources\Images\logo.svg" />
 	  <None Remove="Resources\Images\personenauto2.png" />
 	  <None Remove="Resources\Images\profile.svg" />
 	  <None Remove="Resources\Images\scooter.png" />
@@ -72,14 +79,17 @@
 	  <Compile Update="MainPage.xaml.cs">
 	    <DependentUpon>MainPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\AllPhotosPage.xaml.cs">
-	    <DependentUpon>AllPhotosPage.xaml</DependentUpon>
+	  <Compile Update="Views\AllRepairCompaniesPage.xaml.cs">
+	    <DependentUpon>AllRepairCompaniesPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\AllProductsPage.xaml.cs">
-	    <DependentUpon>AllProductsPage.xaml</DependentUpon>
+	  <Compile Update="Views\AllClaimsPage.xaml.cs">
+	    <DependentUpon>AllClaimsPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\AllUsersPage.xaml.cs">
-	    <DependentUpon>AllUsersPage.xaml</DependentUpon>
+	  <Compile Update="Views\ClaimFormStep3Page.xaml.cs">
+	    <DependentUpon>ClaimFormStep3Page.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ClaimFormStep2Page.xaml.cs">
+	    <DependentUpon>ClaimFormStep2Page.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\UserPage.xaml.cs">
 	    <DependentUpon>UserPage.xaml</DependentUpon>
@@ -87,13 +97,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\AllPhotosPage.xaml">
+	  <MauiXaml Update="Views\AllRepairCompaniesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\AllProductsPage.xaml">
+	  <MauiXaml Update="Views\AllClaimsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\AllUsersPage.xaml">
+	  <MauiXaml Update="Views\ClaimFormStep3Page.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ClaimFormStep2Page.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ClaimFormStep1Page.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UserPage.xaml">

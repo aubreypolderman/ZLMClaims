@@ -9,41 +9,15 @@
     <ContentPage.BindingContext>
         <viewmodels:UserViewModel />
     </ContentPage.BindingContext>
+    
+    
     <VerticalStackLayout Padding="20" Spacing="10" Margin="10">
-        <Border WidthRequest="100"
-                    HeightRequest="100"
-                    Stroke="{AppThemeBinding Light=Blue, Dark=Black}"
-                    StrokeThickness="4"
-                    BackgroundColor="{AppThemeBinding Light=Orange, Dark=Pink}"
-                    StrokeShape="RoundRectangle 50">
-            <Border.Shadow>
-                <Shadow Brush="red"
-                            Offset="10,1"
-                            Opacity=".8"/>
-            </Border.Shadow>
-            <Image
-                    Source="https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg"
-                    HeightRequest="98"
-                    WidthRequest="98" />
+        
+        <!-- Image above info of user-->
+        <Border>
+            <Image Source="https://static.zlm.nl/sites/default/files/2022-10/Campagne%20header%20autoverzekering%202022.jpg"/>
         </Border>
-        <Border WidthRequest="300"
-                    HeightRequest="100"
-                    Stroke="{AppThemeBinding Light=Blue, Dark=Black}"
-                    StrokeThickness="4"
-                    BackgroundColor="{AppThemeBinding Light=Orange, Dark=Pink}"
-                    StrokeShape="RoundRectangle 10">
-            <Border.Shadow>
-                <Shadow Brush="red"
-                            Offset="10,1"
-                            Opacity=".8"/>
-            </Border.Shadow>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-        </Border>
 
         <Grid>
             <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" --> 
@@ -147,6 +121,6 @@
         </Grid>
 
         <Label Text="{Binding User.Company.Name}" />
-        <Button Text="MijnZLM"/>
+        <Button Text="MijnZLM" BackgroundColor="#d8172a"/>
     </VerticalStackLayout>
 </ContentPage>

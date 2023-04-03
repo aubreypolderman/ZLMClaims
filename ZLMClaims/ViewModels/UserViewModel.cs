@@ -4,6 +4,7 @@ using System.Windows.Input;
 namespace ZLMClaims.ViewModels;
 
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using ZLMClaims.Models;
@@ -26,20 +27,20 @@ using ZLMClaims.Models;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-        Console.WriteLine("[UserViewModel] [==============] OnPropertyChanged");
+        Console.WriteLine("[UserViewModel] [OnPropertyChanged] [==============] start with propertyname " + propertyName);
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public async Task GetUser(int userId)
         {
-        Console.WriteLine("[UserViewModel] [==============] GetUser with id " + userId);
+        Debug.WriteLine("[UserViewModel] [GetUser] [==============] Debug GetUser with id " + userId);
+        Console.WriteLine("[UserViewModel] [GetUser] [==============] GetUser with id " + userId);
         HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync($"https://jsonplaceholder.typicode.com/users/1");
-        Console.WriteLine("[UserViewModel] [==============] reponse 1 " + response);
+        HttpResponseMessage response = await client.GetAsync($"https://jsonplaceholder.typicode.com/users/1");
+        Console.WriteLine("[UserViewModel] [GetUser] [==============] reponse 1: " + response);
         response.EnsureSuccessStatusCode();
-        Console.WriteLine("[UserViewModel] [==============] reponse 2 " + response);
+        Console.WriteLine("[UserViewModel] [GetUser] [==============] reponse 2 " + response);
         string json = await response.Content.ReadAsStringAsync();
-        //Console.WriteLine("[UserViewModel] [==============] string json " + json);
         User = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(json);
         }
     }

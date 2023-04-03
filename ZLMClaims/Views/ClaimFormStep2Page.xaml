@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZLMClaims.Views.ClaimFormStep2Page"
+             Title="Claimform">
+    <VerticalStackLayout Spacing="10" Margin="5">
+        <Label 
+            Text="2. Damage photos"
+            FontSize="25"
+            TextColor="Red"
+            FontAttributes="Bold"
+            VerticalOptions="Start" 
+            HorizontalOptions="Start" />
+
+        <!-- Select images from filesystem using FilePicker-->
+        <Image
+                x:Name="myImage"
+                Source="image.webp"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+        <ImageButton
+                x:Name="TakePhoto"
+                Source="camera.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="50"
+                Clicked="OnTakePhotoBtnClicked"
+                HorizontalOptions="Center" />
+
+        <Button
+                x:Name="PickImages"
+                Text="Pick Images"
+                SemanticProperties.Hint="Select image(s) from filesystem"
+                Clicked="OnPickImagesBtnClicked" />
+
+        <!-- previous and next page-->
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
+            <Button Grid.Column="0"
+                    Text="Previous"
+                    BackgroundColor="White"
+                    TextColor="#d8172a"
+                    BorderColor="#d8172a"
+                    SemanticProperties.Hint="Navigate to previous page when you click"
+                    Clicked="OnPrevBtnClicked"/>
+
+            <Button Grid.Column="1"
+                    Text="Next"
+                    BackgroundColor="#d8172a"
+                    SemanticProperties.Hint="Navigate to next page when you click"
+                    Clicked="OnNextBtnClicked"/>
+
+        </Grid>
+
+
+
+    </VerticalStackLayout>
+</ContentPage>
