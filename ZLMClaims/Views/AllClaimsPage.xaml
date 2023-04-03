@@ -35,11 +35,10 @@
 
                         <StackLayout Orientation="Horizontal">
                             
-                            <Image 
-                           Source="personenauto2.png"
-                           Aspect="AspectFill"
-                           WidthRequest="50" 
-                           HeightRequest="50"/>
+                            <Image Source="personenauto2.png"
+                                   Aspect="AspectFill"
+                                   WidthRequest="50" 
+                                   HeightRequest="50"/>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>

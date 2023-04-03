@@ -31,11 +31,15 @@
 
                         <StackLayout Orientation="Horizontal">
                             
-                            <Image 
-                           Source="personenauto2.png"
-                           Aspect="AspectFill"
-                           WidthRequest="50" 
-                           HeightRequest="50"/>
+                            <Image Source="personenauto2.png"
+                                   Aspect="AspectFill"
+                                   WidthRequest="50" 
+                                   HeightRequest="50">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference repairCompaniesCollection}}" CommandParameter="{Binding}" />
+                                </Image.GestureRecognizers>
+                            </Image>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
