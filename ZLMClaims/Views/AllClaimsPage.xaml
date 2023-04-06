@@ -29,29 +29,58 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:Claim">
                 <SwipeView>
-                    <Frame BorderColor="Red" 
+                    <Frame BorderColor="{StaticResource Primary}" 
                            CornerRadius="10"
                            Padding="15">
 
                         <StackLayout Orientation="Horizontal">
-                            
-                            <Image Source="personenauto2.png"
+
+                            <Image Source="{Binding Url}"
                                    Aspect="AspectFill"
-                                   WidthRequest="50" 
-                                   HeightRequest="50"/>
+                                   WidthRequest="70" 
+                                   HeightRequest="70">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference repairCompaniesCollection}}" CommandParameter="{Binding}" />
+                                </Image.GestureRecognizers>
+                            </Image>
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Claim id: " />
-                                        <Span Text="{Binding Id}" />
-                                        <Span Text=" / 005"
-                                              FontSize="22"/>
+                                        <Span Text="      " />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <Label Text="{Binding AlbumId}" FontSize="14" TextColor="Silver"/>
-                            <Label Text="{Binding Title}" FontSize="14" TextColor="Silver"/>
-                            <Label Text="{Binding Url}" FontSize="14" TextColor="Silver"/>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold"/>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding AlbumId}" />
+                                            <Span Text=" [---] " />
+                                            <Span Text="{Binding Id}" />
+                                            <Span Text=" " />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding ThumbnailUrl}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label></Label>
+                                <Label FontSize="10" TextColor="Silver">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Schadedatum: " />
+                                            <Span Text="2023-01-01 18:45" />
+                                            <Span Text=" km" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
                         </StackLayout>
                     </Frame>
                 </SwipeView>
