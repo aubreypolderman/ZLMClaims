@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             x:Class="ZLMClaims.Views.RepairCompanyPage"
+             Title="Profile"
+             x:DataType="viewmodels:RepairCompanyViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodels:RepairCompanyViewModel />
+    </ContentPage.BindingContext>
+    
+    
+    <VerticalStackLayout Padding="20" Spacing="10" Margin="10">
+        
+        <!-- Image above info of user-->
+        <Border>
+            <Image Source="https://static.zlm.nl/sites/default/files/2022-10/Campagne%20header%20autoverzekering%202022.jpg"/>
+        </Border>
+
+
+        <Grid>
+            <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" --> 
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- customer id-->
+            <BoxView Grid.Row="0"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="0"
+                   Text="RepairCompany id"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="0"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   Text="1234545767"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Name-->
+            <BoxView Grid.Row="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="1"
+                   Text="Name"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="1"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Text="Van den Berg autoschade"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Address-->
+            <BoxView Grid.Row="2"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="2"
+                   Text="Address"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="2"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Text="www.autoschade.nl"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Zipcode-->
+            <BoxView Grid.Row="3"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="3"
+                   Text="ZipCode"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="3"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   Text="4460XH"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- City-->
+            <BoxView Grid.Row="4"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="4"
+                   Text="City"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="4"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   Text="Goes"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+        </Grid>
+
+        <Button Text="MijnZLM" BackgroundColor="#d8172a"/>
+    </VerticalStackLayout>
+</ContentPage>

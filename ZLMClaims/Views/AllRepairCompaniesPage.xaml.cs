@@ -9,7 +9,7 @@ public partial class AllRepairCompaniesPage : ContentPage
     public AllRepairCompaniesPage()
 	{
 		InitializeComponent();
-        _viewModel = new AllRepairCompaniesViewModel();
+        _viewModel = new AllRepairCompaniesViewModel(this.Navigation);
         BindingContext = _viewModel;
     }
 

@@ -91,6 +91,9 @@
 	  <Compile Update="Views\ClaimFormStep2Page.xaml.cs">
 	    <DependentUpon>ClaimFormStep2Page.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\RepairCompanyPage.xaml.cs">
+	    <DependentUpon>RepairCompanyPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\UserPage.xaml.cs">
 	    <DependentUpon>UserPage.xaml</DependentUpon>
 	  </Compile>
@@ -110,6 +113,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ClaimFormStep1Page.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RepairCompanyPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\UserPage.xaml">

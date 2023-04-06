@@ -14,7 +14,8 @@
     <CollectionView x:Name="repairCompaniesCollection"
                     ItemsSource="{Binding RepairCompanies}"
                     Margin="20"
-                    SelectionMode="Single">
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding SelectRepairCompanyCommand}">
 
         <!-- Designate how the collection of items are laid out -->
         <CollectionView.ItemsLayout>

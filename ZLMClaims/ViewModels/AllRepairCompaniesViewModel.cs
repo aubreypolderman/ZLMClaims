@@ -1,7 +1,11 @@
-﻿using Microsoft.Maui.Controls;
+﻿using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Input;
 using ZLMClaims.Models;
+using ZLMClaims.Views;
 
 namespace ZLMClaims.ViewModels
 {
@@ -10,6 +14,8 @@ namespace ZLMClaims.ViewModels
         private readonly HttpClient _client = new HttpClient();
         private ObservableCollection<RepairCompany> _repaircompanies;
         private Command<object> tapCommand;
+        public ICommand SelectRepairCompanyCommand { get; }
+        private INavigation navigation;
 
         public ObservableCollection<RepairCompany> RepairCompanies
         {
@@ -26,8 +32,22 @@ namespace ZLMClaims.ViewModels
         public AllRepairCompaniesViewModel()
         {
             Console.WriteLine("[AllRepairCompaniesViewModel] [==============] Constructor");
-            tapCommand = new Command<object>(OnTapped);
+            
         }
+
+        public AllRepairCompaniesViewModel(INavigation _navigation)
+        {
+            Console.WriteLine("[AllRepairCompaniesViewModel] [==============] Constructor");
+            SelectRepairCompanyCommand = new AsyncRelayCommand<ViewModels.AllRepairCompaniesViewModel>(SelectRepairCompanyAsync);
+        }
+
+        private async Task SelectRepairCompanyAsync(ViewModels.AllRepairCompaniesViewModel repaircompany)
+        {
+            // if (repaircompany != null) 
+            //     await Shell.Current.GoToAsync($"{nameof(RepairCompanyPage)}?load={repaircompany.Identifier}");
+            Console.WriteLine("[SelectRepairCompanyAsync] [==============] repaircompany:" + repaircompany);
+        }
+        
 
        public async Task LoadDataAsync()
         {
@@ -44,13 +64,19 @@ namespace ZLMClaims.ViewModels
             set { tapCommand = value; }
         }
 
+        public INavigation Navigation
+        {
+            get { return navigation; }
+            set { navigation = value; }
+        }
+
         private void OnTapped(object obj)
         {
             Console.WriteLine("[AllRepairCompaniesViewModel] [OnTapped ][==============] ");
             Console.WriteLine("[AllRepairCompaniesViewModel] [OnTapped ][==============] object => "+ obj);
-            /* var newPage = new DetailsPage();
-            newPage.BindingContext = obj;
-            Navigation.PushAsync(newPage);0*/
+            //var newPage = new RepairCompanyPage();
+            //newPage.BindingContext = obj;
+            //Navigation.PushAsync(newPage);
         }
     }
 }
