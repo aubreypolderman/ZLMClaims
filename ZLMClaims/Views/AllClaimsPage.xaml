@@ -4,7 +4,8 @@
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
              xmlns:models="clr-namespace:ZLMClaims.Models"
              x:Class="ZLMClaims.Views.AllClaimsPage"
-             Title="All claims"
+             xmlns:local="clr-namespace:ZLMClaims"
+             Title="{local:Translate AllClaimsTitle}"
              x:DataType="viewmodels:AllClaimsViewModel">
     <ContentPage.BindingContext>
         <viewmodels:AllClaimsViewModel />

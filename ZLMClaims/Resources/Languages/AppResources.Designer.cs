@@ -61,6 +61,159 @@ namespace ZLMClaims.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        internal static string Address {
+            get {
+                return ResourceManager.GetString("Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All claims.
+        /// </summary>
+        internal static string AllClaimsTitle {
+            get {
+                return ResourceManager.GetString("AllClaimsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All repair companies.
+        /// </summary>
+        internal static string AllRepairCompaniesTitle {
+            get {
+                return ResourceManager.GetString("AllRepairCompaniesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application settings.
+        /// </summary>
+        internal static string ApplicationSettings {
+            get {
+                return ResourceManager.GetString("ApplicationSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City.
+        /// </summary>
+        internal static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Claimform.
+        /// </summary>
+        internal static string ClaimFormPageTitle {
+            get {
+                return ResourceManager.GetString("ClaimFormPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1. Damage details.
+        /// </summary>
+        internal static string DamageDetails {
+            get {
+                return ResourceManager.GetString("DamageDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2. Damage photos.
+        /// </summary>
+        internal static string DamagePhotos {
+            get {
+                return ResourceManager.GetString("DamagePhotos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3. Damage summary.
+        /// </summary>
+        internal static string DamageSummary {
+            get {
+                return ResourceManager.GetString("DamageSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is the date of occurrence?.
+        /// </summary>
+        internal static string DateOfOccurrence {
+            get {
+                return ResourceManager.GetString("DateOfOccurrence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        internal static string Distance {
+            get {
+                return ResourceManager.GetString("Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        internal static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous.
+        /// </summary>
+        internal static string Previous {
+            get {
+                return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is damaged?.
+        /// </summary>
+        internal static string Q_WhatIsDamaged {
+            get {
+                return ResourceManager.GetString("Q_WhatIsDamaged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair company.
+        /// </summary>
+        internal static string RepairCompanyTitle {
+            get {
+                return ResourceManager.GetString("RepairCompanyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        internal static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Claim.
         /// </summary>
         internal static string TabItemClaim {
@@ -120,6 +273,42 @@ namespace ZLMClaims.Resources.Languages {
         internal static string UserId {
             get {
                 return ResourceManager.GetString("UserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        internal static string UserPageTitle {
+            get {
+                return ResourceManager.GetString("UserPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch to Dutch language.
+        /// </summary>
+        internal static string UserSwitchLanguage {
+            get {
+                return ResourceManager.GetString("UserSwitchLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch theme.
+        /// </summary>
+        internal static string UserSwitchTheme {
+            get {
+                return ResourceManager.GetString("UserSwitchTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zipcode.
+        /// </summary>
+        internal static string ZipCode {
+            get {
+                return ResourceManager.GetString("ZipCode", resourceCulture);
             }
         }
     }

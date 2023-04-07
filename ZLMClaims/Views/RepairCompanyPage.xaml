@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
              x:Class="ZLMClaims.Views.RepairCompanyPage"
-             Title="Profile"
+             xmlns:local="clr-namespace:ZLMClaims"
+             Title="{local:Translate RepairCompanyTitle}"
              x:DataType="viewmodels:RepairCompanyViewModel">
 
     <ContentPage.BindingContext>
@@ -37,7 +38,7 @@
             <BoxView Grid.Row="0"
                      Color="AliceBlue"/>
             <Label Grid.Row="0"
-                   Text="RepairCompany id"
+                   Text="id"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -54,7 +55,7 @@
             <BoxView Grid.Row="1"
                      Color="AliceBlue"/>
             <Label Grid.Row="1"
-                   Text="Name"
+                   Text="{local:Translate Name}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -71,7 +72,7 @@
             <BoxView Grid.Row="2"
                      Color="AliceBlue"/>
             <Label Grid.Row="2"
-                   Text="Address"
+                   Text="{local:Translate Address}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -88,7 +89,7 @@
             <BoxView Grid.Row="3"
                      Color="AliceBlue"/>
             <Label Grid.Row="3"
-                   Text="ZipCode"
+                   Text="{local:Translate ZipCode}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -105,7 +106,7 @@
             <BoxView Grid.Row="4"
                      Color="AliceBlue"/>
             <Label Grid.Row="4"
-                   Text="City"
+                   Text="{local:Translate City}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />

@@ -57,6 +57,7 @@
 	  <None Remove="Resources\Images\camera.png" />
 	  <None Remove="Resources\Images\claim.svg" />
 	  <None Remove="Resources\Images\contracts.svg" />
+	  <None Remove="Resources\Images\home.svg" />
 	  <None Remove="Resources\Images\image.webp" />
 	  <None Remove="Resources\Images\logo.svg" />
 	  <None Remove="Resources\Images\personenauto2.png" />

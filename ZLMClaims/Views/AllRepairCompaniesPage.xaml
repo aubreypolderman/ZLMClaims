@@ -4,7 +4,8 @@
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
              xmlns:models="clr-namespace:ZLMClaims.Models"
              x:Class="ZLMClaims.Views.AllRepairCompaniesPage"
-             Title="All repair companies"
+             xmlns:local="clr-namespace:ZLMClaims"
+             Title="{local:Translate RepairCompanyTitle}"
              x:DataType="viewmodels:AllRepairCompaniesViewModel">
     <ContentPage.BindingContext>
         <viewmodels:AllRepairCompaniesViewModel />
@@ -74,7 +75,8 @@
                                 <Label FontSize="10" TextColor="Silver">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Distance " />
+                                            <Span Text="{local:Translate Distance}" />
+                                            <Span Text=": " />
                                             <Span Text="{Binding Id}" />
                                             <Span Text=" km" />
                                         </FormattedString>

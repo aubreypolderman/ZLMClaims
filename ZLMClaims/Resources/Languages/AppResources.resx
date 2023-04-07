@@ -117,6 +117,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AllClaimsTitle" xml:space="preserve">
+    <value>All claims</value>
+  </data>
+  <data name="AllRepairCompaniesTitle" xml:space="preserve">
+    <value>All repair companies</value>
+  </data>
+  <data name="ApplicationSettings" xml:space="preserve">
+    <value>Application settings</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="ClaimFormPageTitle" xml:space="preserve">
+    <value>Claimform</value>
+  </data>
+  <data name="DamageDetails" xml:space="preserve">
+    <value>1. Damage details</value>
+  </data>
+  <data name="DamagePhotos" xml:space="preserve">
+    <value>2. Damage photos</value>
+  </data>
+  <data name="DamageSummary" xml:space="preserve">
+    <value>3. Damage summary</value>
+  </data>
+  <data name="DateOfOccurrence" xml:space="preserve">
+    <value>What is the date of occurrence?</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Q_WhatIsDamaged" xml:space="preserve">
+    <value>What is damaged?</value>
+  </data>
+  <data name="RepairCompanyTitle" xml:space="preserve">
+    <value>Repair company</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
   <data name="TabItemClaim" xml:space="preserve">
     <value>Claim</value>
   </data>
@@ -137,5 +188,17 @@
   </data>
   <data name="UserId" xml:space="preserve">
     <value>Customer number</value>
+  </data>
+  <data name="UserPageTitle" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="UserSwitchLanguage" xml:space="preserve">
+    <value>Switch to Dutch language</value>
+  </data>
+  <data name="UserSwitchTheme" xml:space="preserve">
+    <value>Switch theme</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Zipcode</value>
   </data>
 </root>

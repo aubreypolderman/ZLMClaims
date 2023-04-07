@@ -117,11 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="AllClaimsTitle" xml:space="preserve">
+    <value>Alle schademeldingen</value>
+  </data>
+  <data name="AllRepairCompaniesTitle" xml:space="preserve">
+    <value>Alle schadeherstelbedrijven</value>
+  </data>
+  <data name="ApplicationSettings" xml:space="preserve">
+    <value>Applicatie instellingen</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Woonplaats</value>
+  </data>
+  <data name="ClaimFormPageTitle" xml:space="preserve">
+    <value>Schadeformulier</value>
+  </data>
+  <data name="DamageDetails" xml:space="preserve">
+    <value>1. Schadedetails</value>
+  </data>
+  <data name="DamagePhotos" xml:space="preserve">
+    <value>2. Schadefoto's</value>
+  </data>
+  <data name="DamageSummary" xml:space="preserve">
+    <value>3. Schade samenvatting</value>
+  </data>
+  <data name="DateOfOccurrence" xml:space="preserve">
+    <value>Wat is de schadedatum?</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Afstand</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Volgende</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Vorige</value>
+  </data>
+  <data name="Q_WhatIsDamaged" xml:space="preserve">
+    <value>What is er beschadigd?</value>
+  </data>
+  <data name="RepairCompanyTitle" xml:space="preserve">
+    <value>Schadeherstelbedrijf</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Versturen</value>
+  </data>
   <data name="TabItemClaim" xml:space="preserve">
     <value>Schade</value>
   </data>
   <data name="TabItemHome" xml:space="preserve">
-    <value>Home</value>
+    <value>Thuis</value>
   </data>
   <data name="TabItemProfile" xml:space="preserve">
     <value>Profiel</value>
@@ -137,5 +188,17 @@
   </data>
   <data name="UserId" xml:space="preserve">
     <value>Relatienummer</value>
+  </data>
+  <data name="UserPageTitle" xml:space="preserve">
+    <value>Profiel</value>
+  </data>
+  <data name="UserSwitchLanguage" xml:space="preserve">
+    <value>Verander naar Engels</value>
+  </data>
+  <data name="UserSwitchTheme" xml:space="preserve">
+    <value>Verander thema</value>
+  </data>
+  <data name="ZipCode" xml:space="preserve">
+    <value>Postcode</value>
   </data>
 </root>

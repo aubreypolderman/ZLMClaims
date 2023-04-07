@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
              x:Class="ZLMClaims.Views.UserPage"
-             Title="Profile"
+             xmlns:local="clr-namespace:ZLMClaims"
+             Title="{local:Translate UserPageTitle}"
              x:DataType="viewmodels:UserViewModel">
 
     <ContentPage.BindingContext>
@@ -37,7 +38,7 @@
             <BoxView Grid.Row="0"
                      Color="AliceBlue"/>
             <Label Grid.Row="0"
-                   Text="Customer nr"
+                   Text="{local:Translate UserId}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -54,7 +55,7 @@
             <BoxView Grid.Row="1"
                      Color="AliceBlue"/>
             <Label Grid.Row="1"
-                   Text="Name"
+                   Text="{local:Translate Name}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -71,7 +72,7 @@
             <BoxView Grid.Row="2"
                      Color="AliceBlue"/>
             <Label Grid.Row="2"
-                   Text="Address"
+                   Text="{local:Translate Address}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -88,7 +89,7 @@
             <BoxView Grid.Row="3"
                      Color="AliceBlue"/>
             <Label Grid.Row="3"
-                   Text="ZipCode"
+                   Text="{local:Translate ZipCode}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -105,7 +106,7 @@
             <BoxView Grid.Row="4"
                      Color="AliceBlue"/>
             <Label Grid.Row="4"
-                   Text="City"
+                   Text="{local:Translate City}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -120,7 +121,7 @@
 
         </Grid>
 
-        <Label Text="Applications settings" FontSize="Large" />
+        <Label Text="{local:Translate ApplicationSettings}" FontSize="Large" />
         <Grid>
             <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
             <Grid.RowDefinitions>
@@ -138,7 +139,7 @@
             <BoxView Grid.Row="0"
                      Color="AliceBlue"/>
             <Label Grid.Row="0"
-                   Text="Switch language"
+                   Text="{local:Translate UserSwitchLanguage}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -154,7 +155,7 @@
             <BoxView Grid.Row="1"
                      Color="AliceBlue"/>
             <Label Grid.Row="1"
-                   Text="Dark theme"
+                   Text="{local:Translate UserSwitchTheme}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
