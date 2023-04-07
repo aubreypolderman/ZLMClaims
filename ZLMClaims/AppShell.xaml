@@ -10,32 +10,32 @@
 
     <TabBar>
         <ShellContent
-            Title="{x:Static lang:AppResources.TabItemHome}"
+            Title="{Binding LocalizationResourceManager[TabItemHome], Mode=OneWay}"
             Icon="logo.svg"
             Route="MainPage"
             ContentTemplate="{DataTemplate local:MainPage}"/>
 
         <ShellContent 
-            Title="{x:Static lang:AppResources.TabItemClaim}"
+            Title="{Binding LocalizationResourceManager[TabItemClaim], Mode=OneWay}"
             Icon="claim.svg"
             Route="AllPhotosPage"
             ContentTemplate="{DataTemplate views:AllClaimsPage}"/>
 
         <Tab 
-            Title="{x:Static lang:AppResources.TabItemRepair}"
+            Title="{Binding LocalizationResourceManager[TabItemRepair], Mode=OneWay}"
             Icon="search.svg">
 
             <ShellContent
-                Title="{x:Static lang:AppResources.TabItemRepairCooperative}"
+                Title="{Binding LocalizationResourceManager[TabItemRepairCooperative], Mode=OneWay}"
                 ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
 
             <ShellContent
-                Title="{x:Static lang:AppResources.TabItemRepairUncooperative}"
+                Title="{Binding LocalizationResourceManager[TabItemRepairUncooperative], Mode=OneWay}"
                 ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
         </Tab>
 
         <ShellContent 
-            Title="{x:Static lang:AppResources.TabItemProfile}"
+            Title="{Binding LocalizationResourceManager[TabItemProfile], Mode=OneWay}"
             Icon="profile.svg"
             ContentTemplate="{DataTemplate views:UserPage}"/>
     </TabBar>

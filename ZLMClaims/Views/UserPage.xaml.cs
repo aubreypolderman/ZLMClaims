@@ -1,3 +1,5 @@
+using System.Globalization;
+using ZLMClaims.Resources.Languages;
 using ZLMClaims.ViewModels;
 
 namespace ZLMClaims.Views;
@@ -42,5 +44,25 @@ public partial class UserPage : ContentPage
         Console.WriteLine("[UserPage] [constructor] [==============] Before bindingContext with _viewmodel");
         BindingContext = _viewModel;
         Console.WriteLine("[UserPage] [constructor] [==============] After bindingContext with _viewmodel");
+    }
+
+    public LocalizationResourceManager LocalizationResourceManager
+    => LocalizationResourceManager.Instance;
+
+    private void OnLanguageSwitchToggled(object sender, ToggledEventArgs e)
+    {
+
+        Console.WriteLine("[UserPage] [OnLanguageSwitchToggled] [==============] object: " + sender  + "  met args " + e);
+        var switchToCulture = AppResources.Culture.TwoLetterISOLanguageName
+            .Equals("nl", StringComparison.InvariantCultureIgnoreCase) ? 
+            new CultureInfo("en-US") : new CultureInfo("nl-NL");
+
+        LocalizationResourceManager.Instance.SetCulture(switchToCulture);
+    }
+
+    private void OnThemeSwitchToggled(object sender, ToggledEventArgs e)
+    {
+        Console.WriteLine("[UserPage] [OnThemeSwitchToggled] [==============] object: " + sender + "  met args " + e);
+
     }
 }

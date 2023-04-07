@@ -37,7 +37,7 @@
             <BoxView Grid.Row="0"
                      Color="AliceBlue"/>
             <Label Grid.Row="0"
-                   Text="Customer number"
+                   Text="Customer nr"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -117,6 +117,54 @@
                    Text="{Binding User.Address.City}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
+
+        </Grid>
+
+        <Label Text="Applications settings" FontSize="Large" />
+        <Grid>
+            <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- language setting -->
+            <!-- Title="{Binding LocalizationResourceManager[TabItemRepair], Mode=OneWay}" -->
+            <BoxView Grid.Row="0"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="0"
+                   Text="Switch language"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="0"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Switch Grid.Row="0" 
+                    Grid.Column="1" 
+                    x:Name="languageSwitch" 
+                    Toggled="OnLanguageSwitchToggled"/>
+            
+            <!-- Dark theme -->
+            <BoxView Grid.Row="1"
+                     Color="AliceBlue"/>
+            <Label Grid.Row="1"
+                   Text="Dark theme"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="1"
+                     Grid.Column="1"
+                     Color="AliceBlue"/>
+            <Switch Grid.Row="1" 
+                    Grid.Column="1" 
+                    x:Name="themeSwitch" 
+                    Toggled="OnThemeSwitchToggled"/>
 
         </Grid>
 

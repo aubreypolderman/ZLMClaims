@@ -135,4 +135,7 @@
   <data name="TabItemRepairUncooperative" xml:space="preserve">
     <value>Uncooperative</value>
   </data>
+  <data name="UserId" xml:space="preserve">
+    <value>Customer number</value>
+  </data>
 </root>

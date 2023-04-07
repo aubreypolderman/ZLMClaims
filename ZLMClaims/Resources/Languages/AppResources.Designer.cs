@@ -113,5 +113,14 @@ namespace ZLMClaims.Resources.Languages {
                 return ResourceManager.GetString("TabItemRepairUncooperative", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer number.
+        /// </summary>
+        internal static string UserId {
+            get {
+                return ResourceManager.GetString("UserId", resourceCulture);
+            }
+        }
     }
 }
