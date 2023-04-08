@@ -170,5 +170,11 @@
         </Grid>
 
         <Button Text="MijnZLM" BackgroundColor="#d8172a"/>
+        <Button 
+                Grid.Column="1"
+                Text="{local:Translate Email}"
+                BackgroundColor="#d8172a"
+                SemanticProperties.Hint="Email the claimn form to the insurance company ZLM Verzekeringen"
+                Clicked="OnEmailBtnClicked"/>
     </VerticalStackLayout>
 </ContentPage>

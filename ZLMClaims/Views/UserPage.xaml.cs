@@ -1,3 +1,4 @@
+using Microsoft.Maui.ApplicationModel;
 using System.Globalization;
 using ZLMClaims.Resources.Languages;
 using ZLMClaims.ViewModels;
@@ -63,11 +64,41 @@ public partial class UserPage : ContentPage
     private void OnThemeSwitchToggled(object sender, ToggledEventArgs e)
     {
         Console.WriteLine("[UserPage] [OnThemeSwitchToggled] [==============] object: " + sender + "  met args " + e);
+        Console.WriteLine("[UserPage] [OnThemeSwitchToggled] [==============] Current theme: " + Application.Current.RequestedTheme );
+        
+        if (Application.Current.RequestedTheme == AppTheme.Dark)
+        {
+            Console.WriteLine("[UserPage] [OnThemeSwitchToggled] [==============] Current theme: " + Application.Current.RequestedTheme + ". Switch to theme Light");
+            Application.Current.UserAppTheme = AppTheme.Light;
+        }
+        else
+        {
+            Console.WriteLine("[UserPage] [OnThemeSwitchToggled] [==============] Current theme: " + Application.Current.RequestedTheme + ". Switch to theme Dark");
+            Application.Current.UserAppTheme = AppTheme.Dark;
+        }
+        
 
     }
 
     private void OnEmailConfirmationSwitchToggled(object sender, ToggledEventArgs e)
     {
         Console.WriteLine("[UserPage] [OnEmailConfirmationSwitchToggled] [==============] object: " + sender + "  met args " + e);
+    }
+
+    private async void OnEmailBtnClicked(object sender, EventArgs e)
+    {
+        if (Email.Default.IsComposeSupported)
+        {
+            var message = new EmailMessage
+            {
+                Subject = "Hi how are you?",
+                Body = "Thanks for being here, nice to meet you!",
+                BodyFormat = EmailBodyFormat.PlainText,
+                To = new List<string>(new[] { "aubreypolderman@gmail.com" })
+            };
+            message.Attachments.Add(new EmailAttachment(Path.Combine(FileSystem.CacheDirectory, "dotnet_bot.svg")));
+
+        await Email.Default.ComposeAsync(message);
+        }
     }
 }
