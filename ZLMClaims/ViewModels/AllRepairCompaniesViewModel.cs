@@ -31,13 +31,13 @@ namespace ZLMClaims.ViewModels
 
         public AllRepairCompaniesViewModel()
         {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [==============] Constructor");
+            Console.WriteLine("[..............] [AllRepairCompaniesViewModel] No args constructor");
             
         }
 
         public AllRepairCompaniesViewModel(INavigation _navigation)
         {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [==============] Constructor");
+            Console.WriteLine("[..............] [AllRepairCompaniesViewModel] Navigation constructor");
             SelectRepairCompanyCommand = new AsyncRelayCommand<ViewModels.AllRepairCompaniesViewModel>(SelectRepairCompanyAsync);
         }
 
@@ -45,7 +45,7 @@ namespace ZLMClaims.ViewModels
         {
             // if (repaircompany != null) 
             //     await Shell.Current.GoToAsync($"{nameof(RepairCompanyPage)}?load={repaircompany.Identifier}");
-            Console.WriteLine("[SelectRepairCompanyAsync] [==============] repaircompany:" + repaircompany);
+            Console.WriteLine("[..............] [AllRepairCompaniesViewModel] [SelectRepairCompanyAsync] repaircompany:" + repaircompany);
         }
         
 

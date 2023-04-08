@@ -27,7 +27,7 @@ namespace ZLMClaims.ViewModels
 
         public AllClaimsViewModel()
         {
-            Console.WriteLine("[AllClaimsViewModel] [==============] Constructor");
+            Console.WriteLine("[..............] [AllClaimsViewModel] Constructor");
             NewClaimCommand = new AsyncRelayCommand(NewClaimAsync);
         }
 
@@ -38,18 +38,17 @@ namespace ZLMClaims.ViewModels
 
         public async Task LoadDataAsync()
         {
-            Console.WriteLine("[AllClaimsViewModel] [LoadDataAsync] [==============");
-            Debug.WriteLine("[AllClaimsViewModel] [noargs constructor] [==============] Start debug");
+            Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync]");
 
             // Check internet connection
             NetworkAccess accessType = Connectivity.Current.NetworkAccess;
 
             IEnumerable<ConnectionProfile> profiles = Connectivity.Current.ConnectionProfiles;
-            Console.WriteLine("[AllClaimsViewModel] [LoadDataAsync] [==============] profiles => " + profiles);
+            Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] profiles => " + profiles);
 
             if (profiles.Contains(ConnectionProfile.WiFi))
             {
-                Console.WriteLine("[AllClaimsViewModel] [LoadDataAsync] [==============] WiFi connection is available => " + accessType);
+                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] WiFi connection is available => " + accessType);
             }
 
 
@@ -57,18 +56,17 @@ namespace ZLMClaims.ViewModels
             {
                 
                 // Connection to internet is available
-                Console.WriteLine("[AllClaimsViewModel] [LoadDataAsync] [==============] Internet connection is available => "+ accessType);
+                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] Internet connection is available => " + accessType);
 
                 // make the call
-                
                 var response = await _client.GetAsync("https://jsonplaceholder.typicode.com/photos");
-                Console.WriteLine("[AllClaimsViewModel] [LoadDataAsync] [==============] reponse: " + response);
+                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] reponse: " + response);
                 var content = await response.Content.ReadAsStringAsync();
                 Claims = JsonConvert.DeserializeObject<ObservableCollection<Claim>>(content);
                 
             } else
             {
-                Console.WriteLine("[AllClaimsViewModel] [LoadDataAsync] [==============] Internet connection is NOT available!!!!");
+                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] Internet connection is NOT available!!!!");
             }
             
         }
