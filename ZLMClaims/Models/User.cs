@@ -23,14 +23,10 @@ namespace ZLMClaims.Models
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
 
-        [JsonPropertyName("website")]
-        public string Website { get; set; }
 
-        [JsonPropertyName("company")]
-        public Company Company { get; set; }
     }
 
-    public class Address
+    public class CompanyAddress
     {
         [JsonPropertyName("street")]
         public string Street { get; set; }
@@ -44,28 +40,6 @@ namespace ZLMClaims.Models
         [JsonPropertyName("zipcode")]
         public string Zipcode { get; set; }
 
-        [JsonPropertyName("geo")]
-        public Geo Geo { get; set; }
     }
 
-    public class Geo
-    {
-        [JsonPropertyName("lat")]
-        public string Lat { get; set; }
-
-        [JsonPropertyName("lng")]
-        public string Lng { get; set; }
-    }
-
-    public class Company
-    {
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("catchPhrase")]
-        public string CatchPhrase { get; set; }
-
-        [JsonPropertyName("bs")]
-        public string Bs { get; set; }
-    }
 }

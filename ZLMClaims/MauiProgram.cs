@@ -1,5 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using LocalizationResourceManager.Maui;
+// using MauiLocalizationResourceManagerSample.Resources;
+using Microsoft.Extensions.Logging;
 using ZLMClaims.Auth0;
+using ZLMClaims.ViewModels;
+using ZLMClaims.Views;
 
 namespace ZLMClaims;
 
@@ -10,6 +14,11 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+		/*	.UseLocalizationResourceManager(settings =>
+			{
+				settings.RestoreLatestCulture(true);
+				settings.AddResource(AppResources.ResourceManager);
+			}) */
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -21,7 +30,14 @@ public static class MauiProgram
 #endif
         builder.Services.AddSingleton<MainPage>();
 
-		// Auth0 registration
+        // Dependeny injection
+        // addtrienmsient so you get a new instance of these pages everytime
+        Console.WriteLine("[Mauiprogram] [AddTransient] [==============] RepairCompanyViewModel");
+        builder.Services.AddTransient<RepairCompanyViewModel>();
+        Console.WriteLine("[Mauiprogram] [AddTransient] [==============] RepairCompanyPage");
+        builder.Services.AddTransient<RepairCompanyPage>();
+
+        // Auth0 registration
         builder.Services.AddSingleton(new Auth0Client(new()
         {
             Domain = "dev-ajcve7wvqiq10doi.eu.auth0.com",

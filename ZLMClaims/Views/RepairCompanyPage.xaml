@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
-             x:Class="ZLMClaims.Views.UserPage"
+             xmlns:models="clr-namespace:ZLMClaims.Models"
+             x:Class="ZLMClaims.Views.RepairCompanyPage"
              xmlns:local="clr-namespace:ZLMClaims"
-             Title="{local:Translate UserPageTitle}"
-             x:DataType="viewmodels:UserViewModel">
+             Title="{Binding RepairCompany.Company.Name}"
+             x:DataType="viewmodels:RepairCompanyViewModel">
 
     <ContentPage.BindingContext>
-        <viewmodels:UserViewModel />
+        <viewmodels:RepairCompanyViewModel />
     </ContentPage.BindingContext>
     
     
@@ -28,6 +29,9 @@
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -37,7 +41,7 @@
             <!-- customer id-->
             <BoxView Grid.Row="0"/>
             <Label Grid.Row="0"
-                   Text="{local:Translate UserId}"
+                   Text="id"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -45,7 +49,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   Text="{Binding User.Id}"
+                    Text="{Binding RepairCompany.Id}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -60,7 +64,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   Text="{Binding User.Name}"
+                   Text="{Binding RepairCompany.Company.Name}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -75,7 +79,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
-                   Text="{Binding User.Address.Street}"
+                   Text="{Binding RepairCompany.Address.Street}" 
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -90,7 +94,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
-                   Text="{Binding User.Address.Zipcode}"
+                   Text="{Binding RepairCompany.Address.Zipcode}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -105,69 +109,66 @@
                      Grid.Column="1"/>
             <Label Grid.Row="4"
                    Grid.Column="1"
-                   Text="{Binding User.Address.City}"
+                   Text="{Binding RepairCompany.Address.City}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
+            <!-- Phone-->
+            <BoxView Grid.Row="5"/>
+            <Label Grid.Row="5"
+                   Text="{local:Translate Phone}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="5"
+                     Grid.Column="1"/>
+            <Label Grid.Row="5"
+                   Grid.Column="1"
+                   Text="{Binding RepairCompany.Phone}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Email-->
+            <BoxView Grid.Row="6"/>
+            <Label Grid.Row="6"
+                   Text="{local:Translate Email}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="6"
+                     Grid.Column="1"/>
+            <Label Grid.Row="6"
+                   Grid.Column="1"
+                   Text="{Binding RepairCompany.Email}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Website-->
+            <BoxView Grid.Row="7"/>
+            <Label Grid.Row="7"
+                   Text="{local:Translate Website}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="7"
+                     Grid.Column="1"/>
+            <Label Grid.Row="7"
+                   Grid.Column="1"
+                   Text="{Binding RepairCompany.Website}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+
         </Grid>
 
-        <Label Text="{local:Translate ApplicationSettings}" FontSize="Large" />
-        <Grid>
-            <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-
-            <!-- language setting -->
-            <!-- Title="{Binding LocalizationResourceManager[TabItemRepair], Mode=OneWay}" -->
-            <BoxView Grid.Row="0"/>
-            <Label Grid.Row="0"
-                   Text="{local:Translate UserSwitchLanguage}"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center" />
-            <BoxView Grid.Row="0"
-                     Grid.Column="1"/>
-            <Switch Grid.Row="0" 
-                    Grid.Column="1" 
-                    x:Name="languageSwitch"     
-                    Toggled="OnLanguageSwitchToggled"/>
-            
-            <!-- Dark theme -->
-            <BoxView Grid.Row="1"/>
-            <Label Grid.Row="1"
-                   Text="{local:Translate UserSwitchTheme}"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center" />
-            <BoxView Grid.Row="1"
-                     Grid.Column="1"/>
-            <Switch Grid.Row="1" 
-                    Grid.Column="1" 
-                    x:Name="themeSwitch" 
-                    Toggled="OnThemeSwitchToggled"/>
-
-            <!-- E-mail confirmation -->
-            <BoxView Grid.Row="2"/>
-            <Label Grid.Row="2"
-                   Text="{local:Translate UserSwitchEmailConfirmation}"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center" />
-            <BoxView Grid.Row="2"
-                     Grid.Column="1"/>
-            <Switch Grid.Row="2" 
-                    Grid.Column="1" 
-                    x:Name="EmailConfirmationSwitch" 
-                    Toggled="OnEmailConfirmationSwitchToggled"/>
-
-        </Grid>
+        <StackLayout>
+            <Label Text="Click the phone number to dial" FontSize="Title" HorizontalTextAlignment="Center" Margin="0, 50, 0, 50" />
+            <Label Text="123-456-7890" FontSize="Title" HorizontalTextAlignment="Center" TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPhoneNumberTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
 
         <Button Text="MijnZLM" BackgroundColor="#d8172a"/>
     </VerticalStackLayout>

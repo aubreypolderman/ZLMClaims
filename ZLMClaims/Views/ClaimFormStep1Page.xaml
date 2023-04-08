@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZLMClaims.Views.ClaimFormStep1Page"
+             xmlns:local="clr-namespace:ZLMClaims"
+             xmlns:view="clr-namespace:ZLMClaims.Views"
+             Title="{local:Translate ClaimFormPageTitle}">
+    <VerticalStackLayout Spacing="10" Margin="5">
+        <Label 
+            Text="{local:Translate DamageDetails}"
+            FontSize="25"
+            TextColor="Red"
+            FontAttributes="Bold"
+            VerticalOptions="Start" 
+            HorizontalOptions="Start" />
+        
+        <!-- Vehice-->
+        <Editor 
+            x:Name="TextEditor"
+            Placeholder="{local:Translate Q_WhatIsDamaged}"
+            Text="{Binding Text}"
+            HeightRequest="100" />
+
+        <!-- Date of occurrence-->
+        <Label 
+            Text="{local:Translate DateOfOccurrence}"
+            VerticalOptions="Start" 
+            HorizontalOptions="Start" />
+
+        <!--  MaximumDate="{x:Static sys:DateTime.Now}" -->
+        <DatePicker 
+            MinimumDate="{Binding MinimumDate}" 
+            MaximumDate="{Binding MaximumDate}"
+	        Date="{Binding MaximumDate}"
+	        DateSelected="OnDateSelected" />
+
+        <!-- previous and next page-->
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
+
+            <Button 
+                Grid.Column="0"
+                Text="{local:Translate Previous}"
+                BackgroundColor="White"
+                TextColor="#d8172a"
+                BorderColor="#d8172a"
+                BorderWidth="2"
+                SemanticProperties.Hint="Navigate to previous page when you click"
+                Clicked="OnPrevBtnClicked"/>
+
+            <Button 
+                Grid.Column="1"
+                Text="{local:Translate Next}"
+                BackgroundColor="#d8172a"
+                SemanticProperties.Hint="Navigate to next page when you click"
+                Clicked="OnNextBtnClicked"/>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

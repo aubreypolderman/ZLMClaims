@@ -9,7 +9,6 @@ namespace ZLMClaims.Services
         HttpClient _client;
         JsonSerializerOptions _serializerOptions;
 
-        public List<Product> Products { get; private set; }
         public List<User> Users { get; private set; }
 
         public RestService()

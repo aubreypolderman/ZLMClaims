@@ -2,7 +2,7 @@
 
 namespace ZLMClaims.Models
 {
-    public class Photo
+    public class Claim
     {
         [JsonPropertyName("albumId")]
         public int AlbumId { get; set; }

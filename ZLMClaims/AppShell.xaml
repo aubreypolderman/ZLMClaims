@@ -5,22 +5,37 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ZLMClaims"
     xmlns:views="clr-namespace:ZLMClaims.Views"
+    xmlns:lang="clr-namespace:ZLMClaims.Resources.Languages"
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
         <ShellContent
-            Title="Home"
-            Icon="claim.svg"
+            Title="{local:Translate TabItemHome}"
+            Icon="home.svg"
             Route="MainPage"
             ContentTemplate="{DataTemplate local:MainPage}"/>
 
         <ShellContent 
-            Title="Users"
-            Icon="search.svg"
-            ContentTemplate="{DataTemplate views:AllPhotosPage}"/>
+            Title="{local:Translate TabItemClaim}"
+            Icon="claim.svg"
+            Route="AllPhotosPage"
+            ContentTemplate="{DataTemplate views:AllClaimsPage}"/>
+
+        <Tab 
+            Title="{local:Translate TabItemRepair}"
+            Icon="search.svg">
+
+            <ShellContent
+                Title="{local:Translate TabItemRepairCooperative}"
+                ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
+
+            <ShellContent
+                Title="{local:Translate TabItemRepairUncooperative}"
+                ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
+        </Tab>
 
         <ShellContent 
-            Title="Profile"
+            Title="{local:Translate TabItemProfile}"
             Icon="profile.svg"
             ContentTemplate="{DataTemplate views:UserPage}"/>
     </TabBar>
