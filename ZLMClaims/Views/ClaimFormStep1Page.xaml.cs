@@ -4,10 +4,45 @@ namespace ZLMClaims.Views;
 
 public partial class ClaimFormStep1Page : ContentPage
 {
-	public ClaimFormStep1Page()
+    private DateTime _minimumDate;
+    private DateTime _maximumDate;
+
+    public DateTime MinimumDate
+    {
+        get { return _minimumDate; }
+        set
+        {
+            if (_minimumDate != value)
+            {
+                _minimumDate = value;
+                OnPropertyChanged(nameof(MinimumDate));
+            }
+        }
+    }
+
+    public DateTime MaximumDate
+    {
+        get { return _maximumDate; }
+        set
+        {
+            if (_maximumDate != value)
+            {
+                _maximumDate = value;
+                OnPropertyChanged(nameof(MaximumDate));
+            }
+        }
+    }
+
+    public ClaimFormStep1Page()
 	{
 		InitializeComponent();
-	}
+
+        MinimumDate = DateTime.Now.AddDays(-365);
+        MaximumDate = DateTime.Now;
+
+        Console.WriteLine("[ClaimFormStep1Page] [Constructor] [==============] MinimumDate => " + MinimumDate);
+        Console.WriteLine("[ClaimFormStep1Page] [Constructor] [==============] MaximumDate => " + MaximumDate);
+    }
 
     private void OnPrevBtnClicked(object sender, EventArgs e)
     {
@@ -38,4 +73,5 @@ public partial class ClaimFormStep1Page : ContentPage
         culture = CultureInfo.InvariantCulture;
         Console.WriteLine("[ClaimFormStep1Page] [OnDateSelected] [==============] Date.ToString(\"d\") & culture => " + ((DatePicker)sender).Date.ToString("d", culture));
     }
+
 }

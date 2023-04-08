@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZLMClaims.Views.ClaimFormStep1Page"
              xmlns:local="clr-namespace:ZLMClaims"
+             xmlns:view="clr-namespace:ZLMClaims.Views"
              Title="{local:Translate ClaimFormPageTitle}">
     <VerticalStackLayout Spacing="10" Margin="5">
         <Label 
@@ -28,9 +29,9 @@
 
         <!--  MaximumDate="{x:Static sys:DateTime.Now}" -->
         <DatePicker 
-            MinimumDate="01/01/2020"
-	        MaximumDate="01/01/2025"
-	        Date="02/10/2022"
+            MinimumDate="{Binding MinimumDate}" 
+            MaximumDate="{Binding MaximumDate}"
+	        Date="{Binding MaximumDate}"
 	        DateSelected="OnDateSelected" />
 
         <!-- previous and next page-->
@@ -53,5 +54,6 @@
                 SemanticProperties.Hint="Navigate to next page when you click"
                 Clicked="OnNextBtnClicked"/>
         </Grid>
+
     </VerticalStackLayout>
 </ContentPage>

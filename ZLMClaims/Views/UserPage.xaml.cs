@@ -65,4 +65,9 @@ public partial class UserPage : ContentPage
         Console.WriteLine("[UserPage] [OnThemeSwitchToggled] [==============] object: " + sender + "  met args " + e);
 
     }
+
+    private void OnEmailConfirmationSwitchToggled(object sender, ToggledEventArgs e)
+    {
+        Console.WriteLine("[UserPage] [OnEmailConfirmationSwitchToggled] [==============] object: " + sender + "  met args " + e);
+    }
 }

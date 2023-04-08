@@ -150,11 +150,17 @@
   <data name="Distance" xml:space="preserve">
     <value>Afstand</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Naam</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Volgende</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefoon</value>
   </data>
   <data name="Previous" xml:space="preserve">
     <value>Vorige</value>
@@ -192,11 +198,17 @@
   <data name="UserPageTitle" xml:space="preserve">
     <value>Profiel</value>
   </data>
+  <data name="UserSwitchEmailConfirmation" xml:space="preserve">
+    <value>Ontvang bevestiging via email</value>
+  </data>
   <data name="UserSwitchLanguage" xml:space="preserve">
     <value>Verander naar Engels</value>
   </data>
   <data name="UserSwitchTheme" xml:space="preserve">
     <value>Verander thema</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Website</value>
   </data>
   <data name="ZipCode" xml:space="preserve">
     <value>Postcode</value>

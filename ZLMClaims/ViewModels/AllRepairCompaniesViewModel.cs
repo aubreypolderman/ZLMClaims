@@ -27,7 +27,7 @@ namespace ZLMClaims.ViewModels
             }
         }
 
-        public Command GeRepairCompaniesCommand { get; }
+        public Command GetRepairCompaniesCommand { get; }
 
         public AllRepairCompaniesViewModel()
         {

@@ -35,16 +35,14 @@
             </Grid.ColumnDefinitions>
 
             <!-- customer id-->
-            <BoxView Grid.Row="0"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="0"/>
             <Label Grid.Row="0"
                    Text="{local:Translate UserId}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="0"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
                    Text="{Binding User.Id}"
@@ -52,16 +50,14 @@
                    VerticalOptions="End" />
 
             <!-- Name-->
-            <BoxView Grid.Row="1"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="1"/>
             <Label Grid.Row="1"
                    Text="{local:Translate Name}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="1"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
                    Text="{Binding User.Name}"
@@ -69,16 +65,14 @@
                    VerticalOptions="End" />
 
             <!-- Address-->
-            <BoxView Grid.Row="2"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="2"/>
             <Label Grid.Row="2"
                    Text="{local:Translate Address}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="2"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
                    Text="{Binding User.Address.Street}"
@@ -86,16 +80,14 @@
                    VerticalOptions="End" />
 
             <!-- Zipcode-->
-            <BoxView Grid.Row="3"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="3"/>
             <Label Grid.Row="3"
                    Text="{local:Translate ZipCode}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="3"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
                    Text="{Binding User.Address.Zipcode}"
@@ -103,16 +95,14 @@
                    VerticalOptions="End" />
 
             <!-- City-->
-            <BoxView Grid.Row="4"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="4"/>
             <Label Grid.Row="4"
                    Text="{local:Translate City}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="4"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="4"
                    Grid.Column="1"
                    Text="{Binding User.Address.City}"
@@ -126,50 +116,59 @@
             <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <!-- language setting -->
             <!-- Title="{Binding LocalizationResourceManager[TabItemRepair], Mode=OneWay}" -->
-            <BoxView Grid.Row="0"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="0"/>
             <Label Grid.Row="0"
                    Text="{local:Translate UserSwitchLanguage}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="Center" />
             <BoxView Grid.Row="0"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Switch Grid.Row="0" 
                     Grid.Column="1" 
-                    x:Name="languageSwitch" 
+                    x:Name="languageSwitch"     
                     Toggled="OnLanguageSwitchToggled"/>
             
             <!-- Dark theme -->
-            <BoxView Grid.Row="1"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="1"/>
             <Label Grid.Row="1"
                    Text="{local:Translate UserSwitchTheme}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="Center" />
             <BoxView Grid.Row="1"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Switch Grid.Row="1" 
                     Grid.Column="1" 
                     x:Name="themeSwitch" 
                     Toggled="OnThemeSwitchToggled"/>
 
+            <!-- E-mail confirmation -->
+            <BoxView Grid.Row="2"/>
+            <Label Grid.Row="2"
+                   Text="{local:Translate UserSwitchEmailConfirmation}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center" />
+            <BoxView Grid.Row="2"
+                     Grid.Column="1"/>
+            <Switch Grid.Row="2" 
+                    Grid.Column="1" 
+                    x:Name="EmailConfirmationSwitch" 
+                    Toggled="OnEmailConfirmationSwitchToggled"/>
+
         </Grid>
 
-        <Label Text="{Binding User.Company.Name}" />
         <Button Text="MijnZLM" BackgroundColor="#d8172a"/>
     </VerticalStackLayout>
 </ContentPage>

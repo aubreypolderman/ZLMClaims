@@ -160,6 +160,15 @@ namespace ZLMClaims.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {
@@ -174,6 +183,15 @@ namespace ZLMClaims.Resources.Languages {
         internal static string Next {
             get {
                 return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        internal static string Phone {
+            get {
+                return ResourceManager.GetString("Phone", resourceCulture);
             }
         }
         
@@ -286,6 +304,15 @@ namespace ZLMClaims.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Receive e-mail confirmation.
+        /// </summary>
+        internal static string UserSwitchEmailConfirmation {
+            get {
+                return ResourceManager.GetString("UserSwitchEmailConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Switch to Dutch language.
         /// </summary>
         internal static string UserSwitchLanguage {
@@ -300,6 +327,15 @@ namespace ZLMClaims.Resources.Languages {
         internal static string UserSwitchTheme {
             get {
                 return ResourceManager.GetString("UserSwitchTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        internal static string Website {
+            get {
+                return ResourceManager.GetString("Website", resourceCulture);
             }
         }
         

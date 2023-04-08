@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             xmlns:models="clr-namespace:ZLMClaims.Models"
              x:Class="ZLMClaims.Views.RepairCompanyPage"
              xmlns:local="clr-namespace:ZLMClaims"
-             Title="{local:Translate RepairCompanyTitle}"
+             Title="{Binding RepairCompany.Company.Name}"
              x:DataType="viewmodels:RepairCompanyViewModel">
 
     <ContentPage.BindingContext>
@@ -28,6 +29,9 @@
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -35,91 +39,136 @@
             </Grid.ColumnDefinitions>
 
             <!-- customer id-->
-            <BoxView Grid.Row="0"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="0"/>
             <Label Grid.Row="0"
                    Text="id"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="0"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   Text="1234545767"
+                    Text="{Binding RepairCompany.Id}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
             <!-- Name-->
-            <BoxView Grid.Row="1"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="1"/>
             <Label Grid.Row="1"
                    Text="{local:Translate Name}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="1"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   Text="Van den Berg autoschade"
+                   Text="{Binding RepairCompany.Company.Name}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
             <!-- Address-->
-            <BoxView Grid.Row="2"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="2"/>
             <Label Grid.Row="2"
                    Text="{local:Translate Address}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="2"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
-                   Text="www.autoschade.nl"
+                   Text="{Binding RepairCompany.Address.Street}" 
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
             <!-- Zipcode-->
-            <BoxView Grid.Row="3"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="3"/>
             <Label Grid.Row="3"
                    Text="{local:Translate ZipCode}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="3"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
-                   Text="4460XH"
+                   Text="{Binding RepairCompany.Address.Zipcode}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
             <!-- City-->
-            <BoxView Grid.Row="4"
-                     Color="AliceBlue"/>
+            <BoxView Grid.Row="4"/>
             <Label Grid.Row="4"
                    Text="{local:Translate City}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="4"
-                     Grid.Column="1"
-                     Color="AliceBlue"/>
+                     Grid.Column="1"/>
             <Label Grid.Row="4"
                    Grid.Column="1"
-                   Text="Goes"
+                   Text="{Binding RepairCompany.Address.City}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
+            <!-- Phone-->
+            <BoxView Grid.Row="5"/>
+            <Label Grid.Row="5"
+                   Text="{local:Translate Phone}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="5"
+                     Grid.Column="1"/>
+            <Label Grid.Row="5"
+                   Grid.Column="1"
+                   Text="{Binding RepairCompany.Phone}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Email-->
+            <BoxView Grid.Row="6"/>
+            <Label Grid.Row="6"
+                   Text="{local:Translate Email}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="6"
+                     Grid.Column="1"/>
+            <Label Grid.Row="6"
+                   Grid.Column="1"
+                   Text="{Binding RepairCompany.Email}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Website-->
+            <BoxView Grid.Row="7"/>
+            <Label Grid.Row="7"
+                   Text="{local:Translate Website}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="7"
+                     Grid.Column="1"/>
+            <Label Grid.Row="7"
+                   Grid.Column="1"
+                   Text="{Binding RepairCompany.Website}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+
         </Grid>
+
+        <StackLayout>
+            <Label Text="Click the phone number to dial" FontSize="Title" HorizontalTextAlignment="Center" Margin="0, 50, 0, 50" />
+            <Label Text="123-456-7890" FontSize="Title" HorizontalTextAlignment="Center" TextDecorations="Underline">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPhoneNumberTapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
 
         <Button Text="MijnZLM" BackgroundColor="#d8172a"/>
     </VerticalStackLayout>

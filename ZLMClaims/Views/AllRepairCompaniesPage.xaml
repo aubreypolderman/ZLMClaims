@@ -30,6 +30,7 @@
                     <Frame BorderColor="{StaticResource Primary}" 
                            CornerRadius="10"
                            Padding="15">
+                        
 
                         <StackLayout Orientation="Horizontal">
                             
@@ -38,8 +39,8 @@
                                    WidthRequest="50" 
                                    HeightRequest="50">
                                 <Image.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference repairCompaniesCollection}}" CommandParameter="{Binding}" />
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                    <!-- Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference repairCompaniesCollection}}" CommandParameter="{Binding}" /> -->
                                 </Image.GestureRecognizers>
                             </Image>
                             <Label>
@@ -50,7 +51,7 @@
                                 </Label.FormattedText>
                             </Label>
                             <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="{Binding Company.Name}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
