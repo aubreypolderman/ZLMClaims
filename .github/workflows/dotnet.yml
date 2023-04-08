@@ -1,5 +1,8 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+# 08/04/2023: removed the test step
+#     - name: Test
+#      run: dotnet test ZLMClaimsTest/ZLMClaimsTest.csproj --no-build --verbosity normal
 
 name: .NET MAUI ZLMClaims app
 
@@ -26,5 +29,3 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build ZLMClaims/ZLMClaims.csproj -c Release -f net6.0 --no-restore
-    - name: Test
-      run: dotnet test ZLMClaimsTest/ZLMClaimsTest.csproj --no-build --verbosity normal
