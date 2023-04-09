@@ -8,8 +8,6 @@ namespace ZLMClaims.ViewModels
     {
         private Models.RepairCompany _repaircompany;
 
-        //public int Identifier => _repaircompany.Id;
-
         public RepairCompanyViewModel() { }
 
         [ObservableProperty]

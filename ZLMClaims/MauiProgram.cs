@@ -32,10 +32,10 @@ public static class MauiProgram
 
         // Dependeny injection
         // addtrienmsient so you get a new instance of these pages everytime
-        Console.WriteLine("[..............] [Mauiprogram] [AddTransient] RepairCompanyViewModel");
         builder.Services.AddTransient<RepairCompanyViewModel>();
-        Console.WriteLine("[..............] [Mauiprogram] [AddTransient] RepairCompanyPage");
         builder.Services.AddTransient<RepairCompanyPage>();
+        builder.Services.AddTransient<ContractViewModel>();
+        builder.Services.AddTransient<ContractPage>();
 
         // Auth0 registration
         builder.Services.AddSingleton(new Auth0Client(new()

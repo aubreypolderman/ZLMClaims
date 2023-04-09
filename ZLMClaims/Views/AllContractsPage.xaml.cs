@@ -23,8 +23,6 @@ public partial class AllContractsPage : ContentPage
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
     {
         Console.WriteLine("[..............] [AllContractsPage] [TapGestureRecognizer_Tapped] Start");
-        Console.WriteLine("[..............] [AllContractsPage] [TapGestureRecognizer_Tapped] sender: " + sender);
-        Console.WriteLine("[..............] [AllContractsPage] [TapGestureRecognizer_Tapped] arg: " + e);
         var contract = ((VisualElement)sender).BindingContext as Contract;
         if (contract == null)
         {
@@ -33,10 +31,10 @@ public partial class AllContractsPage : ContentPage
         }
         Console.WriteLine("[..............] [AllContractsPage] [TapGestureRecognizer_Tapped] Contract: " + contract);
 
-        // uncomment when detail contract page is there
-        //await Shell.Current.GoToAsync(nameof(RepairCompanyPage), true, new Dictionary<string, object>
-        //{
-        //    {"Contract", contract}
-        //});
+        // Navigate to detail page of contract
+        await Shell.Current.GoToAsync(nameof(ContractPage), true, new Dictionary<string, object>
+        {
+            {"Contract", contract}
+        });
     }
 }

@@ -165,6 +165,12 @@
   <data name="EndDate" xml:space="preserve">
     <value>Enddate</value>
   </data>
+  <data name="LicensePlate" xml:space="preserve">
+    <value>Licenseplate</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -173,6 +179,9 @@
   </data>
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>
+  </data>
+  <data name="PolicyNumber" xml:space="preserve">
+    <value>Policy number</value>
   </data>
   <data name="Previous" xml:space="preserve">
     <value>Previous</value>
@@ -209,6 +218,9 @@
   </data>
   <data name="TabItemRepairUncooperative" xml:space="preserve">
     <value>Uncooperative</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="UserId" xml:space="preserve">
     <value>Customer number</value>

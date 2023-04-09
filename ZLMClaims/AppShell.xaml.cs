@@ -12,7 +12,10 @@ public partial class AppShell : Shell
 		// register route to details page of the repaircompany
 		Routing.RegisterRoute(nameof(Views.RepairCompanyPage), typeof(Views.RepairCompanyPage));
 
-		// Register route to step1 so navigation can take place
+        // register route to details page of the contract
+        Routing.RegisterRoute(nameof(Views.ContractPage), typeof(Views.ContractPage));
+
+        // Register route to step1 so navigation can take place
         Routing.RegisterRoute(nameof(Views.ClaimFormStep1Page), typeof(Views.ClaimFormStep1Page));
     }
 

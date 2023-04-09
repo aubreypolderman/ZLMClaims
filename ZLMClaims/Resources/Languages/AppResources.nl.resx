@@ -165,6 +165,12 @@
   <data name="EndDate" xml:space="preserve">
     <value>Einddatum</value>
   </data>
+  <data name="LicensePlate" xml:space="preserve">
+    <value>Kenteken</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Naam</value>
   </data>
@@ -173,6 +179,9 @@
   </data>
   <data name="Phone" xml:space="preserve">
     <value>Telefoon</value>
+  </data>
+  <data name="PolicyNumber" xml:space="preserve">
+    <value>Polisnummer</value>
   </data>
   <data name="Previous" xml:space="preserve">
     <value>Vorige</value>
@@ -209,6 +218,9 @@
   </data>
   <data name="TabItemRepairUncooperative" xml:space="preserve">
     <value>Niet samenwerkend</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="UserId" xml:space="preserve">
     <value>Relatienummer</value>
