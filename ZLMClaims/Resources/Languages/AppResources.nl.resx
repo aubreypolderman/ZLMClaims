@@ -123,8 +123,14 @@
   <data name="AllClaimsTitle" xml:space="preserve">
     <value>Alle schademeldingen</value>
   </data>
+  <data name="AllContractsTitle" xml:space="preserve">
+    <value>Alle polissen</value>
+  </data>
   <data name="AllRepairCompaniesTitle" xml:space="preserve">
     <value>Alle schadeherstelbedrijven</value>
+  </data>
+  <data name="AnnualPolicyPremium" xml:space="preserve">
+    <value>Jaarpremie</value>
   </data>
   <data name="ApplicationSettings" xml:space="preserve">
     <value>Applicatie instellingen</value>
@@ -137,6 +143,9 @@
   </data>
   <data name="DamageDetails" xml:space="preserve">
     <value>1. Schadedetails</value>
+  </data>
+  <data name="DamageFreeYears" xml:space="preserve">
+    <value>Schadevrije jaren</value>
   </data>
   <data name="DamagePhotos" xml:space="preserve">
     <value>2. Schadefoto's</value>
@@ -152,6 +161,9 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Einddatum</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Naam</value>
@@ -174,8 +186,14 @@
   <data name="Send" xml:space="preserve">
     <value>Versturen</value>
   </data>
+  <data name="StartingDate" xml:space="preserve">
+    <value>Ingangsdatum</value>
+  </data>
   <data name="TabItemClaim" xml:space="preserve">
     <value>Schade</value>
+  </data>
+  <data name="TabItemContract" xml:space="preserve">
+    <value>Polis</value>
   </data>
   <data name="TabItemHome" xml:space="preserve">
     <value>Thuis</value>

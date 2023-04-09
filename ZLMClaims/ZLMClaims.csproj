@@ -86,6 +86,9 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>AppResources.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\AllContractsPage.xaml.cs">
+	    <DependentUpon>AllContractsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\AllRepairCompaniesPage.xaml.cs">
 	    <DependentUpon>AllRepairCompaniesPage.xaml</DependentUpon>
 	  </Compile>
@@ -114,6 +117,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\AllContractsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AllRepairCompaniesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

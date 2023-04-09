@@ -1,5 +1,6 @@
 using ZLMClaims.ViewModels;
 using Microsoft.Maui.Controls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ZLMClaims.Views;
 
@@ -30,8 +31,8 @@ public partial class RepairCompanyPage : ContentPage
             }
         }
         */
-        if (PhoneDialer.Default.IsSupported)
-            PhoneDialer.Default.Open("809-555-5454");
+        
+        _viewModel.OnPhoneNumberTapped("1234567890");
 
     }
 }
