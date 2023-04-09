@@ -36,13 +36,13 @@
 
                         <StackLayout Orientation="Horizontal">
 
-                            <Image Source="{Binding Url}"
+                            <Image Source="{Binding Image2}"
                                    Aspect="AspectFill"
                                    WidthRequest="70" 
                                    HeightRequest="70">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer
-                                        Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference repairCompaniesCollection}}" CommandParameter="{Binding}" />
+                                        Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference claimssCollection}}" CommandParameter="{Binding}" />
                                 </Image.GestureRecognizers>
                             </Image>
                             <Label>
@@ -53,13 +53,13 @@
                                 </Label.FormattedText>
                             </Label>
                             <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="{Binding CauseOfDamage}" FontSize="16" FontAttributes="Bold"/>
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding AlbumId}" />
-                                            <Span Text=" [---] " />
                                             <Span Text="{Binding Id}" />
+                                            <Span Text=" policy number: " />
+                                            <Span Text="{Binding ContractId}" />
                                             <Span Text=" " />
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -67,7 +67,7 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding ThumbnailUrl}" />
+                                            <Span Text="{Binding ClaimDateTime}" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
