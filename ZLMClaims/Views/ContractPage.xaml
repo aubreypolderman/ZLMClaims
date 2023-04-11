@@ -22,7 +22,7 @@
 
 
         <Grid>
-            <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
+            <!-- Short notation is also possible: Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="1.5*"/>
@@ -39,7 +39,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <!-- customer id-->
+            <!-- policy number -->
             <BoxView Grid.Row="0"/>
             <Label Grid.Row="0"
                    Text="{local:Translate PolicyNumber}"
@@ -54,7 +54,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Name-->
+            <!-- Product-->
             <BoxView Grid.Row="1"/>
             <Label Grid.Row="1"
                    Text="{local:Translate Product}"
@@ -69,7 +69,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Address-->
+            <!-- Licenseplate-->
             <BoxView Grid.Row="2"/>
             <Label Grid.Row="2"
                    Text="{local:Translate LicensePlate}"
@@ -84,7 +84,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Zipcode-->
+            <!-- Model-->
             <BoxView Grid.Row="3"/>
             <Label Grid.Row="3"
                    Text="{local:Translate Model}"
@@ -99,7 +99,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- City-->
+            <!-- Type-->
             <BoxView Grid.Row="4"/>
             <Label Grid.Row="4"
                    Text="{local:Translate Type}"
@@ -114,7 +114,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Phone-->
+            <!-- Startingdate-->
             <BoxView Grid.Row="5"/>
             <Label Grid.Row="5"
                    Text="{local:Translate StartingDate}"
@@ -129,7 +129,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Email-->
+            <!-- Enddate-->
             <BoxView Grid.Row="6"/>
             <Label Grid.Row="6"
                    Text="{local:Translate EndDate}"
@@ -144,7 +144,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Website-->
+            <!-- Annual policy premium-->
             <BoxView Grid.Row="7"/>
             <Label Grid.Row="7"
                    Text="{local:Translate AnnualPolicyPremium}"
@@ -159,7 +159,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Schadevrije jaren-->
+            <!-- Damage free years-->
             <BoxView Grid.Row="8"/>
             <Label Grid.Row="8"
                    Text="{local:Translate DamageFreeYears}"

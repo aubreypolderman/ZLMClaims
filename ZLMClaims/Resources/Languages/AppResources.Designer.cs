@@ -268,6 +268,15 @@ namespace ZLMClaims.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        internal static string Product {
+            get {
+                return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What is damaged?.
         /// </summary>
         internal static string Q_WhatIsDamaged {

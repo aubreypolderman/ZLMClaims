@@ -44,7 +44,7 @@ namespace ZLMClaims.ViewModels
 
         private async Task SelectContractAsync(ViewModels.AllContractsViewModel contract)
         {
-            Console.WriteLine("[..............] [AllContractsViewModel] [SelectRepairCompanyAsync] contract:" + contract);
+            Console.WriteLine("[..............] [AllContractsViewModel] [SelectContractAsync] contract:" + contract);
         }
         
 
@@ -52,7 +52,7 @@ namespace ZLMClaims.ViewModels
         {
             Console.WriteLine("[AllContractsViewModel] [LoadDataAsync ][==============] ");
             /* Comment because of weird certificate messages
-            var response = await _client.GetAsync("https://10.0.2.2:7040/api/Contracts");
+              
             Console.WriteLine("[AllContractsViewModel] [LoadDataAsync] [==============] reponse: " + response);
             var content = await response.Content.ReadAsStringAsync();
             Contracts = JsonConvert.DeserializeObject<ObservableCollection<Contract>>(content);

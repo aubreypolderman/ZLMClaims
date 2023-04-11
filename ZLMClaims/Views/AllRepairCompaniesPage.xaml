@@ -11,7 +11,11 @@
         <viewmodels:AllRepairCompaniesViewModel />
     </ContentPage.BindingContext>
 
-    <!-- Display reaircompanies in a list -->
+    <StackLayout>
+        <!-- Search repaircompanies by name or city-->
+        <SearchBar x:Name="searchBar" Placeholder="Search Repaircompanies"/>
+        
+        <!-- Display reaircompanies in a list -->
     <CollectionView x:Name="repairCompaniesCollection"
                     ItemsSource="{Binding RepairCompanies}"
                     Margin="20"
@@ -90,5 +94,5 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-
+    </StackLayout>
 </ContentPage>

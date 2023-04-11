@@ -186,6 +186,9 @@
   <data name="Previous" xml:space="preserve">
     <value>Vorige</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value>Verzekering</value>
+  </data>
   <data name="Q_WhatIsDamaged" xml:space="preserve">
     <value>What is er beschadigd?</value>
   </data>
