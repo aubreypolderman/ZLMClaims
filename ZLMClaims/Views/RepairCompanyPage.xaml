@@ -35,7 +35,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.5*"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="3.5*"/>
             </Grid.ColumnDefinitions>
 
             <!-- customer id-->

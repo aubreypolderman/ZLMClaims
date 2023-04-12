@@ -14,9 +14,8 @@
     <StackLayout>
         <!-- Searchbar repaircompanies by name -->
         <SearchBar x:Name="searchBar" 
-                   Placeholder="Search Repaircompanies" 
-                   SearchButtonPressed="OnSearchButtonPressed"
-                   TextChanged="OnSearchBarTextChanged"/>
+                   Placeholder="Search Repaircompanies" />
+       
         
         <!-- Display reaircompanies in a list -->
     <CollectionView x:Name="repairCompaniesCollection"
