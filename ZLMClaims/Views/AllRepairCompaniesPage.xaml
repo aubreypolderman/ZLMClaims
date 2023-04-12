@@ -12,8 +12,11 @@
     </ContentPage.BindingContext>
 
     <StackLayout>
-        <!-- Search repaircompanies by name or city-->
-        <SearchBar x:Name="searchBar" Placeholder="Search Repaircompanies"/>
+        <!-- Searchbar repaircompanies by name -->
+        <SearchBar x:Name="searchBar" 
+                   Placeholder="Search Repaircompanies" 
+                   SearchButtonPressed="OnSearchButtonPressed"
+                   TextChanged="OnSearchBarTextChanged"/>
         
         <!-- Display reaircompanies in a list -->
     <CollectionView x:Name="repairCompaniesCollection"
@@ -31,12 +34,11 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:RepairCompany">
                 <SwipeView>
-                    <Frame BorderColor="{StaticResource Primary}" 
+                        <Frame BorderColor="{StaticResource Primary}" 
                            CornerRadius="10"
                            Padding="15">
-                        
 
-                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal">
                             
                             <Image Source="personenauto2.png"
                                    Aspect="AspectFill"

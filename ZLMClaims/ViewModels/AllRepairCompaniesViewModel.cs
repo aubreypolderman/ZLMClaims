@@ -58,47 +58,70 @@ namespace ZLMClaims.ViewModels
              string response = @"[
                 {
                     ""id"": 1,
-                    ""name"": ""Leanne Graham"",
-                    ""username"": ""Bret"",
-                    ""email"": ""Sincere@april.biz"",
+                    ""name"": ""Renova"",
+                    ""username"": ""Renova"",
+                    ""email"": ""rcc@renova.nl"",
                     ""address"": {
-                        ""street"": ""Kulas Light"",
-                        ""suite"": ""Apt. 556"",
-                        ""city"": ""Gwenborough"",
-                        ""zipcode"": ""92998-3874"",
+                        ""street"": ""Amundsenweg"",
+                        ""suite"": ""33"",
+                        ""city"": ""Goes"",
+                        ""zipcode"": ""4462 GP"",
                         ""geo"": {
                             ""lat"": ""-37.3159"",
                             ""lng"": ""81.1496""
                         }
                     },
-                    ""phone"": ""1-770-736-8031 x56442"",
-                    ""website"": ""hildegard.org"",
+                    ""phone"": ""0113 - 2454 225"",
+                    ""website"": ""www.renova.nl"",
                     ""company"": {
-                        ""name"": ""Romaguera-Crona"",
-                        ""catchPhrase"": ""Multi-layered client-server neural-net"",
+                        ""name"": ""Renova"",
+                        ""catchPhrase"": ""Merk schadeherstelbedrijf (MINI)"",
                         ""bs"": ""harness real-time e-markets""
                     }
                 },
                 {
                     ""id"": 2,
-                    ""name"": ""Ervin Howell"",
-                    ""username"": ""Antonette"",
-                    ""email"": ""Shanna@melissa.tv"",
+                    ""name"": ""Van Mossel Autoschade"",
+                    ""username"": ""Van Mossel"",
+                    ""email"": ""info.autoschade.middelburg@vanmossel.nl"",
                     ""address"": {
-                        ""street"": ""Victor Plains"",
-                        ""suite"": ""Suite 879"",
-                        ""city"": ""Wisokyburgh"",
-                        ""zipcode"": ""90566-7771"",
+                        ""street"": ""Klarinetweg"",
+                        ""suite"": ""4"",
+                        ""city"": ""Middelburg"",
+                        ""zipcode"": ""4337 RA"",
                         ""geo"": {
                             ""lat"": ""-43.9509"",
                             ""lng"": ""-34.4618""
                         }
                     },
-                    ""phone"": ""010-692-6593 x09125"",
-                    ""website"": ""anastasia.net"",
+                    ""phone"": ""0118 - 613 564"",
+                    ""website"": ""www.schadenetvanmossel.nl/middelburg"",
                     ""company"": {
-                        ""name"": ""Deckow-Crist"",
-                        ""catchPhrase"": ""Proactive didactic contingency"",
+                        ""name"": ""Van Mossel Autoschade"",
+                        ""catchPhrase"": ""Universeel schaddeherstelbedrijf"",
+                        ""bs"": ""synergize scalable supply-chains""
+                    }
+                },
+ {
+                    ""id"": 3,
+                    ""name"": ""Van den Berg Autoschade"",
+                    ""username"": ""Van den Berg"",
+                    ""email"": ""info@vandenbergautoschade.nl"",
+                    ""address"": {
+                        ""street"": ""Hermesweg"",
+                        ""suite"": ""5"",
+                        ""city"": ""Vlissingen"",
+                        ""zipcode"": ""4382 ND"",
+                        ""geo"": {
+                            ""lat"": ""-43.9509"",
+                            ""lng"": ""-34.4618""
+                        }
+                    },
+                    ""phone"": ""0118 - 414 329"",
+                    ""website"": ""www.vandenbergautoschade.nl"",
+                    ""company"": {
+                        ""name"": ""Van den Berg Autoschade"",
+                        ""catchPhrase"": ""Universeel schaddeherstelbedrijf"",
                         ""bs"": ""synergize scalable supply-chains""
                     }
                 }

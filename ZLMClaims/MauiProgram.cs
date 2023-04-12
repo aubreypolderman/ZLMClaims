@@ -1,4 +1,5 @@
 ﻿using LocalizationResourceManager.Maui;
+using Microsoft.Extensions.DependencyInjection;
 // using MauiLocalizationResourceManagerSample.Resources;
 using Microsoft.Extensions.Logging;
 using ZLMClaims.Auth0;
@@ -13,7 +14,7 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>()
+			.UseMauiApp<App>() /* reference to app.xml */
 		/*	.UseLocalizationResourceManager(settings =>
 			{
 				settings.RestoreLatestCulture(true);
