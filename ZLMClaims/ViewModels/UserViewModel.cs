@@ -10,16 +10,55 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ZLMClaims.Models;
 using ZLMClaims.Resources.Languages;
+using ZLMClaims.Services;
 
 public class UserViewModel : INotifyPropertyChanged
 {
-      
+
+    private readonly IUserService _userService;
+
+    public UserViewModel(IUserService userService)
+    {
+        Console.WriteLine("[..............] [UserViewModel] [injection of userService] INIT");
+        if (userService == null)
+            throw new ArgumentNullException(nameof(userService));
+
+        _userService = userService;
+
+        Task.Run(async () =>
+        {
+            Console.WriteLine("[..............] [UserViewModel] [injection of userService] call GetUserByIdAsync with hardcoded id 1");
+            User = await _userService.GetUserByIdAsync(1); // Load the first user by default
+            Console.WriteLine("[..............] [UserViewModel] [injection of userService] after the call GetUserByIdAsync with hardcoded id 1");
+        });
+    }
+
+    public UserViewModel()
+    {
+        Console.WriteLine("[..............] [UserViewModel] [NO injection of userService] INIT");
+    }
+
+    /*
+    private IEnumerable<User> _users;
+    public IEnumerable<User> Users
+    {
+        get => _users;
+        set
+        {
+            _users = value;
+            OnPropertyChanged(nameof(User));
+        }
+    }
+    */
+
     private User _user;
-    
     public User User
     {
-        
-    get { return _user; }
+        get
+        {
+            Debug.WriteLine("[UserViewModel] [Attribute User user] Getting user...");
+            return _user;
+        }
         set
         {
             _user = value;
@@ -29,6 +68,28 @@ public class UserViewModel : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;
 
+    /*
+    private async Task LoadUsersAsync()
+    {
+        Users = await _userService.GetUsersAsync();
+    }
+    */
+
+    public async Task LoadUserByIdAsync(int id)
+    {
+        Console.WriteLine("[..............] [UserViewModel] [LoadUserByIdAsync] userid = " + id);
+        try
+        {
+            User = await _userService.GetUserByIdAsync(id);
+        Console.WriteLine("[..............] [UserViewModel] [LoadUserByIdAsync] result user = " + User);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error loading user with id {id}: {ex.Message}");
+        }
+    }
+
+    /* Waar is deze ook alweer voor bedoeld? */
     public LocalizationResourceManager LocalizationResourceManager
         => LocalizationResourceManager.Instance;
 
@@ -36,17 +97,6 @@ public class UserViewModel : INotifyPropertyChanged
     {
     Console.WriteLine("[..............] [UserViewModel] [OnPropertyChanged] start with propertyname " + propertyName);
     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    public async Task GetUser(int userId)
-    {
-        Console.WriteLine("[..............] [UserViewModel] [GetUser] GetUser with id " + userId);
-        HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync($"https://jsonplaceholder.typicode.com/users/1");
-        response.EnsureSuccessStatusCode();
-        Console.WriteLine("[..............] [UserViewModel] [GetUser] reponse: " + response);
-        string json = await response.Content.ReadAsStringAsync();
-        User = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(json);
     }
 
     public void OnThemeSwitchToggled()

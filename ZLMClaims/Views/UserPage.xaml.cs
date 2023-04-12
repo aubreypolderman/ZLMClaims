@@ -11,10 +11,12 @@ public partial class UserPage : ContentPage
         Console.WriteLine("[..............] [UserPage] [noargs constructor]");
         InitializeComponent();
        
-        _viewModel = new UserViewModel();
-        BindingContext = _viewModel;
+        //_viewModel = new UserViewModel();
+        //BindingContext = _viewModel;
 
-        _viewModel.GetUser(1);
+        Console.WriteLine("[..............] [UserPage] [before LoadUserByIdAsync userid=2]");
+        //_viewModel.LoadUserByIdAsync(1);
+        Console.WriteLine("[..............] [UserPage] [after LoadUserByIdAsync userid=2]");
     }
 
     private void OnLanguageSwitchToggled(object sender, ToggledEventArgs e)
