@@ -50,7 +50,7 @@ namespace ZLMClaims.ViewModels
 
        public async Task LoadDataAsync()
         {
-            Console.WriteLine("[AllContractsViewModel] [LoadDataAsync ][==============] ");
+            Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync]");
             /* Comment because of weird certificate messages
               
             Console.WriteLine("[AllContractsViewModel] [LoadDataAsync] [==============] reponse: " + response);
