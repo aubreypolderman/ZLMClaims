@@ -14,43 +14,7 @@ using ZLMClaims.Services;
 
 public class UserViewModel : INotifyPropertyChanged
 {
-
-    private readonly IUserService _userService;
-
-    public UserViewModel(IUserService userService)
-    {
-        Console.WriteLine("[..............] [UserViewModel] [injection of userService] INIT");
-        if (userService == null)
-            throw new ArgumentNullException(nameof(userService));
-
-        _userService = userService;
-
-        Task.Run(async () =>
-        {
-            Console.WriteLine("[..............] [UserViewModel] [injection of userService] call GetUserByIdAsync with hardcoded id 1");
-            User = await _userService.GetUserByIdAsync(1); // Load the first user by default
-            Console.WriteLine("[..............] [UserViewModel] [injection of userService] after the call GetUserByIdAsync with hardcoded id 1");
-        });
-    }
-
-    public UserViewModel()
-    {
-        Console.WriteLine("[..............] [UserViewModel] [NO injection of userService] INIT");
-    }
-
-    /*
-    private IEnumerable<User> _users;
-    public IEnumerable<User> Users
-    {
-        get => _users;
-        set
-        {
-            _users = value;
-            OnPropertyChanged(nameof(User));
-        }
-    }
-    */
-
+      
     private User _user;
     public User User
     {
@@ -113,13 +77,28 @@ public class UserViewModel : INotifyPropertyChanged
             Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Dark");
             Application.Current.UserAppTheme = AppTheme.Dark;
         }
+
+    public void OnThemeSwitchToggled()
+    {
+        Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Current theme: " + Application.Current.RequestedTheme);
+
+        if (Application.Current.RequestedTheme == AppTheme.Dark)
+        {
+            Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Light");
+            Application.Current.UserAppTheme = AppTheme.Light;
+        }
+        else
+        {
+            Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Dark");
+            Application.Current.UserAppTheme = AppTheme.Dark;
+        }
     }
 
     public void OnLanguageSwitchToggled()
     {
         Console.WriteLine("[..............] [UserViewModel] [OnLanguageSwitchToggled] ");
         var switchToCulture = AppResources.Culture.TwoLetterISOLanguageName
-            .Equals("nl", StringComparison.InvariantCultureIgnoreCase) ? 
+            .Equals("nl", StringComparison.InvariantCultureIgnoreCase) ?
             new CultureInfo("en-US") : new CultureInfo("nl-NL");
 
         LocalizationResourceManager.Instance.SetCulture(switchToCulture);
@@ -147,5 +126,4 @@ public class UserViewModel : INotifyPropertyChanged
             await Email.Default.ComposeAsync(message);
         }
     }
-
 }

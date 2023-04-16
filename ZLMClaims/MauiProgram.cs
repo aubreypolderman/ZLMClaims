@@ -31,21 +31,25 @@ public static class MauiProgram
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** MainPage injected ");
 
         // Dependeny injection
-        // addtrienmsient so you get a new instance of these pages everytime
+        // AddTransient so you get a new instance of these pages everytime
+        builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
+        builder.Services.AddSingleton<INavigationService, NavigationService>();
+        builder.Services.AddSingleton<IDialogService, DialogService>();
+        builder.Services.AddSingleton<IUserService, UserService>();
+
+        builder.Services.AddTransient<RepairCompanyService>();
         builder.Services.AddTransient<RepairCompanyViewModel>();
-        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** RepairCompanyViewModel injected ");
         builder.Services.AddTransient<RepairCompanyPage>();
-        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** RepairCompanyPage injected ");
+        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** RepairCompanyService, AllCompaniesViewModel and AllCompaniesPage injected ");
+
         builder.Services.AddTransient<ContractViewModel>();
-        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** ContractViewModel injected ");
         builder.Services.AddTransient<ContractPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** ContractPage injected ");
+
+        builder.Services.AddSingleton<UserService>();
         builder.Services.AddTransient<UserViewModel>();
-        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** UserViewModel injected ");
         builder.Services.AddTransient<UserPage>();
-        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** UserPage injected ");
-        builder.Services.AddTransient<RepairCompanyService>();
-        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** UserService injected ");
+        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** UserService, UserViewModel and UserPage injected ");
 
         // Auth0 registration
         builder.Services.AddSingleton(new Auth0Client(new()

@@ -47,15 +47,14 @@ namespace ZLMClaims.ViewModels
             //     await Shell.Current.GoToAsync($"{nameof(RepairCompanyPage)}?load={repaircompany.Identifier}");
             Console.WriteLine("[..............] [AllRepairCompaniesViewModel] [SelectRepairCompanyAsync] repaircompany:" + repaircompany);
         }
-        
 
-       public async Task LoadDataAsync()
+
+        public async Task LoadDataAsync()
         {
             Console.WriteLine("[AllRepairCompaniesViewModel] [LoadDataAsync ][==============] ");
-            
             // var response = await _client.GetAsync("https://jsonplaceholder.typicode.com/users");
 
-             string response = @"[
+            string response = @"[
                 {
                     ""id"": 1,
                     ""name"": ""Renova"",
@@ -126,10 +125,9 @@ namespace ZLMClaims.ViewModels
                     }
                 }
             ]";
-             Console.WriteLine("[AllRepairCompaniesViewModel] [LoadDataAsync] [==============] reponse: " + response);
-             //var content = await response.Content.ReadAsStringAsync();
-             RepairCompanies = JsonConvert.DeserializeObject<ObservableCollection<RepairCompany>>(response);
-            
+            Console.WriteLine("[AllRepairCompaniesViewModel] [LoadDataAsync] [==============] reponse: " + response);
+            //var content = await response.Content.ReadAsStringAsync();
+            RepairCompanies = JsonConvert.DeserializeObject<ObservableCollection<RepairCompany>>(response);
 
         }
 

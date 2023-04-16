@@ -27,7 +27,7 @@ public partial class UserPage : ContentPage
 
     private void OnThemeSwitchToggled(object sender, ToggledEventArgs e)
     {
-        Console.WriteLine("[..............] [UserPage] [OnThemeSwitchToggled] Current theme: " + Application.Current.RequestedTheme );
+        Console.WriteLine("[..............] [UserPage] [OnThemeSwitchToggled] Current theme: " + Application.Current.RequestedTheme);
         _viewModel.OnThemeSwitchToggled();
     }
 
