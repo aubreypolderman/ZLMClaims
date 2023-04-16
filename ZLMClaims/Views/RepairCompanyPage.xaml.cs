@@ -1,5 +1,6 @@
 using ZLMClaims.ViewModels;
 using Microsoft.Maui.Controls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ZLMClaims.Views;
 
@@ -9,17 +10,15 @@ public partial class RepairCompanyPage : ContentPage
 
     public RepairCompanyPage(RepairCompanyViewModel viewModel) 
     {
-        Console.WriteLine("[RepairCompanyPage] [noargs constructor] [==============] Start");
-        Console.WriteLine("[RepairCompanyPage] [noargs constructor] [==============] Before InitializeComponent");
+        Console.WriteLine("[..............] [RepairCompanyPage] [noargs constructor] Start");
         InitializeComponent();
 
         BindingContext = viewModel;
-        Console.WriteLine("[RepairCompanyPage] [noargs constructor] [==============] After InitializeComponent");
     }
 
     private void OnPhoneNumberTapped(object sender, EventArgs e)
     {
-        Console.WriteLine("[RepairCompanyPage] [OnPhoneNumberTapped] [==============] Start");
+        Console.WriteLine("[..............] [RepairCompanyPage] [OnPhoneNumberTapped] Start");
         //Device.OpenUri(new Uri("tel:1234567890"));
         /*
         var phoneDialer = DependencyService.Get<IPhoneDialer>();
@@ -32,8 +31,8 @@ public partial class RepairCompanyPage : ContentPage
             }
         }
         */
-        if (PhoneDialer.Default.IsSupported)
-            PhoneDialer.Default.Open("809-555-5454");
+        
+        _viewModel.OnPhoneNumberTapped("1234567890");
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using LocalizationResourceManager.Maui;
+using Microsoft.Extensions.DependencyInjection;
 // using MauiLocalizationResourceManagerSample.Resources;
 using Microsoft.Extensions.Logging;
 using ZLMClaims.Auth0;
@@ -12,14 +13,10 @@ public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
-		var builder = MauiApp.CreateBuilder();
+        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** INIT ****** ");
+        var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>()
-		/*	.UseLocalizationResourceManager(settings =>
-			{
-				settings.RestoreLatestCulture(true);
-				settings.AddResource(AppResources.ResourceManager);
-			}) */
+			.UseMauiApp<App>() /* reference to app.xml */
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -29,7 +26,9 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+        
         builder.Services.AddSingleton<MainPage>();
+        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** MainPage injected ");
 
         // Dependeny injection
         // AddTransient so you get a new instance of these pages everytime

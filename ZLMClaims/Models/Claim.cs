@@ -4,19 +4,33 @@ namespace ZLMClaims.Models
 {
     public class Claim
     {
-        [JsonPropertyName("albumId")]
-        public int AlbumId { get; set; }
 
         [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
+        [JsonPropertyName("ContractId")]
+        public int? ContractId { get; set; }
 
-        [JsonPropertyName("url")]
-        public string Url { get; set; }
+        [JsonPropertyName("CauseOfDamage")]
+        public string? CauseOfDamage { get; set; }
 
-        [JsonPropertyName("thumbnailUrl")]
-        public string ThumbnailUrl { get; set; }
+        [JsonPropertyName("ExplanationOfWhatHappened")]
+        public string? ExplanationOfWhatHappened { get; set; }
+
+        [JsonPropertyName("LongitudeAccident")]
+        public int? LongitudeAccident { get; set; }
+
+        [JsonPropertyName("LatitudeAccident")]
+        public int? LatitudeAccident { get; set; }
+
+        [JsonPropertyName("ClaimDateTime")]
+        public DateTime ClaimDateTime { get; set; }
+
+        [JsonPropertyName("Image1")]
+        public string? Image1 { get; set; }
+
+        [JsonPropertyName("Image2")]
+        public string? Image2 { get; set; }
+
     }
 }

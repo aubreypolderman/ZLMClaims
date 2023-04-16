@@ -34,8 +34,8 @@
                 <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="3.5*"/>
             </Grid.ColumnDefinitions>
 
             <!-- customer id-->
@@ -163,7 +163,7 @@
 
         <StackLayout>
             <Label Text="Click the phone number to dial" FontSize="Title" HorizontalTextAlignment="Center" Margin="0, 50, 0, 50" />
-            <Label Text="123-456-7890" FontSize="Title" HorizontalTextAlignment="Center" TextDecorations="Underline">
+            <Label Text="{Binding RepairCompany.Phone}" FontSize="Title" HorizontalTextAlignment="Center" TextDecorations="Underline">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnPhoneNumberTapped" />
                 </Label.GestureRecognizers>

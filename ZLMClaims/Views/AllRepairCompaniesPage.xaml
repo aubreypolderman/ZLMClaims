@@ -11,7 +11,13 @@
         <viewmodels:AllRepairCompaniesViewModel />
     </ContentPage.BindingContext>
 
-    <!-- Display reaircompanies in a list -->
+    <StackLayout>
+        <!-- Searchbar repaircompanies by name -->
+        <SearchBar x:Name="searchBar" 
+                   Placeholder="Search Repaircompanies" />
+       
+        
+        <!-- Display reaircompanies in a list -->
     <CollectionView x:Name="repairCompaniesCollection"
                     ItemsSource="{Binding RepairCompanies}"
                     Margin="20"
@@ -27,12 +33,11 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:RepairCompany">
                 <SwipeView>
-                    <Frame BorderColor="{StaticResource Primary}" 
+                        <Frame BorderColor="{StaticResource Primary}" 
                            CornerRadius="10"
                            Padding="15">
-                        
 
-                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal">
                             
                             <Image Source="personenauto2.png"
                                    Aspect="AspectFill"
@@ -90,5 +95,5 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-
+    </StackLayout>
 </ContentPage>

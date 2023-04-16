@@ -11,40 +11,71 @@ using System.Threading.Tasks;
 using ZLMClaims.Models;
 using ZLMClaims.Resources.Languages;
 using ZLMClaims.Services;
+
 public class UserViewModel : INotifyPropertyChanged
 {
       
     private User _user;
-        public User User
+    public User User
+    {
+        get
         {
-        
-        get { return _user; }
-            set
-            {
-                _user = value;
-                OnPropertyChanged(nameof(User));
-            }
+            Debug.WriteLine("[UserViewModel] [Attribute User user] Getting user...");
+            return _user;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
+        set
         {
-        Console.WriteLine("[UserViewModel] [OnPropertyChanged] [==============] start with propertyname " + propertyName);
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _user = value;
+            OnPropertyChanged(nameof(User));
         }
+    }
 
-        public async Task GetUser(int userId)
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    /*
+    private async Task LoadUsersAsync()
+    {
+        Users = await _userService.GetUsersAsync();
+    }
+    */
+
+    public async Task LoadUserByIdAsync(int id)
+    {
+        Console.WriteLine("[..............] [UserViewModel] [LoadUserByIdAsync] userid = " + id);
+        try
         {
-        Debug.WriteLine("[UserViewModel] [GetUser] [==============] Debug GetUser with id " + userId);
-        Console.WriteLine("[UserViewModel] [GetUser] [==============] GetUser with id " + userId);
-        HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync($"https://jsonplaceholder.typicode.com/users/1");
-        Console.WriteLine("[UserViewModel] [GetUser] [==============] reponse 1: " + response);
-        response.EnsureSuccessStatusCode();
-        Console.WriteLine("[UserViewModel] [GetUser] [==============] reponse 2 " + response);
-        string json = await response.Content.ReadAsStringAsync();
-        User = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(json);
+            User = await _userService.GetUserByIdAsync(id);
+        Console.WriteLine("[..............] [UserViewModel] [LoadUserByIdAsync] result user = " + User);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error loading user with id {id}: {ex.Message}");
+        }
+    }
+
+    /* Waar is deze ook alweer voor bedoeld? */
+    public LocalizationResourceManager LocalizationResourceManager
+        => LocalizationResourceManager.Instance;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+    Console.WriteLine("[..............] [UserViewModel] [OnPropertyChanged] start with propertyname " + propertyName);
+    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    public void OnThemeSwitchToggled()
+    {
+        Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Current theme: " + Application.Current.RequestedTheme);
+
+        if (Application.Current.RequestedTheme == AppTheme.Dark)
+        {
+            Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Light");
+            Application.Current.UserAppTheme = AppTheme.Light;
+        }
+        else
+        {
+            Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Dark");
+            Application.Current.UserAppTheme = AppTheme.Dark;
         }
 
     public void OnThemeSwitchToggled()
