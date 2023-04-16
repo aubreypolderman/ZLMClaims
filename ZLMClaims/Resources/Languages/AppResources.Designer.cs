@@ -79,11 +79,29 @@ namespace ZLMClaims.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All contracts.
+        /// </summary>
+        internal static string AllContractsTitle {
+            get {
+                return ResourceManager.GetString("AllContractsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All repair companies.
         /// </summary>
         internal static string AllRepairCompaniesTitle {
             get {
                 return ResourceManager.GetString("AllRepairCompaniesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Annual policy premuim.
+        /// </summary>
+        internal static string AnnualPolicyPremium {
+            get {
+                return ResourceManager.GetString("AnnualPolicyPremium", resourceCulture);
             }
         }
         
@@ -120,6 +138,15 @@ namespace ZLMClaims.Resources.Languages {
         internal static string DamageDetails {
             get {
                 return ResourceManager.GetString("DamageDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Damage free years.
+        /// </summary>
+        internal static string DamageFreeYears {
+            get {
+                return ResourceManager.GetString("DamageFreeYears", resourceCulture);
             }
         }
         
@@ -169,6 +196,33 @@ namespace ZLMClaims.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enddate.
+        /// </summary>
+        internal static string EndDate {
+            get {
+                return ResourceManager.GetString("EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Licenseplate.
+        /// </summary>
+        internal static string LicensePlate {
+            get {
+                return ResourceManager.GetString("LicensePlate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model.
+        /// </summary>
+        internal static string Model {
+            get {
+                return ResourceManager.GetString("Model", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         internal static string Name {
@@ -196,11 +250,29 @@ namespace ZLMClaims.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Policy number.
+        /// </summary>
+        internal static string PolicyNumber {
+            get {
+                return ResourceManager.GetString("PolicyNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Previous.
         /// </summary>
         internal static string Previous {
             get {
                 return ResourceManager.GetString("Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        internal static string Product {
+            get {
+                return ResourceManager.GetString("Product", resourceCulture);
             }
         }
         
@@ -232,11 +304,29 @@ namespace ZLMClaims.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Startingdate.
+        /// </summary>
+        internal static string StartingDate {
+            get {
+                return ResourceManager.GetString("StartingDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Claim.
         /// </summary>
         internal static string TabItemClaim {
             get {
                 return ResourceManager.GetString("TabItemClaim", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contract.
+        /// </summary>
+        internal static string TabItemContract {
+            get {
+                return ResourceManager.GetString("TabItemContract", resourceCulture);
             }
         }
         
@@ -282,6 +372,15 @@ namespace ZLMClaims.Resources.Languages {
         internal static string TabItemRepairUncooperative {
             get {
                 return ResourceManager.GetString("TabItemRepairUncooperative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         

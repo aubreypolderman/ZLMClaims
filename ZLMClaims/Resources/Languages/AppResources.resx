@@ -123,8 +123,14 @@
   <data name="AllClaimsTitle" xml:space="preserve">
     <value>All claims</value>
   </data>
+  <data name="AllContractsTitle" xml:space="preserve">
+    <value>All contracts</value>
+  </data>
   <data name="AllRepairCompaniesTitle" xml:space="preserve">
     <value>All repair companies</value>
+  </data>
+  <data name="AnnualPolicyPremium" xml:space="preserve">
+    <value>Annual policy premuim</value>
   </data>
   <data name="ApplicationSettings" xml:space="preserve">
     <value>Application settings</value>
@@ -137,6 +143,9 @@
   </data>
   <data name="DamageDetails" xml:space="preserve">
     <value>1. Damage details</value>
+  </data>
+  <data name="DamageFreeYears" xml:space="preserve">
+    <value>Damage free years</value>
   </data>
   <data name="DamagePhotos" xml:space="preserve">
     <value>2. Damage photos</value>
@@ -153,6 +162,15 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Enddate</value>
+  </data>
+  <data name="LicensePlate" xml:space="preserve">
+    <value>Licenseplate</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -162,8 +180,14 @@
   <data name="Phone" xml:space="preserve">
     <value>Phone</value>
   </data>
+  <data name="PolicyNumber" xml:space="preserve">
+    <value>Policy number</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Previous</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
   </data>
   <data name="Q_WhatIsDamaged" xml:space="preserve">
     <value>What is damaged?</value>
@@ -174,8 +198,14 @@
   <data name="Send" xml:space="preserve">
     <value>Send</value>
   </data>
+  <data name="StartingDate" xml:space="preserve">
+    <value>Startingdate</value>
+  </data>
   <data name="TabItemClaim" xml:space="preserve">
     <value>Claim</value>
+  </data>
+  <data name="TabItemContract" xml:space="preserve">
+    <value>Contract</value>
   </data>
   <data name="TabItemHome" xml:space="preserve">
     <value>Home</value>
@@ -191,6 +221,9 @@
   </data>
   <data name="TabItemRepairUncooperative" xml:space="preserve">
     <value>Uncooperative</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="UserId" xml:space="preserve">
     <value>Customer number</value>

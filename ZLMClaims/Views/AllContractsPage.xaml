@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             xmlns:models="clr-namespace:ZLMClaims.Models"
+             x:Class="ZLMClaims.Views.AllContractsPage"
+             xmlns:local="clr-namespace:ZLMClaims"
+             Title="{local:Translate AllContractsTitle}"
+             x:DataType="viewmodels:AllContractsViewModel">
+    <ContentPage.BindingContext>
+        <viewmodels:AllContractsViewModel />
+    </ContentPage.BindingContext>
+
+    <!-- Display reaircompanies in a list -->
+    <CollectionView x:Name="contractsCollection"
+                    ItemsSource="{Binding Contracts}"
+                    Margin="20"
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding SelectContractCommand}">
+
+        <!-- Designate how the collection of items are laid out -->
+        <CollectionView.ItemsLayout>
+       <!--     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" /> -->
+            <GridItemsLayout Orientation="Vertical"
+                             HorizontalItemSpacing="10"
+                             VerticalItemSpacing="10"
+                             Span="1" />
+        </CollectionView.ItemsLayout>
+
+        <!-- Define the appearance of each item in the list -->
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Contract">
+                <SwipeView>
+                    <Frame BorderColor="{StaticResource Primary}" 
+                           CornerRadius="10"
+                           Padding="15">
+                        
+
+                        <StackLayout Orientation="Horizontal">
+                            
+                            <Image Source="personenauto2.png"
+                                   Aspect="AspectFill"
+                                   WidthRequest="50" 
+                                   HeightRequest="50">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                    <!-- Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference repairCompaniesCollection}}" CommandParameter="{Binding}" /> -->
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="      " />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Product}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Model}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Type}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding LicensePlate}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label></Label>
+                                    <Label FontSize="10" TextColor="Silver">
+                                        <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{local:Translate StartingDate}" />
+                                            <Span Text=": " />
+                                            <Span Text="{Binding StartingDate}" />
+                                            <Span Text=" " />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label FontSize="10" TextColor="Silver">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{local:Translate DamageFreeYears}" />
+                                            <Span Text=": " />
+                                            <Span Text="{Binding DamageFreeYears}" />
+                                            <Span Text=" " />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label FontSize="10" TextColor="Silver">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{local:Translate AnnualPolicyPremium}" />
+                                            <Span Text=": € " />
+                                            <Span Text="{Binding AnnualPolicyPremium}" />
+                                            <Span Text=" " />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>

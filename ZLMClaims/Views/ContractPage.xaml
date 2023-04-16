@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             xmlns:models="clr-namespace:ZLMClaims.Models"
+             x:Class="ZLMClaims.Views.ContractPage"
+             xmlns:local="clr-namespace:ZLMClaims"
+             Title="{Binding Contract.Product}"
+             x:DataType="viewmodels:ContractViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodels:ContractViewModel />
+    </ContentPage.BindingContext>
+    
+    
+    <VerticalStackLayout Padding="20" Spacing="10" Margin="10">
+        
+        <!-- Image above info of user-->
+        <Border>
+            <Image Source="https://static.zlm.nl/sites/default/files/2022-10/Campagne%20header%20autoverzekering%202022.jpg"/>
+        </Border>
+
+
+        <Grid>
+            <!-- Short notation is also possible: Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- policy number -->
+            <BoxView Grid.Row="0"/>
+            <Label Grid.Row="0"
+                   Text="{local:Translate PolicyNumber}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="0"
+                     Grid.Column="1"/>
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   Text="{Binding Contract.Id}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Product-->
+            <BoxView Grid.Row="1"/>
+            <Label Grid.Row="1"
+                   Text="{local:Translate Product}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="1"
+                     Grid.Column="1"/>
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding Contract.Product}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Licenseplate-->
+            <BoxView Grid.Row="2"/>
+            <Label Grid.Row="2"
+                   Text="{local:Translate LicensePlate}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="2"
+                     Grid.Column="1"/>
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding Contract.LicensePlate}" 
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Model-->
+            <BoxView Grid.Row="3"/>
+            <Label Grid.Row="3"
+                   Text="{local:Translate Model}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="3"
+                     Grid.Column="1"/>
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding Contract.Model}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Type-->
+            <BoxView Grid.Row="4"/>
+            <Label Grid.Row="4"
+                   Text="{local:Translate Type}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="4"
+                     Grid.Column="1"/>
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   Text="{Binding Contract.Type}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Startingdate-->
+            <BoxView Grid.Row="5"/>
+            <Label Grid.Row="5"
+                   Text="{local:Translate StartingDate}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="5"
+                     Grid.Column="1"/>
+            <Label Grid.Row="5"
+                   Grid.Column="1"
+                   Text="{Binding Contract.StartingDate}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Enddate-->
+            <BoxView Grid.Row="6"/>
+            <Label Grid.Row="6"
+                   Text="{local:Translate EndDate}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="6"
+                     Grid.Column="1"/>
+            <Label Grid.Row="6"
+                   Grid.Column="1"
+                   Text="{Binding Contract.EndDate}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Annual policy premium-->
+            <BoxView Grid.Row="7"/>
+            <Label Grid.Row="7"
+                   Text="{local:Translate AnnualPolicyPremium}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="7"
+                     Grid.Column="1"/>
+            <Label Grid.Row="7"
+                   Grid.Column="1"
+                   Text="{Binding Contract.AnnualPolicyPremium}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Damage free years-->
+            <BoxView Grid.Row="8"/>
+            <Label Grid.Row="8"
+                   Text="{local:Translate DamageFreeYears}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="8"
+                     Grid.Column="1"/>
+            <Label Grid.Row="8"
+                   Grid.Column="1"
+                   Text="{Binding Contract.DamageFreeYears}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            
+        </Grid>
+
+        <Button Text="Claim" BackgroundColor="#d8172a"/>
+        <Button Text="Calculate" BackgroundColor="#d8172a"/>
+    </VerticalStackLayout>
+</ContentPage>

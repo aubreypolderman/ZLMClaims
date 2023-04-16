@@ -51,23 +51,25 @@ public partial class UserPage : ContentPage
 
     private void OnLanguageSwitchToggled(object sender, ToggledEventArgs e)
     {
-
-        Console.WriteLine("[UserPage] [OnLanguageSwitchToggled] [==============] object: " + sender  + "  met args " + e);
-        var switchToCulture = AppResources.Culture.TwoLetterISOLanguageName
-            .Equals("nl", StringComparison.InvariantCultureIgnoreCase) ? 
-            new CultureInfo("en-US") : new CultureInfo("nl-NL");
-
-        LocalizationResourceManager.Instance.SetCulture(switchToCulture);
+        Console.WriteLine("[..............] [UserPage] [OnLanguageSwitchToggled");
+        _viewModel.OnLanguageSwitchToggled();
     }
 
     private void OnThemeSwitchToggled(object sender, ToggledEventArgs e)
     {
-        Console.WriteLine("[UserPage] [OnThemeSwitchToggled] [==============] object: " + sender + "  met args " + e);
-
+        Console.WriteLine("[..............] [UserPage] [OnThemeSwitchToggled] Current theme: " + Application.Current.RequestedTheme);
+        _viewModel.OnThemeSwitchToggled();
     }
 
     private void OnEmailConfirmationSwitchToggled(object sender, ToggledEventArgs e)
     {
-        Console.WriteLine("[UserPage] [OnEmailConfirmationSwitchToggled] [==============] object: " + sender + "  met args " + e);
+        Console.WriteLine("[..............] [UserPage] [OnEmailConfirmationSwitchToggled]");
+        _viewModel.OnEmailConfirmationSwitchToggled();
+    }
+
+    private async void OnEmailBtnClicked(object sender, EventArgs e)
+    {
+        Console.WriteLine("[..............] [UserPage] [OnEmailConfirmationSwitchToggled]");
+        _viewModel?.OnEmailBtnClicked();
     }
 }

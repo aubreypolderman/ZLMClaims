@@ -1,61 +1,61 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Input;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 using ZLMClaims.Models;
-using ZLMClaims.Views;
 
-namespace ZLMClaims.ViewModels
+namespace ZLMClaims.Services
 {
-    public class AllRepairCompaniesViewModel : BindableObject   
+    public class RepairCompanyService : IRepairCompanyService
     {
-        private readonly HttpClient _client = new HttpClient();
-        private ObservableCollection<RepairCompany> _repaircompanies;
-        private Command<object> tapCommand;
-        public ICommand SelectRepairCompanyCommand { get; }
-        private INavigation navigation;
+        private readonly HttpClient _httpClient;
 
-        public ObservableCollection<RepairCompany> RepairCompanies
+        public RepairCompanyService(HttpClient httpClient)
         {
-            get => _repaircompanies;
-            set
+            // check to see if _httpClient instance is not null    
+            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+        }
+
+        public async Task<IEnumerable<RepairCompany>> GetRepairCompaniesAsync()
+        {
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync]");
+            HttpResponseMessage response = await _httpClient.GetAsync("https://jsonplaceholder.typicode.com/users");
+            response.EnsureSuccessStatusCode();
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] statuscode: " + response.StatusCode);
+            var json = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponse json: " + json);
+            return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<RepairCompany>>(json);
+        }
+
+        public async Task<RepairCompany> GetRepairCompanyByIdAsync(int id)
+        {
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] Get repair company with id " + id);
+            var response = await _httpClient.GetAsync($"https://jsonplaceholder.typicode.com/users/{id}");
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] StatusCode response: " + response.StatusCode);
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] ReasonPhrase response: " + response.ReasonPhrase);
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] RequestMessage response: " + response.RequestMessage);
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] reponsecontent: " + responseContent);
+
+            if (response.IsSuccessStatusCode)
+            { 
+                Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] StatuscodeSucces is all good! Return response");
+                return System.Text.Json.JsonSerializer.Deserialize<RepairCompany>(responseContent); 
+            }
+            else
             {
-                _repaircompanies = value;
-                OnPropertyChanged();
+                Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] Errortje getting repair company with id {id} ");
+                throw new HttpRequestException($"Error getting repair company with id {id}: {response.ReasonPhrase}");
             }
         }
 
-        public Command GetRepairCompaniesCommand { get; }
-
-        public AllRepairCompaniesViewModel()
+        private static string LoadData()
         {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [==============] Constructor");
-            
-        }
+            Console.WriteLine("[RepairCompanyService] [LoadDataAsync ][==============] ");
 
-        public AllRepairCompaniesViewModel(INavigation _navigation)
-        {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [==============] Constructor");
-            SelectRepairCompanyCommand = new AsyncRelayCommand<ViewModels.AllRepairCompaniesViewModel>(SelectRepairCompanyAsync);
-        }
-
-        private async Task SelectRepairCompanyAsync(ViewModels.AllRepairCompaniesViewModel repaircompany)
-        {
-            // if (repaircompany != null) 
-            //     await Shell.Current.GoToAsync($"{nameof(RepairCompanyPage)}?load={repaircompany.Identifier}");
-            Console.WriteLine("[SelectRepairCompanyAsync] [==============] repaircompany:" + repaircompany);
-        }
-
-
-        public async Task LoadDataAsync()
-        {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [LoadDataAsync ][==============] ");
-
-            // var response = await _client.GetAsync("https://jsonplaceholder.typicode.com/users");
-
-            string response = @"[
+            return @"[
                 {
                     ""id"": 1,
                     ""name"": ""Renova"",
@@ -126,32 +126,6 @@ namespace ZLMClaims.ViewModels
                     }
                 }
             ]";
-            Console.WriteLine("[AllRepairCompaniesViewModel] [LoadDataAsync] [==============] reponse: " + response);
-            //var content = await response.Content.ReadAsStringAsync();
-            RepairCompanies = JsonConvert.DeserializeObject<ObservableCollection<RepairCompany>>(response);
-
-
-        }
-
-        public Command<object> TapCommand
-        {
-            get { return tapCommand; }
-            set { tapCommand = value; }
-        }
-
-        public INavigation Navigation
-        {
-            get { return navigation; }
-            set { navigation = value; }
-        }
-
-        private void OnTapped(object obj)
-        {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [OnTapped ][==============] ");
-            Console.WriteLine("[AllRepairCompaniesViewModel] [OnTapped ][==============] object => "+ obj);
-            //var newPage = new RepairCompanyPage();
-            //newPage.BindingContext = obj;
-            //Navigation.PushAsync(newPage);
         }
     }
 }

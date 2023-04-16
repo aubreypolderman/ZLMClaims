@@ -12,8 +12,8 @@
         <ShellContent
             Title="{local:Translate TabItemHome}"
             Icon="home.svg"
-            Route="MainPage"
-            ContentTemplate="{DataTemplate local:MainPage}"/>
+            Route="AllContractsPage"
+            ContentTemplate="{DataTemplate views:AllContractsPage}"/>
 
         <ShellContent 
             Title="{local:Translate TabItemClaim}"
