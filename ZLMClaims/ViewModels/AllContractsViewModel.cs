@@ -50,7 +50,8 @@ namespace ZLMClaims.ViewModels
        public async Task LoadDataAsync()
         {
             Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync]");
-            var contracts = await contractService.GetContractsAsync();
+            var contracts = await contractService.GetAllContractsByPersonIdAsync(1);
+            Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync] contractService invoked...");
             foreach (var contract in contracts)
             {
                 Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync] contract:" + contract.Product);

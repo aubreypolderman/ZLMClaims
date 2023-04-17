@@ -12,7 +12,6 @@ public partial class UserPage : ContentPage
     {
         InitializeComponent();
         _viewModel = vm;
-        _viewModel.GetUser(9);
         BindingContext = vm;
     }
 

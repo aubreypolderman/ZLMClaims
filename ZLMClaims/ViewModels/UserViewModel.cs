@@ -13,8 +13,13 @@ using ZLMClaims.Resources.Languages;
 using ZLMClaims.Services;
 public class UserViewModel : INotifyPropertyChanged
 {
+    // make the personid a global, sdo it could be used throughout the app. For now just hardcode it
+    public int personid = 1;
 
     private User _user;
+    INavigationService navigationService;
+    IUserService userService;
+
     public User User
     {
 
@@ -28,22 +33,26 @@ public class UserViewModel : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;
 
+    public UserViewModel(INavigationService navigationService, IUserService userService)
+    {
+        Console.WriteLine("[..............] [UserViewModel] [constructor] Navigation and IUserService injected");
+        this.navigationService = navigationService;
+        this.userService = userService;
+
+        LoadDataAsync();
+    }
+
     protected virtual void OnPropertyChanged(string propertyName)
     {
         Console.WriteLine("[UserViewModel] [OnPropertyChanged] [==============] start with propertyname " + propertyName);
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    public async Task GetUser(int userId)
+    public async Task LoadDataAsync()
     {
-        Console.WriteLine("[..............] [UserViewModel] [GetUser] Userid: {userId}");
-        HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync($"https://jsonplaceholder.typicode.com/users/{userId}");
-        Console.WriteLine("[..............] [UserViewModel] [GetUser] response 1: " + response);
-        response.EnsureSuccessStatusCode();
-        Console.WriteLine("[..............] [UserViewModel] [GetUser] response 2: " + response);
-        string json = await response.Content.ReadAsStringAsync();
-        User = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(json);
+        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync]");
+        var user = await userService.GetUserByIdAsync(personid);
+        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user: " + user.Name);
     }
 
     public void OnThemeSwitchToggled()

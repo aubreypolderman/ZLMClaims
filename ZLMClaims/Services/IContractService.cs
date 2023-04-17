@@ -3,6 +3,6 @@ namespace ZLMClaims.Services
 {
     public interface IContractService
     {
-        Task<IEnumerable<Contract>> GetContractsAsync();
+        Task<IEnumerable<Contract>> GetAllContractsByPersonIdAsync(int personId);
     }
 }

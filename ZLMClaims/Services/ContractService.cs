@@ -18,18 +18,27 @@ namespace ZLMClaims.Services
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
-        public async Task<IEnumerable<Contract>> GetContractsAsync()
+        public async Task<IEnumerable<Contract>> GetAllContractsByPersonIdAsync(int personId)
         {
-            Console.WriteLine("[..............] [ContractService] [GetContractsAsync]");
+            Console.WriteLine("[..............] [ContractService] [GetContractsAsync] Invoke api for personId " + personId);
+
+            // online 
+            /*
+            // Make API call to retrieve all contracts by personID
             HttpResponseMessage response = await _httpClient.GetAsync("https://jsonplaceholder.typicode.com/users");
+
+            // Handle non-successful response codes
             response.EnsureSuccessStatusCode();
             Console.WriteLine("[..............] [ContractService] [GetContractsAsync] statuscode: " + response.StatusCode);
+            var json = await response.Content.ReadAsStringAsync();
+            */
 
-            // for test use LoadData().
+            // offline
+            // for testpurpose only
             var json = LoadData();
-            //var json = await response.Content.ReadAsStringAsync();
 
             Console.WriteLine("[..............] [ContractService] [GetContractsAsync] reponse json: " + json);
+            // Deserialize json response to Claim object
             return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Contract>>(json);
         }
 

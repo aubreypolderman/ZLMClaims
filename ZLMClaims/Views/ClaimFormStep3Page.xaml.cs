@@ -19,7 +19,8 @@ public partial class ClaimFormStep3Page : ContentPage
     {
         Console.WriteLine("[ClaimFormStep3Page] [OnSendBtnClicked] [==============] sender => " + sender + " with args => " + e);
         await DisplayAlert("Confirmation", "The claim form has been succesfully sent to ZLM Verzekeringen", "OK");
-        Navigation.PushAsync(new AllClaimsPage());
+        // Return to Home or Claims
+        // Navigation.PushAsync(new AllClaimsPage());
     }
 
 }

@@ -35,20 +35,25 @@ public static class MauiProgram
        
 
         builder.Services.AddSingleton<IRepairCompanyService, RepairCompanyService>();
-        builder.Services.AddTransient<AllRepairCompaniesViewModel>();
+        builder.Services.AddSingleton<AllRepairCompaniesViewModel>();
         builder.Services.AddTransient<RepairCompanyViewModel>();
         builder.Services.AddTransient<RepairCompanyPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** RepairCompany service, viewmodel and view registered with DI container ");
 
-       // builder.Services.AddSingleton<IContractService, ContractService>();
         builder.Services.AddHttpClient<IContractService, ContractService>();
-        builder.Services.AddTransient<AllContractsViewModel>();
+        builder.Services.AddSingleton<AllContractsViewModel>();
         builder.Services.AddTransient<AllContractsPage>();
         builder.Services.AddTransient<ContractViewModel>();
         builder.Services.AddTransient<ContractPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Contract service, viewmodel and view registered with DI container ");
 
-        builder.Services.AddSingleton<IUserService, UserService>();
+        builder.Services.AddHttpClient<IClaimService, ClaimService>();
+        builder.Services.AddSingleton<AllClaimsViewModel>();
+        builder.Services.AddTransient<AllClaimsPage>();
+        builder.Services.AddTransient<ClaimDamagesViewModel>();
+        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Claim service, viewmodel and view registered with DI container ");
+
+        builder.Services.AddHttpClient<IUserService, UserService>();
         builder.Services.AddSingleton<UserViewModel>();
         builder.Services.AddTransient<UserPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** UserService, UserViewModel and UserPage registered with DI container ");

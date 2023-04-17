@@ -1,26 +1,37 @@
+using ZLMClaims.Models;
 using ZLMClaims.ViewModels;
 namespace ZLMClaims.Views;
 
 public partial class AllClaimsPage : ContentPage
 {
 
-    private readonly AllClaimsViewModel _viewModel;
-
-    public AllClaimsPage()
-	{
-		InitializeComponent();
-        _viewModel = new AllClaimsViewModel();
-        BindingContext = _viewModel;
-    }
-
-    protected override async void OnAppearing()
+    public AllClaimsPage(AllClaimsViewModel vm)
     {
-        base.OnAppearing();
-        await _viewModel.LoadDataAsync();
+        Console.WriteLine("[..............] [AllClaimsPage] [AllClaimsViewModel] viewmodel injected");
+        InitializeComponent();
+        BindingContext = vm;
     }
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
         claimsCollection.SelectedItem = null;
+    }
+
+    private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+    {
+        Console.WriteLine("[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Start");
+        var claim = ((VisualElement)sender).BindingContext as Claim;
+        if (claim == null)
+        {
+            Console.WriteLine("[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Contract is null. Return");
+            return;
+        }
+        Console.WriteLine("[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Contract: " + claim);
+
+        // Navigate to detail page of contract
+        await Shell.Current.GoToAsync(nameof(AllClaimsPage), true, new Dictionary<string, object>
+        {
+            {"Claim", claim}
+        });
     }
 }
