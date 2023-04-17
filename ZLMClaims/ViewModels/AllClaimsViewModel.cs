@@ -13,6 +13,7 @@ namespace ZLMClaims.ViewModels
         private ObservableCollection<Claim> _claims;
         public ICommand NewClaimCommand { get; }
 
+        // By making the claims observable, the view is automatically refreshed whenever a change occure, like delete, or update or insert
         public ObservableCollection<Claim> Claims
         {
             get => _claims;

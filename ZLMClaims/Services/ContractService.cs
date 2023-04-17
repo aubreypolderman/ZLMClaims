@@ -35,7 +35,7 @@ namespace ZLMClaims.Services
 
         private static string LoadData()
         {
-            Console.WriteLine("[ContractService] [LoadData ][==============] ");
+            Console.WriteLine("[..............] [ContractService] [LoadData] Ophalen stubdata");
 
             return @"[
                 {

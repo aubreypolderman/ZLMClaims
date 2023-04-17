@@ -12,7 +12,8 @@ namespace ZLMClaims.Services
 
         public UserService(HttpClient httpClient)
         {
-            // check to see if _httpClient instance is not null    
+            // check to see if _httpClient instance is not null
+            Console.WriteLine("[..............] [UserService] [constructor] httpclient injhected ");
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 

@@ -5,19 +5,11 @@ namespace ZLMClaims.Views;
 public partial class AllContractsPage : ContentPage
 {
 
-    private readonly AllContractsViewModel _viewModel;
-
-    public AllContractsPage()
+    public AllContractsPage(AllContractsViewModel vm)
 	{
-		InitializeComponent();
-        _viewModel = new AllContractsViewModel(this.Navigation);
-        BindingContext = _viewModel;
-    }
-
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        await _viewModel.LoadDataAsync();
+        Console.WriteLine("[..............] [AllContractsPage] [AllContractsViewModel] viewmodel injected");
+        InitializeComponent();
+        BindingContext = vm;
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

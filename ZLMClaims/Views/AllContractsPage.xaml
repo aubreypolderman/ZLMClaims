@@ -7,9 +7,6 @@
              xmlns:local="clr-namespace:ZLMClaims"
              Title="{local:Translate AllContractsTitle}"
              x:DataType="viewmodels:AllContractsViewModel">
-    <ContentPage.BindingContext>
-        <viewmodels:AllContractsViewModel />
-    </ContentPage.BindingContext>
 
     <!-- Display reaircompanies in a list -->
     <CollectionView x:Name="contractsCollection"
