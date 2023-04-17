@@ -8,24 +8,12 @@ public partial class UserPage : ContentPage
 {      
     private readonly UserViewModel _viewModel;
 
-    public UserPage() 
+    public UserPage(UserViewModel vm) 
     {
         InitializeComponent();
-
-        _viewModel = new UserViewModel();
-               _viewModel.GetUser(9);
-       
-        BindingContext = _viewModel;
-    }
-
-    public UserPage(int userId)
-    {
-        Console.WriteLine("[UserPage] [constructor] [==============] Start with userId " + userId);
-        InitializeComponent();
-        _viewModel = new UserViewModel();
-        _viewModel.GetUser(userId);
-        BindingContext = _viewModel;
-        
+        _viewModel = vm;
+        _viewModel.GetUser(9);
+        BindingContext = vm;
     }
 
     public LocalizationResourceManager LocalizationResourceManager
@@ -34,7 +22,7 @@ public partial class UserPage : ContentPage
     private void OnLanguageSwitchToggled(object sender, ToggledEventArgs e)
     {
         Console.WriteLine("[..............] [UserPage] [OnLanguageSwitchToggled");
-        _viewModel.OnLanguageSwitchToggled();
+        _viewModel.OnLanguageSwitchToggled(); 
     }
 
     private void OnThemeSwitchToggled(object sender, ToggledEventArgs e)

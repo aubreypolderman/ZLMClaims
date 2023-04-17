@@ -36,13 +36,12 @@ public class UserViewModel : INotifyPropertyChanged
 
     public async Task GetUser(int userId)
     {
-        Debug.WriteLine("[UserViewModel] [GetUser] [==============] Debug GetUser with id " + userId);
-        Console.WriteLine("[UserViewModel] [GetUser] [==============] GetUser with id " + userId);
+        Console.WriteLine("[..............] [UserViewModel] [GetUser] Userid: {userId}");
         HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync($"https://jsonplaceholder.typicode.com/users/1");
-        Console.WriteLine("[UserViewModel] [GetUser] [==============] reponse 1: " + response);
+        HttpResponseMessage response = await client.GetAsync($"https://jsonplaceholder.typicode.com/users/{userId}");
+        Console.WriteLine("[..............] [UserViewModel] [GetUser] response 1: " + response);
         response.EnsureSuccessStatusCode();
-        Console.WriteLine("[UserViewModel] [GetUser] [==============] reponse 2 " + response);
+        Console.WriteLine("[..............] [UserViewModel] [GetUser] response 2: " + response);
         string json = await response.Content.ReadAsStringAsync();
         User = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(json);
     }

@@ -49,7 +49,7 @@ public static class MauiProgram
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Contract service, viewmodel and view registered with DI container ");
 
         builder.Services.AddSingleton<IUserService, UserService>();
-        builder.Services.AddTransient<UserViewModel>();
+        builder.Services.AddSingleton<UserViewModel>();
         builder.Services.AddTransient<UserPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** UserService, UserViewModel and UserPage registered with DI container ");
 
