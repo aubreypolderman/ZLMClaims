@@ -52,8 +52,8 @@ public static class MauiProgram
         builder.Services.AddTransient<ContractPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Contract service, viewmodel and view registered with DI container ");
 
-        //builder.Services.AddHttpClient<IClaimService, ClaimService>();
-        builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<ClaimService> (s, dbPath));
+        builder.Services.AddHttpClient<IClaimService, ClaimService>();
+        //builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<ClaimService> (s, dbPath));
         builder.Services.AddSingleton<AllClaimsViewModel>();
         builder.Services.AddTransient<AllClaimsPage>();
         builder.Services.AddTransient<ClaimDamagesViewModel>();
@@ -64,7 +64,7 @@ public static class MauiProgram
         builder.Services.AddTransient<UserPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** UserService, UserViewModel and UserPage registered with DI container ");
 
-        builder.Services.AddSingleton<CarService>();
+        builder.Services.AddSingleton<ICarService, CarService>();
         builder.Services.AddSingleton<CarListViewModel>();
         builder.Services.AddTransient<AllCarsPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** CarService, viewmodel and view registered with DI container ");

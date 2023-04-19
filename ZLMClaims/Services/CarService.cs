@@ -7,7 +7,7 @@ using ZLMClaims.Models;
 
 namespace ZLMClaims.Services
 {
-    public class CarService
+    public class CarService : ICarService
     {
         public List<Car> GetCars()
         {

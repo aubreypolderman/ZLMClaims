@@ -26,11 +26,13 @@ namespace ZLMClaims.Services
             connection.CreateTable<Claim>();
         }
 
-        public ClaimService(HttpClient httpClient, string dbPath )
+        public ClaimService(HttpClient httpClient )
         {
             // check to see if _httpClient instance is not null    
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-            _dbPath = dbPath;
+           
+            // TODO DI for Db7path
+            //_dbPath = dbPath;
         }
 
         public List<Claim> GetClaims() 

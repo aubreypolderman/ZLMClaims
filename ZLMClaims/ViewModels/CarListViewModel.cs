@@ -13,11 +13,11 @@ namespace ZLMClaims.ViewModels
 {
     public partial class CarListViewModel : BaseViewModel
     {
-        private readonly CarService carService;
+        ICarService carService;
 
         public ObservableCollection<Car> Cars { get; private set; } = new();
-
-        public CarListViewModel(CarService carService)
+        
+        public CarListViewModel(ICarService carService)
         {
             //Title = "My cars";
             this.carService = carService;        
