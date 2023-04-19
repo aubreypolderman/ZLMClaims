@@ -35,7 +35,7 @@ public partial class AllRepairCompaniesPage : ContentPage
 
         await Shell.Current.GoToAsync(nameof(RepairCompanyPage), true, new Dictionary<string, object>
         {
-            {"RepairCompany", repairCompany}
+            {nameof(RepairCompany), repairCompany}
         });
     }
 }

@@ -164,6 +164,6 @@
 
         </Grid>
 
-        <Button Text="MijnZLM" BackgroundColor="#d8172a"/>
+        <Button Text="MijnZLM" BackgroundColor="#d8172a" IsEnabled="{Binding IsNotLoading}"/>
     </VerticalStackLayout>
 </ContentPage>

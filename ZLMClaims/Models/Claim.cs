@@ -1,12 +1,11 @@
-﻿using System.Text.Json.Serialization;
+﻿using SQLite;
+using System.Text.Json.Serialization;
 
 namespace ZLMClaims.Models
 {
-    public class Claim
+    [Table("claims")]
+    public class Claim : BaseEntity
     {
-
-        [JsonPropertyName("id")]
-        public int Id { get; set; }
 
         [JsonPropertyName("dateOfOccurence")]
         public DateTime DateOfOccurence { get; set; }

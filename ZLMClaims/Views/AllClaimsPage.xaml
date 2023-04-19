@@ -7,80 +7,88 @@
              xmlns:local="clr-namespace:ZLMClaims"
              Title="{local:Translate AllClaimsTitle}"
              x:DataType="viewmodels:AllClaimsViewModel">
-    <ContentPage.BindingContext>
-        <viewmodels:AllClaimsViewModel />
-    </ContentPage.BindingContext>
 
-    <!-- Display claims in a list -->
-    <CollectionView x:Name="claimsCollection"
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        <RefreshView
+            Grid.ColumnSpan="2"
+            Command="{Binding LoadDataCommand}">
+            <!-- Display claims in a list -->
+            <CollectionView x:Name="claimsCollection"
                     ItemsSource="{Binding Claims}"
                     Margin="20"
                     SelectionMode="Single">
-        <!-- Designate how the collection of items are laid out -->
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-        </CollectionView.ItemsLayout>
+                <!-- Designate how the collection of items are laid out -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
 
-        <!-- Define the appearance of each item in the list -->
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Claim">
-                <SwipeView>
-                    <Frame BorderColor="{StaticResource Primary}" 
+                <!-- Define the appearance of each item in the list -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Claim">
+                        <SwipeView>
+                            <Frame BorderColor="{StaticResource Primary}" 
                            CornerRadius="10"
                            Padding="15">
 
-                        <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal">
 
-                            <Image Source="{Binding Image1}"
+                                    <Image Source="{Binding Image1}"
                                    Aspect="AspectFill"
                                    WidthRequest="70" 
                                    HeightRequest="70">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="      " />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Contract.Product}" FontSize="16" FontAttributes="Bold"/>
-                                <Label>
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding Contract.LicensePlate}" />
-                                            <Span Text=" [---] " />
-                                            <Span Text="{Binding Contract.Model}" />
-                                            <Span Text=" " />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label>
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding Image2}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label></Label>
-                                <Label FontSize="10" TextColor="Silver">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="Schadedatum: " />
-                                            <Span Text="2023-01-01 18:45" />
-                                            <Span Text=" km" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </StackLayout>
-                        </StackLayout>
-                    </Frame>
-                </SwipeView>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="      " />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Contract.Product}" FontSize="16" FontAttributes="Bold"/>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Contract.LicensePlate}" />
+                                                    <Span Text=" [---] " />
+                                                    <Span Text="{Binding Contract.Model}" />
+                                                    <Span Text=" " />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Image2}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label></Label>
+                                        <Label FontSize="10" TextColor="Silver">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Schadedatum: " />
+                                                    <Span Text="2023-01-01 18:45" />
+                                                    <Span Text=" km" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
+            </CollectionView>
+        </RefreshView>
+
+    </Grid>
 </ContentPage>

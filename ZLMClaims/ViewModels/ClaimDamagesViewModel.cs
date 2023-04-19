@@ -5,7 +5,7 @@ using ZLMClaims.Models;
 namespace ZLMClaims.ViewModels
 {
     [QueryProperty(nameof(Contract), "Contract")]
-    public partial class ClaimDamagesViewModel : ObservableObject   
+    public partial class ClaimDamagesViewModel : BaseViewModel   
     {
         private Contract _contract;
         public ICommand SelectContractCommand { get; }

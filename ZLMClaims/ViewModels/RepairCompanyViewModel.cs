@@ -5,7 +5,7 @@ using ZLMClaims.Models;
 namespace ZLMClaims.ViewModels
 {
     [QueryProperty(nameof(RepairCompany), "RepairCompany")]
-    public partial class RepairCompanyViewModel : ObservableObject   
+    public partial class RepairCompanyViewModel : BaseViewModel   
     {
         private Models.RepairCompany _repaircompany;
 

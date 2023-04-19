@@ -7,6 +7,7 @@ using ZLMClaims.ViewModels;
 using ZLMClaims.Views;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Devices.Sensors;
 
 namespace ZLMClaims;
 
@@ -29,6 +30,10 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
 
         // Register all with the Dependency Injection container
+
+        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "claims.db3");
+
+        builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
         builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
         builder.Services.AddSingleton<INavigationService, NavigationService>();
         builder.Services.AddSingleton<IDialogService, DialogService>();
@@ -47,7 +52,8 @@ public static class MauiProgram
         builder.Services.AddTransient<ContractPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Contract service, viewmodel and view registered with DI container ");
 
-        builder.Services.AddHttpClient<IClaimService, ClaimService>();
+        //builder.Services.AddHttpClient<IClaimService, ClaimService>();
+        builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<ClaimService> (s, dbPath));
         builder.Services.AddSingleton<AllClaimsViewModel>();
         builder.Services.AddTransient<AllClaimsPage>();
         builder.Services.AddTransient<ClaimDamagesViewModel>();
@@ -57,6 +63,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<UserViewModel>();
         builder.Services.AddTransient<UserPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** UserService, UserViewModel and UserPage registered with DI container ");
+
+        builder.Services.AddSingleton<CarService>();
+        builder.Services.AddSingleton<CarListViewModel>();
+        builder.Services.AddTransient<AllCarsPage>();
+        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** CarService, viewmodel and view registered with DI container ");
 
         // Auth0 registration
         builder.Services.AddSingleton(new Auth0Client(new()

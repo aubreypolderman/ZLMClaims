@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SQLite;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
@@ -11,16 +12,45 @@ namespace ZLMClaims.Services
     public class ClaimService : IClaimService
     {
         private readonly HttpClient _httpClient;
+        private SQLiteConnection connection;
+        string _dbPath;
+        public string errorMessage;
 
-        public ClaimService(HttpClient httpClient)
+        private void Init()
+        {
+            // If there's already a connection, then there's no need to make a new one
+            if (connection != null)
+                return;
+
+            connection = new SQLiteConnection(_dbPath);
+            connection.CreateTable<Claim>();
+        }
+
+        public ClaimService(HttpClient httpClient, string dbPath )
         {
             // check to see if _httpClient instance is not null    
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            _dbPath = dbPath;
+        }
+
+        public List<Claim> GetClaims() 
+        {
+            // Connect to SQLite, and retrievethe data. If fail, then setup message and return empy list
+            try
+            {
+                Init();
+                return connection.Table<Claim>().ToList();
+            }
+            catch (Exception) 
+            {
+                errorMessage = "Failed to retrieve data of local storage SQLite";
+            }
+            return new List<Claim>();
         }
 
         public async Task<IEnumerable<Claim>> GetAllClaimsByPersonIdAsync(int personId)
         {
-            Console.WriteLine("[..............] [ContractService] [GetAllClaimsAsync] Invoke api for personId " + personId);
+            Console.WriteLine("[..............] [ClaimService] [GetAllClaimsAsync] Invoke api for personId " + personId);
 
             // online
             /*
@@ -37,14 +67,14 @@ namespace ZLMClaims.Services
             // for testpurpose only
             var json = LoadData();
             
-            Console.WriteLine("[..............] [ContractService] [GetAllClaimsAsync] reponse json: " + json);
+            Console.WriteLine("[..............] [ClaimService] [GetAllClaimsAsync] reponse json: " + json);
             // Deserialize json response to Claim object
             return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Claim>>(json);
         }
 
         private static string LoadData()
         {
-            Console.WriteLine("[..............] [ContractService] [LoadData] Ophalen stubdata");
+            Console.WriteLine("[..............] [ClaimService] [LoadData] Ophalen stubdata");
 
             return @"[
                {

@@ -1,15 +1,24 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using CommunityToolkit.Mvvm.ComponentModel;
 namespace ZLMClaims.ViewModels
 {
+    /*
+     * [AlsoNotifyChangeFor] => [NotifyPropertyChangedFor]
+     * [AlsoNotifyCanExecuteFor] => [NotifyCanExecuteChangedFor]
+     * [AlsoValidateProperty] => [NotifyDataErrorInfo] 
+     * [AlsoBroadcastChange] => [NotifyPropertyChangeRecipients]
+     * [ICommand] => [RelayCommand]
+     */
     public partial class BaseViewModel : ObservableObject
     {
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(IsNotBusy))]
-        bool isBusy;
+        [NotifyPropertyChangedFor(nameof(IsNotLoading))]
+        bool isLoading;
 
         [ObservableProperty]
         string title;
 
-        public bool IsNotBusy => !IsBusy;
+        public bool IsNotLoading => !isLoading;
     }
 }

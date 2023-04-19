@@ -9,7 +9,7 @@ using ZLMClaims.Views;
 
 namespace ZLMClaims.ViewModels
 {
-    public class AllRepairCompaniesViewModel : BindableObject   
+    public class AllRepairCompaniesViewModel : BaseViewModel   
     {
         private readonly HttpClient _client = new HttpClient();
         private ObservableCollection<RepairCompany> _repaircompanies;

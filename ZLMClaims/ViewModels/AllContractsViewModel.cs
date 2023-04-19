@@ -1,8 +1,11 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Input;
 using ZLMClaims.Models;
@@ -11,7 +14,7 @@ using ZLMClaims.Views;
 
 namespace ZLMClaims.ViewModels
 {
-    public class AllContractsViewModel : BindableObject   
+    public partial class AllContractsViewModel : BaseViewModel   
     {
        
         private ObservableCollection<Contract> _contracts;
@@ -20,14 +23,13 @@ namespace ZLMClaims.ViewModels
         INavigationService navigationService;
         IContractService contractService;
 
+        // Todo activate so one can refresh the page by pulling doin
+        //[ObservableProperty]
+        //bool isBusy;
+
         public ObservableCollection<Contract> Contracts
         {
             get => _contracts;
-            set
-            {
-                _contracts = value;
-                OnPropertyChanged();
-            }
         }
 
         public AllContractsViewModel(INavigationService navigationService, IContractService contractService)
@@ -50,13 +52,34 @@ namespace ZLMClaims.ViewModels
        public async Task LoadDataAsync()
         {
             Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync]");
-            var contracts = await contractService.GetAllContractsByPersonIdAsync(1);
-            Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync] contractService invoked...");
-            foreach (var contract in contracts)
+            var id = 1;
+
+           // if (IsLoading) return;
+            try
             {
-                Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync] contract:" + contract.Product);
-                Contracts.Add(contract);
+            //    IsBusy = true;
+                if (Contracts.Any()) Contracts.Clear();
+                
+                var contracts = await contractService.GetAllContractsByPersonIdAsync(id);
+                Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync] contractService invoked for personId " + id);
+                foreach (var contract in contracts)
+                {
+                    Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync] contract:" + contract.Product);
+                    Contracts.Add(contract);
+                }
+
             }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine($"Unable to get Contracts: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error","Failed to retrieve list of Contracts","OK");
+            }
+            finally
+            {
+                //IsBusy = false;
+                //isRefreshing = false;
+            }
+            
         }
 
     }

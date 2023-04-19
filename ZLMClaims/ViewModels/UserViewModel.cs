@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using ZLMClaims.Models;
 using ZLMClaims.Resources.Languages;
 using ZLMClaims.Services;
-public class UserViewModel : INotifyPropertyChanged
+public class UserViewModel : BaseViewModel
 {
     // make the personid a global, sdo it could be used throughout the app. For now just hardcode it
     public int personid = 1;
@@ -31,26 +31,21 @@ public class UserViewModel : INotifyPropertyChanged
         }
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
     public UserViewModel(INavigationService navigationService, IUserService userService)
     {
         Console.WriteLine("[..............] [UserViewModel] [constructor] Navigation and IUserService injected");
         this.navigationService = navigationService;
         this.userService = userService;
 
+        // retrieve the customers id from the preference set
+        var personId = Preferences.Get("personId", false);
         LoadDataAsync();
-    }
-
-    protected virtual void OnPropertyChanged(string propertyName)
-    {
-        Console.WriteLine("[UserViewModel] [OnPropertyChanged] [==============] start with propertyname " + propertyName);
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     public async Task LoadDataAsync()
     {
         Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync]");
+
         var user = await userService.GetUserByIdAsync(personid);
         Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user: " + user.Name);
     }

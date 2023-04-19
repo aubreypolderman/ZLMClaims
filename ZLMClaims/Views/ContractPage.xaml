@@ -5,7 +5,7 @@
              xmlns:models="clr-namespace:ZLMClaims.Models"
              x:Class="ZLMClaims.Views.ContractPage"
              xmlns:local="clr-namespace:ZLMClaims"
-             Title="{Binding Contract.Product}"
+             Title="{Binding Contract.}"
              x:DataType="viewmodels:ContractViewModel">
 
     <ContentPage.BindingContext>

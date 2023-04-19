@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -8,10 +9,10 @@ using ZLMClaims.Services;
 
 namespace ZLMClaims.ViewModels
 {
-    public class AllClaimsViewModel : BindableObject   
+    public partial class AllClaimsViewModel : BaseViewModel
     {
-        private ObservableCollection<Claim> _claims;
-        public ICommand NewClaimCommand { get; }
+        public ObservableCollection<Claim> _claims;
+        
         INavigationService navigationService;
         IClaimService claimService;
 
@@ -26,23 +27,26 @@ namespace ZLMClaims.ViewModels
             }
         }
 
-        public Command GetClaimsCommand { get; }
-
         public AllClaimsViewModel(INavigationService navigationService, IClaimService claimService)
         {
             Console.WriteLine("[..............] [AllContractsViewModel] [constructor] Navigation and IClaimService injected");
             this.navigationService = navigationService;
             this.claimService = claimService;
 
-            LoadDataAsync();
-
+            // LoadDataAsync();
         }
-        // Workaround: empty constructor so the allclaimspage.xaml gets compiled. This does not however make the page show the claims...
-        public AllClaimsViewModel() { }
 
+        // Workaround: empty constructor so the allclaimspage.xaml gets compiled. This does not however make the page show the claims...
+        /*
+        public AllClaimsViewModel()
+        {
+            Console.WriteLine("[..............] [AllContractsViewModel] [constructor] nothing injected. This is the no args constructor");
+        }*/
+
+        [RelayCommand]
         public async Task LoadDataAsync()
         {
-            Console.WriteLine("[AllClaimsViewModel] [LoadDataAsync] ");
+            Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] ");
 
             // Check internet connection
             NetworkAccess accessType = Connectivity.Current.NetworkAccess;
@@ -58,7 +62,7 @@ namespace ZLMClaims.ViewModels
 
             if (accessType == NetworkAccess.Internet)
             {
-                
+
                 // Connection to internet is available
                 Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] Internet connection is available => " + accessType);
                 var claims = await claimService.GetAllClaimsByPersonIdAsync(1);
@@ -69,11 +73,12 @@ namespace ZLMClaims.ViewModels
                     Claims.Add(claim);
                 }
 
-            } else
+            }
+            else
             {
                 Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] Internet connection is NOT available!!!!");
             }
-            
+
         }
 
     }
