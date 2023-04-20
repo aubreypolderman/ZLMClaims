@@ -29,14 +29,6 @@ namespace ZLMClaims.ViewModels
 
             GetAllRepairCompanies();
 
-            SelectRepairCompanyCommand = new AsyncRelayCommand<AllRepairCompaniesViewModel>(SelectRepairCompanyAsync);
-        }
-
-        private async Task SelectRepairCompanyAsync(AllRepairCompaniesViewModel repaircompany)
-        {
-            // if (repaircompany != null) 
-            //     await Shell.Current.GoToAsync($"{nameof(RepairCompanyPage)}?load={repaircompany.Identifier}");
-            Console.WriteLine("[SelectRepairCompanyAsync] [==============] repaircompany:" + repaircompany);
         }
 
         public async Task GetAllRepairCompanies()

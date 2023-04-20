@@ -22,6 +22,8 @@ namespace ZLMClaims.ViewModels
         public ICommand SelectContractCommand { get; }
         INavigationService navigationService;
         IContractService contractService;
+        IDialogService dialogService;
+        IConnectivity connectivity;
 
         // Todo activate so one can refresh the page by pulling doin
         //[ObservableProperty]
@@ -29,24 +31,19 @@ namespace ZLMClaims.ViewModels
 
         public ObservableCollection<Contract> Contracts { get; private set; } = new();
 
-        public AllContractsViewModel(INavigationService navigationService, IContractService contractService)
+        public AllContractsViewModel(INavigationService navigationService, IContractService contractService, IDialogService dialogService, IConnectivity connectivity)
         {
             Console.WriteLine("[..............] [AllContractsViewModel] [constructor] Navigation and IContractService injected");
             this.navigationService = navigationService;
-            this.contractService = contractService;
+            this.contractService = contractService;            
+            this.dialogService = dialogService;
+            this.connectivity = connectivity;
 
             GetAllContracts();
-           
-            SelectContractCommand = new AsyncRelayCommand<AllContractsViewModel>(SelectContractAsync);
+            
         }
 
-        private async Task SelectContractAsync(AllContractsViewModel contract)
-        {
-            Console.WriteLine("[..............] [AllContractsViewModel] [SelectContractAsync] contract:" + contract);
-        }
-        
-
-       public async Task GetAllContracts()
+        public async Task GetAllContracts()
         {
             Console.WriteLine("[..............] [AllContractsViewModel] [GetAllContracts]");
             var id = 1;
@@ -54,7 +51,8 @@ namespace ZLMClaims.ViewModels
            // if (IsLoading) return;
             try
             {
-            //    IsBusy = true;
+                //    IsBusy = true;
+                await dialogService.DisplayAlertAsync("Succes", "Loading list of contracts", "OK");
                 if (Contracts.Any()) Contracts.Clear();
                 
                 var contracts = await contractService.GetAllContractsByPersonIdAsync(id);
@@ -69,7 +67,8 @@ namespace ZLMClaims.ViewModels
             catch (Exception ex) 
             {
                 Debug.WriteLine($"Unable to get Contracts: {ex.Message}");
-                await Shell.Current.DisplayAlert("Error","Failed to retrieve list of Contracts","OK");
+                // await Shell.Current.DisplayAlert("Error","Failed to retrieve list of Contracts","OK");
+                await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Contracts", "OK");
             }
             finally
             {

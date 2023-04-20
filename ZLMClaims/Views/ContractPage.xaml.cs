@@ -11,8 +11,7 @@ public partial class ContractPage : ContentPage
     public ContractPage(ContractViewModel viewModel) 
     {
         Console.WriteLine("[..............] [ContractPage] [noargs constructor] Start");
-        InitializeComponent();
-
         BindingContext = viewModel;
+        InitializeComponent();
     }
 }

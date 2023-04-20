@@ -8,8 +8,9 @@ public partial class AllClaimsPage : ContentPage
     public AllClaimsPage(AllClaimsViewModel vm)
     {
         Console.WriteLine("[..............] [AllClaimsPage] [AllClaimsViewModel] viewmodel injected");
-        InitializeComponent();
         BindingContext = vm;
+        InitializeComponent();
+ 
     }
 
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)

@@ -11,8 +11,7 @@ public partial class ClaimDamagesPage : ContentPage
     public ClaimDamagesPage(ClaimDamagesViewModel viewModel) 
     {
         Console.WriteLine("[..............] [ClaimDamagesPage] [noargs constructor] Start");
-        InitializeComponent();
-
         BindingContext = viewModel;
+        InitializeComponent();
     }
 }

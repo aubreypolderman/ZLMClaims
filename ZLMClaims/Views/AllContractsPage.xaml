@@ -12,7 +12,7 @@
     <CollectionView x:Name="contractsCollection"
                     ItemsSource="{Binding Contracts}"
                     Margin="20"
-                    SelectionMode="None"
+                    SelectionMode="Single"
                     SelectionChangedCommand="{Binding SelectContractCommand}">
 
         <!-- Designate how the collection of items are laid out -->

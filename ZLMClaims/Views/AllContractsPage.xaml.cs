@@ -8,8 +8,8 @@ public partial class AllContractsPage : ContentPage
     public AllContractsPage(AllContractsViewModel vm)
 	{
         Console.WriteLine("[..............] [AllContractsPage] [AllContractsViewModel] viewmodel injected");
-        InitializeComponent();
         BindingContext = vm;
+        InitializeComponent();
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

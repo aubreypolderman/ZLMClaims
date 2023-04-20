@@ -10,8 +10,8 @@ public partial class AllRepairCompaniesPage : ContentPage
     public AllRepairCompaniesPage(AllRepairCompaniesViewModel vm)
 	{
         Console.WriteLine("[..............] [AllRepairCompaniesPage] [AllRepairCompaniesViewModel] viewmodel injected");
-        InitializeComponent();
         BindingContext = vm;
+        InitializeComponent();
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

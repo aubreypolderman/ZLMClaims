@@ -10,11 +10,9 @@ public partial class RepairCompanyPage : ContentPage
     public RepairCompanyPage(RepairCompanyViewModel viewModel) 
     {
         Console.WriteLine("[RepairCompanyPage] [noargs constructor] [==============] Start");
-        Console.WriteLine("[RepairCompanyPage] [noargs constructor] [==============] Before InitializeComponent");
-        InitializeComponent();
 
         BindingContext = viewModel;
-        Console.WriteLine("[RepairCompanyPage] [noargs constructor] [==============] After InitializeComponent");
+        InitializeComponent();
     }
 
     private void OnPhoneNumberTapped(object sender, EventArgs e)

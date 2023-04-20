@@ -12,7 +12,7 @@
     x:DataType="viewmodels:CarListViewModel"
     mc:Ignorable="d">
     <Grid ColumnDefinitions="*,*" ColumnSpacing="5" RowDefinitions="*,Auto">
-        <CollectionView Grid.ColumnSpan="2" ItemsSource="{Binding Cars}" SelectionMode="None">
+        <CollectionView Grid.ColumnSpan="2" ItemsSource="{Binding Cars}" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Car">
                     <Frame HeightRequest="90">

@@ -10,9 +10,9 @@ public partial class UserPage : ContentPage
 
     public UserPage(UserViewModel vm) 
     {
-        InitializeComponent();
         _viewModel = vm;
         BindingContext = vm;
+        InitializeComponent();
     }
 
     public LocalizationResourceManager LocalizationResourceManager
