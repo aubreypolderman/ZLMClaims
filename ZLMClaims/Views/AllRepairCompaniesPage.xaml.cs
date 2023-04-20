@@ -7,17 +7,11 @@ public partial class AllRepairCompaniesPage : ContentPage
 
     private readonly AllRepairCompaniesViewModel _viewModel;
 
-    public AllRepairCompaniesPage()
+    public AllRepairCompaniesPage(AllRepairCompaniesViewModel vm)
 	{
-		InitializeComponent();
-        _viewModel = new AllRepairCompaniesViewModel(this.Navigation);
-        BindingContext = _viewModel;
-    }
-
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        await _viewModel.LoadDataAsync();
+        Console.WriteLine("[..............] [AllRepairCompaniesPage] [AllRepairCompaniesViewModel] viewmodel injected");
+        InitializeComponent();
+        BindingContext = vm;
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

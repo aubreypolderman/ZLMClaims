@@ -7,9 +7,6 @@
              xmlns:local="clr-namespace:ZLMClaims"
              Title="{local:Translate RepairCompanyTitle}"
              x:DataType="viewmodels:AllRepairCompaniesViewModel">
-    <ContentPage.BindingContext>
-        <viewmodels:AllRepairCompaniesViewModel />
-    </ContentPage.BindingContext>
 
     <!-- Display reaircompanies in a list -->
     <CollectionView x:Name="repairCompaniesCollection"

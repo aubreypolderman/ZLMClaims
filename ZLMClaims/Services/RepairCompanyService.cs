@@ -21,11 +21,22 @@ namespace ZLMClaims.Services
         public async Task<IEnumerable<RepairCompany>> GetRepairCompaniesAsync()
         {
             Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync]");
+            
+            // online 
+            /*
             HttpResponseMessage response = await _httpClient.GetAsync("https://jsonplaceholder.typicode.com/users");
             response.EnsureSuccessStatusCode();
             Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] statuscode: " + response.StatusCode);
             var json = await response.Content.ReadAsStringAsync();
             Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponse json: " + json);
+            */
+
+            // offline
+            // for testpurpose only
+            var json = LoadData();
+
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponse json: " + json);
+
             return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<RepairCompany>>(json);
         }
 

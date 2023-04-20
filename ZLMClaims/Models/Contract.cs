@@ -33,5 +33,7 @@ namespace ZLMClaims.Models
 
         [JsonPropertyName("annualPolicyPremium")]
         public double AnnualPolicyPremium { get; set; }
+
+        // Add method to determine icon?
     }
 }

@@ -39,8 +39,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<IDialogService, DialogService>();
        
 
-        builder.Services.AddSingleton<IRepairCompanyService, RepairCompanyService>();
+        builder.Services.AddHttpClient<IRepairCompanyService, RepairCompanyService>();
         builder.Services.AddSingleton<AllRepairCompaniesViewModel>();
+        builder.Services.AddTransient<AllRepairCompaniesPage>();
         builder.Services.AddTransient<RepairCompanyViewModel>();
         builder.Services.AddTransient<RepairCompanyPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** RepairCompany service, viewmodel and view registered with DI container ");

@@ -2,156 +2,73 @@
 using Microsoft.Maui.Controls;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Input;
 using ZLMClaims.Models;
+using ZLMClaims.Services;
 using ZLMClaims.Views;
 
 namespace ZLMClaims.ViewModels
 {
     public class AllRepairCompaniesViewModel : BaseViewModel   
     {
-        private readonly HttpClient _client = new HttpClient();
         private ObservableCollection<RepairCompany> _repaircompanies;
-        private Command<object> tapCommand;
+
         public ICommand SelectRepairCompanyCommand { get; }
-        private INavigation navigation;
+        INavigationService navigationService;
+        IRepairCompanyService repairCompanyService;
 
-        public ObservableCollection<RepairCompany> RepairCompanies
+        public ObservableCollection<RepairCompany> RepairCompanies { get; private set; } = new();
+
+        public AllRepairCompaniesViewModel(INavigationService navigationService, IRepairCompanyService repairCompanyService)
         {
-            get => _repaircompanies;
-            set
-            {
-                _repaircompanies = value;
-                OnPropertyChanged();
-            }
+            Console.WriteLine("[..............] [AllRepairCompaniesViewModel] [constructor] INavigation and IRepairCompanyService injected");
+            this.navigationService = navigationService;
+            this.repairCompanyService = repairCompanyService;
+
+            GetAllRepairCompanies();
+
+            SelectRepairCompanyCommand = new AsyncRelayCommand<AllRepairCompaniesViewModel>(SelectRepairCompanyAsync);
         }
 
-        public Command GetRepairCompaniesCommand { get; }
-
-        public AllRepairCompaniesViewModel()
-        {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [==============] Constructor");
-            
-        }
-
-        public AllRepairCompaniesViewModel(INavigation _navigation)
-        {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [==============] Constructor");
-            SelectRepairCompanyCommand = new AsyncRelayCommand<ViewModels.AllRepairCompaniesViewModel>(SelectRepairCompanyAsync);
-        }
-
-        private async Task SelectRepairCompanyAsync(ViewModels.AllRepairCompaniesViewModel repaircompany)
+        private async Task SelectRepairCompanyAsync(AllRepairCompaniesViewModel repaircompany)
         {
             // if (repaircompany != null) 
             //     await Shell.Current.GoToAsync($"{nameof(RepairCompanyPage)}?load={repaircompany.Identifier}");
             Console.WriteLine("[SelectRepairCompanyAsync] [==============] repaircompany:" + repaircompany);
         }
 
-
-        public async Task LoadDataAsync()
+        public async Task GetAllRepairCompanies()
         {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [LoadDataAsync ][==============] ");
+            Console.WriteLine("[..............] [AllContractsViewModel] [GetAllRepairCompanies]");
 
-            // var response = await _client.GetAsync("https://jsonplaceholder.typicode.com/users");
+            // if (IsLoading) return;
+            try
+            {
+                //    IsBusy = true;
+                if (RepairCompanies.Any()) RepairCompanies.Clear();
 
-            string response = @"[
+                var repaircompanies = await repairCompanyService.GetRepairCompaniesAsync();
+                Console.WriteLine("[..............] [AllContractsViewModel] [GetAllRepairCompanies] RepairCompanyService invoked");
+                foreach (var repaircompany in repaircompanies)
                 {
-                    ""id"": 1,
-                    ""name"": ""Renova"",
-                    ""username"": ""Renova"",
-                    ""email"": ""rcc@renova.nl"",
-                    ""address"": {
-                        ""street"": ""Amundsenweg"",
-                        ""suite"": ""33"",
-                        ""city"": ""Goes"",
-                        ""zipcode"": ""4462 GP"",
-                        ""geo"": {
-                            ""lat"": ""-37.3159"",
-                            ""lng"": ""81.1496""
-                        }
-                    },
-                    ""phone"": ""0113 - 2454 225"",
-                    ""website"": ""www.renova.nl"",
-                    ""company"": {
-                        ""name"": ""Renova"",
-                        ""catchPhrase"": ""Merk schadeherstelbedrijf (MINI)"",
-                        ""bs"": ""harness real-time e-markets""
-                    }
-                },
-                {
-                    ""id"": 2,
-                    ""name"": ""Van Mossel Autoschade"",
-                    ""username"": ""Van Mossel"",
-                    ""email"": ""info.autoschade.middelburg@vanmossel.nl"",
-                    ""address"": {
-                        ""street"": ""Klarinetweg"",
-                        ""suite"": ""4"",
-                        ""city"": ""Middelburg"",
-                        ""zipcode"": ""4337 RA"",
-                        ""geo"": {
-                            ""lat"": ""-43.9509"",
-                            ""lng"": ""-34.4618""
-                        }
-                    },
-                    ""phone"": ""0118 - 613 564"",
-                    ""website"": ""www.schadenetvanmossel.nl/middelburg"",
-                    ""company"": {
-                        ""name"": ""Van Mossel Autoschade"",
-                        ""catchPhrase"": ""Universeel schaddeherstelbedrijf"",
-                        ""bs"": ""synergize scalable supply-chains""
-                    }
-                },
- {
-                    ""id"": 3,
-                    ""name"": ""Van den Berg Autoschade"",
-                    ""username"": ""Van den Berg"",
-                    ""email"": ""info@vandenbergautoschade.nl"",
-                    ""address"": {
-                        ""street"": ""Hermesweg"",
-                        ""suite"": ""5"",
-                        ""city"": ""Vlissingen"",
-                        ""zipcode"": ""4382 ND"",
-                        ""geo"": {
-                            ""lat"": ""-43.9509"",
-                            ""lng"": ""-34.4618""
-                        }
-                    },
-                    ""phone"": ""0118 - 414 329"",
-                    ""website"": ""www.vandenbergautoschade.nl"",
-                    ""company"": {
-                        ""name"": ""Van den Berg Autoschade"",
-                        ""catchPhrase"": ""Universeel schaddeherstelbedrijf"",
-                        ""bs"": ""synergize scalable supply-chains""
-                    }
+                    Console.WriteLine("[..............] [AllContractsViewModel] [GetAllRepairCompanies] Repaircompany:" + repaircompany.Name);
+                    RepairCompanies.Add(repaircompany);
                 }
-            ]";
-            Console.WriteLine("[AllRepairCompaniesViewModel] [LoadDataAsync] [==============] reponse: " + response);
-            //var content = await response.Content.ReadAsStringAsync();
-            RepairCompanies = JsonConvert.DeserializeObject<ObservableCollection<RepairCompany>>(response);
 
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unable to get Repaircompanies: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", "Failed to retrieve list of Repaircompanies", "OK");
+            }
+            finally
+            {
+                //IsBusy = false;
+                //isRefreshing = false;
+            }
 
-        }
-
-        public Command<object> TapCommand
-        {
-            get { return tapCommand; }
-            set { tapCommand = value; }
-        }
-
-        public INavigation Navigation
-        {
-            get { return navigation; }
-            set { navigation = value; }
-        }
-
-        private void OnTapped(object obj)
-        {
-            Console.WriteLine("[AllRepairCompaniesViewModel] [OnTapped ][==============] ");
-            Console.WriteLine("[AllRepairCompaniesViewModel] [OnTapped ][==============] object => "+ obj);
-            //var newPage = new RepairCompanyPage();
-            //newPage.BindingContext = obj;
-            //Navigation.PushAsync(newPage);
         }
     }
 }

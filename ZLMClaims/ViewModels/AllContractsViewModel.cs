@@ -18,7 +18,7 @@ namespace ZLMClaims.ViewModels
     {
        
         private ObservableCollection<Contract> _contracts;
-        private Command<object> tapCommand;
+
         public ICommand SelectContractCommand { get; }
         INavigationService navigationService;
         IContractService contractService;
@@ -37,10 +37,10 @@ namespace ZLMClaims.ViewModels
 
             GetAllContracts();
            
-            SelectContractCommand = new AsyncRelayCommand<ViewModels.AllContractsViewModel>(SelectContractAsync);
+            SelectContractCommand = new AsyncRelayCommand<AllContractsViewModel>(SelectContractAsync);
         }
 
-        private async Task SelectContractAsync(ViewModels.AllContractsViewModel contract)
+        private async Task SelectContractAsync(AllContractsViewModel contract)
         {
             Console.WriteLine("[..............] [AllContractsViewModel] [SelectContractAsync] contract:" + contract);
         }
