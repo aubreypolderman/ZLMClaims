@@ -27,10 +27,7 @@ namespace ZLMClaims.ViewModels
         //[ObservableProperty]
         //bool isBusy;
 
-        public ObservableCollection<Contract> Contracts
-        {
-            get => _contracts;
-        }
+        public ObservableCollection<Contract> Contracts { get; private set; } = new();
 
         public AllContractsViewModel(INavigationService navigationService, IContractService contractService)
         {
@@ -38,7 +35,7 @@ namespace ZLMClaims.ViewModels
             this.navigationService = navigationService;
             this.contractService = contractService;
 
-            LoadDataAsync();
+            GetAllContracts();
            
             SelectContractCommand = new AsyncRelayCommand<ViewModels.AllContractsViewModel>(SelectContractAsync);
         }
@@ -49,9 +46,9 @@ namespace ZLMClaims.ViewModels
         }
         
 
-       public async Task LoadDataAsync()
+       public async Task GetAllContracts()
         {
-            Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync]");
+            Console.WriteLine("[..............] [AllContractsViewModel] [GetAllContracts]");
             var id = 1;
 
            // if (IsLoading) return;
@@ -61,10 +58,10 @@ namespace ZLMClaims.ViewModels
                 if (Contracts.Any()) Contracts.Clear();
                 
                 var contracts = await contractService.GetAllContractsByPersonIdAsync(id);
-                Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync] contractService invoked for personId " + id);
+                Console.WriteLine("[..............] [AllContractsViewModel] [GetAllContracts] contractService invoked for personId " + id);
                 foreach (var contract in contracts)
                 {
-                    Console.WriteLine("[..............] [AllContractsViewModel] [LoadDataAsync] contract:" + contract.Product);
+                    Console.WriteLine("[..............] [AllContractsViewModel] [GetAllContracts] contract:" + contract.Product);
                     Contracts.Add(contract);
                 }
 

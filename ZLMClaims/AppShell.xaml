@@ -15,11 +15,12 @@
             Route="AllContractsPage"
             ContentTemplate="{DataTemplate views:AllContractsPage}"/>
 
-        <ShellContent
+        <!-- item and source for debugging only-->
+        <!--<ShellContent
             Title="Cars"
             Icon="home.svg"
             Route="CarPage"
-            ContentTemplate="{DataTemplate views:AllCarsPage}"/>
+            ContentTemplate="{DataTemplate views:AllCarsPage}"/>-->
 
         <ShellContent 
             Title="{local:Translate TabItemClaim}"

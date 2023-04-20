@@ -8,11 +8,11 @@
              Title="{local:Translate AllContractsTitle}"
              x:DataType="viewmodels:AllContractsViewModel">
 
-    <!-- Display reaircompanies in a list -->
+    <!-- Display contracts in a list -->
     <CollectionView x:Name="contractsCollection"
                     ItemsSource="{Binding Contracts}"
                     Margin="20"
-                    SelectionMode="Single"
+                    SelectionMode="None"
                     SelectionChangedCommand="{Binding SelectContractCommand}">
 
         <!-- Designate how the collection of items are laid out -->
@@ -101,6 +101,7 @@
                 </SwipeView>
             </DataTemplate>
         </CollectionView.ItemTemplate>
+        
     </CollectionView>
 
 </ContentPage>

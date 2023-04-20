@@ -20,7 +20,7 @@ public class UserViewModel : BaseViewModel
     INavigationService navigationService;
     IUserService userService;
 
-    public User User
+    public User User 
     {
 
         get { return _user; }

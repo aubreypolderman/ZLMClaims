@@ -17,15 +17,7 @@ namespace ZLMClaims.ViewModels
         IClaimService claimService;
 
         // By making the claims observable, the view is automatically refreshed whenever a change occure
-        public ObservableCollection<Claim> Claims
-        {
-            get => _claims;
-            set
-            {
-                _claims = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<Claim> Claims { get; private set; } = new();
 
         public AllClaimsViewModel(INavigationService navigationService, IClaimService claimService)
         {
@@ -33,50 +25,43 @@ namespace ZLMClaims.ViewModels
             this.navigationService = navigationService;
             this.claimService = claimService;
 
-            // LoadDataAsync();
+            GetAllClaims();
         }
 
-        // Workaround: empty constructor so the allclaimspage.xaml gets compiled. This does not however make the page show the claims...
-        /*
-        public AllClaimsViewModel()
-        {
-            Console.WriteLine("[..............] [AllContractsViewModel] [constructor] nothing injected. This is the no args constructor");
-        }*/
-
         [RelayCommand]
-        public async Task LoadDataAsync()
+        public async Task GetAllClaims()
         {
-            Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] ");
+            Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] ");
 
             // Check internet connection
             NetworkAccess accessType = Connectivity.Current.NetworkAccess;
 
             IEnumerable<ConnectionProfile> profiles = Connectivity.Current.ConnectionProfiles;
-            Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] profiles => " + profiles);
-
+            
             if (profiles.Contains(ConnectionProfile.WiFi))
             {
-                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] WiFi connection is available => " + accessType);
+                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] WiFi connection is available => " + accessType);
             }
 
 
             if (accessType == NetworkAccess.Internet)
             {
-
                 // Connection to internet is available
-                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] Internet connection is available => " + accessType);
+                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] Internet connection is available => " + accessType);
+
+                if (Claims.Any()) Claims.Clear();
                 var claims = await claimService.GetAllClaimsByPersonIdAsync(1);
-                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] claimService invoked...");
+                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] claimService invoked...");
                 foreach (var claim in claims)
                 {
-                    Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] Claim on contract:" + claim.Contract.Product);
+                    Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] Claim on contract:" + claim.Contract.Product);
                     Claims.Add(claim);
                 }
 
             }
             else
             {
-                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadDataAsync] Internet connection is NOT available!!!!");
+                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] Internet connection is NOT available!!!!");
             }
 
         }

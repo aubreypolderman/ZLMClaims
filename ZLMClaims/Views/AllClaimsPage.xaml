@@ -15,7 +15,7 @@
         RowSpacing="0">
         <RefreshView
             Grid.ColumnSpan="2"
-            Command="{Binding LoadDataCommand}">
+            Command="{Binding GetAllClaimsCommand}">
             <!-- Display claims in a list -->
             <CollectionView x:Name="claimsCollection"
                     ItemsSource="{Binding Claims}"
@@ -89,6 +89,5 @@
 
             </CollectionView>
         </RefreshView>
-
     </Grid>
 </ContentPage>
