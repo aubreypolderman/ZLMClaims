@@ -31,7 +31,7 @@ public static class MauiProgram
 
         // Register all with the Dependency Injection container
 
-        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "claims.db3");
+        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "claims.db3");    
 
         builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
         builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
@@ -57,7 +57,7 @@ public static class MauiProgram
         //builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<ClaimService> (s, dbPath));
         builder.Services.AddSingleton<AllClaimsViewModel>();
         builder.Services.AddTransient<AllClaimsPage>();
-        builder.Services.AddTransient<ClaimDamagesViewModel>();
+        builder.Services.AddTransient<ClaimFormStep1ViewModel>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Claim service, viewmodel and view registered with DI container ");
 
         builder.Services.AddHttpClient<IUserService, UserService>();

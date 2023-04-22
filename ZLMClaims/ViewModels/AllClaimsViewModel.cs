@@ -15,53 +15,56 @@ namespace ZLMClaims.ViewModels
         
         INavigationService navigationService;
         IClaimService claimService;
+        IDialogService dialogService;
+        IConnectivity connectivityService;
 
         // By making the claims observable, the view is automatically refreshed whenever a change occure
         public ObservableCollection<Claim> Claims { get; private set; } = new();
 
-        public AllClaimsViewModel(INavigationService navigationService, IClaimService claimService)
+        public AllClaimsViewModel(INavigationService navigationService, IClaimService claimService, IDialogService dialogService, IConnectivity connectivityService)
         {
             Console.WriteLine("[..............] [AllContractsViewModel] [constructor] Navigation and IClaimService injected");
             this.navigationService = navigationService;
             this.claimService = claimService;
+            this.dialogService = dialogService;
+            this.connectivityService = connectivityService;
 
-            GetAllClaims();
+            GetAllClaims();   
         }
 
         [RelayCommand]
         public async Task GetAllClaims()
         {
-            Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] ");
+            Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] ");
 
-            // Check internet connection
-            NetworkAccess accessType = Connectivity.Current.NetworkAccess;
-
-            IEnumerable<ConnectionProfile> profiles = Connectivity.Current.ConnectionProfiles;
-            
+            // Check WiFi connection
+            IEnumerable<ConnectionProfile> profiles = connectivityService.ConnectionProfiles;
             if (profiles.Contains(ConnectionProfile.WiFi))
             {
-                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] WiFi connection is available => " + accessType);
+                Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] WiFi connection is available");
             }
 
-
+            // Check internet connection
+            NetworkAccess accessType = connectivityService.NetworkAccess;
             if (accessType == NetworkAccess.Internet)
             {
                 // Connection to internet is available
-                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] Internet connection is available => " + accessType);
+                Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] Internet connection is available");
 
                 if (Claims.Any()) Claims.Clear();
                 var claims = await claimService.GetAllClaimsByPersonIdAsync(1);
-                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] claimService invoked...");
+               
                 foreach (var claim in claims)
                 {
-                    Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] Claim on contract:" + claim.Contract.Product);
+                    Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] Claim on contract:" + claim.Contract.Product);
                     Claims.Add(claim);
                 }
 
             }
             else
             {
-                Console.WriteLine("[..............] [AllClaimsViewModel] [LoadData] Internet connection is NOT available!!!!");
+                Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] Internet connection is NOT available!!!!");
+                await dialogService.DisplayAlertAsync("Error", "Internet connection is NOT available!", "OK");
             }
 
         }

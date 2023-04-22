@@ -8,10 +8,10 @@ public partial class ContractPage : ContentPage
 {      
     private readonly ContractViewModel _viewModel;
 
-    public ContractPage(ContractViewModel viewModel) 
+    public ContractPage(ContractViewModel vm) 
     {
         Console.WriteLine("[..............] [ContractPage] [noargs constructor] Start");
-        BindingContext = viewModel;
+        BindingContext = vm;
         InitializeComponent();
     }
 }

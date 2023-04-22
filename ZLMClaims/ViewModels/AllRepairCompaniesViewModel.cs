@@ -18,14 +18,16 @@ namespace ZLMClaims.ViewModels
         public ICommand SelectRepairCompanyCommand { get; }
         INavigationService navigationService;
         IRepairCompanyService repairCompanyService;
+        IDialogService dialogService;
 
         public ObservableCollection<RepairCompany> RepairCompanies { get; private set; } = new();
 
-        public AllRepairCompaniesViewModel(INavigationService navigationService, IRepairCompanyService repairCompanyService)
+        public AllRepairCompaniesViewModel(INavigationService navigationService, IRepairCompanyService repairCompanyService, IDialogService dialogService)
         {
             Console.WriteLine("[..............] [AllRepairCompaniesViewModel] [constructor] INavigation and IRepairCompanyService injected");
             this.navigationService = navigationService;
             this.repairCompanyService = repairCompanyService;
+            this.dialogService = dialogService;
 
             GetAllRepairCompanies();
 
@@ -53,7 +55,7 @@ namespace ZLMClaims.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine($"Unable to get Repaircompanies: {ex.Message}");
-                await Shell.Current.DisplayAlert("Error", "Failed to retrieve list of Repaircompanies", "OK");
+                await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Repaircompanies", "OK");
             }
             finally
             {

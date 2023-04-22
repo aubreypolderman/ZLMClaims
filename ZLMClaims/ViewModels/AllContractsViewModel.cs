@@ -67,7 +67,6 @@ namespace ZLMClaims.ViewModels
             catch (Exception ex) 
             {
                 Debug.WriteLine($"Unable to get Contracts: {ex.Message}");
-                // await Shell.Current.DisplayAlert("Error","Failed to retrieve list of Contracts","OK");
                 await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Contracts", "OK");
             }
             finally

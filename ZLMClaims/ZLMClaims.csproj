@@ -118,9 +118,6 @@
 	  <MauiXaml Update="Views\AllClaimsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ClaimDamagesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\ClaimFormStep3Page.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
