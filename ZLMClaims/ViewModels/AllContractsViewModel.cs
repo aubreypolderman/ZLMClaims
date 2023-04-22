@@ -52,7 +52,6 @@ namespace ZLMClaims.ViewModels
             try
             {
                 //    IsBusy = true;
-                await dialogService.DisplayAlertAsync("Succes", "Loading list of contracts", "OK");
                 if (Contracts.Any()) Contracts.Clear();
                 
                 var contracts = await contractService.GetAllContractsByPersonIdAsync(id);

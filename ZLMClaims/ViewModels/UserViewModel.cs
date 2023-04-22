@@ -16,6 +16,9 @@ public class UserViewModel : BaseViewModel
     // make the personid a global, sdo it could be used throughout the app. For now just hardcode it
     public int personid = 1;
 
+    public bool switchToggleDarkTheme = false;
+    public bool switchToggleEmailConfirmation = false;
+
     private User _user;
     INavigationService navigationService;
     IUserService userService;
@@ -37,14 +40,16 @@ public class UserViewModel : BaseViewModel
         this.navigationService = navigationService;
         this.userService = userService;
 
-        // retrieve the customers id from the preference set
-        var personId = Preferences.Get("personId", false);
-        LoadDataAsync();
+        InitApp();
+        
+        //LoadDataAsync();
     }
 
     public async Task LoadDataAsync()
     {
         Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync]");
+        // retrieve the customers id from the preference set
+        var personId = Preferences.Get("personId", false);
 
         var user = await userService.GetUserByIdAsync(personid);
         Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user: " + user.Name);
@@ -63,6 +68,7 @@ public class UserViewModel : BaseViewModel
         {
             Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Dark");
             Application.Current.UserAppTheme = AppTheme.Dark;
+            switchToggleDarkTheme = true;
         }
     }
 
@@ -79,6 +85,7 @@ public class UserViewModel : BaseViewModel
     public void OnEmailConfirmationSwitchToggled()
     {
         Console.WriteLine("[..............] [UserViewModel] [OnEmailConfirmationSwitchToggled]");
+        if (switchToggleEmailConfirmation ? false: true);
     }
 
     public async Task OnEmailBtnClicked()
@@ -97,5 +104,11 @@ public class UserViewModel : BaseViewModel
 
             await Email.Default.ComposeAsync(message);
         }
+    }
+
+    // Method for unit testing purpose only. The Title is not set in the actual app for some reason
+    public void InitApp() 
+    {
+        Title = "User X Profile";
     }
 }

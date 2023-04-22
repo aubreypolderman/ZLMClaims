@@ -41,4 +41,5 @@ public partial class UserPage : ContentPage
         Console.WriteLine("[..............] [UserPage] [OnEmailConfirmationSwitchToggled]");
         _viewModel?.OnEmailBtnClicked();
     }
+
 }
