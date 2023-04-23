@@ -86,11 +86,11 @@
 	  <Compile Update="MainPage.xaml.cs">
 	    <DependentUpon>MainPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\AllRepairCompaniesPage.xaml.cs">
-	    <DependentUpon>AllRepairCompaniesPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\AllClaimsPage.xaml.cs">
 	    <DependentUpon>AllClaimsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AllRepairCompaniesPage.xaml.cs">
+	    <DependentUpon>AllRepairCompaniesPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\ClaimFormStep3Page.xaml.cs">
 	    <DependentUpon>ClaimFormStep3Page.xaml</DependentUpon>
@@ -110,13 +110,13 @@
 	  <MauiXaml Update="Views\AllCarsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AllClaimsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AllContractsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AllRepairCompaniesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\AllClaimsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ClaimFormStep3Page.xaml">

@@ -5,6 +5,7 @@
              xmlns:models="clr-namespace:ZLMClaims.Models"
              x:Class="ZLMClaims.Views.AllRepairCompaniesPage"
              xmlns:local="clr-namespace:ZLMClaims"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              Title="{local:Translate RepairCompanyTitle}"
              x:DataType="viewmodels:AllRepairCompaniesViewModel">
 
