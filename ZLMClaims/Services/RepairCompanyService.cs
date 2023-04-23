@@ -90,31 +90,8 @@ namespace ZLMClaims.Services
                         ""bs"": ""harness real-time e-markets""
                     }
                 },
-                {
-                    ""id"": 2,
-                    ""name"": ""Van Mossel Autoschade"",
-                    ""username"": ""Van Mossel"",
-                    ""email"": ""info.autoschade.middelburg@vanmossel.nl"",
-                    ""address"": {
-                        ""street"": ""Klarinetweg"",
-                        ""suite"": ""4"",
-                        ""city"": ""Middelburg"",
-                        ""zipcode"": ""4337 RA"",
-                        ""geo"": {
-                            ""lat"": ""-43.9509"",
-                            ""lng"": ""-34.4618""
-                        }
-                    },
-                    ""phone"": ""0118 - 613 564"",
-                    ""website"": ""www.schadenetvanmossel.nl/middelburg"",
-                    ""company"": {
-                        ""name"": ""Van Mossel Autoschade"",
-                        ""catchPhrase"": ""Universeel schaddeherstelbedrijf"",
-                        ""bs"": ""synergize scalable supply-chains""
-                    }
-                },
  {
-                    ""id"": 3,
+                    ""id"": 2,
                     ""name"": ""Van den Berg Autoschade"",
                     ""username"": ""Van den Berg"",
                     ""email"": ""info@vandenbergautoschade.nl"",

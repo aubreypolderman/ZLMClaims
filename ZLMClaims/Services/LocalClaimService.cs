@@ -11,6 +11,8 @@ namespace ZLMClaims.Services
 {
     public class LocalClaimService : IClaimService
     {
+        // see https://learn.microsoft.com/en-us/dotnet/maui/data-cloud/database-sqlite?view=net-maui-7.0
+        // // to setup SQLite with CRUD
         private SQLiteConnection connection;
         string _dbPath;
         public string errorMessage;

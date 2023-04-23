@@ -211,7 +211,7 @@
     <value>Home</value>
   </data>
   <data name="TabItemNearBy" xml:space="preserve">
-    <value>NearBy me</value>
+    <value>Nearby me</value>
   </data>
   <data name="TabItemProfile" xml:space="preserve">
     <value>Profile</value>

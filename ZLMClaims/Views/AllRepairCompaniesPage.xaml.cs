@@ -18,9 +18,9 @@ public partial class AllRepairCompaniesPage : ContentPage
         {
             Center = new Location(51.4616382, 3.5558194),
             Radius = new Microsoft.Maui.Maps.Distance(250),
-            StrokeColor = Color.FromRgba("#88FF0000"),
+            StrokeColor = Color.FromRgba("#0f92be"),
             StrokeWidth = 8,
-            FillColor = Color.FromRgba("88FFC0CB")
+            FillColor = Color.FromRgba("#cce5ed")
         };
 
         var pin1 = new Pin
