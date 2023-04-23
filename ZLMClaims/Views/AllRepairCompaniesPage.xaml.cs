@@ -14,6 +14,15 @@ public partial class AllRepairCompaniesPage : ContentPage
         BindingContext = vm;
         InitializeComponent();
 
+        var circle = new Circle
+        {
+            Center = new Location(51.4616382, 3.5558194),
+            Radius = new Microsoft.Maui.Maps.Distance(250),
+            StrokeColor = Color.FromRgba("#88FF0000"),
+            StrokeWidth = 8,
+            FillColor = Color.FromRgba("88FFC0CB")
+        };
+
         var pin1 = new Pin
         {
             Label = "Van den Berg autoschade",
@@ -38,6 +47,7 @@ public partial class AllRepairCompaniesPage : ContentPage
         map.Pins.Add(pin1);
         map.Pins.Add(pin2);
         map.Pins.Add(pin3);
+        map.MapElements.Add(circle);
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

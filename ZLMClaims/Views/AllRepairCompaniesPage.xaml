@@ -8,7 +8,7 @@
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              Title="{local:Translate RepairCompanyTitle}"
              x:DataType="viewmodels:AllRepairCompaniesViewModel">
-    
+ 
     <!-- Selected item gets an different color -->
     <ContentPage.Resources>
         <Style TargetType="Grid">
@@ -32,98 +32,100 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-
-            <!-- Add the Map control here -->
-            <maps:Map Grid.Row="0"
+            <SearchBar Placeholder="Search items..." Grid.Row="0"/>
+            
+            <!-- Google Maps control -->
+            <maps:Map Grid.Row="1"
                       x:Name="map" 
                       MapType="Street" 
                       VerticalOptions="FillAndExpand" 
                       IsShowingUser="True" 
                       WidthRequest="320" 
                       HeightRequest="300" 
-                      Margin="20"
-                      />
+                      Margin="20"/>
+            
             <!-- Display reaircompanies in a list -->
-            <CollectionView Grid.Row="1"
+            <CollectionView Grid.Row="2"
                             x:Name="repairCompaniesCollection"
-                    ItemsSource="{Binding RepairCompanies}"
-                    Margin="20"
-                    SelectionMode="Single"
-                    SelectionChangedCommand="{Binding SelectRepairCompanyCommand}">
+                        ItemsSource="{Binding RepairCompanies}"
+                        Margin="20"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding SelectRepairCompanyCommand}">
 
-        <!-- Designate how the collection of items are laid out -->
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-        </CollectionView.ItemsLayout>
+                <!-- Designate how the collection of items are laid out -->
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
 
-        <!-- Define the appearance of each item in the list -->
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:RepairCompany">
-                <SwipeView>
-                    <Frame BorderColor="{StaticResource Primary}" 
-                           CornerRadius="10"
-                           Padding="15">
+                <!-- Define the appearance of each item in the list -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:RepairCompany">
+                        <SwipeView>
+                            <Frame BorderColor="{StaticResource Primary}" 
+                               CornerRadius="10"
+                               Padding="15">
 
-                        <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal">
 
-                            <Image Source="personenauto2.png"
-                                   Aspect="AspectFill"
-                                   WidthRequest="50" 
-                                   HeightRequest="50">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                    <!-- Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference repairCompaniesCollection}}" CommandParameter="{Binding}" /> -->
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="      " />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="{Binding Company.Name}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
-                                <Label>
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding Address.Street}" />
-                                            <Span Text=" " />
-                                            <Span Text="{Binding Address.Suite}" />
-                                            <Span Text=" " />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label>
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding Address.Zipcode}" />
-                                            <Span Text=" " />
-                                            <Span Text="{Binding Address.City}" />
-                                            <Span Text=" " />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label></Label>
-                                <Label FontSize="10" TextColor="Silver">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{local:Translate Distance}" />
-                                            <Span Text=": " />
-                                            <Span Text="{Binding Id}" />
-                                            <Span Text=" km" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </StackLayout>
-                        </StackLayout>
-                    </Frame>
-                </SwipeView>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                                    <Image Source="personenauto2.png"
+                                       Aspect="AspectFill"
+                                       WidthRequest="50" 
+                                       HeightRequest="50">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                            <!-- Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference repairCompaniesCollection}}" CommandParameter="{Binding}" /> -->
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="      " />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Company.Name}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Address.Street}" />
+                                                    <Span Text=" " />
+                                                    <Span Text="{Binding Address.Suite}" />
+                                                    <Span Text=" " />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Address.Zipcode}" />
+                                                    <Span Text=" " />
+                                                    <Span Text="{Binding Address.City}" />
+                                                    <Span Text=" " />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label></Label>
+                                        <Label FontSize="10" TextColor="Silver">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{local:Translate Distance}" />
+                                                    <Span Text=": " />
+                                                    <Span Text="{Binding Id}" />
+                                                    <Span Text=" km" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
