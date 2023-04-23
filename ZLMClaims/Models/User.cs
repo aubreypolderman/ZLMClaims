@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using SQLite;
 using System.Text.Json.Serialization;
 
 namespace ZLMClaims.Models
 {
+    [Table("user")]
     public class User
     {
         [JsonPropertyName("id")]

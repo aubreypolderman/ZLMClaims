@@ -3,6 +3,7 @@ using System.Windows.Input;
 
 namespace ZLMClaims.ViewModels;
 
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -14,7 +15,8 @@ using ZLMClaims.Services;
 public class UserViewModel : BaseViewModel
 {
     // make the personid a global, sdo it could be used throughout the app. For now just hardcode it
-    public int personid = 1;
+
+    public int personId; 
 
     public bool switchToggleDarkTheme = false;
     public bool switchToggleEmailConfirmation = false;
@@ -22,7 +24,6 @@ public class UserViewModel : BaseViewModel
     private User _user;
     INavigationService navigationService;
     IUserService userService;
-
     public User User 
     {
 
@@ -31,7 +32,7 @@ public class UserViewModel : BaseViewModel
         {
             _user = value;
             OnPropertyChanged(nameof(User));
-        }
+        } 
     }
 
     public UserViewModel(INavigationService navigationService, IUserService userService)
@@ -42,16 +43,19 @@ public class UserViewModel : BaseViewModel
 
         InitApp();
         
-        //LoadDataAsync();
+        LoadDataAsync();
     }
 
     public async Task LoadDataAsync()
     {
         Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync]");
         // retrieve the customers id from the preference set
-        var personId = Preferences.Get("personId", false);
+        // var personId = Preferences.Get("personId", false);
 
-        var user = await userService.GetUserByIdAsync(personid);
+        // becaUSE the above doens't work, let's just hardcode it for now
+        personId = 1;
+
+        var user = await userService.GetUserByIdAsync(personId);
         Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user: " + user.Name);
     }
 
@@ -70,6 +74,8 @@ public class UserViewModel : BaseViewModel
             Application.Current.UserAppTheme = AppTheme.Dark;
             switchToggleDarkTheme = true;
         }
+
+        // TODO Save to SQLite
     }
 
     public void OnLanguageSwitchToggled()
@@ -80,6 +86,8 @@ public class UserViewModel : BaseViewModel
             new CultureInfo("en-US") : new CultureInfo("nl-NL");
 
         LocalizationResourceManager.Instance.SetCulture(switchToCulture);
+
+        // TODO Save to SQLite
     }
 
     public void OnEmailConfirmationSwitchToggled()

@@ -9,44 +9,56 @@ using ZLMClaims.Models;
 
 namespace ZLMClaims.Services
 {
-    public class ClaimService : IClaimService
+    public class LocalClaimService : IClaimService
     {
-        private readonly HttpClient _httpClient;
+        private SQLiteConnection connection;
+        string _dbPath;
         public string errorMessage;
 
-        public ClaimService(HttpClient httpClient )
+        private void Init()
         {
-            // check to see if _httpClient instance is not null    
-            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            // If there's already a connection, then there's no need to make a new one
+            if (connection != null)
+                return;
+
+            connection = new SQLiteConnection(_dbPath);
+            connection.CreateTable<Claim>();
         }
 
-        public async Task<IEnumerable<Claim>> GetAllClaimsByPersonIdAsync(int personId)
+        public LocalClaimService(string dbPath)
         {
-            Console.WriteLine("[..............] [ClaimService] [GetAllClaimsAsync] Invoke api for personId " + personId);
+           
+            _dbPath = dbPath;
+        }
 
-            // online
-            /*
-            // Make API call to retrieve all claims by personID
-            HttpResponseMessage response = await _httpClient.GetAsync("https://jsonplaceholder.typicode.com/users");
+        public List<Claim> GetClaims() 
+        {
+            Console.WriteLine("[..............] [LocalClaimService] [GetClaims] retrieve data from SQLite");
+            // Connect to SQLite, and retrievethe data. If fail, then setup message and return empy list
+            try
+            {
+                Init();
+                return connection.Table<Claim>().ToList();
+            }
+            catch (Exception) 
+            {
+                errorMessage = "Failed to retrieve data of local storage SQLite";
+            }
+            return new List<Claim>();
+        }
 
-            // Handle non-successful response codes
-            response.EnsureSuccessStatusCode();
-            Console.WriteLine("[..............] [ContractService] [GetAllClaimsAsync] statuscode: " + response.StatusCode);
-            var json = await response.Content.ReadAsStringAsync();
-            */
-
-            // offline
-            // for testpurpose only
+        public Task<IEnumerable<Claim>> GetAllClaimsByPersonIdAsync(int personId)
+        {
+            Console.WriteLine("[..............] [LocalClaimService] [GetAllClaimsByPersonIdAsync] retrieve data from SQLite for personId: " + personId);
             var json = LoadData();
-            
-            Console.WriteLine("[..............] [ClaimService] [GetAllClaimsAsync] reponse json: " + json);
+
             // Deserialize json response to Claim object
-            return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Claim>>(json);
+            return (Task<IEnumerable<Claim>>)System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Claim>>(json);
         }
 
         private static string LoadData()
         {
-            Console.WriteLine("[..............] [ClaimService] [LoadData] Ophalen stubdata");
+            Console.WriteLine("[..............] [LocalClaimService] [LoadData] Ophalen stubdata");
 
             return @"[
                {
@@ -83,6 +95,5 @@ namespace ZLMClaims.Services
 
             ]";
         }
-
     }
 }

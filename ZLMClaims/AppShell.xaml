@@ -28,18 +28,11 @@
             Route="AllPhotosPage"
             ContentTemplate="{DataTemplate views:AllClaimsPage}"/>
 
-        <Tab 
-            Title="{local:Translate TabItemRepair}"
-            Icon="search.svg">
-
-            <ShellContent
-                Title="{local:Translate TabItemRepairCooperative}"
-                ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
-
-            <ShellContent
-                Title="{local:Translate TabItemRepairUncooperative}"
-                ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
-        </Tab>
+        <ShellContent  
+            Title="{local:Translate TabItemNearBy}"
+            Icon="location.svg"
+            Route="AllRepairCompaniesPage"
+            ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
 
         <ShellContent 
             Title="{local:Translate TabItemProfile}"
