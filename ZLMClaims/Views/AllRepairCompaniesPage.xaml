@@ -8,7 +8,7 @@
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              Title="{local:Translate RepairCompanyTitle}"
              x:DataType="viewmodels:AllRepairCompaniesViewModel">
-
+    
     <!-- Selected item gets an different color -->
     <ContentPage.Resources>
         <Style TargetType="Grid">
@@ -27,9 +27,27 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-    <!-- Display reaircompanies in a list -->
-    <CollectionView x:Name="repairCompaniesCollection"
+            <!-- Add the Map control here -->
+            <maps:Map Grid.Row="0"
+                      x:Name="map" 
+                      MapType="Street" 
+                      VerticalOptions="FillAndExpand" 
+                      IsShowingUser="True" 
+                      WidthRequest="320" 
+                      HeightRequest="300" 
+                      Margin="20"
+                      />
+            <!-- Display reaircompanies in a list -->
+            <CollectionView Grid.Row="1"
+                            x:Name="repairCompaniesCollection"
                     ItemsSource="{Binding RepairCompanies}"
                     Margin="20"
                     SelectionMode="Single"
@@ -106,5 +124,6 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>
