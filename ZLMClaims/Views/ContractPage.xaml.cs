@@ -12,6 +12,12 @@ public partial class ContractPage : ContentPage
     {
         Console.WriteLine("[..............] [ContractPage] [noargs constructor] Start");
         BindingContext = vm;
+        _viewModel = vm;
         InitializeComponent();
+    }
+
+    private void OnButtonClaimClicked(object sender, EventArgs e)
+    {
+        _viewModel.ClaimCommand.Execute(null);
     }
 }

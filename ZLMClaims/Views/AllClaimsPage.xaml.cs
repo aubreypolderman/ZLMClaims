@@ -26,7 +26,7 @@ public partial class AllClaimsPage : ContentPage
         // Navigate to detail page of contract
         await Shell.Current.GoToAsync(nameof(ClaimFormStep1Page), true, new Dictionary<string, object>
         {
-            {nameof(ClaimFormStep1Page), claim}
+            {nameof(Claim), claim}
         });
     }
 }

@@ -5,14 +5,8 @@
              xmlns:models="clr-namespace:ZLMClaims.Models"
              x:Class="ZLMClaims.Views.ContractPage"
              xmlns:local="clr-namespace:ZLMClaims"
-             Title="{Binding Contract.}"
              x:DataType="viewmodels:ContractViewModel">
-
-    <ContentPage.BindingContext>
-        <viewmodels:ContractViewModel />
-    </ContentPage.BindingContext>
-    
-    
+       
     <VerticalStackLayout Padding="20" Spacing="10" Margin="10">
         
         <!-- Image above info of user-->
@@ -177,7 +171,7 @@
             
         </Grid>
 
-        <Button Text="Claim" BackgroundColor="#d8172a"/>
+        <Button Text="Claim" Clicked="OnButtonClaimClicked" BackgroundColor="#d8172a"/>
         <Button Text="Calculate" BackgroundColor="#d8172a"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -117,6 +117,7 @@ public class UserViewModel : BaseViewModel
     // Method for unit testing purpose only. The Title is not set in the actual app for some reason
     public void InitApp() 
     {
-        Title = "User X Profile";
+        Console.WriteLine("[..............] [UserViewModel] [InitApp]");
+        //this.Title = "User X Profile";
     }
 }

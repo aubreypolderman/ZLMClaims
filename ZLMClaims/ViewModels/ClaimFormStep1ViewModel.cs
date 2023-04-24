@@ -15,6 +15,7 @@ namespace ZLMClaims.ViewModels
         INavigationService navigationService;
         public ClaimFormStep1ViewModel(INavigationService navigationService) 
         {
+            Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [constructor] Navigation injected");
             this.navigationService = navigationService;
         }
 

@@ -58,6 +58,7 @@ public static class MauiProgram
         builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<LocalClaimService> (s, dbPath));
         builder.Services.AddSingleton<AllClaimsViewModel>();
         builder.Services.AddTransient<AllClaimsPage>();
+        builder.Services.AddTransient<ClaimFormStep1Page>();
         builder.Services.AddTransient<ClaimFormStep1ViewModel>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Claim service, viewmodel and view registered with DI container ");
 
