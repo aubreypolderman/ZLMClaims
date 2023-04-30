@@ -11,6 +11,23 @@ namespace ZLMClaims.ViewModels
     public partial class ClaimFormStep1ViewModel : BaseViewModel   
     {
         private Claim _claim;
+        private string _selectedOption;
+
+        public List<string> Options { get; } = new List<string>
+        {
+            "Aanrijding met een vast object",
+            "Aanrijding zonder tegenpartij",
+            "Diefstal of inbraak",
+            "Ruitschade",
+            "Andere oorzaal",
+            "StartingDate"
+        };
+
+        public string SelectedOption
+        {
+            get => _selectedOption;
+            set => SetProperty(ref _selectedOption, value);
+        }
 
         INavigationService navigationService;
         public ClaimFormStep1ViewModel(INavigationService navigationService) 

@@ -4,10 +4,12 @@ namespace ZLMClaims.Views;
 
 public partial class AllClaimsPage : ContentPage
 {
-
+    
+    private readonly AllClaimsViewModel _viewModel;
     public AllClaimsPage(AllClaimsViewModel vm)
 	{
         Console.WriteLine("[..............] [AllClaimsPage] [AllContractsViewModel] viewmodel injected");
+        _viewModel = vm;
         BindingContext = vm;
         InitializeComponent();
     }
@@ -28,5 +30,12 @@ public partial class AllClaimsPage : ContentPage
         {
             {nameof(Claim), claim}
         });
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        Console.WriteLine("[..............] [AllClaimsPage] [OnAppearing]");
+        await _viewModel.GetAllClaims().ConfigureAwait(false);
     }
 }

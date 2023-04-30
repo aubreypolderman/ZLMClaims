@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZLMClaims.Views.ClaimFormStep5Page"
+             xmlns:local="clr-namespace:ZLMClaims"
+             Title="{local:Translate ClaimFormPageTitle}">
+    <VerticalStackLayout Spacing="10" Margin="5">
+        <Label 
+            Text="{local:Translate DamageSummary}"
+            FontSize="25"
+            TextColor="Red"
+            FontAttributes="Bold"
+            VerticalOptions="Start" 
+            HorizontalOptions="Start" />
+        
+        <!-- Vehice-->
+
+        <!-- previous and send claimform-->
+        <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
+
+            <Button 
+                Grid.Column="0"
+                Text="{local:Translate Previous}"
+                BackgroundColor="White"
+                TextColor="#d8172a"
+                BorderColor="#d8172a"
+                BorderWidth="2"
+                SemanticProperties.Hint="Navigate to previous page when you click"
+                Clicked="OnPrevBtnClicked"/>
+
+            <Button 
+                Grid.Column="1"
+                Text="{local:Translate Send}"
+                BackgroundColor="#d8172a"
+                SemanticProperties.Hint="Send the claimn form to the insurance company ZLM Verzekeringen"
+                Clicked="OnSendBtnClicked"/>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

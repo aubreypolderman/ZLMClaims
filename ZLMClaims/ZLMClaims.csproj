@@ -98,6 +98,15 @@
 	  <Compile Update="Views\ClaimFormStep2Page.xaml.cs">
 	    <DependentUpon>ClaimFormStep2Page.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ClaimFormStep5Page.xaml.cs">
+	    <DependentUpon>ClaimFormStep5Page.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ClaimFormStep4Page.xaml.cs">
+	    <DependentUpon>ClaimFormStep4Page.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\LoginPage.xaml.cs">
+	    <DependentUpon>LoginPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\RepairCompanyPage.xaml.cs">
 	    <DependentUpon>RepairCompanyPage.xaml</DependentUpon>
 	  </Compile>
@@ -125,10 +134,19 @@
 	  <MauiXaml Update="Views\ClaimFormStep2Page.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ClaimFormStep5Page.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ClaimFormStep4Page.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\ClaimFormStep1Page.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ContractPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\RepairCompanyPage.xaml">

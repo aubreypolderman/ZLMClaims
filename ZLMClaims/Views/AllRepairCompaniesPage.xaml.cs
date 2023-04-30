@@ -13,41 +13,6 @@ public partial class AllRepairCompaniesPage : ContentPage
         Console.WriteLine("[..............] [AllRepairCompaniesPage] [AllRepairCompaniesViewModel] viewmodel injected");
         BindingContext = vm;
         InitializeComponent();
-
-        var circle = new Circle
-        {
-            Center = new Location(51.4616382, 3.5558194),
-            Radius = new Microsoft.Maui.Maps.Distance(250),
-            StrokeColor = Color.FromRgba("#0f92be"),
-            StrokeWidth = 8,
-            FillColor = Color.FromRgba("#cce5ed")
-        };
-
-        var pin1 = new Pin
-        {
-            Label = "Van den Berg autoschade",
-            Address = "Universeel schadeherstelbedrijf",
-            Type = PinType.Place,
-            Location = new Location(51.4616382, 3.5558194)
-        };
-        var pin2 = new Pin
-        {
-            Label = " Autoschade Sturm",
-            Address = "Universeel schadeherstelbedrijf",
-            Type = PinType.Place,
-            Location = new Location(51.4625855, 3.5830258)
-        };
-        var pin3 = new Pin
-        {
-            Label = "Renova Goes",
-            Address = "Merk schadeherstelbedrijf (BMW) ", 
-            Type = PinType.Place,
-            Location = new Location(51.4856149, 3.6026034)
-        };
-        map.Pins.Add(pin1);
-        map.Pins.Add(pin2);
-        map.Pins.Add(pin3);
-        map.MapElements.Add(circle);
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

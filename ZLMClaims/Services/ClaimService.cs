@@ -3,6 +3,7 @@ using SQLite;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
+using System.Reflection.Emit;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ZLMClaims.Models;
@@ -52,9 +53,9 @@ namespace ZLMClaims.Services
                {
                   ""id"": 1,
                   ""dateOfOccurence"": ""2023-04-17T12:00:00Z"",
-                  ""qWhatIsDamaged"": ""Front bumper"",
+                 
                   ""image1"":""https://static.zlm.nl/sites/default/files/2018-08/bromfietsverzekering.jpg"",
-                  ""image1"":""https://static.zlm.nl/sites/default/files/2018-11/Oldtimerverzekering.jpg "",
+                  ""image2"":""https://static.zlm.nl/sites/default/files/2018-11/Oldtimerverzekering.jpg "",
                   ""images"": [
                     ""https://example.com/image1.jpg"",
                     ""https://example.com/image2.jpg"",
@@ -78,11 +79,19 @@ namespace ZLMClaims.Services
                     ""startingdate"": ""2023-01-01"",
                     ""enddate"": ""2024-01-01"",
                     ""annualpolicypremium"": ""200""
+                  },
+				  ""accidentAddress"": {
+				    ""street"": ""Poelendaeleweg"",
+                    ""suite"": ""21"",
+				    ""city"": ""Middelburg"",
+				    ""zipcode"": ""4335HM"",
+				    ""geo"": {
+                        ""latitude"": 51.45956502251781,
+				        ""longitude"": 3.570303055656289
+                        }
+                    }
                   }
-                }
-
-            ]";
+            ]";	
         }
-
     }
 }

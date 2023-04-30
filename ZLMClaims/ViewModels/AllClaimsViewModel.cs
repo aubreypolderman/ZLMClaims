@@ -29,7 +29,7 @@ namespace ZLMClaims.ViewModels
             this.dialogService = dialogService;
             this.connectivityService = connectivityService;
 
-            GetAllClaims();   
+           // GetAllClaims();   
         }
 
         [RelayCommand]

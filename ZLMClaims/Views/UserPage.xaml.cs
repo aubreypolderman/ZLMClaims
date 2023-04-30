@@ -42,4 +42,11 @@ public partial class UserPage : ContentPage
         _viewModel?.OnEmailBtnClicked();
     }
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        Console.WriteLine("[..............] [UserPage] [OnAppearing]");
+        await _viewModel.LoadDataAsync();
+    }
+
 }

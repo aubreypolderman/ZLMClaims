@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Maps;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -21,6 +22,8 @@ namespace ZLMClaims.ViewModels
         IDialogService dialogService;
 
         public ObservableCollection<RepairCompany> RepairCompanies { get; private set; } = new();
+        public ObservableCollection<Pin> Pins { get; } = new ObservableCollection<Pin>();
+
 
         public AllRepairCompaniesViewModel(INavigationService navigationService, IRepairCompanyService repairCompanyService, IDialogService dialogService)
         {
@@ -36,6 +39,8 @@ namespace ZLMClaims.ViewModels
         public async Task GetAllRepairCompanies()
         {
             Console.WriteLine("[..............] [AllContractsViewModel] [GetAllRepairCompanies]");
+            var page = Application.Current.MainPage.Navigation.NavigationStack.OfType<AllRepairCompaniesPage>().FirstOrDefault();
+            var map = page?.FindByName<Microsoft.Maui.Controls.Maps.Map>("map");
 
             // if (IsLoading) return;
             try
@@ -47,8 +52,29 @@ namespace ZLMClaims.ViewModels
                 Console.WriteLine("[..............] [AllContractsViewModel] [GetAllRepairCompanies] RepairCompanyService invoked");
                 foreach (var repaircompany in repaircompanies)
                 {
-                    Console.WriteLine("[..............] [AllContractsViewModel] [GetAllRepairCompanies] Repaircompany:" + repaircompany.Name);
+                    // Calculate the distance between current location and location of repaircompany
+                    // CalculateDistance(repaircompany.Address.Geo.Longitude, repaircompany.Address.Geo.Latitude);
+                    // Console.WriteLine("[..............] [AllContractsViewModel] [GetAllRepairCompanies] Repaircompany:" + repaircompany.Name);
                     RepairCompanies.Add(repaircompany);
+                    Console.WriteLine("[..............] [AllContractsViewModel] [GetAllRepairCompanies] " + repaircompany.Name);
+                    var circle = new Circle
+                    {
+                        Center = new Location(51.4616382, 3.5558194),
+                        Radius = new Microsoft.Maui.Maps.Distance(250),
+                        StrokeColor = Color.FromRgba("#0f92be"),
+                        StrokeWidth = 8,
+                        FillColor = Color.FromRgba("#cce5ed")
+                    };
+
+                    var pin = new Pin
+                    {
+                        Label = repaircompany.Name,
+                        Address = repaircompany.Company.CatchPhrase,
+                        Type = PinType.Place,
+                        Location = new Location(repaircompany.Address.Geo.Longitude, repaircompany.Address.Geo.Latitude)
+                    };
+                    map.Pins.Add(pin);
+                    map.MapElements.Add(circle);
                 }
 
             }
@@ -62,6 +88,17 @@ namespace ZLMClaims.ViewModels
                 //IsBusy = false;
                 //isRefreshing = false;
             }
+
+        }
+
+        public double CalculateDistance(double longitude, double laitude)
+        {
+            Location current = new Location(42.358056, -71.063611);
+            Location repaircompany = new Location(longitude, laitude);
+
+            double miles = Location.CalculateDistance(current, repaircompany, DistanceUnits.Miles);
+            return miles;
+
 
         }
     }

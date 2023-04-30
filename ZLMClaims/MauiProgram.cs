@@ -29,6 +29,7 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
         builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<LoginPage>();
 
         // Register all with the Dependency Injection container
 
@@ -59,7 +60,12 @@ public static class MauiProgram
         builder.Services.AddSingleton<AllClaimsViewModel>();
         builder.Services.AddTransient<AllClaimsPage>();
         builder.Services.AddTransient<ClaimFormStep1Page>();
+        builder.Services.AddTransient<ClaimFormStep2Page>();
+        builder.Services.AddTransient<ClaimFormStep3Page>();
+        builder.Services.AddTransient<ClaimFormStep4Page>();
+        builder.Services.AddTransient<ClaimFormStep5Page>();
         builder.Services.AddTransient<ClaimFormStep1ViewModel>();
+        builder.Services.AddTransient<ClaimFormStep3ViewModel>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Claim service, viewmodel and view registered with DI container ");
 
         builder.Services.AddHttpClient<IUserService, UserService>();

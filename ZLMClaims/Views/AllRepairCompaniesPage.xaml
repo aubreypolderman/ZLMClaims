@@ -31,21 +31,18 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.5*" />
             </Grid.RowDefinitions>
-            <SearchBar Placeholder="Search items..." Grid.Row="0"/>
 
             <!-- Google Maps control -->
-            <maps:Map Grid.Row="1"
+            <maps:Map Grid.Row="0"
 					  x:Name="map"
                       MapType="Street" 
                       VerticalOptions="FillAndExpand" 
-                      IsShowingUser="True" 
-                      HeightRequest="300"/>
+                      IsShowingUser="True"/>
 
             <!-- Display reaircompanies in a list -->
-            <CollectionView Grid.Row="2"
+            <CollectionView Grid.Row="1"
                             x:Name="repairCompaniesCollection"
                             ItemsSource="{Binding RepairCompanies}"
                             Margin="15"

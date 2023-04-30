@@ -1,45 +1,30 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZLMClaims.Views.ClaimFormStep2Page"
              xmlns:local="clr-namespace:ZLMClaims"
-             Title="{local:Translate ClaimFormPageTitle}">
-    <VerticalStackLayout Spacing="10" Margin="5">
-        <Label 
-            Text="{local:Translate DamagePhotos}"
-            FontSize="25"
-            TextColor="Red"
-            FontAttributes="Bold"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start" />
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+             Title="{local:Translate AccidentLocation}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <!-- Select images from filesystem using FilePicker-->
-        <Image
-            x:Name="myImage"
-            Source="image.webp"
-            SemanticProperties.Description="Cute dot net bot waving hi to you!"
-            HeightRequest="200"
-            HorizontalOptions="Center" />
+        <!-- Google Maps control -->
+        <maps:Map MapClicked="OnMapClicked"
+            x:Name="map"
+            MapType="Street" 
+            VerticalOptions="FillAndExpand" 
+            HorizontalOptions="FillAndExpand"
+            IsShowingUser="True"/>
 
-        <ImageButton
-            x:Name="TakePhoto"
-            Source="camera.png"
-            SemanticProperties.Description="Cute dot net bot waving hi to you!"
-            HeightRequest="50"
-            Clicked="OnTakePhotoBtnClicked"
-            HorizontalOptions="Center" />
+        <!-- A box to separate the map from the buttons -->
+        <BoxView Grid.Row="1" BackgroundColor="Gray" />
 
-        <Button 
-            BackgroundColor="White"
-            TextColor="#d8172a"
-            BorderColor="#d8172a"
-            BorderWidth="2"
-            Text="Pick Images"
-            SemanticProperties.Hint="Select image(s) from filesystem"
-            Clicked="OnPickImagesBtnClicked"/>
-
-        <!-- previous and next page-->
-        <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
+        <!-- Buttons at the bottom -->
+        <Grid Padding="10" Grid.Row="2" ColumnDefinitions="*,*" ColumnSpacing="5">
             <Button 
                 Grid.Column="0"
                 Text="{local:Translate Previous}"
@@ -57,6 +42,5 @@
                 SemanticProperties.Hint="Navigate to next page when you click"
                 Clicked="OnNextBtnClicked"/>
         </Grid>
-
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

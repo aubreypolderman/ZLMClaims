@@ -16,18 +16,59 @@
             FontAttributes="Bold"
             VerticalOptions="Start" 
             HorizontalOptions="Start" />
+
+        <!-- Show vehicle policy info -->
+        <Label Text="{local:Translate VehicleDetails}" TextColor="{StaticResource Primary}"/>
+        <HorizontalStackLayout Padding="0" Spacing="5">
+            <Label Style="{StaticResource LargeLabel}" Text="{Binding Claim.Contract.Product}" />
+            <Label Style="{StaticResource MediumLabel}" Text="{Binding Claim.Contract.Model}" />
+            <Label Style="{StaticResource MediumLabel}" Text="{Binding Claim.Contract.Type}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Padding="0" Spacing="5">
+            <Label Style="{StaticResource LargeLabel}" Text="{Binding Claim.Contract.LicensePlate}" />
+        </HorizontalStackLayout>
+
+        <Label/>
         
-        <!-- Vehice-->
+        <!-- List of causes picker -->
+        <Label 
+            Text="{local:Translate CauseOfDamage}"
+            TextColor="{StaticResource Primary}"
+            VerticalOptions="Start" 
+            HorizontalOptions="Start" />
+        <Picker 
+            Title="Cause of damage" 
+            ItemsSource="{Binding Options}" 
+            SelectedItem="{Binding SelectedOption}">
+        </Picker>
+
+        <Label/>
+
+        <!-- Date of occurrence-->
+        <StackLayout Orientation="Horizontal">
+            <Label 
+                Text="{local:Translate DateOfOccurrence}"
+                TextColor="{StaticResource Primary}"
+                VerticalOptions="Center" />
+            <DatePicker 
+                Date="{Binding Claim.DateOfOccurence}"
+                Format="dd/MM/yyyy"
+                Margin="10,0,0,0" />
+            <TimePicker 
+                Time="{Binding Claim.DateOfOccurence.TimeOfDay}"
+                Format="HH:mm"
+                Margin="10,0,0,0" />
+        </StackLayout>
+
+        <Label/>
+
+        <!-- What happened-->
+        <Label Text="{local:Translate Q_WhatIsDamaged}" TextColor="{StaticResource Primary}"/>
         <Editor 
+            Text="{Binding Claim.QWhatIsDamaged}"      
             x:Name="TextEditor"
             Placeholder="{local:Translate Q_WhatIsDamaged}"
             HeightRequest="100" />
-
-        <!-- Date of occurrence-->
-        <Label 
-            Text="{local:Translate DateOfOccurrence}"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start" />
 
         <!-- previous and next page-->
         <Grid ColumnDefinitions="*,*" ColumnSpacing="4">

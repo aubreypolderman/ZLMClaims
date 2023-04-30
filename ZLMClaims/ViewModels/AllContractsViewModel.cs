@@ -39,7 +39,7 @@ namespace ZLMClaims.ViewModels
             this.dialogService = dialogService;
             this.connectivity = connectivity;
 
-            GetAllContracts();
+            //GetAllContracts();
             
         }
 

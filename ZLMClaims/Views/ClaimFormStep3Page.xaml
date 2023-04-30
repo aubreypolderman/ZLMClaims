@@ -3,19 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZLMClaims.Views.ClaimFormStep3Page"
              xmlns:local="clr-namespace:ZLMClaims"
-             Title="{local:Translate ClaimFormPageTitle}">
-    <VerticalStackLayout Spacing="10" Margin="5">
-        <Label 
-            Text="{local:Translate DamageSummary}"
-            FontSize="25"
-            TextColor="Red"
-            FontAttributes="Bold"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start" />
-        
-        <!-- Vehice-->
+             xmlns:view="clr-namespace:ZLMClaims.Views"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             Title="{local:Translate ClaimFormPageTitle}"
+             x:DataType="viewmodels:ClaimFormStep3ViewModel">
 
-        <!-- previous and send claimform-->
+    <VerticalStackLayout Spacing="10" Margin="5">
+       
+        <!-- Accident address-->
+        <Label Text="Street" TextColor="{StaticResource Primary}"/>
+        <Editor 
+            Text="{Binding Claim.AccidentAddress.Street}"      
+            x:Name="Street"/>
+        <Label Text="Number" TextColor="{StaticResource Primary}"/>
+        <Editor 
+            Text="{Binding Claim.AccidentAddress.Suite}"      
+            x:Name="Suite"/>
+        <Label Text="Zipcode" TextColor="{StaticResource Primary}"/>
+        <Editor 
+            Text="{Binding Claim.AccidentAddress.Zipcode}"      
+            x:Name="ZipCode"/>
+        <Label Text="City" TextColor="{StaticResource Primary}"/>
+        <Editor 
+            Text="{Binding Claim.AccidentAddress.City}"      
+            x:Name="City"/>
+
+        <!-- previous and next page-->
         <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
 
             <Button 
@@ -25,15 +38,16 @@
                 TextColor="#d8172a"
                 BorderColor="#d8172a"
                 BorderWidth="2"
-                SemanticProperties.Hint="Navigate to previous page when you click"
-                Clicked="OnPrevBtnClicked"/>
+                SemanticProperties.Hint="Navigate to previous page on click"
+                Command="{Binding PreviousCommand}"/>
 
             <Button 
                 Grid.Column="1"
-                Text="{local:Translate Send}"
+                Text="{local:Translate Next}"
                 BackgroundColor="#d8172a"
-                SemanticProperties.Hint="Send the claimn form to the insurance company ZLM Verzekeringen"
-                Clicked="OnSendBtnClicked"/>
+                SemanticProperties.Hint="Navigate to next page on click"
+                Command="{Binding NextCommand}"/>
+
         </Grid>
 
     </VerticalStackLayout>

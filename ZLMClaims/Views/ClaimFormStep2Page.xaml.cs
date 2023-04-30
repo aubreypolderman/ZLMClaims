@@ -1,4 +1,7 @@
+using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Maps;
 using System.Globalization;
+using ZLMClaims.Models;
 
 namespace ZLMClaims.Views;
 
@@ -9,82 +12,57 @@ public partial class ClaimFormStep2Page : ContentPage
 		InitializeComponent();
 	}
 
-    private async void OnPickImageBtnClicked(object sender, EventArgs e)
-    {
-        var result = await FilePicker.PickAsync(new PickOptions
-        {
-            PickerTitle = "Pick Image Please",
-            FileTypes = FilePickerFileType.Images
-        });
-
-        if (result == null)
-            return;
-
-        var stream = await result.OpenReadAsync();
-
-        myImage.Source = ImageSource.FromStream(() => stream);
-    }
-    private async void OnPickImagesBtnClicked(object sender, EventArgs e)
-    {
-        // For custom file types            
-        //var customFileType =
-        //	new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
-        //	{
-        //		 { DevicePlatform.iOS, new[] { "com.adobe.pdf" } }, // or general UTType values
-        //       { DevicePlatform.Android, new[] { "application/pdf" } },
-        //		 { DevicePlatform.WinUI, new[] { ".pdf" } },
-        //		 { DevicePlatform.Tizen, new[] { "*/*" } },
-        //		 { DevicePlatform.macOS, new[] { "pdf"} }, // or general UTType values
-        //	});
-
-        var results = await FilePicker.PickMultipleAsync(new PickOptions
-        {
-            //FileTypes = customFileType
-        });
-
-        foreach (var result in results)
-        {
-            await DisplayAlert("You picked...", result.FileName, "OK");
-        }
-    }
-
-    public async void OnTakePhotoBtnClicked(object sender, EventArgs e)
-    {
-        Console.WriteLine("[ClaimFormStep2Page] [OnTakePhotoBtnClicked] [==============] sender => " + sender + " with args => " + e);
-        if (MediaPicker.Default.IsCaptureSupported)
-        {
-            FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
-            Console.WriteLine("[ClaimFormStep2Page] [OnTakePhotoBtnClicked] [==============] photo => " + photo );
-
-            if (photo != null)
-            {
-                // save the file into local storage
-                string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
-                Console.WriteLine("[ClaimFormStep2Page] [OnTakePhotoBtnClicked] [==============] localFilePath => " + localFilePath);
-
-                using Stream sourceStream = await photo.OpenReadAsync();
-                using FileStream localFileStream = File.OpenWrite(localFilePath);
-                Console.WriteLine("[ClaimFormStep2Page] [OnTakePhotoBtnClicked] [==============] sourceStream => " + sourceStream);
-                Console.WriteLine("[ClaimFormStep2Page] [OnTakePhotoBtnClicked] [==============] localFileStream => " + localFileStream);
-
-                await sourceStream.CopyToAsync(localFileStream);
-                myImage.Source = ImageSource.FromStream(() => sourceStream);
-                Console.WriteLine("[ClaimFormStep2Page] [OnTakePhotoBtnClicked] [==============] myImage.Source => " + myImage.Source);
-            }
-        }
-    }
-
     private void OnPrevBtnClicked(object sender, EventArgs e)
     {
         Console.WriteLine("[ClaimFormStep2Page] [OnPrevBtnClicked] [==============] sender => " + sender + " with args => " + e);
         Navigation.PopAsync();
     }
+
     private void OnNextBtnClicked(object sender, EventArgs e)
     {
-        Console.WriteLine("[ClaimFormStep2Page] [OnNextBtnClicked] [==============] sender => " + sender + " with args => " + e);
-        Navigation.PushAsync(new ClaimFormStep3Page());
+        Console.WriteLine("[ClaimFormStep3Page] [OnNextBtnClicked] [==============] sender => " + sender + " with args => " + e);
+        //Navigation.PushAsync(new ClaimFormStep3Page());
+        var claim = ((VisualElement)sender).BindingContext as Claim;
+        Shell.Current.GoToAsync(nameof(ClaimFormStep3Page), true, new Dictionary<string, object>
+        {
+            {nameof(Claim), claim}
+        });
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
 
+        // Set the initial map position (Cirkel 63)
+        var initialPosition = new Location(51.461678214915544, 3.5559675108738857);
+        map.MoveToRegion(MapSpan.FromCenterAndRadius(initialPosition, Distance.FromMiles(1)));
+
+        // Add a circle overlay with a 500-meter radius around the initial position
+        var circle = new Circle
+        {
+            Center = initialPosition,
+            Radius = new Distance(500),
+            StrokeWidth = 2,
+            StrokeColor = Color.FromArgb("#88FF0000"),
+            FillColor = Color.FromArgb("#88FFC0CB")
+        };
+        map.MapElements.Add(circle);
+
+        // Add a pin marker at a specific location (Hercules Segherslaan 7b)
+        var newPin = new Pin
+        {
+            Location = new Location(51.45956502251781, 3.570303055656289),
+            Label = "New Location",
+            Address = "123 Main St, San Francisco, CA",
+            Type = PinType.Place
+        };
+        map.Pins.Add(newPin);
+    }
+
+    void OnMapClicked(object sender, MapClickedEventArgs e)
+    {
+        System.Diagnostics.Debug.WriteLine($"MapClick: {e.Location.Latitude}, {e.Location.Longitude}");
+
+    }
 
 }

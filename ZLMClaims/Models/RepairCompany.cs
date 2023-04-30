@@ -47,10 +47,10 @@ namespace ZLMClaims.Models
     public class CompanyGeo
     {
         [JsonPropertyName("latitude")]
-        public string Latitude { get; set; }
+        public double Latitude { get; set; }
 
         [JsonPropertyName("longitude")]
-        public string Longitude { get; set; }
+        public double Longitude { get; set; }
     }
 
     public class Company

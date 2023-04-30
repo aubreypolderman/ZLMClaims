@@ -43,7 +43,7 @@ public class UserViewModel : BaseViewModel
 
         InitApp();
         
-        LoadDataAsync();
+       // LoadDataAsync();
     }
 
     public async Task LoadDataAsync()
