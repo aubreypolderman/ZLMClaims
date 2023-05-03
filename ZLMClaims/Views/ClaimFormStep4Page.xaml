@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZLMClaims.Views.ClaimFormStep4Page"
              xmlns:local="clr-namespace:ZLMClaims"
-             Title="{local:Translate ClaimFormPageTitle}">
+             xmlns:view="clr-namespace:ZLMClaims.Views"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             Title="{local:Translate ClaimFormPageTitle}"
+             x:DataType="viewmodels:ClaimFormStep4ViewModel">
+
     <VerticalStackLayout Spacing="10" Margin="5">
         <Label 
             Text="{local:Translate DamagePhotos}"
@@ -24,12 +28,6 @@
             x:Name="TextEditor"
             Placeholder="{local:Translate Q_WhatIsDamaged}"
             HeightRequest="100" />
-
-        <!--Selected repair company-->
-        <Label 
-            Text="Selected repair company"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start" />
 
         <!-- Select images from filesystem using FilePicker-->
         <Image
@@ -65,15 +63,15 @@
                 TextColor="#d8172a"
                 BorderColor="#d8172a"
                 BorderWidth="2"
-                SemanticProperties.Hint="Navigate to previous page when you click"
-                Clicked="OnPrevBtnClicked"/>
+                SemanticProperties.Hint="Navigate to previous page on click"
+                Command="{Binding PreviousCommand}"/>
 
             <Button 
                 Grid.Column="1"
                 Text="{local:Translate Next}"
                 BackgroundColor="#d8172a"
-                SemanticProperties.Hint="Navigate to next page when you click"
-                Clicked="OnNextBtnClicked"/>
+                SemanticProperties.Hint="Navigate to next page on click"
+                Command="{Binding NextCommand}"/>
         </Grid>
 
     </VerticalStackLayout>

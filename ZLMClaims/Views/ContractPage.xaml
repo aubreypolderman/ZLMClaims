@@ -81,7 +81,7 @@
             <!-- Model-->
             <BoxView Grid.Row="3"/>
             <Label Grid.Row="3"
-                   Text="{local:Translate Model}"
+                   Text="{local:Translate Make}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -89,14 +89,14 @@
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
-                   Text="{Binding Contract.Model}"
+                   Text="{Binding Contract.Make}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
             <!-- Type-->
             <BoxView Grid.Row="4"/>
             <Label Grid.Row="4"
-                   Text="{local:Translate Type}"
+                   Text="{local:Translate Model}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -104,7 +104,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="4"
                    Grid.Column="1"
-                   Text="{Binding Contract.Type}"
+                   Text="{Binding Contract.Model}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 

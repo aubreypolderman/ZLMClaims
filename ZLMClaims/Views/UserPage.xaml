@@ -164,6 +164,15 @@
 
         </Grid>
 
+        <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="buttonNederlands" Text="Dutch" BackgroundColor="Gray" TextColor="White" Clicked="OnButtonNLClicked" />
+            <Button x:Name="buttonEngels" Text="English" BackgroundColor="LightGray" TextColor="Black" Clicked="OnButtonENGClicked" Grid.Column="1" />
+        </Grid>
+
         <Button Text="MijnZLM" BackgroundColor="#d8172a" IsEnabled="{Binding IsNotLoading}"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -87,7 +87,7 @@
                                                 <FormattedString>
                                                     <Span Text="{Binding Address.Street}" />
                                                     <Span Text=" " />
-                                                    <Span Text="{Binding Address.Suite}" />
+                                                    <Span Text="{Binding Address.Housenumber}" />
                                                     <Span Text=" " />
                                                 </FormattedString>
                                             </Label.FormattedText>

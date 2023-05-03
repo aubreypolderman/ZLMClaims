@@ -1,12 +1,15 @@
 using System.Globalization;
+using ZLMClaims.Models;
+using ZLMClaims.ViewModels;
 
 namespace ZLMClaims.Views;
 
 public partial class ClaimFormStep4Page : ContentPage
 {
-	public ClaimFormStep4Page()
+	public ClaimFormStep4Page(ClaimFormStep4ViewModel vm)
 	{
-		InitializeComponent();
+        BindingContext = vm;
+        InitializeComponent();
 	}
 
     private async void OnPickImageBtnClicked(object sender, EventArgs e)
@@ -74,6 +77,7 @@ public partial class ClaimFormStep4Page : ContentPage
         }
     }
 
+    /*
     private void OnPrevBtnClicked(object sender, EventArgs e)
     {
         Console.WriteLine("[ClaimFormStep4Page] [OnPrevBtnClicked] [==============] sender => " + sender + " with args => " + e);
@@ -82,9 +86,14 @@ public partial class ClaimFormStep4Page : ContentPage
     private void OnNextBtnClicked(object sender, EventArgs e)
     {
         Console.WriteLine("[ClaimFormStep4Page] [OnNextBtnClicked] [==============] sender => " + sender + " with args => " + e);
-        Navigation.PushAsync(new ClaimFormStep4Page());
+        // Navigation.PushAsync(new ClaimFormStep5Page());
+        var claim = ((VisualElement)sender).BindingContext as Claim;
+        Shell.Current.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
+        {
+            {nameof(Claim), claim}
+        });
     }
-
+    */
 
 
 }

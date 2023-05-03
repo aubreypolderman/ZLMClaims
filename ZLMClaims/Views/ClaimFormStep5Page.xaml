@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
              x:Class="ZLMClaims.Views.ClaimFormStep5Page"
              xmlns:local="clr-namespace:ZLMClaims"
-             Title="{local:Translate ClaimFormPageTitle}">
+             Title="{local:Translate ClaimFormPageTitle}"
+             x:DataType="viewmodels:ClaimFormStep5ViewModel">
     <VerticalStackLayout Spacing="10" Margin="5">
         <Label 
             Text="{local:Translate DamageSummary}"
@@ -13,7 +15,97 @@
             VerticalOptions="Start" 
             HorizontalOptions="Start" />
         
-        <!-- Vehice-->
+        <!-- Claim summary-->
+        <Grid>
+            <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- customer id-->
+            <BoxView Grid.Row="0"/>
+            <Label Grid.Row="0"
+                   Text="{local:Translate DateOfOccurrence}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="0"
+                     Grid.Column="1"/>
+            <Label Grid.Row="0"
+                   Grid.Column="1"
+                   Text="{Binding Claim.DateOfOccurence}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Name-->
+            <BoxView Grid.Row="1"/>
+            <Label Grid.Row="1"
+                   Text="{local:Translate Q_WhatIsDamaged}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="1"
+                     Grid.Column="1"/>
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding Claim.QWhatIsDamaged}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Address-->
+            <BoxView Grid.Row="2"/>
+            <Label Grid.Row="2"
+                   Text="{local:Translate Street}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="2"
+                     Grid.Column="1"/>
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding Claim.AccidentAddress.Street}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Zipcode-->
+            <BoxView Grid.Row="3"/>
+            <Label Grid.Row="3"
+                   Text="{local:Translate ZipCode}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="3"
+                     Grid.Column="1"/>
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding Claim.AccidentAddress.Zipcode}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- City-->
+            <BoxView Grid.Row="4"/>
+            <Label Grid.Row="4"
+                   Text="{local:Translate City}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="4"
+                     Grid.Column="1"/>
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   Text="{Binding Claim.AccidentAddress.City}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+        </Grid>
 
         <!-- previous and send claimform-->
         <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
@@ -25,15 +117,15 @@
                 TextColor="#d8172a"
                 BorderColor="#d8172a"
                 BorderWidth="2"
-                SemanticProperties.Hint="Navigate to previous page when you click"
-                Clicked="OnPrevBtnClicked"/>
+                SemanticProperties.Hint="Navigate to previous page on click"
+                Command="{Binding PreviousCommand}"/>
 
             <Button 
                 Grid.Column="1"
                 Text="{local:Translate Send}"
                 BackgroundColor="#d8172a"
                 SemanticProperties.Hint="Send the claimn form to the insurance company ZLM Verzekeringen"
-                Clicked="OnSendBtnClicked"/>
+                Command="{Binding SendCommand}"/>
         </Grid>
 
     </VerticalStackLayout>

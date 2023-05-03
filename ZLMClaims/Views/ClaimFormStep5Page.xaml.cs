@@ -1,14 +1,18 @@
 using System.Globalization;
+using ZLMClaims.ViewModels;
 
 namespace ZLMClaims.Views;
 
 public partial class ClaimFormStep5Page : ContentPage
 {
-	public ClaimFormStep5Page()
+    private readonly ClaimFormStep5ViewModel _viewModel;
+    public ClaimFormStep5Page(ClaimFormStep5ViewModel vm)
 	{
-		InitializeComponent();
+        BindingContext = vm;
+        _viewModel = vm;
+        InitializeComponent();
 	}
-
+    /*
     private void OnPrevBtnClicked(object sender, EventArgs e)
     {
         Console.WriteLine("[ClaimFormStep5Page] [OnPrevBtnClicked] [==============] sender => " + sender + " with args => " + e);
@@ -22,5 +26,6 @@ public partial class ClaimFormStep5Page : ContentPage
         // Return to Home or Claims
         // Navigation.PushAsync(new AllClaimsPage());
     }
+    */
 
 }

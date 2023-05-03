@@ -42,10 +42,16 @@ namespace ZLMClaims.ViewModels
 
 
         [RelayCommand]
+        //async Task Next() =>
+        //    await navigationService.GoToAsync(nameof(ClaimFormStep2Page));
         async Task Next() =>
-            await navigationService.GoToAsync(nameof(ClaimFormStep2Page));
+        await Shell.Current.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
+        {
+            {nameof(Claim), claim}
+        });
 
-        [RelayCommand]
+
+[RelayCommand]
         async Task Previous() => 
             await navigationService.GoBackAsync();
     }

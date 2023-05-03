@@ -74,7 +74,7 @@ namespace ZLMClaims.Services
                     ""email"": ""rcc@renova.nl"",
                     ""address"": {
                         ""street"": ""Amundsenweg"",
-                        ""suite"": ""33"",
+                        ""housenumber"": ""33"",
                         ""city"": ""Goes"",
                         ""zipcode"": ""4462 GP"",
                         ""geo"": {
@@ -97,7 +97,7 @@ namespace ZLMClaims.Services
                     ""email"": ""info@vandenbergautoschade.nl"",
                     ""address"": {
                         ""street"": ""Hermesweg"",
-                        ""suite"": ""5"",
+                        ""housenumber"": ""5"",
                         ""city"": ""Vlissingen"",
                         ""zipcode"": ""4382 ND"",
                         ""geo"": {

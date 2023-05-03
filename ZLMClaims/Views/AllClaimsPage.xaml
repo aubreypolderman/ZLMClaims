@@ -55,9 +55,9 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding Contract.Model}" />
+                                            <Span Text="{Binding Contract.Make}" />
                                             <Span Text=" " />
-                                            <Span Text="{Binding Contract.Type}" />
+                                            <Span Text="{Binding Contract.Model}" />
                                             <Span Text=" " />
                                             <Span Text="{Binding Contract.LicensePlate}" />
                                         </FormattedString>

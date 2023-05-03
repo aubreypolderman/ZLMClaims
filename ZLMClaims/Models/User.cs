@@ -28,13 +28,13 @@ namespace ZLMClaims.Models
 
     }
 
-    public class CompanyAddress
+    public class UserAddress
     {
         [JsonPropertyName("street")]
         public string Street { get; set; }
 
-        [JsonPropertyName("suite")]
-        public string Suite { get; set; }
+        [JsonPropertyName("housenumber")]
+        public string Housenumber { get; set; }
 
         [JsonPropertyName("city")]
         public string City { get; set; }

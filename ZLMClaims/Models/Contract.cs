@@ -13,11 +13,11 @@ namespace ZLMClaims.Models
         [JsonPropertyName("product")]
         public string Product { get; set; }
 
+        [JsonPropertyName("make")]
+        public string Make { get; set; }
+
         [JsonPropertyName("model")]
         public string Model { get; set; }
-
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
 
         [JsonPropertyName("licenseplate")]
         public string LicensePlate { get; set; }

@@ -21,8 +21,8 @@
         <Label Text="{local:Translate VehicleDetails}" TextColor="{StaticResource Primary}"/>
         <HorizontalStackLayout Padding="0" Spacing="5">
             <Label Style="{StaticResource LargeLabel}" Text="{Binding Claim.Contract.Product}" />
+            <Label Style="{StaticResource MediumLabel}" Text="{Binding Claim.Contract.Make}" />
             <Label Style="{StaticResource MediumLabel}" Text="{Binding Claim.Contract.Model}" />
-            <Label Style="{StaticResource MediumLabel}" Text="{Binding Claim.Contract.Type}" />
         </HorizontalStackLayout>
         <HorizontalStackLayout Padding="0" Spacing="5">
             <Label Style="{StaticResource LargeLabel}" Text="{Binding Claim.Contract.LicensePlate}" />

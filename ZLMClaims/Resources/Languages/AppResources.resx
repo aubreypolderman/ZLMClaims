@@ -171,8 +171,14 @@
   <data name="EndDate" xml:space="preserve">
     <value>Enddate</value>
   </data>
+  <data name="HouseNumber" xml:space="preserve">
+    <value>Housenumber</value>
+  </data>
   <data name="LicensePlate" xml:space="preserve">
     <value>Licenseplate</value>
+  </data>
+  <data name="Make" xml:space="preserve">
+    <value>Make</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Model</value>
@@ -206,6 +212,9 @@
   </data>
   <data name="StartingDate" xml:space="preserve">
     <value>Startingdate</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Street</value>
   </data>
   <data name="TabItemClaim" xml:space="preserve">
     <value>Claim</value>

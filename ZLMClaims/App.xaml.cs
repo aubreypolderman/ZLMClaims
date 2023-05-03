@@ -4,6 +4,7 @@ namespace ZLMClaims;
 
 public partial class App : Application
 {
+    /*
 	public static LocalClaimService LocalClaimService { get; private set; }
 	public App(LocalClaimService localClaimService)
 	{
@@ -11,6 +12,14 @@ public partial class App : Application
 
 		MainPage = new AppShell();
 		LocalClaimService = localClaimService;
+
+    }
+	*/
+    public App()
+    {
+        InitializeComponent();
+
+        MainPage = new AppShell();
 
     }
 }

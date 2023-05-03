@@ -33,7 +33,7 @@ public static class MauiProgram
 
         // Register all with the Dependency Injection container
 
-        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "zlmclaims.db3");    
+        //string dbPath = Path.Combine(FileSystem.AppDataDirectory, "zlmclaims.db3");    
 
         builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
         builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
@@ -56,7 +56,8 @@ public static class MauiProgram
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Contract service, viewmodel and view registered with DI container ");
 
         builder.Services.AddHttpClient<IClaimService, ClaimService>();
-        builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<LocalClaimService> (s, dbPath));
+        builder.Services.AddSingleton<ILocalClaimService, LocalClaimService>();
+        //builder.Services.AddSingleton(s => ActivatorUtilities.CreateInstance<LocalClaimService> (s, dbPath));
         builder.Services.AddSingleton<AllClaimsViewModel>();
         builder.Services.AddTransient<AllClaimsPage>();
         builder.Services.AddTransient<ClaimFormStep1Page>();
@@ -65,7 +66,10 @@ public static class MauiProgram
         builder.Services.AddTransient<ClaimFormStep4Page>();
         builder.Services.AddTransient<ClaimFormStep5Page>();
         builder.Services.AddTransient<ClaimFormStep1ViewModel>();
+        builder.Services.AddTransient<ClaimFormStep2ViewModel>();
         builder.Services.AddTransient<ClaimFormStep3ViewModel>();
+        builder.Services.AddTransient<ClaimFormStep4ViewModel>();
+        builder.Services.AddTransient<ClaimFormStep5ViewModel>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** Claim service, viewmodel and view registered with DI container ");
 
         builder.Services.AddHttpClient<IUserService, UserService>();

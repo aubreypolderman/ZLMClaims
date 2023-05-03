@@ -25,7 +25,7 @@ public partial class AllClaimsPage : ContentPage
         }
         Console.WriteLine("[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Claim: " + claim);
 
-        // Navigate to detail page of contract
+        // Navigate to detail page of the claim
         await Shell.Current.GoToAsync(nameof(ClaimFormStep1Page), true, new Dictionary<string, object>
         {
             {nameof(Claim), claim}

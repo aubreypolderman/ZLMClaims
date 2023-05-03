@@ -56,9 +56,9 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding Model}" />
+                                            <Span Text="{Binding Make}" />
                                             <Span Text=" " />
-                                            <Span Text="{Binding Type}" />
+                                            <Span Text="{Binding Model}" />
                                             <Span Text=" " />
                                             <Span Text="{Binding LicensePlate}" />
                                         </FormattedString>
