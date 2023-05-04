@@ -64,10 +64,10 @@
                                     </Label.FormattedText>
                                 </Label>
                                 <Label></Label>
-                                    <Label FontSize="10" TextColor="Silver">
-                                        <Label.FormattedText>
+                                <Label FontSize="10" TextColor="Silver">
+                                    <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{local:Translate StartingDate}" />
+                                            <Span Text="{local:Translate DateOfOccurence}" />
                                             <Span Text=": " />
                                             <Span Text="{Binding DateOfOccurence}" />
                                             <Span Text=" " />

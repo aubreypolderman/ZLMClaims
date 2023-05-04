@@ -13,8 +13,6 @@ namespace ZLMClaims.ViewModels
     {
         private Claim _claim;
 
-
-
         INavigationService navigationService;
         public ClaimFormStep4ViewModel(INavigationService navigationService) 
         {
@@ -29,7 +27,10 @@ namespace ZLMClaims.ViewModels
 
         [RelayCommand]
         async Task Next() =>
-            await navigationService.GoToAsync(nameof(ClaimFormStep5Page));
+        await Shell.Current.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
+        {
+            {nameof(Claim), claim}
+        });
 
         [RelayCommand]
         async Task Previous() => 

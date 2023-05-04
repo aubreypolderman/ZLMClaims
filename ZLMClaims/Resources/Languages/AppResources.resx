@@ -159,8 +159,8 @@
   <data name="DamageSummary" xml:space="preserve">
     <value>3. Damage summary</value>
   </data>
-  <data name="DateOfOccurrence" xml:space="preserve">
-    <value>What is the date of occurrence?</value>
+  <data name="DateOfOccurence" xml:space="preserve">
+    <value>Date of occurence</value>
   </data>
   <data name="Distance" xml:space="preserve">
     <value>Distance</value>
@@ -200,6 +200,9 @@
   </data>
   <data name="Product" xml:space="preserve">
     <value>Product</value>
+  </data>
+  <data name="Q_DateOfOccurrence" xml:space="preserve">
+    <value>What is the date of occurence?</value>
   </data>
   <data name="Q_WhatIsDamaged" xml:space="preserve">
     <value>What is damaged?</value>

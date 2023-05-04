@@ -47,13 +47,15 @@
         <!-- Date of occurrence-->
         <StackLayout Orientation="Horizontal">
             <Label 
-                Text="{local:Translate DateOfOccurrence}"
+                Text="{local:Translate Q_DateOfOccurrence}"
                 TextColor="{StaticResource Primary}"
                 VerticalOptions="Center" />
             <DatePicker 
                 Date="{Binding Claim.DateOfOccurence}"
+                MinimumDate="{Binding MinDate}"
+                MaximumDate="{Binding MaxDate}"
                 Format="dd/MM/yyyy"
-                Margin="10,0,0,0" />
+                Margin="10,0,0,0"/>
             <TimePicker 
                 Time="{Binding Claim.DateOfOccurence.TimeOfDay}"
                 Format="HH:mm"

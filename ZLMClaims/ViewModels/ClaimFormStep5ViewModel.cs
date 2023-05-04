@@ -19,8 +19,6 @@ namespace ZLMClaims.ViewModels
         public ClaimFormStep5ViewModel(INavigationService navigationService) 
         {
             Console.WriteLine("[..............] [ClaimFormStep5ViewModel] [constructor] Navigation injected");
-            //Console.WriteLine("[..............] [ClaimFormStep5ViewModel] [constructor] WhatIsDamaged" + claim.QWhatIsDamaged);
-            //Console.WriteLine("[..............] [ClaimFormStep5ViewModel] [constructor] Street" + claim.AccidentAddress.Street);
             this.navigationService = navigationService;
             //this.localClaimService = localClaimService;
         }

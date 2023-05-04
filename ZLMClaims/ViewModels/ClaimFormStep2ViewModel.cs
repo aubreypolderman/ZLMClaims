@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using ZLMClaims.Models;
 using ZLMClaims.Services;
@@ -22,11 +23,16 @@ namespace ZLMClaims.ViewModels
         [ObservableProperty]
         Claim claim;
 
-
+        public ObservableCollection<Claim> Claims { get; private set; } = new();
 
         [RelayCommand]
+        //async Task Next() =>
+        //    await navigationService.GoToAsync(nameof(ClaimFormStep2Page));
         async Task Next() =>
-            await navigationService.GoToAsync(nameof(ClaimFormStep3Page));
+        await Shell.Current.GoToAsync(nameof(ClaimFormStep3Page), true, new Dictionary<string, object>
+        {
+            {nameof(Claim), claim}
+        });
 
         [RelayCommand]
         async Task Previous() => 

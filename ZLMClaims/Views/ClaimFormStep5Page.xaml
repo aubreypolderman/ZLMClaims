@@ -16,10 +16,13 @@
             HorizontalOptions="Start" />
         
         <!-- Claim summary-->
+        
+        <!-- Contract details -->
+        <Label TextColor="{StaticResource Primary}" FontAttributes="Bold">Contract details</Label>
         <Grid>
             <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
@@ -30,10 +33,10 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <!-- customer id-->
+            <!-- Product-->
             <BoxView Grid.Row="0"/>
             <Label Grid.Row="0"
-                   Text="{local:Translate DateOfOccurrence}"
+                   Text="{local:Translate Product}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -41,11 +44,90 @@
                      Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
+                   Text="{Binding Claim.Contract.Product}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Make-->
+            <BoxView Grid.Row="1"/>
+            <Label Grid.Row="1"
+                   Text="{local:Translate Make}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="1"
+                     Grid.Column="1"/>
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Text="{Binding Claim.Contract.Make}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Model-->
+            <BoxView Grid.Row="2"/>
+            <Label Grid.Row="2"
+                   Text="{local:Translate Model}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="2"
+                     Grid.Column="1"/>
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Text="{Binding Claim.Contract.Model}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Licenseplate-->
+            <BoxView Grid.Row="3"/>
+            <Label Grid.Row="3"
+                   Text="{local:Translate LicensePlate}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="3"
+                     Grid.Column="1"/>
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   Text="{Binding Claim.Contract.LicensePlate}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+        </Grid>
+        <!-- Claim details -->
+        <Label TextColor="{StaticResource Primary}" FontAttributes="Bold">Claim details</Label>
+        <Grid>
+            <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- DateTime of occurence-->
+            <BoxView Grid.Row="0"/>
+            <Label Grid.Row="0"
+                   Text="{local:Translate DateOfOccurence}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="0"
+                     Grid.Column="1"/>
+
+            <Label Grid.Row="0"
+                   Grid.Column="1"
                    Text="{Binding Claim.DateOfOccurence}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Name-->
+            <!-- Question: What is damaged-->
             <BoxView Grid.Row="1"/>
             <Label Grid.Row="1"
                    Text="{local:Translate Q_WhatIsDamaged}"

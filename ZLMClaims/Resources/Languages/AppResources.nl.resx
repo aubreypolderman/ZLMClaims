@@ -159,8 +159,8 @@
   <data name="DamageSummary" xml:space="preserve">
     <value>3. Schade samenvatting</value>
   </data>
-  <data name="DateOfOccurrence" xml:space="preserve">
-    <value>Wat is de schadedatum?</value>
+  <data name="DateOfOccurence" xml:space="preserve">
+    <value>Schadedatum</value>
   </data>
   <data name="Distance" xml:space="preserve">
     <value>Afstand</value>
@@ -201,8 +201,11 @@
   <data name="Product" xml:space="preserve">
     <value>Verzekering</value>
   </data>
+  <data name="Q_DateOfOccurrence" xml:space="preserve">
+    <value>Wat is de schadedatum?</value>
+  </data>
   <data name="Q_WhatIsDamaged" xml:space="preserve">
-    <value>What is er beschadigd?</value>
+    <value>Wat is er beschadigd?</value>
   </data>
   <data name="RepairCompanyTitle" xml:space="preserve">
     <value>Schadeherstelbedrijf</value>
