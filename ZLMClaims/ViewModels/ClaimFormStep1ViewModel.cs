@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Diagnostics;
 using ZLMClaims.Models;
 using ZLMClaims.Services;
 using ZLMClaims.Views;
@@ -18,8 +19,7 @@ namespace ZLMClaims.ViewModels
             "Aanrijding zonder tegenpartij",
             "Diefstal of inbraak",
             "Ruitschade",
-            "Andere oorzaak",
-            "StartingDate"
+            "Andere oorzaak"
         };
 
         public string SelectedOption
@@ -37,6 +37,7 @@ namespace ZLMClaims.ViewModels
         public ClaimFormStep1ViewModel(INavigationService navigationService, ILocalClaimService localClaimService) 
         {
             Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [constructor] Navigation injected");
+            Debug.WriteLine("[..............] [ClaimFormStep1ViewModel] [DEBUG!!!!!!!!!!********] Navigation injected");
             this.navigationService = navigationService;
             this.localClaimService = localClaimService;
         }
@@ -47,8 +48,8 @@ namespace ZLMClaims.ViewModels
         [RelayCommand]
         async Task Next() {
             localClaimService.SaveClaim(claim);
-            await navigationService.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
-            //await Shell.Current.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
+            //await navigationService.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
+            await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
             {
                 {nameof(Claim), claim}
             });

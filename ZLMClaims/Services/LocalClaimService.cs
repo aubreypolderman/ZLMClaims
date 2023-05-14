@@ -22,7 +22,7 @@ public class LocalClaimService : ILocalClaimService
     async Task Init()
     {
         // If there's already a connection, then there's no need to make a new one
-        Console.WriteLine("[..............] [LocalClaimService] [Init] Check for existing database connection");
+        Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [Init] Check for existing database connection");
         if (Database != null)
         {
             Console.WriteLine("[..............] [LocalClaimService] [Init] Connection exists!");

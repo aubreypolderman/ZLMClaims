@@ -177,6 +177,21 @@
   <data name="LicensePlate" xml:space="preserve">
     <value>Licenseplate</value>
   </data>
+  <data name="L_CollisionCounterparty" xml:space="preserve">
+    <value>Collision without counterparty</value>
+  </data>
+  <data name="L_CollisionFixedObject" xml:space="preserve">
+    <value>Collision with a fixed object</value>
+  </data>
+  <data name="L_Glassdamage" xml:space="preserve">
+    <value>Glass damage</value>
+  </data>
+  <data name="L_OtherCause" xml:space="preserve">
+    <value>Other cause</value>
+  </data>
+  <data name="L_TheftBurglary" xml:space="preserve">
+    <value>Theft or burglary</value>
+  </data>
   <data name="Make" xml:space="preserve">
     <value>Make</value>
   </data>

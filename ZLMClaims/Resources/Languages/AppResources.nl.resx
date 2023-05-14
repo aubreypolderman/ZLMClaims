@@ -177,6 +177,21 @@
   <data name="LicensePlate" xml:space="preserve">
     <value>Kenteken</value>
   </data>
+  <data name="L_CollisionCounterparty" xml:space="preserve">
+    <value>Aanrijding zonder tegenpartij</value>
+  </data>
+  <data name="L_CollisionFixedObject" xml:space="preserve">
+    <value>Aanrijding met een vast object</value>
+  </data>
+  <data name="L_Glassdamage" xml:space="preserve">
+    <value>Ruitschade</value>
+  </data>
+  <data name="L_OtherCause" xml:space="preserve">
+    <value>Andere oorzaak</value>
+  </data>
+  <data name="L_TheftBurglary" xml:space="preserve">
+    <value>Diefstal of inbraak</value>
+  </data>
   <data name="Make" xml:space="preserve">
     <value>Merk</value>
   </data>

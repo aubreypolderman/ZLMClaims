@@ -17,19 +17,21 @@ namespace ZLMClaims.ViewModels
         IClaimService claimService;
         IDialogService dialogService;
         IConnectivity connectivityService;
+        ILocalClaimService localClaimService;
 
         // By making the claims observable, the view is automatically refreshed whenever a change occure
         public ObservableCollection<Claim> Claims { get; private set; } = new();
 
-        public AllClaimsViewModel(INavigationService navigationService, IClaimService claimService, IDialogService dialogService, IConnectivity connectivityService)
+        public AllClaimsViewModel(INavigationService navigationService, IClaimService claimService, IDialogService dialogService, IConnectivity connectivityService, ILocalClaimService localClaimService)
         {
             Console.WriteLine("[..............] [AllContractsViewModel] [constructor] Navigation and IClaimService injected");
             this.navigationService = navigationService;
             this.claimService = claimService;
             this.dialogService = dialogService;
             this.connectivityService = connectivityService;
+            this.localClaimService = localClaimService;
 
-           // GetAllClaims();   
+            // GetAllClaims();   
         }
 
         [RelayCommand]
@@ -53,7 +55,8 @@ namespace ZLMClaims.ViewModels
 
                 if (Claims.Any()) Claims.Clear();
                 var claims = await claimService.GetAllClaimsByPersonIdAsync(1);
-               
+                //var claims = await localClaimService.GetClaims();  
+
                 foreach (var claim in claims)
                 {
                     Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] Claim on contract:" + claim.Contract.Product);

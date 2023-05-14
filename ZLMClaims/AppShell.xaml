@@ -7,8 +7,14 @@
     xmlns:views="clr-namespace:ZLMClaims.Views"
     xmlns:lang="clr-namespace:ZLMClaims.Resources.Languages"
     Shell.FlyoutBehavior="Disabled">
-    
+
     <TabBar>
+        <ShellContent
+            Title="{local:Translate TabItemHome}"
+            Icon="home.svg"
+            Route="MainPage"
+            ContentTemplate="{DataTemplate views:LoginPage}"/>
+        
         <ShellContent
             Title="{local:Translate TabItemHome}"
             Icon="home.svg"
