@@ -30,7 +30,7 @@
 
         <Label/>
         
-        <!-- List of causes picker -->
+        <!-- List Cause of damage -->
         <Label 
             Text="{local:Translate CauseOfDamage}"
             TextColor="{StaticResource Primary}"
@@ -57,7 +57,7 @@
                 Format="dd/MM/yyyy"
                 Margin="10,0,0,0"/>
             <TimePicker 
-                Time="{Binding Claim.DateOfOccurence.TimeOfDay}"
+                Time="{Binding Claim.DateOfOccurence}"
                 Format="HH:mm"
                 Margin="10,0,0,0" />
         </StackLayout>
@@ -65,12 +65,28 @@
         <Label/>
 
         <!-- What happened-->
+        <Label Text="{local:Translate Q_WhatHappened}" TextColor="{StaticResource Primary}"/>
+        <Editor 
+            Text="{Binding Claim.QWhatHappened}"      
+            x:Name="QWhatHappened"
+            Placeholder="{local:Translate Q_WhatHappened}"
+            HeightRequest="50" />
+
+        <!-- Where's the damage-->
+        <Label Text="{local:Translate Q_WhereDamaged}" TextColor="{StaticResource Primary}"/>
+        <Editor 
+            Text="{Binding Claim.QWhereDamaged}"      
+            x:Name="QWhereDamaged"
+            Placeholder="{local:Translate Q_WhereDamaged}"
+            HeightRequest="50" />
+
+        <!-- What is damaged-->
         <Label Text="{local:Translate Q_WhatIsDamaged}" TextColor="{StaticResource Primary}"/>
         <Editor 
             Text="{Binding Claim.QWhatIsDamaged}"      
-            x:Name="TextEditor"
+            x:Name="QWhatIsDamaged"
             Placeholder="{local:Translate Q_WhatIsDamaged}"
-            HeightRequest="100" />
+            HeightRequest="50" />
 
         <!-- previous and next page-->
         <Grid ColumnDefinitions="*,*" ColumnSpacing="4">

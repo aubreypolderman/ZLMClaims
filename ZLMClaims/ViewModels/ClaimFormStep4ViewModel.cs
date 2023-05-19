@@ -26,11 +26,24 @@ namespace ZLMClaims.ViewModels
         public ObservableCollection<Claim> Claims { get; private set; } = new();
 
         [RelayCommand]
-        async Task Next() =>
-        await Shell.Current.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
+        async Task Next()
         {
-            {nameof(Claim), claim}
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] Cause of damange => " + Claim?.QCauseOfDamage);
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] DateOfOccurence => " + Claim?.DateOfOccurence);
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] What happened => " + Claim?.QWhatHappened);
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] What is damaged => " + Claim?.QWhatIsDamaged);
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] Where's the damage => " + Claim?.QWhereDamaged);
+
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] Street => " + Claim?.AccidentAddress?.Street);
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] Suite => " + Claim?.AccidentAddress?.Suite);
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] Zipcode => " + Claim?.AccidentAddress?.Zipcode);
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] City => " + Claim?.AccidentAddress?.City);
+            Console.WriteLine("[..............] [ClaimFormStep4ViewModel] [Next] Licenseplate => " + Claim?.Contract?.LicensePlate);
+            await Shell.Current.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
+        {
+            {nameof(Claim), Claim}
         });
+        }
 
         [RelayCommand]
         async Task Previous() => 

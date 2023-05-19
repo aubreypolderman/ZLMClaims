@@ -19,15 +19,9 @@
         
         <!-- List of spots on the car where the damage is-->
         <Label 
-            Text="Waar is uw voertuig beschadigd?"
+            Text="{local:Translate Q_WhereDamaged}"
             VerticalOptions="Start" 
             HorizontalOptions="Start" />
-
-        <!-- Description of the damage, e.g. krassen, deuk-->
-        <Editor Text="{Binding Claim.QWhatIsDamaged}"
-            x:Name="TextEditor"
-            Placeholder="{local:Translate Q_WhatIsDamaged}"
-            HeightRequest="100" />
 
         <!-- Select images from filesystem using FilePicker-->
         <Image

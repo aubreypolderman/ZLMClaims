@@ -8,7 +8,7 @@ using ZLMClaims.Views;
 
 namespace ZLMClaims.ViewModels
 {
-    [QueryProperty(nameof(Claim), "Claim")]
+    [QueryProperty(nameof(Claim), "Claim")]    
     public partial class ClaimFormStep3ViewModel : BaseViewModel   
     {
         private Claim _claim;
@@ -28,11 +28,26 @@ namespace ZLMClaims.ViewModels
         [RelayCommand]
         //async Task Next() =>
         //    await navigationService.GoToAsync(nameof(ClaimFormStep2Page));
-        async Task Next() =>
-        await Shell.Current.GoToAsync(nameof(ClaimFormStep4Page), true, new Dictionary<string, object>
+        async Task Next()
         {
-            {nameof(Claim), claim}
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] Cause of damange => " + Claim?.QCauseOfDamage);
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] DateOfOccurence => " + Claim?.DateOfOccurence);
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] What happened => " + Claim?.QWhatHappened);
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] What is damaged => " + Claim?.QWhatIsDamaged);
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] Where's the damage => " + Claim?.QWhereDamaged);
+
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] Street => " + Claim?.AccidentAddress?.Street);
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] Suite => " + Claim?.AccidentAddress?.Suite);
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] Zipcode => " + Claim?.AccidentAddress?.Zipcode);
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] City => " + Claim?.AccidentAddress?.City);
+            Console.WriteLine("[..............] [ClaimFormStep3ViewModel] [Next] Licenseplate => " + Claim?.Contract?.LicensePlate);
+
+            
+            await Shell.Current.GoToAsync(nameof(ClaimFormStep4Page), true, new Dictionary<string, object>
+        {
+            {nameof(Claim), Claim}
         });
+        }
 
         [RelayCommand]
         async Task Previous() => 

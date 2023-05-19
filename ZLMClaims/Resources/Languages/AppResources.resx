@@ -216,11 +216,20 @@
   <data name="Product" xml:space="preserve">
     <value>Product</value>
   </data>
+  <data name="Q_CauseOfDamage" xml:space="preserve">
+    <value>What's the cause of the damage?</value>
+  </data>
   <data name="Q_DateOfOccurrence" xml:space="preserve">
     <value>What is the date of occurence?</value>
   </data>
+  <data name="Q_WhatHappened" xml:space="preserve">
+    <value>What happened?</value>
+  </data>
   <data name="Q_WhatIsDamaged" xml:space="preserve">
     <value>What is damaged?</value>
+  </data>
+  <data name="Q_WhereDamaged" xml:space="preserve">
+    <value>Where is the damage?</value>
   </data>
   <data name="RepairCompanyTitle" xml:space="preserve">
     <value>Repair company</value>

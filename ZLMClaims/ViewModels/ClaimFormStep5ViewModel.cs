@@ -14,7 +14,7 @@ namespace ZLMClaims.ViewModels
         private Claim _claim;
 
         INavigationService navigationService;
-        //readonly ILocalClaimService localClaimService;
+        readonly ILocalClaimService localClaimService;
 
         public ClaimFormStep5ViewModel(INavigationService navigationService) 
         {
@@ -30,8 +30,8 @@ namespace ZLMClaims.ViewModels
 
         [RelayCommand]
          async Task Send() =>
-             await navigationService.GoBackAsync();
-        //   await localClaimService.SaveClaim(Claim);
+             //await navigationService.GoBackAsync();
+           await localClaimService.SaveClaim(Claim);
 
 
         [RelayCommand]

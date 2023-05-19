@@ -216,11 +216,20 @@
   <data name="Product" xml:space="preserve">
     <value>Verzekering</value>
   </data>
+  <data name="Q_CauseOfDamage" xml:space="preserve">
+    <value>Wat is de oorzaak van de schade?</value>
+  </data>
   <data name="Q_DateOfOccurrence" xml:space="preserve">
     <value>Wat is de schadedatum?</value>
   </data>
+  <data name="Q_WhatHappened" xml:space="preserve">
+    <value>Wat is er gebeurd?</value>
+  </data>
   <data name="Q_WhatIsDamaged" xml:space="preserve">
     <value>Wat is er beschadigd?</value>
+  </data>
+  <data name="Q_WhereDamaged" xml:space="preserve">
+    <value>Waar is uw voertuig beschadigd?</value>
   </data>
   <data name="RepairCompanyTitle" xml:space="preserve">
     <value>Schadeherstelbedrijf</value>

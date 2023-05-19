@@ -47,11 +47,15 @@ namespace ZLMClaims.ViewModels
 
         [RelayCommand]
         async Task Next() {
-            localClaimService.SaveClaim(claim);
+            localClaimService.SaveClaim(Claim);
             //await navigationService.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
+            Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [Next] Claim.QWhatIsDamaged => " + Claim?.QWhatIsDamaged);
+            Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [Next] Claim.DateOfOccurence => " + Claim?.DateOfOccurence);
+            Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [Next] _claim.QWhatIsDamaged => " + Claim.QWhatIsDamaged);
+            Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [Next] _claim.DateOfOccurence => " + Claim.DateOfOccurence);
             await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
             {
-                {nameof(Claim), claim}
+                {nameof(Claim), Claim}
             });
         }
 

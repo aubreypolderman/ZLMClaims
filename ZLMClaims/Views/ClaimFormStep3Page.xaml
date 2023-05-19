@@ -13,7 +13,7 @@
         <!-- Accident address-->
         <Label Text="Street" TextColor="{StaticResource Primary}"/>
         <Editor 
-            Text="{Binding Claim.AccidentAddress.Street}"      
+            Text="{Binding Claim.AccidentAddress.Street}"                  
             x:Name="Street"/>
         <Label Text="Number" TextColor="{StaticResource Primary}"/>
         <Editor 

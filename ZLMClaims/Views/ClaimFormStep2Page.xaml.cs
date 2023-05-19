@@ -2,32 +2,20 @@ using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 using System.Globalization;
 using ZLMClaims.Models;
+using ZLMClaims.ViewModels;
 
 namespace ZLMClaims.Views;
 
 public partial class ClaimFormStep2Page : ContentPage
 {
-	public ClaimFormStep2Page()
-	{
-		InitializeComponent();
-	}
+    public ClaimFormStep2Page(ClaimFormStep2ViewModel vm)
 
-    private void OnPrevBtnClicked(object sender, EventArgs e)
     {
-        Console.WriteLine("[ClaimFormStep2Page] [OnPrevBtnClicked] [==============] sender => " + sender + " with args => " + e);
-        Navigation.PopAsync();
+        Console.WriteLine("[..............] [ClaimFormStep2Page] [ClaimFormStep2ViewModel] viewmodel injected");
+        BindingContext = vm;
+        InitializeComponent();
     }
 
-    private void OnNextBtnClicked(object sender, EventArgs e)
-    {
-        Console.WriteLine("[ClaimFormStep3Page] [OnNextBtnClicked] [==============] sender => " + sender + " with args => " + e);
-        //Navigation.PushAsync(new ClaimFormStep3Page());
-        var claim = ((VisualElement)sender).BindingContext as Claim;
-        Shell.Current.GoToAsync(nameof(ClaimFormStep3Page), true, new Dictionary<string, object>
-        {
-            {nameof(Claim), claim}
-        });
-    }
 
     protected override void OnAppearing()
     {

@@ -105,6 +105,9 @@
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -127,10 +130,10 @@
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Question: What is damaged-->
+            <!-- Question: Cause of damaged-->
             <BoxView Grid.Row="1"/>
             <Label Grid.Row="1"
-                   Text="{local:Translate Q_WhatIsDamaged}"
+                   Text="{local:Translate Q_CauseOfDamage}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -138,14 +141,14 @@
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   Text="{Binding Claim.QWhatIsDamaged}"
+                   Text="{Binding Claim.QCauseOfDamage}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Address-->
+            <!-- Question: What is damaged-->
             <BoxView Grid.Row="2"/>
             <Label Grid.Row="2"
-                   Text="{local:Translate Street}"
+                   Text="{local:Translate Q_WhatIsDamaged}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -153,14 +156,14 @@
                      Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
-                   Text="{Binding Claim.AccidentAddress.Street}"
+                   Text="{Binding Claim.QWhatIsDamaged}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- Zipcode-->
+            <!-- Question: Where is the damage-->
             <BoxView Grid.Row="3"/>
             <Label Grid.Row="3"
-                   Text="{local:Translate ZipCode}"
+                   Text="{local:Translate Q_WhereDamaged}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
@@ -168,20 +171,65 @@
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
-                   Text="{Binding Claim.AccidentAddress.Zipcode}"
+                   Text="{Binding Claim.QWhereDamaged}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
-            <!-- City-->
+            <!-- Question: What happened-->
             <BoxView Grid.Row="4"/>
             <Label Grid.Row="4"
-                   Text="{local:Translate City}"
+                   Text="{local:Translate Q_WhatHappened}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
             <BoxView Grid.Row="4"
                      Grid.Column="1"/>
             <Label Grid.Row="4"
+                   Grid.Column="1"
+                   Text="{Binding Claim.QWhatHappened}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Address-->
+            <BoxView Grid.Row="5"/>
+            <Label Grid.Row="5"
+                   Text="{local:Translate Street}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="5"
+                     Grid.Column="1"/>
+            <Label Grid.Row="5"
+                   Grid.Column="1"
+                   Text="{Binding Claim.AccidentAddress.Street}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- Zipcode-->
+            <BoxView Grid.Row="6"/>
+            <Label Grid.Row="6"
+                   Text="{local:Translate ZipCode}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="6"
+                     Grid.Column="1"/>
+            <Label Grid.Row="6"
+                   Grid.Column="1"
+                   Text="{Binding Claim.AccidentAddress.Zipcode}"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+
+            <!-- City-->
+            <BoxView Grid.Row="7"/>
+            <Label Grid.Row="7"
+                   Text="{local:Translate City}"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Start"
+                   VerticalOptions="End" />
+            <BoxView Grid.Row="7"
+                     Grid.Column="1"/>
+            <Label Grid.Row="7"
                    Grid.Column="1"
                    Text="{Binding Claim.AccidentAddress.City}"
                    HorizontalOptions="Start"

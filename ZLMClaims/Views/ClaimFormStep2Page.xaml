@@ -4,14 +4,16 @@
              xmlns:local="clr-namespace:ZLMClaims"
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
-             Title="{local:Translate AccidentLocation}">
+             Title="{local:Translate AccidentLocation}"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             x:DataType="viewmodels:ClaimFormStep2ViewModel">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
+       
         <!-- Google Maps control -->
         <maps:Map MapClicked="OnMapClicked"
             x:Name="map"
@@ -32,15 +34,15 @@
                 TextColor="#d8172a"
                 BorderColor="#d8172a"
                 BorderWidth="2"
-                SemanticProperties.Hint="Navigate to previous page when you click"
-                Clicked="OnPrevBtnClicked"/>
+                SemanticProperties.Hint="Navigate to previous page on click"
+                Command="{Binding PreviousCommand}"/>
 
             <Button 
                 Grid.Column="1"
                 Text="{local:Translate Next}"
                 BackgroundColor="#d8172a"
-                SemanticProperties.Hint="Navigate to next page when you click"
-                Clicked="OnNextBtnClicked"/>
+                SemanticProperties.Hint="Navigate to next page on click"
+                Command="{Binding NextCommand}"/>            
         </Grid>
     </Grid>
 </ContentPage>
