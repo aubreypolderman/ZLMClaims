@@ -32,7 +32,7 @@ namespace ZLMClaims.ViewModels
         //    await navigationService.GoToAsync(nameof(ClaimFormStep2Page));
         async Task Next()
         {
-            localClaimService.SaveClaim(_claim);
+           // localClaimService.SaveClaim(_claim);
             Console.WriteLine("[..............] [ClaimFormStep2ViewModel] [Next] Cause of damange => " + Claim?.QCauseOfDamage);
             Console.WriteLine("[..............] [ClaimFormStep2ViewModel] [Next] DateOfOccurence => " + Claim?.DateOfOccurence);
             Console.WriteLine("[..............] [ClaimFormStep2ViewModel] [Next] What happened => " + Claim?.QWhatHappened);

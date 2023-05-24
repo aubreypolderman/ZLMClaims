@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using ZLMClaims.Models;
 using ZLMClaims.Services;
@@ -45,9 +46,11 @@ namespace ZLMClaims.ViewModels
         [ObservableProperty]
         Claim claim;
 
+        public ObservableCollection<Claim> Claims { get; private set; } = new();
+
         [RelayCommand]
         async Task Next() {
-            localClaimService.SaveClaim(Claim);
+            //localClaimService.SaveClaim(Claim);
             //await navigationService.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
             Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [Next] Claim.QWhatIsDamaged => " + Claim?.QWhatIsDamaged);
             Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [Next] Claim.DateOfOccurence => " + Claim?.DateOfOccurence);

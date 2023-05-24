@@ -17,6 +17,7 @@ public class LocalClaimService : ILocalClaimService
 
     public LocalClaimService()
     {
+        Init();
     }
 
     async Task Init()
@@ -28,36 +29,37 @@ public class LocalClaimService : ILocalClaimService
             Console.WriteLine("[..............] [LocalClaimService] [Init] Connection exists!");
             return;
         }
-        Console.WriteLine("[..............] [LocalClaimService] [Init] Connection doesn't exists");
+        Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [Init] Connection doesn't exists");
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+        Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [Init] SQLiteAsyncConnection made for " + Constants.DatabasePath);
         var result = await Database.CreateTableAsync<Claim>();
-        Console.WriteLine("[..............] [LocalClaimService] [Init]New connections was made with result "+result);
+        Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [Init] New connections was made with result " + result);
         return;
     }
 
     public async Task<List<Claim>> GetClaims() 
     {
-        Console.WriteLine("[..............] [LocalClaimService] [GetClaims] retrieve data from SQLite");
+        Console.WriteLine(DateTime.Now + "[..............] [GetClaims] retrieve data from SQLite");
         await Init();
         return await Database.Table<Claim>().ToListAsync();
     }
 
     public async Task<int> SaveClaim(Claim claim)
     {
-        Console.WriteLine("[..............] [LocalClaimService] [SaveClaim] Save claim with licenseplate "+ claim.Contract.LicensePlate);
+        Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [SaveClaim] Save claim with licenseplate " + claim.Contract.LicensePlate);
         await Init();
         if (claim.Id != 0)
         {
-            Console.WriteLine("[..............] [LocalClaimService] [SaveClaim] Update claim with id "+claim.Id);
+            Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [SaveClaim] Update claim with id " + claim.Id);
             var result = await Database.UpdateAsync(claim);
-            Console.WriteLine("[..............] [LocalClaimService] [SaveClaim] Claim updated with result " + result);
+            Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [SaveClaim] Claim updated with result " + result);
             return result;
         }
         else
         {
-            Console.WriteLine("[..............] [LocalClaimService] [SaveClaim] Insert claim ");
+            Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [SaveClaim] Insert claim ");
             var result = await Database.InsertAsync(claim);
-            Console.WriteLine("[..............] [LocalClaimService] [SaveClaim] Claim inserted with result " + result);
+            Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [SaveClaim] Claim inserted with result " + result);
             return result;
         }
     }

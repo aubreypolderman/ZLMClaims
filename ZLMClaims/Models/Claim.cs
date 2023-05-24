@@ -3,10 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace ZLMClaims.Models
 {
-    [Table("claims")]
+    [Table("ZLMClaims")]
     public class Claim : BaseEntity
     {
-
+        public int Id { get; set; }
         [JsonPropertyName("dateOfOccurence")]
         public DateTime? DateOfOccurence { get; set; }
 

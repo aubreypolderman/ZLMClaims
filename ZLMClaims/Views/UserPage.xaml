@@ -133,7 +133,7 @@
                     Grid.Column="1" 
                     x:Name="languageSwitch"     
                     Toggled="OnLanguageSwitchToggled"/>
-            
+
             <!-- Dark theme -->
             <BoxView Grid.Row="1"/>
             <Label Grid.Row="1"
@@ -162,15 +162,6 @@
                     x:Name="EmailConfirmationSwitch" 
                     Toggled="OnEmailConfirmationSwitchToggled"/>
 
-        </Grid>
-
-        <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="buttonNederlands" Text="Dutch" BackgroundColor="Gray" TextColor="White" Clicked="OnButtonNLClicked" />
-            <Button x:Name="buttonEngels" Text="English" BackgroundColor="LightGray" TextColor="Black" Clicked="OnButtonENGClicked" Grid.Column="1" />
         </Grid>
 
         <Button Text="MijnZLM" BackgroundColor="#d8172a" IsEnabled="{Binding IsNotLoading}"/>

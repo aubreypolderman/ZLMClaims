@@ -49,17 +49,4 @@ public partial class UserPage : ContentPage
         await _viewModel.LoadDataAsync();
     }
 
-    /* Alternative for toggle */
-    private void OnButtonNLClicked(object sender, EventArgs e)
-    {
-        Console.WriteLine("[..............] [UserPage] [buttonNederlands");
-        _viewModel.OnLanguageSwitchToggled();
-    }
-
-    private void OnButtonENGClicked(object sender, EventArgs e)
-    {
-        Console.WriteLine("[..............] [UserPage] [buttonEngels");
-        _viewModel.OnLanguageSwitchToggled();
-    }
-
 }
