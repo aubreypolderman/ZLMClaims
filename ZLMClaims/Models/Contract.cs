@@ -15,11 +15,11 @@ namespace ZLMClaims.Models
 
         [JsonPropertyName("make")]
         public string Make { get; set; }
-
+            
         [JsonPropertyName("model")]
         public string Model { get; set; }
 
-        [JsonPropertyName("licenseplate")]
+        [JsonPropertyName("licensePlate")]
         public string LicensePlate { get; set; }
 
         [JsonPropertyName("damageFreeYears")]
@@ -33,6 +33,8 @@ namespace ZLMClaims.Models
 
         [JsonPropertyName("annualPolicyPremium")]
         public double AnnualPolicyPremium { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
         // Add method to determine icon?
     }

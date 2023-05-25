@@ -81,13 +81,13 @@
                                         </Label.FormattedText>
                                     </Label>
                                     <StackLayout Orientation="Vertical">
-                                        <Label Text="{Binding Company.Name}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
+                                        <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}"/>
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding Address.Street}" />
+                                                    <Span Text="{Binding Street}" />
                                                     <Span Text=" " />
-                                                    <Span Text="{Binding Address.Housenumber}" />
+                                                    <Span Text="{Binding Housenumber}" />
                                                     <Span Text=" " />
                                                 </FormattedString>
                                             </Label.FormattedText>
@@ -95,9 +95,9 @@
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding Address.Zipcode}" />
+                                                    <Span Text="{Binding Zipcode}" />
                                                     <Span Text=" " />
-                                                    <Span Text="{Binding Address.City}" />
+                                                    <Span Text="{Binding City}" />
                                                     <Span Text=" " />
                                                 </FormattedString>
                                             </Label.FormattedText>

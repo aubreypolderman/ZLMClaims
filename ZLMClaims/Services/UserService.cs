@@ -27,36 +27,6 @@ namespace ZLMClaims.Services
             #endif
         }
 
-        public async Task<User> GetUserByIdAsyncOld(int id)
-        {
-            Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] Get user with id " + id);
-
-            var json = LoadData();
-
-            Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] reponse json: " + json);
-
-            return JsonSerializer.Deserialize<User>(json);
-            /*
-            var response = await _httpClient.GetAsync($"https://jsonplaceholder.typicode.com/users/{id}");
-            Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] StatusCode response: " + response.StatusCode);
-            Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] ReasonPhrase response: " + response.ReasonPhrase);
-            Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] RequestMessage response: " + response.RequestMessage);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] reponsecontent: " + responseContent);
-
-            if (response.IsSuccessStatusCode)
-            { 
-                Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] StatuscodeSucces is all good! Return response");
-                return JsonSerializer.Deserialize<User>(responseContent); 
-            }
-            else
-            {
-                Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] Errortje getting user with id {id} ");
-                throw new HttpRequestException($"Error getting user with id {id}: {response.ReasonPhrase}");
-            }
-            */
-        }
-
         public async Task<User> GetUserByIdAsync(int id)
         {
             Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] Get user with id " + id);

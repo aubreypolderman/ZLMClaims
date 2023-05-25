@@ -5,7 +5,7 @@
              xmlns:models="clr-namespace:ZLMClaims.Models"
              x:Class="ZLMClaims.Views.RepairCompanyPage"
              xmlns:local="clr-namespace:ZLMClaims"
-             Title="{Binding RepairCompany.Company.Name}"
+             Title="{Binding RepairCompany.Name}"
              x:DataType="viewmodels:RepairCompanyViewModel">
 
     <ContentPage.BindingContext>
@@ -64,7 +64,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   Text="{Binding RepairCompany.Company.Name}"
+                   Text="{Binding RepairCompany.Name}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -79,7 +79,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
-                   Text="{Binding RepairCompany.Address.Street}" 
+                   Text="{Binding RepairCompany.Street}" 
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -94,7 +94,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
-                   Text="{Binding RepairCompany.Address.Zipcode}"
+                   Text="{Binding RepairCompany.Zipcode}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -109,7 +109,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="4"
                    Grid.Column="1"
-                   Text="{Binding RepairCompany.Address.City}"
+                   Text="{Binding RepairCompany.City}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 

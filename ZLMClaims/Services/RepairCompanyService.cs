@@ -21,7 +21,7 @@ namespace ZLMClaims.Services
         public async Task<IEnumerable<RepairCompany>> GetRepairCompaniesAsync()
         {
             Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync]");
-            
+
             // online 
             /*
             HttpResponseMessage response = await _httpClient.GetAsync("https://jsonplaceholder.typicode.com/users");
@@ -33,11 +33,32 @@ namespace ZLMClaims.Services
 
             // offline
             // for testpurpose only
-            var json = LoadData();
+            // var json = LoadData();
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Get all repaircompanies ");
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] voor de call");
 
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponse json: " + json);
+            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts");
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] response: " + response);
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] StatusCode response: " + response.StatusCode);
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] ReasonPhrase response: " + response.ReasonPhrase);
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] RequestMessage response: " + response.RequestMessage);
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponsecontent: " + responseContent);
 
-            return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<RepairCompany>>(json);
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] StatuscodeSucces is all good! Return response");
+                return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<RepairCompany>>(responseContent);
+            }
+            else
+            {
+                Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Errortje getting repaircompanies");
+                throw new HttpRequestException($"Error getting repaircompanies: {response.ReasonPhrase}");
+            }
+
+            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponse json: " + responseContent);
+
+            return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<RepairCompany>>(responseContent);
         }
 
         public async Task<RepairCompany> GetRepairCompanyByIdAsync(int id)

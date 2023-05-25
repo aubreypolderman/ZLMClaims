@@ -69,9 +69,9 @@ namespace ZLMClaims.ViewModels
                     var pin = new Pin
                     {
                         Label = repaircompany.Name,
-                        Address = repaircompany.Company.CatchPhrase,
+                        Address = repaircompany.Street,
                         Type = PinType.Place,
-                        Location = new Location(repaircompany.Address.Geo.Longitude, repaircompany.Address.Geo.Latitude)
+                        Location = new Location(repaircompany.Longitude, repaircompany.Latitude)
                     };
                     map.Pins.Add(pin);
                     map.MapElements.Add(circle);

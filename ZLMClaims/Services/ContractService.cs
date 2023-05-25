@@ -1,52 +1,82 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
-using ZLMClaims.Models;
+﻿using ZLMClaims.Models;
+using ZLMClaims.Services;
 
-namespace ZLMClaims.Services
+namespace ZLMClaims.Services;
+public class ContractService : IContractService
 {
-    public class ContractService : IContractService
+    private readonly HttpClient _httpClient;
+
+    public ContractService(HttpClient httpClient)
     {
-        private readonly HttpClient _httpClient;
+        // check to see if _httpClient instance is not null
+        Console.WriteLine("[..............] [ContractService] [constructor] httpclient injected ");
+        //_httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+#if DEBUG
+        Console.WriteLine("[..............] [ContractService" +
+            "] [constructor] httpclient debug -> use handler ");
+        HttpsClientHandlerService handler = new HttpsClientHandlerService();
+        _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); // Assign the value to the class-level field
+#else
+            Console.WriteLine("[..............] [UserService] [constructor] ELSE new httpclient ");            
+            _httpClient = new HttpClient();
+#endif
+    }
 
-        public ContractService(HttpClient httpClient)
+    public async Task<IEnumerable<Contract>> GetAllContractsByPersonIdAsync(int personId)
+    {
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] Get all contracts for user with id " + personId);
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] voor de call");
+
+        var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts");
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync]  response: " + response);
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatusCode response: " + response.StatusCode);
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] ReasonPhrase response: " + response.ReasonPhrase);
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] RequestMessage response: " + response.RequestMessage);
+        var responseContent = await response.Content.ReadAsStringAsync();
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] reponsecontent: " + responseContent);
+
+        if (response.IsSuccessStatusCode)
         {
-            // check to see if _httpClient instance is not null    
-            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatuscodeSucces is all good! Return response");
+            return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Contract>>(responseContent);
         }
-
-        public async Task<IEnumerable<Contract>> GetAllContractsByPersonIdAsync(int personId)
+        else
         {
-            Console.WriteLine("[..............] [ContractService] [GetContractsAsync] Invoke api for personId " + personId);
-
-            // online 
-            /*
-            // Make API call to retrieve all contracts by personID
-            HttpResponseMessage response = await _httpClient.GetAsync("https://jsonplaceholder.typicode.com/users");
-
-            // Handle non-successful response codes
-            response.EnsureSuccessStatusCode();
-            Console.WriteLine("[..............] [ContractService] [GetContractsAsync] statuscode: " + response.StatusCode);
-            var json = await response.Content.ReadAsStringAsync();
-            */
-
-            // offline
-            // for testpurpose only
-            var json = LoadData();
-
-            Console.WriteLine("[..............] [ContractService] [GetContractsAsync] reponse json: " + json);
-            // Deserialize json response to Claim object
-            return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Contract>>(json);
+            Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] Errortje getting contract for user with id {id} ");
+            throw new HttpRequestException($"Error getting user with id {personId}: {response.ReasonPhrase}");
         }
+    }
 
-        private static string LoadData()
+    public async Task<Contract> GetContractByIdAsync(int Id)
+    {
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] Get contract with id " + Id);
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] voor de call");
+
+        var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts/{Id}");
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync]  response: " + response);
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatusCode response: " + response.StatusCode);
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] ReasonPhrase response: " + response.ReasonPhrase);
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] RequestMessage response: " + response.RequestMessage);
+        var responseContent = await response.Content.ReadAsStringAsync();
+        Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] reponsecontent: " + responseContent);
+
+        if (response.IsSuccessStatusCode)
         {
-            Console.WriteLine("[..............] [ContractService] [LoadData] Ophalen stubdata");
+            Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatuscodeSucces is all good! Return response");
+            return System.Text.Json.JsonSerializer.Deserialize<Contract>(responseContent);
+        }
+        else
+        {
+            Console.WriteLine("[..............] [ContractService] [GetAllContractsByPersonIdAsync] Errortje getting contract with id {id} ");
+            throw new HttpRequestException($"Error getting user with id {Id}: {response.ReasonPhrase}");
+        }
+    }
 
-            return @"[
+    private static string LoadData()
+    {
+        Console.WriteLine("[..............] [ContractService] [LoadData] Ophalen stubdata");
+
+        return @"[
                 {
                     ""id"": 1,
                     ""personid"": 1,
@@ -84,7 +114,6 @@ namespace ZLMClaims.Services
                     ""annualpolicypremium"": ""100""
                 }
             ]";
-        }
-
     }
+
 }

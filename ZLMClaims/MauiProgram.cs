@@ -77,11 +77,6 @@ public static class MauiProgram
         builder.Services.AddTransient<UserPage>();
         Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** UserService, UserViewModel and UserPage registered with DI container ");
 
-        builder.Services.AddSingleton<ICarService, CarService>();
-        builder.Services.AddSingleton<CarListViewModel>();
-        builder.Services.AddTransient<AllCarsPage>();
-        Console.WriteLine("[..............] [MauiProgram] [MauiApp] ****** CarService, viewmodel and view registered with DI container ");
-
         // Auth0 registration
         builder.Services.AddSingleton(new Auth0Client(new()
         {
