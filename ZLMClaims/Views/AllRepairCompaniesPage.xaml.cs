@@ -1,4 +1,5 @@
 using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Maps;
 using ZLMClaims.Models;
 using ZLMClaims.ViewModels;
 namespace ZLMClaims.Views;
@@ -10,27 +11,24 @@ public partial class AllRepairCompaniesPage : ContentPage
 
     public AllRepairCompaniesPage(AllRepairCompaniesViewModel vm)
 	{
-        Console.WriteLine("[..............] [AllRepairCompaniesPage] [AllRepairCompaniesViewModel] viewmodel injected");
+        Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesPage] [AllRepairCompaniesViewModel] Viewmodel injected");
+
+        _viewModel = vm;
         BindingContext = vm;
         InitializeComponent();
+        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(39.8283459, -98.5794797), Distance.FromMiles(1500)));
     }
 
-    private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+    protected override async void OnAppearing()
     {
-        Console.WriteLine("[AllRepairCompaniesPage] [TapGestureRecognizer_Tapped] [==============] Start");
-        Console.WriteLine("[AllRepairCompaniesPage] [TapGestureRecognizer_Tapped] [==============] sender: "+ sender);
-        Console.WriteLine("[AllRepairCompaniesPage] [TapGestureRecognizer_Tapped] [==============] arg: " + e);
-        var repairCompany = ((VisualElement)sender).BindingContext as RepairCompany;
-        if (repairCompany == null)
-        {
-            Console.WriteLine("[AllRepairCompaniesPage] [TapGestureRecognizer_Tapped] [==============] Company is null. Return");
-            return;
-        }
-        Console.WriteLine("[AllRepairCompaniesPage] [TapGestureRecognizer_Tapped] [==============] Company is not null");
+        base.OnAppearing();
+        Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesPage] [OnAppearing] Invoke _viewModel.GetAllRepairCompanies()");
+        await _viewModel.GetAllRepairCompanies();
+    }
 
-        await Shell.Current.GoToAsync(nameof(RepairCompanyPage), true, new Dictionary<string, object>
-        {
-            {nameof(RepairCompany), repairCompany}
-        });
+    void OnMapClicked(object sender, MapClickedEventArgs e)
+    {
+        Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesPage] [OnMapClicked] " + e.Location.Latitude + "," +  e.Location.Longitude);
+        System.Diagnostics.Debug.WriteLine($"MapClick: {e.Location.Latitude}, {e.Location.Longitude}");
     }
 }

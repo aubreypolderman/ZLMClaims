@@ -14,13 +14,22 @@ namespace ZLMClaims.Services
 
         public RepairCompanyService(HttpClient httpClient)
         {
-            // check to see if _httpClient instance is not null    
-            _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+            // check to see if _httpClient instance is not null            
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [constructor] httpclient injected ");
+            //_httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+#if DEBUG
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [constructor] httpclient injected => it's DEBUG so use handler ");    
+            HttpsClientHandlerService handler = new HttpsClientHandlerService();
+                        _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); // Assign the value to the class-level field
+#else                        
+                        Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [constructor] httpclient injected => it's NOT DEBUG so instantiate new HttpClient ");
+                        _httpClient = new HttpClient();
+#endif
         }
 
         public async Task<IEnumerable<RepairCompany>> GetRepairCompaniesAsync()
         {
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync]");
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync]");
 
             // online 
             /*
@@ -33,59 +42,59 @@ namespace ZLMClaims.Services
 
             // offline
             // for testpurpose only
-            // var json = LoadData();
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Get all repaircompanies ");
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] voor de call");
+            // var json = LoadData();            
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Get all repaircompanies ");
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] voor de call");
 
-            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts");
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] response: " + response);
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] StatusCode response: " + response.StatusCode);
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] ReasonPhrase response: " + response.ReasonPhrase);
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] RequestMessage response: " + response.RequestMessage);
+            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/RepairCompanies");            
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] response: " + response);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] StatusCode response: " + response.StatusCode);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] ReasonPhrase response: " + response.ReasonPhrase);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] RequestMessage response: " + response.RequestMessage);
             var responseContent = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponsecontent: " + responseContent);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponsecontent: " + responseContent);
 
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] StatuscodeSucces is all good! Return response");
+                Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] StatuscodeSucces is all good! Return response");
                 return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<RepairCompany>>(responseContent);
             }
             else
             {
-                Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Errortje getting repaircompanies");
+                Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Errortje getting repaircompanies");
                 throw new HttpRequestException($"Error getting repaircompanies: {response.ReasonPhrase}");
             }
 
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponse json: " + responseContent);
+            Console.WriteLine( DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] reponse json: " + responseContent);
 
             return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<RepairCompany>>(responseContent);
         }
 
         public async Task<RepairCompany> GetRepairCompanyByIdAsync(int id)
         {
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] Get repair company with id " + id);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] Get repair company with id " + id);
             var response = await _httpClient.GetAsync($"https://jsonplaceholder.typicode.com/users/{id}");
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] StatusCode response: " + response.StatusCode);
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] ReasonPhrase response: " + response.ReasonPhrase);
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] RequestMessage response: " + response.RequestMessage);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] StatusCode response: " + response.StatusCode);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] ReasonPhrase response: " + response.ReasonPhrase);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] RequestMessage response: " + response.RequestMessage);
             var responseContent = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] reponsecontent: " + responseContent);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] reponsecontent: " + responseContent);
 
             if (response.IsSuccessStatusCode)
             { 
-                Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] StatuscodeSucces is all good! Return response");
+                Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] StatuscodeSucces is all good! Return response");
                 return System.Text.Json.JsonSerializer.Deserialize<RepairCompany>(responseContent); 
             }
             else
             {
-                Console.WriteLine("[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] Errortje getting repair company with id {id} ");
+                Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompanyByIdAsync] Errortje getting repair company with id {id} ");
                 throw new HttpRequestException($"Error getting repair company with id {id}: {response.ReasonPhrase}");
             }
         }
 
         private static string LoadData()
         {
-            Console.WriteLine("[RepairCompanyService] [LoadDataAsync ][==============] ");
+            Console.WriteLine(DateTime.Now + "[RepairCompanyService] [LoadDataAsync ][==============] ");
 
             return @"[
                 {
