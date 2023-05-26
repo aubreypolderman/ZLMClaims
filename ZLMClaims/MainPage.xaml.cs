@@ -11,9 +11,13 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
         auth0Client = client;
+
+        #if WINDOWS
+            auth0Client.Browser = new WebViewBrowserAuthenticator(WebViewInstance);
+        #endif
     }
 
-	private void OnCounterClicked(object sender, EventArgs e)
+    private void OnCounterClicked(object sender, EventArgs e)
 	{
 		count++;
 

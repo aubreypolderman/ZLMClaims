@@ -65,6 +65,7 @@
         <Label/>
 
         <!-- What happened-->
+        <!-- Gebruik van comm.tooliit de validator. Zie ppt-->
         <Label Text="{local:Translate Q_WhatHappened}" TextColor="{StaticResource Primary}"/>
         <Editor 
             Text="{Binding Claim.QWhatHappened}"      

@@ -13,7 +13,7 @@
                 x:Name="LoginView">
                 <Button 
                     x:Name="LoginBtn"
-                    Text="Log In"
+                    Text="Log Floor In"
                     SemanticProperties.Hint="Click to log in"
                     Clicked="OnLoginClicked"
                     HorizontalOptions="Center" />

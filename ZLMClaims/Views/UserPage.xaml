@@ -70,7 +70,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
-                   Text="{Binding User.Address.Street}"
+                   Text="{Binding User.UserAddress.Street}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -85,7 +85,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
-                   Text="{Binding User.Address.Zipcode}"
+                   Text="{Binding User.UserAddress.Zipcode}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -100,7 +100,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="4"
                    Grid.Column="1"
-                   Text="{Binding User.Address.City}"
+                   Text="{Binding User.UserAddress.City}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -164,6 +164,5 @@
 
         </Grid>
 
-        <Button Text="MijnZLM" BackgroundColor="#d8172a" IsEnabled="{Binding IsNotLoading}"/>
     </VerticalStackLayout>
 </ContentPage>

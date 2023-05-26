@@ -20,7 +20,7 @@ namespace ZLMClaims.Models
         public string Email { get; set; }
 
         [JsonPropertyName("address")]
-        public UserAddress Address { get; set; }
+        public UserAddress UserAddress { get; set; }
 
         [JsonPropertyName("phone")]
         public string Phone { get; set; }

@@ -83,7 +83,11 @@ public static class MauiProgram
             Domain = "dev-ajcve7wvqiq10doi.eu.auth0.com",
             ClientId = "kgYGjeSFKI7GczXNx335myCMXbdwx6UG",
             Scope = "openid profile",
-            RedirectUri = "myapp://callback"
+            #if WINDOWS
+            RedirectUri = "http://localhost/callback"
+            #else
+                  RedirectUri = "myapp://callback"
+            #endif
         }));
 
         return builder.Build();

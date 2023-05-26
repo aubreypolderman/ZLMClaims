@@ -41,9 +41,9 @@ public class UserViewModel : BaseViewModel
         this.navigationService = navigationService;
         this.userService = userService;
 
-        InitApp();
+       //  InitApp();
         
-       // LoadDataAsync();
+        // LoadDataAsync();
     }
 
     public async Task LoadDataAsync()
@@ -56,7 +56,8 @@ public class UserViewModel : BaseViewModel
         personId = 1;
 
         var user = await userService.GetUserByIdAsync(personId);
-        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user: " + user.Name);
+        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user name: " + user.Name);
+        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user email: " + user.Email);
     }
 
     public void OnThemeSwitchToggled()
