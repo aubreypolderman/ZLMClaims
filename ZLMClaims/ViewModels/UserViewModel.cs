@@ -3,16 +3,19 @@ using System.Windows.Input;
 
 namespace ZLMClaims.ViewModels;
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ZLMClaims.Models;
 using ZLMClaims.Resources.Languages;
 using ZLMClaims.Services;
-public class UserViewModel : BaseViewModel
+public partial class UserViewModel : BaseViewModel
 {
     // make the personid a global, sdo it could be used throughout the app. For now just hardcode it
 
@@ -21,19 +24,11 @@ public class UserViewModel : BaseViewModel
     public bool switchToggleDarkTheme = false;
     public bool switchToggleEmailConfirmation = false;
 
-    private User _user;
+    [ObservableProperty]
+    User user;
+
     INavigationService navigationService;
     IUserService userService;
-    public User User 
-    {
-
-        get { return _user; }
-        set
-        {
-            _user = value;
-            OnPropertyChanged(nameof(User));
-        } 
-    }
 
     public UserViewModel(INavigationService navigationService, IUserService userService)
     {
@@ -42,8 +37,6 @@ public class UserViewModel : BaseViewModel
         this.userService = userService;
 
        //  InitApp();
-        
-        // LoadDataAsync();
     }
 
     public async Task LoadDataAsync()
@@ -56,8 +49,9 @@ public class UserViewModel : BaseViewModel
         personId = 1;
 
         var user = await userService.GetUserByIdAsync(personId);
+        User = user; // Assign the retrieved user data to the User property
         Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user name: " + user.Name);
-        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user email: " + user.Email);
+        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user email: " + user.Email);        
     }
 
     public void OnThemeSwitchToggled()

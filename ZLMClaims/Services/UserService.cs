@@ -40,10 +40,15 @@ namespace ZLMClaims.Services
             var responseContent = await response.Content.ReadAsStringAsync();
             Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] reponsecontent: " + responseContent);
 
+            User user = null;
             if (response.IsSuccessStatusCode)
             { 
                 Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] StatuscodeSucces is all good! Return response");
-                return JsonSerializer.Deserialize<User>(responseContent); 
+                //return JsonSerializer.Deserialize<User>(responseContent); 
+                user = JsonSerializer.Deserialize<User>(responseContent);
+                Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] deserialized user: " + user);
+                Console.WriteLine("[..............] [UserService] [GetUserByIdAsync] deserialized user email: " + user.Email);
+                return user;
             }
             else
             {
@@ -62,13 +67,14 @@ namespace ZLMClaims.Services
 			    ""name"": ""Aubrey Polderman"",
 				""username"": ""aubreypolderman@gmail.com"",
 				""email"": ""aubreypolderman@gmail.com"",
-				""address"": {
-					""street"": ""Cirkel"",
-					""housenumber"": ""63"",
-					""city"": ""Vlissingen"",
-					""zipcode"": ""4384DS""
-                },
-				""phone"": ""06-12345678""
+                ""phone"": ""06-12345678"",
+				""street"": ""Cirkel"",
+				""housenumber"": ""63"",
+				""city"": ""Vlissingen"",
+				""zipcode"": ""4384DS"",
+                ""latitude"": ""51.461684899386995"",
+				""longitude"": ""3.5559567820729203""
+				
 			}
 ]";
         }

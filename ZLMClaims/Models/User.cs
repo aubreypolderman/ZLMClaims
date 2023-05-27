@@ -19,17 +19,9 @@ namespace ZLMClaims.Models
         [JsonPropertyName("email")]
         public string Email { get; set; }
 
-        [JsonPropertyName("address")]
-        public UserAddress UserAddress { get; set; }
-
         [JsonPropertyName("phone")]
         public string Phone { get; set; }
 
-
-    }
-
-    public class UserAddress
-    {
         [JsonPropertyName("street")]
         public string Street { get; set; }
 
@@ -41,6 +33,15 @@ namespace ZLMClaims.Models
 
         [JsonPropertyName("zipcode")]
         public string Zipcode { get; set; }
+
+        [JsonPropertyName("latitude")]
+        public double Latitude { get; set; }
+
+        [JsonPropertyName("longitude")]
+        public double Longitude { get; set; }
+
+
+
 
     }
 

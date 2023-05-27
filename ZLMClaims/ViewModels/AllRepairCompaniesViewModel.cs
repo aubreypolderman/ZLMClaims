@@ -41,9 +41,9 @@ namespace ZLMClaims.ViewModels
             // GetAllRepairCompanies();
             _positions = new ObservableCollection<Position>()
         {
-            new Position("New York, USA", "The City That Never Sleeps", new Location(40.67, -73.94)),
-            new Position("Los Angeles, USA", "City of Angels", new Location(34.11, -118.41)),
-            new Position("San Francisco, USA", "Bay City", new Location(37.77, -122.45))
+            new Position("Rotterdam, Beijerselaand 98", "Van den Berg autoschade", new Location(51.89668048635631, 4.510994710929627)),
+             new Position("Rotterdam, Beverstraat 9C", "Van den Jagt autoschade", new Location(51.8974572425449, 4.511208184602901)),
+            new Position("Rotterdam, Hillevliet 44B", "Mossel autoschade", new Location(51.896881492621496, 4.504703826310183))
         };
 
         }

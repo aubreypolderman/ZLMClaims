@@ -70,7 +70,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
-                   Text="{Binding User.UserAddress.Street}"
+                   Text="{Binding User.Street}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -85,7 +85,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
-                   Text="{Binding User.UserAddress.Zipcode}"
+                   Text="{Binding User.Zipcode}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -100,7 +100,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="4"
                    Grid.Column="1"
-                   Text="{Binding User.UserAddress.City}"
+                   Text="{Binding User.City}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 

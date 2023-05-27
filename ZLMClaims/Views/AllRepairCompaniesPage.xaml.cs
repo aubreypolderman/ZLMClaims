@@ -16,7 +16,8 @@ public partial class AllRepairCompaniesPage : ContentPage
         _viewModel = vm;
         BindingContext = vm;
         InitializeComponent();
-        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(39.8283459, -98.5794797), Distance.FromMiles(1500)));
+        // Lat/long Atjehstraat 100
+        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(51.90083141102497, 4.485235210929851), Distance.FromMiles(1500)));
     }
 
     protected override async void OnAppearing()
