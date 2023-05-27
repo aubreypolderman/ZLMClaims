@@ -15,8 +15,7 @@ namespace ZLMClaims.ViewModels
 {
     public class AllRepairCompaniesViewModel : BaseViewModel   
     {
-        private ObservableCollection<RepairCompany> _repaircompanies;
-        int _pinCreatedCount = 0;
+       // private ObservableCollection<RepairCompany> _repaircompanies;
         readonly ObservableCollection<Position> _positions;
 
         public IEnumerable Positions => _positions;
@@ -28,7 +27,7 @@ namespace ZLMClaims.ViewModels
         IDialogService dialogService;
 
         public ObservableCollection<RepairCompany> RepairCompanies { get; private set; } = new();
-        public ObservableCollection<Pin> Pins { get; } = new ObservableCollection<Pin>();
+        // public ObservableCollection<Pin> Pins { get; } = new ObservableCollection<Pin>();
 
 
         public AllRepairCompaniesViewModel(INavigationService navigationService, IRepairCompanyService repairCompanyService, IDialogService dialogService)
@@ -41,9 +40,9 @@ namespace ZLMClaims.ViewModels
             // GetAllRepairCompanies();
             _positions = new ObservableCollection<Position>()
         {
-            new Position("Rotterdam, Beijerselaand 98", "Van den Berg autoschade", new Location(51.89668048635631, 4.510994710929627)),
-             new Position("Rotterdam, Beverstraat 9C", "Van den Jagt autoschade", new Location(51.8974572425449, 4.511208184602901)),
-            new Position("Rotterdam, Hillevliet 44B", "Mossel autoschade", new Location(51.896881492621496, 4.504703826310183))
+           // new Position("Rotterdam, Rotterdam Airportplein 60", "Van den Berg autoschade", new Location(51.95165042126455, 4.43385245511086)),
+           // new Position("Rotterdam, Beverstraat 9C", "Van den Jagt autoschade", new Location(51.8974572425449, 4.511208184602901)),
+           // new Position("Rotterdam, Hillevliet 44B", "Mossel autoschade", new Location(51.896881492621496, 4.504703826310183))
         };
 
         }
@@ -51,8 +50,6 @@ namespace ZLMClaims.ViewModels
         public async Task GetAllRepairCompanies()
         {
             Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] Start");
-            var page = Application.Current.MainPage.Navigation.NavigationStack.OfType<AllRepairCompaniesPage>().FirstOrDefault();
-            var map = page?.FindByName<Microsoft.Maui.Controls.Maps.Map>("map");
 
             // if (IsLoading) return;
             try
@@ -65,34 +62,20 @@ namespace ZLMClaims.ViewModels
                 Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] RepairCompanyService invoked");
                 foreach (var repaircompany in repaircompanies)
                 {
-                    // Calculate the distance between current location and location of repaircompany
-                    // CalculateDistance(repaircompany.Address.Geo.Longitude, repaircompany.Address.Geo.Latitude);
-                    // Console.WriteLine("[..............] [AllContractsViewModel] [GetAllRepairCompanies] Repaircompany:" + repaircompany.Name);
-                    RepairCompanies.Add(repaircompany);
-                    Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + repaircompany.Name);
-                    var circle = new Circle
-                    {
-                        Center = new Location(51.89736284918831, 4.5121657098677925),
-                        Radius = new Microsoft.Maui.Maps.Distance(250),
-                        StrokeColor = Color.FromRgba("#0f92be"),
-                        StrokeWidth = 8,
-                        FillColor = Color.FromRgba("#cce5ed")
-                    };
-
-                    var pin = new Pin
-                    {
-                        Label = repaircompany.Name,
-                        Address = repaircompany.Street,
-                        Type = PinType.Place,
-                        Location = new Location(repaircompany.Longitude, repaircompany.Latitude)
-                    };
-                    map.Pins.Add(pin);
-                    map.MapElements.Add(circle);
+                    if (repaircompany != null)
+                    { 
+                        RepairCompanies.Add(repaircompany);
+                        Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + repaircompany.Name);
+                        var position = new Position(repaircompany.Name, repaircompany.Name, new Location(repaircompany.Latitude, repaircompany.Longitude));
+                        _positions.Add(position);
+                    }
                 }
-
             }
             catch (Exception ex)
             {
+
+                Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + "ERROR message: " + ex.Message);
+                Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + "ERROR: ex: " + ex);
                 Debug.WriteLine($"Unable to get Repaircompanies: {ex.Message}");
                 await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Repaircompanies", "OK");
             }
@@ -104,6 +87,7 @@ namespace ZLMClaims.ViewModels
 
         }
 
+        /*
         public double CalculateDistance(double longitude, double laitude)
         {
             Location current = new Location(42.358056, -71.063611);
@@ -111,8 +95,7 @@ namespace ZLMClaims.ViewModels
 
             double miles = Location.CalculateDistance(current, repaircompany, DistanceUnits.Miles);
             return miles;
-
-
         }
+        */
     }
 }

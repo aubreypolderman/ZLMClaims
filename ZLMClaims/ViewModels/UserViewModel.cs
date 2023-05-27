@@ -49,7 +49,8 @@ public partial class UserViewModel : BaseViewModel
         personId = 1;
 
         var user = await userService.GetUserByIdAsync(personId);
-        User = user; // Assign the retrieved user data to the User property
+        // Assign the retrieved user data to the User property
+        User = user; 
         Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user name: " + user.Name);
         Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user email: " + user.Email);        
     }

@@ -16,14 +16,14 @@ public partial class AllRepairCompaniesPage : ContentPage
         _viewModel = vm;
         BindingContext = vm;
         InitializeComponent();
-        // Lat/long Atjehstraat 100
-        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(51.90083141102497, 4.485235210929851), Distance.FromMiles(1500)));
+        // Lat/long Show region of Rotterdam as the default region. TODO: based on lat/long from user. Adres is Atjehstraat 100
+        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(51.90083141102497, 4.485235210929851), Distance.FromMiles(5)));
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesPage] [OnAppearing] Invoke _viewModel.GetAllRepairCompanies()");
+        Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesPage] [OnAppearing] Invoke _viewModel.GetAllRepairCompanies()");        
         await _viewModel.GetAllRepairCompanies();
     }
 
