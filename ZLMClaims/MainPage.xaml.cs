@@ -32,13 +32,13 @@ public partial class MainPage : ContentPage
     // Auth0 login button
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        Console.WriteLine("[..............] [MainPage] [OnLoginClicked] start");
+        Console.WriteLine(DateTime.Now + "[..............] [MainPage] [OnLoginClicked] start");
         var loginResult = await auth0Client.LoginAsync();
-        Console.WriteLine("[..............] [MainPage] [OnLoginClicked] na uitvoer LoginAsync met result: " + loginResult);
+        Console.WriteLine(DateTime.Now + "[..............] [MainPage] [OnLoginClicked] na uitvoer LoginAsync met result: " + loginResult);
 
         if (!loginResult.IsError)
         {
-            Console.WriteLine("[..............] [MainPage] [OnLoginClicked] Succces, with username: " + loginResult.User.Identity.Name);
+            Console.WriteLine(DateTime.Now + "[..............] [MainPage] [OnLoginClicked] Succces, with username: " + loginResult.User.Identity.Name);
             UsernameLbl.Text = loginResult.User.Identity.Name;
             LoginView.IsVisible = false;
             HomeView.IsVisible = true;
@@ -62,6 +62,20 @@ public partial class MainPage : ContentPage
         else
         {
             await DisplayAlert("Error", logoutResult.ErrorDescription, "OK");
+        }
+    }
+
+    private async void OnLoaded(object sender, EventArgs e)
+    {
+        var user = await auth0Client.GetAuthenticatedUser();
+
+        if (user != null)
+        {
+            UsernameLbl.Text = user.Identity.Name;
+            //UserPictureImg.Source = user.Claims.FirstOrDefault(c => c.Type == "picture")?.Value;
+
+            LoginView.IsVisible = false;
+            HomeView.IsVisible = true;
         }
     }
 }

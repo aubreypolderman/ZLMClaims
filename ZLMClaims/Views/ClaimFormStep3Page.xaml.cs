@@ -10,7 +10,7 @@ public partial class ClaimFormStep3Page : ContentPage
     public ClaimFormStep3Page(ClaimFormStep3ViewModel vm)
 
     {
-        Console.WriteLine("[..............] [ClaimFormStep3Page] [ClaimFormStep3ViewModel] viewmodel injected");
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep3Page] [ClaimFormStep3ViewModel] viewmodel injected");
         BindingContext = vm;
         InitializeComponent();
     }
@@ -18,7 +18,7 @@ public partial class ClaimFormStep3Page : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        Console.WriteLine("[..............] [ClaimFormStep3Page] [OnAppearing]");
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep3Page] [OnAppearing]");
     }
 
     /*

@@ -32,7 +32,7 @@ public partial class UserViewModel : BaseViewModel
 
     public UserViewModel(INavigationService navigationService, IUserService userService)
     {
-        Console.WriteLine("[..............] [UserViewModel] [constructor] Navigation and IUserService injected");
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [constructor] Navigation and IUserService injected");
         this.navigationService = navigationService;
         this.userService = userService;
 
@@ -41,32 +41,29 @@ public partial class UserViewModel : BaseViewModel
 
     public async Task LoadDataAsync()
     {
-        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync]");
-        // retrieve the customers id from the preference set
-        // var personId = Preferences.Get("personId", false);
-
-        // becaUSE the above doens't work, let's just hardcode it for now
-        personId = 1;
-
-        var user = await userService.GetUserByIdAsync(personId);
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [LoadDataAsync]");
+        // retrieve the userid from the preference set        
+        int userId = Preferences.Default.Get("userId", -1);
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [LoadDataAsync] retrieved user name: " + userId);
+        var user = await userService.GetUserByIdAsync(userId);
         // Assign the retrieved user data to the User property
         User = user; 
-        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user name: " + user.Name);
-        Console.WriteLine("[..............] [UserViewModel] [LoadDataAsync] retrieved user email: " + user.Email);        
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [LoadDataAsync] retrieved user name: " + user.Name);
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [LoadDataAsync] retrieved user email: " + user.Email);        
     }
 
     public void OnThemeSwitchToggled()
     {
-        Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Current theme: " + Application.Current.RequestedTheme);
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Current theme: " + Application.Current.RequestedTheme);
 
         if (Application.Current.RequestedTheme == AppTheme.Dark)
         {
-            Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Light");
+            Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Light");
             Application.Current.UserAppTheme = AppTheme.Light;
         }
         else
         {
-            Console.WriteLine("[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Dark");
+            Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Dark");
             Application.Current.UserAppTheme = AppTheme.Dark;
             switchToggleDarkTheme = true;
         }
@@ -76,7 +73,7 @@ public partial class UserViewModel : BaseViewModel
 
     public void OnLanguageSwitchToggled()
     {
-        Console.WriteLine("[..............] [UserViewModel] [OnLanguageSwitchToggled] ");
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnLanguageSwitchToggled] ");
         var switchToCulture = AppResources.Culture.TwoLetterISOLanguageName
             .Equals("nl", StringComparison.InvariantCultureIgnoreCase) ?
             new CultureInfo("en-US") : new CultureInfo("nl-NL");
@@ -88,13 +85,13 @@ public partial class UserViewModel : BaseViewModel
 
     public void OnEmailConfirmationSwitchToggled()
     {
-        Console.WriteLine("[..............] [UserViewModel] [OnEmailConfirmationSwitchToggled]");
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnEmailConfirmationSwitchToggled]");
         if (switchToggleEmailConfirmation ? false: true);
     }
 
     public async Task OnEmailBtnClicked()
     {
-        Console.WriteLine("[..............] [UserViewModel] [OnEmailBtnClicked]");
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnEmailBtnClicked]");
         if (Email.Default.IsComposeSupported)
         {
             var message = new EmailMessage
@@ -113,7 +110,7 @@ public partial class UserViewModel : BaseViewModel
     // Method for unit testing purpose only. The Title is not set in the actual app for some reason
     public void InitApp() 
     {
-        Console.WriteLine("[..............] [UserViewModel] [InitApp]");
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [InitApp]");
         //this.Title = "User X Profile";
     }
 }

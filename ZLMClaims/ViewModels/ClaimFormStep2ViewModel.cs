@@ -17,7 +17,7 @@ namespace ZLMClaims.ViewModels
         ILocalClaimService localClaimService;
         public ClaimFormStep2ViewModel(INavigationService navigationService, ILocalClaimService localClaimService) 
         {
-            Console.WriteLine("[..............] [ClaimFormStep2ViewModel] [constructor] Navigation injected");
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [constructor] Navigation injected");
             this.navigationService = navigationService;
             this.localClaimService = localClaimService;
         }
@@ -33,11 +33,11 @@ namespace ZLMClaims.ViewModels
         async Task Next()
         {
            // localClaimService.SaveClaim(_claim);
-            Console.WriteLine("[..............] [ClaimFormStep2ViewModel] [Next] Cause of damange => " + Claim?.QCauseOfDamage);
-            Console.WriteLine("[..............] [ClaimFormStep2ViewModel] [Next] DateOfOccurence => " + Claim?.DateOfOccurence);
-            Console.WriteLine("[..............] [ClaimFormStep2ViewModel] [Next] What happened => " + Claim?.QWhatHappened);
-            Console.WriteLine("[..............] [ClaimFormStep2ViewModel] [Next] What is damaged => " + Claim?.QWhatIsDamaged);
-            Console.WriteLine("[..............] [ClaimFormStep2ViewModel] [Next] Where's the damage => " + Claim?.QWhereDamaged);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [Next] Cause of damange => " + Claim?.QCauseOfDamage);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [Next] DateOfOccurence => " + Claim?.DateOfOccurence);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [Next] What happened => " + Claim?.QWhatHappened);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [Next] What is damaged => " + Claim?.QWhatIsDamaged);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [Next] Where's the damage => " + Claim?.QWhereDamaged);
             await Shell.Current.GoToAsync(nameof(ClaimFormStep3Page), true, new Dictionary<string, object>
         {
             {nameof(Claim), Claim}

@@ -8,7 +8,7 @@ public partial class AllClaimsPage : ContentPage
     private readonly AllClaimsViewModel _viewModel;
     public AllClaimsPage(AllClaimsViewModel vm)
 	{
-        Console.WriteLine("[..............] [AllClaimsPage] [AllContractsViewModel] viewmodel injected");
+        Console.WriteLine(DateTime.Now + "[..............] [AllClaimsPage] [AllContractsViewModel] viewmodel injected");
         _viewModel = vm;
         BindingContext = vm;
         InitializeComponent();
@@ -16,14 +16,14 @@ public partial class AllClaimsPage : ContentPage
 
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
     {
-        Console.WriteLine("[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Start");
+        Console.WriteLine(DateTime.Now + "[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Start");
         var claim = ((VisualElement)sender).BindingContext as Claim;
         if (claim == null)
         {
-            Console.WriteLine("[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Claim is null. Return");
+            Console.WriteLine(DateTime.Now + "[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Claim is null. Return");
             return;
         }
-        Console.WriteLine("[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Claim: " + claim);
+        Console.WriteLine(DateTime.Now + "[..............] [AllClaimsPage] [TapGestureRecognizer_Tapped] Claim: " + claim);
 
         // Navigate to detail page of the claim
         await Shell.Current.GoToAsync(nameof(ClaimFormStep1Page), true, new Dictionary<string, object>
@@ -35,7 +35,7 @@ public partial class AllClaimsPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        Console.WriteLine("[..............] [AllClaimsPage] [OnAppearing]");
+        Console.WriteLine(DateTime.Now + "[..............] [AllClaimsPage] [OnAppearing]");
         await _viewModel.GetAllClaims().ConfigureAwait(false);
     }
 }

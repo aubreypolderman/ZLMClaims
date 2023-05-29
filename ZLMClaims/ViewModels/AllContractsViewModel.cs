@@ -33,7 +33,7 @@ namespace ZLMClaims.ViewModels
 
         public AllContractsViewModel(INavigationService navigationService, IContractService contractService, IDialogService dialogService, IConnectivity connectivity)
         {
-            Console.WriteLine("[..............] [AllContractsViewModel] [constructor] Navigation and IContractService injected");
+            Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [constructor] Navigation and IContractService injected");
             this.navigationService = navigationService;
             this.contractService = contractService;            
             this.dialogService = dialogService;
@@ -45,27 +45,28 @@ namespace ZLMClaims.ViewModels
 
         public async Task GetAllContracts()
         {
-            Console.WriteLine("[..............] [AllContractsViewModel] [GetAllContracts]");
-            var id = 1;
+            Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts]");
+            // retrieve the userid from the preference set        
+            int userId = Preferences.Default.Get("userId", -1);
 
-           // if (IsLoading) return;
+            // if (IsLoading) return;
             try
             {
                 //    IsBusy = true;
                 if (Contracts.Any()) Contracts.Clear();
                 
-                var contracts = await contractService.GetAllContractsByPersonIdAsync(id);
-                Console.WriteLine("[..............] [AllContractsViewModel] [GetAllContracts] contractService invoked for personId " + id);
+                var contracts = await contractService.GetAllContractsByPersonIdAsync(userId);
+                Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] contractService invoked for personId " + userId);
                 foreach (var contract in contracts)
                 {
-                    Console.WriteLine("[..............] [AllContractsViewModel] [GetAllContracts] contract:" + contract.Product);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] contract:" + contract.Product);
                     Contracts.Add(contract);
                 }
 
             }
             catch (Exception ex) 
             {
-                Debug.WriteLine($"Unable to get Contracts: {ex.Message}");
+                Console.WriteLine($"Unable to get Contracts: {ex.Message}");
                 await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Contracts", "OK");
             }
             finally

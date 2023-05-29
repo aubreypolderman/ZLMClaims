@@ -64,7 +64,7 @@ namespace ZLMClaims.Services
 
         private static string LoadData()
         {
-            Console.WriteLine(DateTime.Now + "[RepairCompanyService] [LoadDataAsync ][==============] ");
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [LoadDataAsync ][==============] ");
 
             return @"[
                 {

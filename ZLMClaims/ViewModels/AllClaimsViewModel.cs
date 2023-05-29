@@ -14,7 +14,7 @@ namespace ZLMClaims.ViewModels
         public ObservableCollection<Claim> _claims;
         
         INavigationService navigationService;
-        IClaimService claimService;
+        IClaimFormService claimFormService;
         IDialogService dialogService;
         IConnectivity connectivityService;
         ILocalClaimService localClaimService;
@@ -22,28 +22,28 @@ namespace ZLMClaims.ViewModels
         // By making the claims observable, the view is automatically refreshed whenever a change occure
         public ObservableCollection<Claim> Claims { get; private set; } = new();
 
-        public AllClaimsViewModel(INavigationService navigationService, IClaimService claimService, IDialogService dialogService, IConnectivity connectivityService, ILocalClaimService localClaimService)
+        public AllClaimsViewModel(INavigationService navigationService, IClaimFormService claimFormService, IDialogService dialogService, IConnectivity connectivityService, ILocalClaimService localClaimService)
         {
-            Console.WriteLine("[..............] [AllContractsViewModel] [constructor] Navigation and IClaimService injected");
             this.navigationService = navigationService;
-            this.claimService = claimService;
+            this.claimFormService = claimFormService;
             this.dialogService = dialogService;
             this.connectivityService = connectivityService;
             this.localClaimService = localClaimService;
-
-            // GetAllClaims();   
         }
 
         [RelayCommand]
         public async Task GetAllClaims()
         {
-            Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] ");
+            Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] ");
+
+            // retrieve the userid from the preference set        
+            int userId = Preferences.Default.Get("userId", -1);
 
             // Check WiFi connection
             IEnumerable<ConnectionProfile> profiles = connectivityService.ConnectionProfiles;
             if (profiles.Contains(ConnectionProfile.WiFi))
             {
-                Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] WiFi connection is available");
+                Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] WiFi connection is available");
             }
 
             // Check internet connection
@@ -51,22 +51,22 @@ namespace ZLMClaims.ViewModels
             if (accessType == NetworkAccess.Internet)
             {
                 // Connection to internet is available
-                Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] Internet connection is available");
+                Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Internet connection is available");
 
                 if (Claims.Any()) Claims.Clear();
-                var claims = await claimService.GetAllClaimsByPersonIdAsync(1);
+                var claims = await claimFormService.GetAllClaimFormsByPersonIdAsync(userId);
                 //var claims = await localClaimService.GetClaims();  
 
                 foreach (var claim in claims)
                 {
-                    Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] Claim on contract:" + claim.Contract.Product);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim on contract:" + claim.Contract.Product);
                     Claims.Add(claim);
                 }
 
             }
             else
             {
-                Console.WriteLine("[..............] [AllClaimsViewModel] [GetAllClaims] Internet connection is NOT available!!!!");
+                Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Internet connection is NOT available!!!!");
                 await dialogService.DisplayAlertAsync("Error", "Internet connection is NOT available!", "OK");
             }
 

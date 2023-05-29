@@ -75,8 +75,7 @@ namespace ZLMClaims.ViewModels
             {
 
                 Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + "ERROR message: " + ex.Message);
-                Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + "ERROR: ex: " + ex);
-                Debug.WriteLine($"Unable to get Repaircompanies: {ex.Message}");
+                Console.WriteLine($"Unable to get Repaircompanies: {ex.Message}");
                 await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Repaircompanies", "OK");
             }
             finally

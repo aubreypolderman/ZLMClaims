@@ -16,7 +16,7 @@ public partial class AllRepairCompaniesPage : ContentPage
         _viewModel = vm;
         BindingContext = vm;
         InitializeComponent();
-        // Lat/long Show region of Rotterdam as the default region. TODO: based on lat/long from user. Adres is Atjehstraat 100
+        // Lat/long to show region of Rotterdam as the default region. TODO: based on lat/long from user. Adres is Atjehstraat 100
         map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(51.90083141102497, 4.485235210929851), Distance.FromMiles(5)));
     }
 
@@ -31,5 +31,6 @@ public partial class AllRepairCompaniesPage : ContentPage
     {
         Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesPage] [OnMapClicked] " + e.Location.Latitude + "," +  e.Location.Longitude);
         System.Diagnostics.Debug.WriteLine($"MapClick: {e.Location.Latitude}, {e.Location.Longitude}");
+
     }
 }

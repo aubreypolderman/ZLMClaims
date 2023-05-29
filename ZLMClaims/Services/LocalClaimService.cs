@@ -26,7 +26,7 @@ public class LocalClaimService : ILocalClaimService
         Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [Init] Check for existing database connection");
         if (Database != null)
         {
-            Console.WriteLine("[..............] [LocalClaimService] [Init] Connection exists!");
+            Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [Init] Connection exists!");
             return;
         }
         Console.WriteLine(DateTime.Now + "[..............] [LocalClaimService] [Init] Connection doesn't exists");
