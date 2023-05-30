@@ -59,7 +59,7 @@ namespace ZLMClaims.ViewModels
 
                 foreach (var claim in claims)
                 {
-                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim on contract:" + claim.Contract.Product);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim id:" + claim.Id);
                     Claims.Add(claim);
                 }
 

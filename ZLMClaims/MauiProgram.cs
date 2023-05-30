@@ -75,7 +75,7 @@ public static class MauiProgram
             ClientId = "kgYGjeSFKI7GczXNx335myCMXbdwx6UG",
             Scope = "openid profile",
             #if WINDOWS
-            RedirectUri = "http://localhost/callback"
+            RedirectUri = "https://localhost:7040/callback"
             #else
                   RedirectUri = "myapp://callback"
             #endif

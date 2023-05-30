@@ -12,9 +12,13 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
         auth0Client = client;
+
+#if WINDOWS
+        auth0Client.Browser = new WebViewBrowserAuthenticator(WebViewInstance);
+#endif
     }
 
-   
+
     // Auth0 login button
     private async void OnLoginClicked(object sender, EventArgs e)
     {

@@ -9,44 +9,22 @@
              x:DataType="viewmodels:ClaimFormStep4ViewModel">
 
     <VerticalStackLayout Spacing="10" Margin="5">
-        <Label 
-            Text="{local:Translate DamagePhotos}"
-            FontSize="25"
-            TextColor="Red"
-            FontAttributes="Bold"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start" />
-        
-        <!-- List of spots on the car where the damage is-->
-        <Label 
-            Text="{local:Translate Q_WhereDamaged}"
-            VerticalOptions="Start" 
-            HorizontalOptions="Start" />
 
         <!-- Select images from filesystem using FilePicker-->
         <Image
             x:Name="myImage"
             Source="image.webp"
-            SemanticProperties.Description="Cute dot net bot waving hi to you!"
+            SemanticProperties.Description="Image taken from camera"            
             HeightRequest="200"
             HorizontalOptions="Center" />
 
         <ImageButton
             x:Name="TakePhoto"
-            Source="camera.png"
-            SemanticProperties.Description="Cute dot net bot waving hi to you!"
+            Source="camera.png"            
+            SemanticProperties.Description="Camera"
             HeightRequest="50"
             Clicked="OnTakePhotoBtnClicked"
             HorizontalOptions="Center" />
-
-        <Button 
-            BackgroundColor="White"
-            TextColor="#d8172a"
-            BorderColor="#d8172a"
-            BorderWidth="2"
-            Text="Pick Images"
-            SemanticProperties.Hint="Select image(s) from filesystem"
-            Clicked="OnPickImagesBtnClicked"/>
 
         <!-- previous and next page-->
         <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
