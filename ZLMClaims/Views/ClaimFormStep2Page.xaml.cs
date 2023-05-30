@@ -1,5 +1,6 @@
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
+using Newtonsoft.Json;
 using System.Globalization;
 using ZLMClaims.Models;
 using ZLMClaims.ViewModels;
@@ -16,22 +17,48 @@ public partial class ClaimFormStep2Page : ContentPage
         BindingContext = vm;
         _viewModel = vm;
         InitializeComponent();
-        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(51.90083141102497, 4.485235210929851), Distance.FromMiles(5)));
+        LoadLocationAsync();
     }
 
+    // Show current geo location of the user, with span of 5 miles
+    private async void LoadLocationAsync()
+    {
+        (double currentLatitude, double currentLongitude) = await _viewModel.GetCurrentLocation();
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(currentLatitude, currentLongitude), Distance.FromMiles(5)));
+        });
+    }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
     }
 
-    void OnMapClicked(object sender, MapClickedEventArgs e)
+    async void OnMapClicked(object sender, MapClickedEventArgs e)
     {
-        System.Diagnostics.Debug.WriteLine($"MapClick: {e.Location.Latitude}, {e.Location.Longitude}");
+        // Convert latitude and longitude to an address
         double latitude = e.Location.Latitude;
         double longitude = e.Location.Longitude;
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [MapClickedEventArgs] Latitude: " + latitude + " and longitude: " + longitude);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] Latitude: " + latitude + " and longitude: " + longitude);
+        string geocodeData = await _viewModel.GetGeocodeReverseData(latitude, longitude);
+        Console.WriteLine(geocodeData );
 
+        // Dit gaat fout
+        // Claim.Address address = JsonConvert.DeserializeObject<Claim.Address>(geocodeData);
+        //Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [address] " + address);
+
+        // Vul de velden in het Address object in
+        /*
+        _viewModel.Claim.AccidentAddress.Street = address.Street;
+        _viewModel.Claim.AccidentAddress.Suite = address.Suite;
+        _viewModel.Claim.AccidentAddress.City = address.City;
+        _viewModel.Claim.AccidentAddress.Zipcode = address.Zipcode;
+
+        // Optioneel: Als de geocoderingsgegevens ook latitude en longitude bevatten, kun je die ook instellen
+        _viewModel.Claim.AccidentAddress.Geo.Latitude = latitude;
+        _viewModel.Claim.AccidentAddress.Geo.Longitude = longitude;
+        */
     }
 
 }

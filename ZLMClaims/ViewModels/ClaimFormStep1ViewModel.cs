@@ -50,12 +50,7 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
 
     [RelayCommand]
     async Task Next() {
-        //localClaimService.SaveClaim(Claim);
-        //await navigationService.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Claim.QWhatIsDamaged => " + Claim?.QWhatIsDamaged);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Claim.DateOfOccurence => " + Claim?.DateOfOccurence);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] _claim.QWhatIsDamaged => " + Claim.QWhatIsDamaged);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] _claim.DateOfOccurence => " + Claim.DateOfOccurence);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Claim => " + Claim?.ToString());
         await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
         {
             {nameof(Claim), Claim}

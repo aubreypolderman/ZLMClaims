@@ -16,8 +16,17 @@ public partial class AllRepairCompaniesPage : ContentPage
         _viewModel = vm;
         BindingContext = vm;
         InitializeComponent();
-        // Lat/long to show region of Rotterdam as the default region. TODO: based on lat/long from user. Adres is Atjehstraat 100
-        map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(51.90083141102497, 4.485235210929851), Distance.FromMiles(5)));
+        LoadLocationAsync();
+    }
+
+    // Show current geo location of the user, with span of 5 miles
+    private async void LoadLocationAsync()
+    {
+        (double currentLatitude, double currentLongitude) = await _viewModel.GetCurrentLocation();
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(currentLatitude, currentLongitude), Distance.FromMiles(5)));
+        });
     }
 
     protected override async void OnAppearing()
