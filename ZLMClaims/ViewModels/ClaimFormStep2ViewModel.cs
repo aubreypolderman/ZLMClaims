@@ -9,38 +9,36 @@ using ZLMClaims.Views;
 
 namespace ZLMClaims.ViewModels;
 
-[QueryProperty(nameof(Claim), "Claim")]
+[QueryProperty(nameof(ClaimForm), "ClaimForm")]
 public partial class ClaimFormStep2ViewModel : BaseViewModel
 {
-    private Claim _claim;
+    private ClaimForm _claimForm;
     private CancellationTokenSource _cancelTokenSource;
     private bool _isCheckingLocation;
     readonly ObservableCollection<Position> _positions;
     public IEnumerable Positions => _positions;
 
     INavigationService navigationService;
-    ILocalClaimService localClaimService;
     IDialogService dialogService;
-    public ClaimFormStep2ViewModel(INavigationService navigationService, ILocalClaimService localClaimService, IDialogService dialogService)
+    public ClaimFormStep2ViewModel(INavigationService navigationService, IDialogService dialogService)
     {
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [constructor] Navigation injected");
         this.navigationService = navigationService;
-        this.localClaimService = localClaimService;
         this.dialogService = dialogService;
     }
 
     [ObservableProperty]
-    Claim claim;
+    ClaimForm claimForm;
 
-    public ObservableCollection<Claim> Claims { get; private set; } = new();
+    public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
 
     [RelayCommand]
     async Task Next()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [Next] Claim => " + Claim?.ToString());
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [Next] Claim => " + ClaimForm?.ToString());
         await Shell.Current.GoToAsync(nameof(ClaimFormStep3Page), true, new Dictionary<string, object>
     {
-        {nameof(Claim), Claim}
+        {nameof(ClaimForm), ClaimForm}
     });
     }
 

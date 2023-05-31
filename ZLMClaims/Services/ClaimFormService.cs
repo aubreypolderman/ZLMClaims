@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Reflection.Emit;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ZLMClaims.Models;
@@ -17,21 +18,16 @@ namespace ZLMClaims.Services
 
         public ClaimFormService(HttpClient httpClient )
         {
-            // check to see if _httpClient instance is not null
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [constructor] httpclient injected ");
-            //_httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+
 #if DEBUG
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService" +
-                "] [constructor] httpclient debug -> use handler ");
             HttpsClientHandlerService handler = new HttpsClientHandlerService();
             _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); // Assign the value to the class-level field
-#else
-            Console.WriteLine(DateTime.Now + "[..............] [UserService] [constructor] ELSE new httpclient ");            
+#else           
             _httpClient = new HttpClient();
 #endif
         }
 
-        public async Task<IEnumerable<Claim>> GetAllClaimFormsByPersonIdAsync(int personId)
+        public async Task<IEnumerable<ClaimForm>> GetAllClaimFormsByPersonIdAsync(int personId)
         {
             Console.WriteLine(DateTime.Now + "[..............] [ClaimService] [GetAllClaimsAsync] Invoke api for personId " + personId);
             var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/ClaimForms");
@@ -47,7 +43,7 @@ namespace ZLMClaims.Services
             {
                 Console.WriteLine(DateTime.Now + "[..............] [ClaimService] [GetAllContractsByPersonIdAsync] StatuscodeSucces is all good! Return response");
                 // Deserialize json response to Claim object
-                return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Claim>>(responseContent);
+                return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<ClaimForm>>(responseContent);
             }
             else
             {
@@ -55,6 +51,17 @@ namespace ZLMClaims.Services
                 throw new HttpRequestException($"Error getting user with id {personId}: {response.ReasonPhrase}");
             }
         }
+
+        public async Task<HttpResponseMessage> CreateClaimFormAsync(ClaimForm claimForm)
+        {
+            var json = JsonConvert.SerializeObject(claimForm);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("https://10.0.2.2:7040/api/ClaimForms", content);
+
+            return response;
+        }
+
 
         private static string LoadData()
         {

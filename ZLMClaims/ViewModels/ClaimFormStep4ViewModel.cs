@@ -8,10 +8,10 @@ using ZLMClaims.Views;
 
 namespace ZLMClaims.ViewModels;
 
-[QueryProperty(nameof(Claim), "Claim")]
+[QueryProperty(nameof(ClaimForm), "ClaimForm")]
 public partial class ClaimFormStep4ViewModel : BaseViewModel   
 {
-    private Claim _claim;
+    private ClaimForm _claimForm;
 
     INavigationService navigationService;
     public ClaimFormStep4ViewModel(INavigationService navigationService) 
@@ -21,17 +21,17 @@ public partial class ClaimFormStep4ViewModel : BaseViewModel
     }
 
     [ObservableProperty]
-    Claim claim;
+    ClaimForm claimForm;
 
-    public ObservableCollection<Claim> Claims { get; private set; } = new();
+    public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
 
     [RelayCommand]
     async Task Next()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4ViewModel] [Next] Claim => " + Claim?.ToString());
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4ViewModel] [Next] Claim => " + ClaimForm?.ToString());
         await Shell.Current.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
     {
-        {nameof(Claim), Claim}
+        {nameof(ClaimForm), ClaimForm}
     });
     }
 

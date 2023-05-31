@@ -11,8 +11,6 @@ public partial class AllRepairCompaniesPage : ContentPage
 
     public AllRepairCompaniesPage(AllRepairCompaniesViewModel vm)
 	{
-        Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesPage] [AllRepairCompaniesViewModel] Viewmodel injected");
-
         _viewModel = vm;
         BindingContext = vm;
         InitializeComponent();
@@ -31,14 +29,12 @@ public partial class AllRepairCompaniesPage : ContentPage
 
     protected override async void OnAppearing()
     {
-        base.OnAppearing();
-        Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesPage] [OnAppearing] Invoke _viewModel.GetAllRepairCompanies()");        
+        base.OnAppearing();       
         await _viewModel.GetAllRepairCompanies();
     }
 
     void OnMapClicked(object sender, MapClickedEventArgs e)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesPage] [OnMapClicked] " + e.Location.Latitude + "," +  e.Location.Longitude);
         System.Diagnostics.Debug.WriteLine($"MapClick: {e.Location.Latitude}, {e.Location.Longitude}");
 
     }

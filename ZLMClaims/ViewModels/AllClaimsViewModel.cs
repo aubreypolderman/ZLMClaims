@@ -11,24 +11,22 @@ namespace ZLMClaims.ViewModels
 {
     public partial class AllClaimsViewModel : BaseViewModel
     {
-        public ObservableCollection<Claim> _claims;
+        public ObservableCollection<ClaimForm> _claimsForms;
         
         INavigationService navigationService;
         IClaimFormService claimFormService;
         IDialogService dialogService;
         IConnectivity connectivityService;
-        ILocalClaimService localClaimService;
 
         // By making the claims observable, the view is automatically refreshed whenever a change occure
-        public ObservableCollection<Claim> Claims { get; private set; } = new();
+        public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
 
-        public AllClaimsViewModel(INavigationService navigationService, IClaimFormService claimFormService, IDialogService dialogService, IConnectivity connectivityService, ILocalClaimService localClaimService)
+        public AllClaimsViewModel(INavigationService navigationService, IClaimFormService claimFormService, IDialogService dialogService, IConnectivity connectivityService)
         {
             this.navigationService = navigationService;
             this.claimFormService = claimFormService;
             this.dialogService = dialogService;
             this.connectivityService = connectivityService;
-            this.localClaimService = localClaimService;
         }
 
         [RelayCommand]
@@ -53,14 +51,18 @@ namespace ZLMClaims.ViewModels
                 // Connection to internet is available
                 Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Internet connection is available");
 
-                if (Claims.Any()) Claims.Clear();
-                var claims = await claimFormService.GetAllClaimFormsByPersonIdAsync(userId);
-                //var claims = await localClaimService.GetClaims();  
+                if (ClaimForms.Any()) ClaimForms.Clear();
+                var claimForms = await claimFormService.GetAllClaimFormsByPersonIdAsync(userId);
+                Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim response:" + claimForms.ToString());
 
-                foreach (var claim in claims)
+                foreach (var claimForm in claimForms)
                 {
-                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim id:" + claim.Id);
-                    Claims.Add(claim);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim id:" + claimForm.Id);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim date:" + claimForm.DateOfOccurence);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Contract id:" + claimForm.Contract.Id);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Produkt:" + claimForm.Contract.Product);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Licenseplate:" + claimForm.Contract.LicensePlate);
+                    ClaimForms.Add(claimForm);
                 }
 
             }

@@ -10,7 +10,7 @@
 
     <!-- Display contracts in a list -->
     <CollectionView x:Name="claimsCollection"
-                    ItemsSource="{Binding Claims}"
+                    ItemsSource="{Binding ClaimForms}"
                     Margin="20"
                     SelectionMode="Single">
 
@@ -25,7 +25,7 @@
 
         <!-- Define the appearance of each item in the list -->
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Claim">
+            <DataTemplate x:DataType="models:ClaimForm">
                 <SwipeView>
                     <Frame BorderColor="{StaticResource Primary}" 
                            CornerRadius="10"

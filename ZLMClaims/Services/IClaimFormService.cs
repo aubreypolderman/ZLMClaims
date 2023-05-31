@@ -3,6 +3,8 @@ namespace ZLMClaims.Services
 {
     public interface IClaimFormService
     {
-        Task<IEnumerable<Claim>> GetAllClaimFormsByPersonIdAsync(int personId);
+        Task<IEnumerable<ClaimForm>> GetAllClaimFormsByPersonIdAsync(int personId);
+        Task<HttpResponseMessage> CreateClaimFormAsync(ClaimForm claimForm);
+
     }
 }

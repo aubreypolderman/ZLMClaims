@@ -8,7 +8,6 @@ public partial class ClaimFormStep1Page : ContentPage
     public ClaimFormStep1Page(ClaimFormStep1ViewModel vm)
 
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1Page] [ClaimFormStep1ViewModel] viewmodel injected");
         BindingContext = vm;
         InitializeComponent();
     }

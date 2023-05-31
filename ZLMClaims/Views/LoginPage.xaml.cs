@@ -22,7 +22,6 @@ public partial class LoginPage : ContentPage
     // Auth0 login button
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] start");
         var loginResult = await auth0Client.LoginAsync();
         Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] na uitvoer LoginAsync met result: " + loginResult);
 
@@ -41,7 +40,6 @@ public partial class LoginPage : ContentPage
         }
         else
         {
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] No Succces");
             await DisplayAlert("Error", loginResult.ErrorDescription, "OK");
         }
     }
@@ -65,7 +63,6 @@ public partial class LoginPage : ContentPage
     private async void OnLoaded(object sender, EventArgs e)
     {
         var user = await auth0Client.GetAuthenticatedUser();
-        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] user invoked");
 
         if (user != null)
         {

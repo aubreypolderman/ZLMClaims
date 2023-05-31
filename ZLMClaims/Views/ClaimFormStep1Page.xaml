@@ -20,12 +20,12 @@
         <!-- Show vehicle policy info -->
         <Label Text="{local:Translate VehicleDetails}" TextColor="{StaticResource Primary}"/>
         <HorizontalStackLayout Padding="0" Spacing="5">
-            <Label Style="{StaticResource LargeLabel}" Text="{Binding Claim.Contract.Product}" />
-            <Label Style="{StaticResource MediumLabel}" Text="{Binding Claim.Contract.Make}" />
-            <Label Style="{StaticResource MediumLabel}" Text="{Binding Claim.Contract.Model}" />
+            <Label Style="{StaticResource LargeLabel}" Text="{Binding ClaimForm.Contract.Product}" />
+            <Label Style="{StaticResource MediumLabel}" Text="{Binding ClaimForm.Contract.Make}" />
+            <Label Style="{StaticResource MediumLabel}" Text="{Binding ClaimForm.Contract.Model}" />
         </HorizontalStackLayout>
         <HorizontalStackLayout Padding="0" Spacing="5">
-            <Label Style="{StaticResource LargeLabel}" Text="{Binding Claim.Contract.LicensePlate}" />
+            <Label Style="{StaticResource LargeLabel}" Text="{Binding ClaimForm.Contract.LicensePlate}" />
         </HorizontalStackLayout>
 
         <Label/>
@@ -51,13 +51,13 @@
                 TextColor="{StaticResource Primary}"
                 VerticalOptions="Center" />
             <DatePicker 
-                Date="{Binding Claim.DateOfOccurence}"
+                Date="{Binding ClaimForm.DateOfOccurence}"
                 MinimumDate="{Binding MinDate}"
                 MaximumDate="{Binding MaxDate}"
                 Format="dd/MM/yyyy"
                 Margin="10,0,0,0"/>
             <TimePicker 
-                Time="{Binding Claim.DateOfOccurence}"
+                Time="{Binding ClaimForm.DateOfOccurence}"
                 Format="HH:mm"
                 Margin="10,0,0,0" />
         </StackLayout>
@@ -68,7 +68,7 @@
         <!-- Gebruik van comm.tooliit de validator. Zie ppt-->
         <Label Text="{local:Translate Q_WhatHappened}" TextColor="{StaticResource Primary}"/>
         <Editor 
-            Text="{Binding Claim.QWhatHappened}"      
+            Text="{Binding ClaimForm.QWhatHappened}"      
             x:Name="QWhatHappened"
             Placeholder="{local:Translate Q_WhatHappened}"
             HeightRequest="50" />
@@ -76,7 +76,7 @@
         <!-- Where's the damage-->
         <Label Text="{local:Translate Q_WhereDamaged}" TextColor="{StaticResource Primary}"/>
         <Editor 
-            Text="{Binding Claim.QWhereDamaged}"      
+            Text="{Binding ClaimForm.QWhereDamaged}"      
             x:Name="QWhereDamaged"
             Placeholder="{local:Translate Q_WhereDamaged}"
             HeightRequest="50" />
@@ -84,7 +84,7 @@
         <!-- What is damaged-->
         <Label Text="{local:Translate Q_WhatIsDamaged}" TextColor="{StaticResource Primary}"/>
         <Editor 
-            Text="{Binding Claim.QWhatIsDamaged}"      
+            Text="{Binding ClaimForm.QWhatIsDamaged}"      
             x:Name="QWhatIsDamaged"
             Placeholder="{local:Translate Q_WhatIsDamaged}"
             HeightRequest="50" />

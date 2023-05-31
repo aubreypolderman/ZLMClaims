@@ -8,10 +8,10 @@ using ZLMClaims.Views;
 
 namespace ZLMClaims.ViewModels;
 
-[QueryProperty(nameof(Claim), "Claim")]
+[QueryProperty(nameof(ClaimForm), "ClaimForm")]
 public partial class ClaimFormStep1ViewModel : BaseViewModel   
 {
-    private Claim _claim;
+    private ClaimForm _claimForm;
     private string _selectedOption;
 
     public List<string> Options { get; } = new List<string>
@@ -34,26 +34,24 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     public DateTime MinDate => DateTime.Now.AddMonths(-3);
 
     INavigationService navigationService;
-    ILocalClaimService localClaimService;
-    public ClaimFormStep1ViewModel(INavigationService navigationService, ILocalClaimService localClaimService) 
+    public ClaimFormStep1ViewModel(INavigationService navigationService ) 
     {
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [constructor] Navigation injected");
         Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [DEBUG!!!!!!!!!!********] Navigation injected");
         this.navigationService = navigationService;
-        this.localClaimService = localClaimService;
     }
 
     [ObservableProperty]
-    Claim claim;
+    ClaimForm claimForm;
 
-    public ObservableCollection<Claim> Claims { get; private set; } = new();
+    public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
 
     [RelayCommand]
     async Task Next() {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Claim => " + Claim?.ToString());
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Claim => " + ClaimForm?.ToString());
         await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
         {
-            {nameof(Claim), Claim}
+            {nameof(ClaimForm), ClaimForm}
         });
     }
 

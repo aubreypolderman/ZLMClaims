@@ -50,7 +50,6 @@ public static class MauiProgram
         builder.Services.AddTransient<ContractPage>();
 
         builder.Services.AddHttpClient<IClaimFormService, ClaimFormService>();
-        builder.Services.AddSingleton<ILocalClaimService, LocalClaimService>();
         builder.Services.AddSingleton<AllClaimsViewModel>();
         builder.Services.AddTransient<AllClaimsPage>();
         builder.Services.AddTransient<ClaimFormStep1Page>();

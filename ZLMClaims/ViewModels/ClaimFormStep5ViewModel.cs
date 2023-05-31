@@ -8,25 +8,24 @@ using ZLMClaims.Views;
 
 namespace ZLMClaims.ViewModels;
 
-[QueryProperty(nameof(Claim), "Claim")]
+[QueryProperty(nameof(ClaimForm), "ClaimForm")]
 public partial class ClaimFormStep5ViewModel : BaseViewModel   
 {
-    private Claim _claim;
+    private ClaimForm _claimForm;
 
     INavigationService navigationService;
-    readonly ILocalClaimService localClaimService;
+    readonly IClaimFormService claimFormService;
 
-    public ClaimFormStep5ViewModel(INavigationService navigationService, ILocalClaimService localClaimService) 
+    public ClaimFormStep5ViewModel(INavigationService navigationService, IClaimFormService claimFormService) 
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [constructor] Navigation and localclaimservice injected");
         this.navigationService = navigationService;
-        this.localClaimService = localClaimService;
+        this.claimFormService = claimFormService;
     }
 
     [ObservableProperty]
-    Claim claim;
+    ClaimForm claimForm;
 
-    public ObservableCollection<Claim> Claims { get; private set; } = new();
+    public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
 
     /*
     [RelayCommand]
@@ -38,17 +37,9 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
     [RelayCommand]
     async Task Send()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Before Send] Cause of damange => " + Claim?.QCauseOfDamage);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Before Send] DateOfOccurence => " + Claim?.DateOfOccurence);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Before Send] What happened => " + Claim?.QWhatHappened);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Before Send] What is damaged => " + Claim?.QWhatIsDamaged);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Before Send] Where's the damage => " + Claim?.QWhereDamaged);
-        await localClaimService.SaveClaim(Claim);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [After Send] Cause of damange => " + Claim?.QCauseOfDamage);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [After Send] DateOfOccurence => " + Claim?.DateOfOccurence);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [After Send] What happened => " + Claim?.QWhatHappened);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [After Send] What is damaged => " + Claim?.QWhatIsDamaged);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [After Send] Where's the damage => " + Claim?.QWhereDamaged);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4ViewModel] [Next] Claim => " + ClaimForm?.ToString());
+       // await claimFormService.
+   
     }
 
     [RelayCommand]

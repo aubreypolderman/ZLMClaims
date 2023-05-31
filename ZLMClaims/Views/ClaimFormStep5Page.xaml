@@ -44,7 +44,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   Text="{Binding Claim.Contract.Product}"
+                   Text="{Binding ClaimForm.Contract.Product}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -59,7 +59,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   Text="{Binding Claim.Contract.Make}"
+                   Text="{Binding ClaimForm.Contract.Make}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -74,7 +74,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
-                   Text="{Binding Claim.Contract.Model}"
+                   Text="{Binding ClaimForm.Contract.Model}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -89,7 +89,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
-                   Text="{Binding Claim.Contract.LicensePlate}"
+                   Text="{Binding ClaimForm.Contract.LicensePlate}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -125,7 +125,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   Text="{Binding Claim.DateOfOccurence}"
+                   Text="{Binding ClaimForm.DateOfOccurence}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -140,7 +140,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   Text="{Binding Claim.QCauseOfDamage}"
+                   Text="{Binding ClaimForm.QCauseOfDamage}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -155,7 +155,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
-                   Text="{Binding Claim.QWhatIsDamaged}"
+                   Text="{Binding ClaimForm.QWhatIsDamaged}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -170,7 +170,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
-                   Text="{Binding Claim.QWhereDamaged}"
+                   Text="{Binding ClaimForm.QWhereDamaged}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -185,7 +185,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="4"
                    Grid.Column="1"
-                   Text="{Binding Claim.QWhatHappened}"
+                   Text="{Binding ClaimForm.QWhatHappened}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -200,7 +200,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="5"
                    Grid.Column="1"
-                   Text="{Binding Claim.AccidentAddress.Street}"
+                   Text="{Binding ClaimForm.Street}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -215,7 +215,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="6"
                    Grid.Column="1"
-                   Text="{Binding Claim.AccidentAddress.Zipcode}"
+                   Text="{Binding ClaimForm.ZipCode}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -230,7 +230,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="7"
                    Grid.Column="1"
-                   Text="{Binding Claim.AccidentAddress.City}"
+                   Text="{Binding ClaimForm.City}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -260,7 +260,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
-                   Text="{Binding Claim.Image1}"
+                   Text="{Binding ClaimForm.Image1}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
 
@@ -274,7 +274,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   Text="{Binding Claim.Image2}"
+                   Text="{Binding ClaimForm.Image2}"
                    HorizontalOptions="Start"
                    VerticalOptions="End" />
         </Grid>

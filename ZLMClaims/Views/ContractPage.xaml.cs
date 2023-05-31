@@ -10,7 +10,6 @@ public partial class ContractPage : ContentPage
 
     public ContractPage(ContractViewModel vm) 
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ContractPage] [noargs constructor] Start");
         BindingContext = vm;
         _viewModel = vm;
         InitializeComponent();

@@ -40,7 +40,6 @@ public partial class ClaimFormStep2Page : ContentPage
         // Convert latitude and longitude to an address
         double latitude = e.Location.Latitude;
         double longitude = e.Location.Longitude;
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] Latitude: " + latitude + " and longitude: " + longitude);
         string geocodeData = await _viewModel.GetGeocodeReverseData(latitude, longitude);
         Console.WriteLine(geocodeData );
 

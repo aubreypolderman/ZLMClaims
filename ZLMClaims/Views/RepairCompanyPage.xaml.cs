@@ -9,7 +9,6 @@ public partial class RepairCompanyPage : ContentPage
 
     public RepairCompanyPage(RepairCompanyViewModel viewModel) 
     {
-        Console.WriteLine("[RepairCompanyPage] [noargs constructor] [==============] Start");
 
         BindingContext = viewModel;
         InitializeComponent();
@@ -17,7 +16,6 @@ public partial class RepairCompanyPage : ContentPage
 
     private void OnPhoneNumberTapped(object sender, EventArgs e)
     {
-        Console.WriteLine("[RepairCompanyPage] [OnPhoneNumberTapped] [==============] Start");
         //Device.OpenUri(new Uri("tel:1234567890"));
         /*
         var phoneDialer = DependencyService.Get<IPhoneDialer>();
