@@ -36,8 +36,6 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     INavigationService navigationService;
     public ClaimFormStep1ViewModel(INavigationService navigationService ) 
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [constructor] Navigation injected");
-        Console.WriteLine("[..............] [ClaimFormStep1ViewModel] [DEBUG!!!!!!!!!!********] Navigation injected");
         this.navigationService = navigationService;
     }
 
@@ -48,7 +46,6 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
 
     [RelayCommand]
     async Task Next() {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Claim => " + ClaimForm?.ToString());
         await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
         {
             {nameof(ClaimForm), ClaimForm}

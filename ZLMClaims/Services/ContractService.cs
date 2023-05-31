@@ -22,12 +22,12 @@ public class ContractService : IContractService
 #endif
     }
 
-    public async Task<IEnumerable<Contract>> GetAllContractsByPersonIdAsync(int personId)
+    public async Task<IEnumerable<Contract>> GetAllContractsByPersonIdAsync(int userId)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] Get all contracts for user with id " + personId);
+        Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] Get all contracts for user with id " + userId);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] voor de call");
 
-        var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts");
+        var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts/{userId}");
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] response: " + response);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatusCode response: " + response.StatusCode);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] ReasonPhrase response: " + response.ReasonPhrase);
@@ -43,7 +43,7 @@ public class ContractService : IContractService
         else
         {
             Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] Errortje getting contract for user with id {id} ");
-            throw new HttpRequestException($"Error getting user with id {personId}: {response.ReasonPhrase}");
+            throw new HttpRequestException($"Error getting user with id {userId}: {response.ReasonPhrase}");
         }
     }
 
@@ -79,7 +79,7 @@ public class ContractService : IContractService
         return @"[
                 {
                     ""id"": 1,
-                    ""personid"": 1,
+                    ""userid"": 1,
                     ""product"": ""Personenauto"",
                     ""make"": ""KIA"",
                     ""model"": ""Ceed"",
@@ -91,7 +91,7 @@ public class ContractService : IContractService
                 },
                 {
                     ""id"": 2,
-                    ""personid"": 1,
+                    ""userid"": 1,
                     ""product"": ""Personenauto"",
                     ""make"": ""Opel"",
                     ""model"": ""Astra"",
@@ -103,7 +103,7 @@ public class ContractService : IContractService
                 },
                 {
                     ""id"": 3,
-                    ""personid"": 1,
+                    ""userid"": 1,
                     ""product"": ""Caravan"",
                     ""make"": ""KIP"",
                     ""model"": ""Roma"",

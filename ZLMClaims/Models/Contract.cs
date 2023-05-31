@@ -7,8 +7,8 @@ public class Contract
     [JsonPropertyName("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("personId")]
-    public int PersonId { get; set; }
+    [JsonPropertyName("userId")]
+    public int UserId { get; set; }
 
     [JsonPropertyName("product")]
     public string Product { get; set; }
@@ -33,8 +33,7 @@ public class Contract
 
     [JsonPropertyName("annualPolicyPremium")]
     public double AnnualPolicyPremium { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+
     public User User { get; set; }
 
     // Add method to determine icon?

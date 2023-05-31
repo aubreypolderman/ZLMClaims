@@ -4,7 +4,6 @@ using System.Text.Json.Serialization;
 
 namespace ZLMClaims.Models
 {
-    [Table("user")]
     public class User
     {
         [JsonPropertyName("id")]
@@ -35,10 +34,10 @@ namespace ZLMClaims.Models
         public string Zipcode { get; set; }
 
         [JsonPropertyName("latitude")]
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
 
         [JsonPropertyName("longitude")]
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
 
 
 

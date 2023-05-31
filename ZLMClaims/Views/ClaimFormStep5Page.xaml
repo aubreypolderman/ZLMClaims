@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:ZLMClaims"
              Title="{local:Translate ClaimFormPageTitle}"
              x:DataType="viewmodels:ClaimFormStep5ViewModel">
-    <VerticalStackLayout Spacing="10" Margin="5">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Margin="5">
         <Label 
             Text="{local:Translate DamageSummary}"
             FontSize="25"
@@ -301,4 +302,5 @@
         </Grid>
 
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -47,17 +47,21 @@ namespace ZLMClaims.Services
             }
             else
             {
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimService] [GetAllContractsByPersonIdAsync] Errortje getting contract for user with id {id} ");
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimService] [GetAllContractsByPersonIdAsync] Errort getting contract for user with id {id} ");
                 throw new HttpRequestException($"Error getting user with id {personId}: {response.ReasonPhrase}");
             }
         }
 
         public async Task<HttpResponseMessage> CreateClaimFormAsync(ClaimForm claimForm)
-        {
+        {           
             var json = JsonConvert.SerializeObject(claimForm);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] Serialize to Json: " + json);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-
             var response = await _httpClient.PostAsync("https://10.0.2.2:7040/api/ClaimForms", content);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] Response: " + response);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] StatusCode response: " + response.StatusCode);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] ReasonPhrase response: " + response.ReasonPhrase);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] RequestMessage response: " + response.RequestMessage);
 
             return response;
         }
