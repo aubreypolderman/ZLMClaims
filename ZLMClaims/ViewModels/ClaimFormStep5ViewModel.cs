@@ -95,7 +95,9 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
 
         if (response.IsSuccessStatusCode)
         {
-            await dialogService.DisplayAlertAsync("Succes", "Claimform has been succesfully sent to ZLM", "OK");
+            await dialogService.DisplayAlertAsync("Succes", "Claimform has been succesfully sent to ZLM", "OK"); 
+            await Shell.Current.GoToAsync(nameof(AllClaimsPage));
+
         }
         else
         {
