@@ -22,11 +22,11 @@
         <Grid>
             <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -39,14 +39,14 @@
                    Text="{local:Translate Product}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="0"
                      Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.Contract.Product}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- Make-->
             <BoxView Grid.Row="1"/>
@@ -54,14 +54,14 @@
                    Text="{local:Translate Make}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="1"
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.Contract.Make}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- Model-->
             <BoxView Grid.Row="2"/>
@@ -69,14 +69,14 @@
                    Text="{local:Translate Model}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="2"
                      Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.Contract.Model}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- Licenseplate-->
             <BoxView Grid.Row="3"/>
@@ -84,14 +84,14 @@
                    Text="{local:Translate LicensePlate}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="3"
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.Contract.LicensePlate}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
         </Grid>
         <!-- Claim details -->
@@ -99,15 +99,15 @@
         <Grid>
             <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -120,14 +120,14 @@
                    Text="{local:Translate DateOfOccurence}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="0"
                      Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.DateOfOccurence}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- Question: Cause of damaged-->
             <BoxView Grid.Row="1"/>
@@ -135,14 +135,14 @@
                    Text="Cause of damage"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="1"
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.QCauseOfDamage}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- Question: What is damaged-->
             <BoxView Grid.Row="2"/>
@@ -150,14 +150,14 @@
                    Text="{local:Translate Q_WhatIsDamaged}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="2"
                      Grid.Column="1"/>
             <Label Grid.Row="2"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.QWhatIsDamaged}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- Question: Where is the damage-->
             <BoxView Grid.Row="3"/>
@@ -165,14 +165,14 @@
                    Text="{local:Translate Q_WhereDamaged}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="3"
                      Grid.Column="1"/>
             <Label Grid.Row="3"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.QWhereDamaged}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- Question: What happened-->
             <BoxView Grid.Row="4"/>
@@ -180,14 +180,14 @@
                    Text="{local:Translate Q_WhatHappened}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="4"
                      Grid.Column="1"/>
             <Label Grid.Row="4"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.QWhatHappened}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- Address-->
             <BoxView Grid.Row="5"/>
@@ -195,14 +195,14 @@
                    Text="{local:Translate Street}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="5"
                      Grid.Column="1"/>
             <Label Grid.Row="5"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.Street}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- Zipcode-->
             <BoxView Grid.Row="6"/>
@@ -210,14 +210,14 @@
                    Text="{local:Translate ZipCode}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="6"
                      Grid.Column="1"/>
             <Label Grid.Row="6"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.ZipCode}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <!-- City-->
             <BoxView Grid.Row="7"/>
@@ -225,14 +225,14 @@
                    Text="{local:Translate City}"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="7"
                      Grid.Column="1"/>
             <Label Grid.Row="7"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.City}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
         </Grid>
 
@@ -241,8 +241,8 @@
         <Grid>
             <!-- Verkorte notatie is ook mogelijk, Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -255,28 +255,28 @@
                    Text="Image 1"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="0"
                      Grid.Column="1"/>
             <Label Grid.Row="0"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.Image1}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
 
             <BoxView Grid.Row="1"/>
             <Label Grid.Row="1"
                    Text="Image 2"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
             <BoxView Grid.Row="1"
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
                    Text="{Binding ClaimForm.Image2}"
                    HorizontalOptions="Start"
-                   VerticalOptions="End" />
+                   VerticalOptions="EndAndExpand" />
         </Grid>
 
         <!-- previous and send claimform-->

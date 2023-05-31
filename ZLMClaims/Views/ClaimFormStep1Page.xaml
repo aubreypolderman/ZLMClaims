@@ -71,7 +71,7 @@
             Text="{Binding ClaimForm.QWhatHappened}"      
             x:Name="QWhatHappened"
             Placeholder="{local:Translate Q_WhatHappened}"
-            HeightRequest="50" />
+            VerticalOptions="StartAndExpand" />
 
         <!-- Where's the damage-->
         <Label Text="{local:Translate Q_WhereDamaged}" TextColor="{StaticResource Primary}"/>
@@ -79,7 +79,7 @@
             Text="{Binding ClaimForm.QWhereDamaged}"      
             x:Name="QWhereDamaged"
             Placeholder="{local:Translate Q_WhereDamaged}"
-            HeightRequest="50" />
+            VerticalOptions="StartAndExpand" />
 
         <!-- What is damaged-->
         <Label Text="{local:Translate Q_WhatIsDamaged}" TextColor="{StaticResource Primary}"/>
@@ -87,7 +87,7 @@
             Text="{Binding ClaimForm.QWhatIsDamaged}"      
             x:Name="QWhatIsDamaged"
             Placeholder="{local:Translate Q_WhatIsDamaged}"
-            HeightRequest="50" />
+            VerticalOptions="StartAndExpand" />
 
         <!-- previous and next page-->
         <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
