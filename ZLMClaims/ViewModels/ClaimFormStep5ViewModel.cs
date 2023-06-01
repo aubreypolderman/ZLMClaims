@@ -79,7 +79,7 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
             QWhatHappened = ClaimForm.QWhatHappened,
             QWhereDamaged = ClaimForm.QWhereDamaged,
             QWhatIsDamaged = ClaimForm.QWhatIsDamaged,
-            Image1 = "img5001.jpg",
+            Image1 = ClaimForm.Image1,
             Image2 = "img5002.jpg",
             Street = ClaimForm.Street,
             Suite = ClaimForm.Suite,

@@ -61,6 +61,7 @@ namespace ZLMClaims.ViewModels
                     //Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Contract id:" + claimForm.Contract.Id);
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Produkt:" + claimForm.Contract.Product);
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Licenseplate:" + claimForm.Contract.LicensePlate);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Cause of damage:" + claimForm.QCauseOfDamage);
                     ClaimForms.Add(claimForm);
                 }
 

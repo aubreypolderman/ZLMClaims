@@ -12,7 +12,8 @@ public partial class ClaimFormStep4Page : ContentPage
         InitializeComponent();
 	}
     public async void OnTakePhotoBtnClicked(object sender, EventArgs e)
-    {        
+    {
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] START ");
         if (MediaPicker.Default.IsCaptureSupported)
         {
             FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
@@ -39,6 +40,11 @@ public partial class ClaimFormStep4Page : ContentPage
                 // Close the source stream
                 sourceStream.Close();
                 //myImage.Source = ImageSource.FromStream(() => sourceStream);
+                // Set the image source
+                myImage.Source = ImageSource.FromFile(localFilePath);
+
+                // Update the ImageFileName property in the viewmodel
+                ((ClaimFormStep4ViewModel)BindingContext).ImageFileName = photo.FileName;
             }
         }
     }

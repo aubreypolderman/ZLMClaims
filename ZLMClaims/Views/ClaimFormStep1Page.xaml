@@ -37,7 +37,7 @@
             VerticalOptions="Start" 
             HorizontalOptions="Start" />
         <Picker 
-            Title="Cause of damage" 
+            Title = "- select Cause of damage -"
             ItemsSource="{Binding Options}" 
             SelectedItem="{Binding SelectedOption}">
         </Picker>
