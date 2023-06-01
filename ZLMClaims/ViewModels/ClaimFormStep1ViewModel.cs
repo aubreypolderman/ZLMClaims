@@ -12,7 +12,6 @@ namespace ZLMClaims.ViewModels;
 public partial class ClaimFormStep1ViewModel : BaseViewModel   
 {
     private ClaimForm _claimForm;
-    //private string _selectedOption;
     private string _qCauseOfDamage;
 
     public List<string> Options { get; } = new List<string>
