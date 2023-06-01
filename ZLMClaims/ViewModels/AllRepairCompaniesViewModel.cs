@@ -59,13 +59,12 @@ public class AllRepairCompaniesViewModel : BaseViewModel
                 if (repaircompany != null)
                 { 
                     RepairCompanies.Add(repaircompany);
-                    Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + repaircompany.Name);
                     
                     // calculate distance between current location and location of selected repaircompany
                     (double currentLatitude, double currentLongitude) = await GetCurrentLocation();
-                    Console.WriteLine($"Latitude: {currentLatitude}, Longitude: {currentLongitude}");
 
                     string formattedDistance = CalculateDistanceInKm(currentLatitude, currentLongitude, repaircompany.Latitude, repaircompany.Longitude);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + repaircompany.Name  + " - distance: " + formattedDistance + " km");
 
                     // Make a pin for every repaircompany
                     var position = new Position("distance: " + formattedDistance + " km", repaircompany.Name,  new Location(repaircompany.Latitude, repaircompany.Longitude));
@@ -76,8 +75,7 @@ public class AllRepairCompaniesViewModel : BaseViewModel
         catch (Exception ex)
         {
 
-            Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + "ERROR message: " + ex.Message);
-            Console.WriteLine($"Unable to get Repaircompanies: {ex.Message}");
+            Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + "Failed to retrieve list. ERROR message: " + ex.Message);
             await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Repaircompanies", "OK");
         }
         finally
@@ -124,7 +122,7 @@ public class AllRepairCompaniesViewModel : BaseViewModel
         catch (Exception ex)
         {
             // Unable to get location
-            Console.WriteLine($"Unable to get location: {ex.Message}");
+            Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetCurrentLocation] " + "Failed to retrieve current location. ERROR message: " + ex.Message);
             await dialogService.DisplayAlertAsync("Error", "Failed to get current location", "OK");
         }
         finally

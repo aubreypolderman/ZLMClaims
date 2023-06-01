@@ -32,7 +32,6 @@ public partial class UserViewModel : BaseViewModel
 
     public UserViewModel(INavigationService navigationService, IUserService userService)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [constructor] Navigation and IUserService injected");
         this.navigationService = navigationService;
         this.userService = userService;
 
@@ -41,10 +40,9 @@ public partial class UserViewModel : BaseViewModel
 
     public async Task LoadDataAsync()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [LoadDataAsync]");
         // retrieve the userid from the preference set        
         int userId = Preferences.Default.Get("userId", -1);
-        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [LoadDataAsync] retrieved user name: " + userId);
+        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [LoadDataAsync] retrieved user id: " + userId);
         var user = await userService.GetUserByIdAsync(userId);
         // Assign the retrieved user data to the User property
         User = user; 
@@ -54,16 +52,12 @@ public partial class UserViewModel : BaseViewModel
 
     public void OnThemeSwitchToggled()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Current theme: " + Application.Current.RequestedTheme);
-
         if (Application.Current.RequestedTheme == AppTheme.Dark)
         {
-            Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Light");
             Application.Current.UserAppTheme = AppTheme.Light;
         }
         else
         {
-            Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnThemeSwitchToggledAsyn] Switch to theme Dark");
             Application.Current.UserAppTheme = AppTheme.Dark;
             switchToggleDarkTheme = true;
         }
@@ -73,7 +67,6 @@ public partial class UserViewModel : BaseViewModel
 
     public void OnLanguageSwitchToggled()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnLanguageSwitchToggled] ");
         var switchToCulture = AppResources.Culture.TwoLetterISOLanguageName
             .Equals("nl", StringComparison.InvariantCultureIgnoreCase) ?
             new CultureInfo("en-US") : new CultureInfo("nl-NL");
@@ -85,13 +78,11 @@ public partial class UserViewModel : BaseViewModel
 
     public void OnEmailConfirmationSwitchToggled()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnEmailConfirmationSwitchToggled]");
         if (switchToggleEmailConfirmation ? false: true);
     }
 
     public async Task OnEmailBtnClicked()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [OnEmailBtnClicked]");
         if (Email.Default.IsComposeSupported)
         {
             var message = new EmailMessage

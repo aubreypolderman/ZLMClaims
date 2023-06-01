@@ -33,19 +33,14 @@ namespace ZLMClaims.ViewModels
 
         public AllContractsViewModel(INavigationService navigationService, IContractService contractService, IDialogService dialogService, IConnectivity connectivity)
         {
-            Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [constructor] Navigation and IContractService injected");
             this.navigationService = navigationService;
             this.contractService = contractService;            
             this.dialogService = dialogService;
-            this.connectivity = connectivity;
-
-            //GetAllContracts();
-            
+            this.connectivity = connectivity;            
         }
 
         public async Task GetAllContracts()
         {
-            Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts]");
             // retrieve the userid from the preference set        
             int userId = Preferences.Default.Get("userId", -1);
 
@@ -56,10 +51,10 @@ namespace ZLMClaims.ViewModels
                 if (Contracts.Any()) Contracts.Clear();
                 
                 var contracts = await contractService.GetAllContractsByPersonIdAsync(userId);
-                Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] contractService invoked for personId " + userId);
+                Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] contractService invoked for userId " + userId);
                 foreach (var contract in contracts)
                 {
-                    Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] contract:" + contract.Product);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] contract:" + contract.Product + " with licenseplate " + contract.LicensePlate);
                     Contracts.Add(contract);
                 }
 

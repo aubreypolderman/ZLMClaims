@@ -32,10 +32,11 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
     [RelayCommand]
     async Task Send()
     {
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] ClaimId => " + ClaimForm.Id);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] QWhatHappened => " + ClaimForm.QWhatHappened);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] QWhereDamaged => " + ClaimForm.QWhereDamaged);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] Product => " + ClaimForm.Contract.Product);
-        
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] Product => " + ClaimForm.Contract.Product);        
+
         // Make the claimform object
         var user = new User
         {
@@ -71,6 +72,7 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
 
         var claimForm = new ClaimForm
         {
+            Id = ClaimForm.Id,
             ContractId = 1, //ClaimForm.ContractId,
             DateOfOccurence = ClaimForm.DateOfOccurence,
             QCauseOfDamage = ClaimForm.QCauseOfDamage,
@@ -87,21 +89,20 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
             Longitude = ClaimForm.Longitude,
             Contract = contract
         };
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] ClaimForm instantiated");
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] ClaimForm instantiated for claim with id = " + ClaimForm.Id);
 
         // Save the claimform        
-        var response = await claimFormService.CreateClaimFormAsync(claimForm);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] Result reponse => " + response);
+        bool isNewClaim = await claimFormService.SaveClaimFormAsync(claimForm);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] Result saveClaimFormAsync => " + isNewClaim);
 
-        if (response.IsSuccessStatusCode)
+        if (isNewClaim)
         {
-            await dialogService.DisplayAlertAsync("Succes", "Claimform has been succesfully sent to ZLM", "OK"); 
+            await dialogService.DisplayAlertAsync("Success", "Claim form has been successfully sent to ZLM", "OK");
             await Shell.Current.GoToAsync(nameof(AllClaimsPage));
-
         }
         else
         {
-            await dialogService.DisplayAlertAsync("Error", "Error when sending ClaimForm to ZLM: " + response.ReasonPhrase, "OK");
+            await dialogService.DisplayAlertAsync("Error", "Error when sending ClaimForm to ZLM", "OK");
         }
 
     }

@@ -27,7 +27,7 @@ public class ContractService : IContractService
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] Get all contracts for user with id " + userId);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] voor de call");
 
-        var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts/{userId}");
+        var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts/user/{userId}");
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] response: " + response);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatusCode response: " + response.StatusCode);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] ReasonPhrase response: " + response.ReasonPhrase);

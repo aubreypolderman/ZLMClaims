@@ -104,8 +104,8 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
         catch (Exception ex)
         {
             // Unable to get location
-            Console.WriteLine($"Unable to get location: {ex.Message}");
-            await dialogService.DisplayAlertAsync("Error", "Failed to get current location", "OK");
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetCurrentLocation] " + "Failed to retrieve current location. ERROR message: " + ex.Message);
+            await dialogService.DisplayAlertAsync("Error", "Failed to retrieve current location", "OK");
         }
         finally
         {

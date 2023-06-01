@@ -31,8 +31,7 @@ namespace ZLMClaims.ViewModels
 
         [RelayCommand]
         public async Task GetAllClaims()
-        {
-            Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] ");
+        {            
 
             // retrieve the userid from the preference set        
             int userId = Preferences.Default.Get("userId", -1);
@@ -59,7 +58,7 @@ namespace ZLMClaims.ViewModels
                 {
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim id:" + claimForm.Id);
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim date:" + claimForm.DateOfOccurence);
-                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Contract id:" + claimForm.Contract.Id);
+                    //Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Contract id:" + claimForm.Contract.Id);
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Produkt:" + claimForm.Contract.Product);
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Licenseplate:" + claimForm.Contract.LicensePlate);
                     ClaimForms.Add(claimForm);

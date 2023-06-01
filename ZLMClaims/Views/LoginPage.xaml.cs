@@ -65,17 +65,9 @@ public partial class LoginPage : ContentPage
         var user = await auth0Client.GetAuthenticatedUser();
 
         if (user != null)
-        {
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] user => " + user);
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] user => " + user.ToString);
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] user GetType => " + user.GetType());
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] userIdentities => " + user.Identities);
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] user Claims=> " + user.Claims);
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] user IsInRole =>  " + user.IsInRole);
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] user Name => " + user.Identity.Name);
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] user IdType => " + user.Identity.AuthenticationType);
+        {            
+            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [GetAuthenticatedUser] retrieved identityname => " + user.Identity.Name);            
             UsernameLbl.Text = user.Identity.Name;
-            //UserPictureImg.Source = user.Claims.FirstOrDefault(c => c.Type == "picture")?.Value;
 
             LoginView.IsVisible = false;
             HomeView.IsVisible = true;
