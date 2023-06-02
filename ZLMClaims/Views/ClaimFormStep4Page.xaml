@@ -9,11 +9,6 @@
              x:DataType="viewmodels:ClaimFormStep4ViewModel">
 
     <VerticalStackLayout Spacing="10" Margin="5">
-        <Label
-                Text="Base64 Decoded Image"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
 
         <Image
                 x:Name="base64DecodedImage"
@@ -21,16 +16,9 @@
                 HorizontalOptions="Center" />
 
         <Label
-                Text="Base64 Encoded Image"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-        <Label
                 x:Name="base64EncodedImage"
                 FontSize="18"
                 HorizontalOptions="Center" />
-
 
         <!-- Select images from filesystem using FilePicker-->
         <Image

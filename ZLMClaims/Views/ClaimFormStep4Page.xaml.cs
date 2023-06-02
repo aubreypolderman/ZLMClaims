@@ -55,14 +55,6 @@ public partial class ClaimFormStep4Page : ContentPage
                 // Close the source stream
                 sourceStream.Close();
 
-                // jfversluijs (https://github.com/jfversluis/MauiBase64ImageSample/blob/main/MauiBase64ImageSample/MainPage.xaml.cs) 
-                // show image of base64-encoded string                
-                //var imageBytes = Convert.FromBase64String(Base64ImageProvider.Base64EncodedImage);
-                //MemoryStream imageDecodeStream = new(imageBytes);
-                //myImage.Source = ImageSource.FromStream(() => imageDecodeStream);
-
-                // convert image to base64 encoded
-                //using var imageEncodeStream = await FileSystem.OpenAppPackageFileAsync(localFilePath);
                 using var imageEncodeStream = await photo.OpenReadAsync();
                 using var memoryStream = new MemoryStream();
                 imageEncodeStream.CopyTo(memoryStream);

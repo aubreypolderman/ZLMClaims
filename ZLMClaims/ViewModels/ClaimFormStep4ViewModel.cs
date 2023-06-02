@@ -48,6 +48,7 @@ public partial class ClaimFormStep4ViewModel : BaseViewModel
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4ViewModel] [constructor] ImageFileName " + ImageFileName);
         ClaimForm.Image1 = ImageFileName; // Update the ClaimForm with the selected cause of damage
         ClaimForm.Image2 = _base64EncodedImage;
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4ViewModel] [constructor] Image2 base64 " + _base64EncodedImage);
         await Shell.Current.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
     {
         {nameof(ClaimForm), ClaimForm}
