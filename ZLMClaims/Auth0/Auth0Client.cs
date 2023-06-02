@@ -8,6 +8,7 @@ namespace ZLMClaims.Auth0;
 public class Auth0Client
 {
     private readonly OidcClient oidcClient;
+    private string audience;
 
     public Auth0Client(Auth0ClientOptions options)
     {
@@ -19,6 +20,8 @@ public class Auth0Client
             RedirectUri = options.RedirectUri,
             Browser = options.Browser
         });
+
+        audience = options.Audience;
     }
 
     public IdentityModel.OidcClient.Browser.IBrowser Browser
@@ -35,8 +38,25 @@ public class Auth0Client
 
     public async Task<LoginResult> LoginAsync()
     {
+        LoginRequest loginRequest = null;
+
+        if (!string.IsNullOrEmpty(audience))
+        {
+            loginRequest = new LoginRequest
+            {
+                FrontChannelExtraParameters = new Parameters(new Dictionary<string, string>()
+            {
+              {"audience", audience}
+            })
+            };
+
+            Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] na invoke oidcClient.LoginAsync met result " + loginRequest);
+            Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] na invoke oidcClient.LoginAsync AccessToken " + loginRequest.ToString());
+        }
+        // return await oidcClient.LoginAsync(loginRequest);
+        var loginResult = await oidcClient.LoginAsync(loginRequest);
         Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] voor invoke oidcClient.LoginAsync");
-        var loginResult = await oidcClient.LoginAsync();
+        // var loginResult = await oidcClient.LoginAsync();
         Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] na invoke oidcClient.LoginAsync met result " + loginResult);
         Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] na invoke oidcClient.LoginAsync AccessToken " + loginResult.AccessToken);
         Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] na invoke oidcClient.LoginAsync IdentityToken " + loginResult.IdentityToken);
@@ -47,7 +67,7 @@ public class Auth0Client
             await SecureStorage.Default.SetAsync("id_token", loginResult.IdentityToken);
         }
 
-        return loginResult;
+        return loginResult;        
     }
 
     // logout

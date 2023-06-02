@@ -10,7 +10,6 @@
 
     <TabBar>
         <ShellContent
-            Title="Login"
             Route="MainPage"
             ContentTemplate="{DataTemplate views:LoginPage}"/>
 
@@ -18,23 +17,27 @@
             Title="{local:Translate TabItemHome}"
             Icon="home.svg"
             Route="AllContractsPage"
+            IsVisible="{Binding IsUserLoggedIn}"
             ContentTemplate="{DataTemplate views:AllContractsPage}"/>
 
         <ShellContent 
             Title="{local:Translate TabItemClaim}"
             Icon="claim.svg"
             Route="AllPhotosPage"
+            IsVisible="{Binding IsUserLoggedIn}"
             ContentTemplate="{DataTemplate views:AllClaimsPage}"/>
 
         <ShellContent  
             Title="{local:Translate TabItemNearBy}"
             Icon="location.svg"
             Route="AllRepairCompaniesPage"
+            IsVisible="{Binding IsUserLoggedIn}"
             ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
 
         <ShellContent 
             Title="{local:Translate TabItemProfile}"
             Icon="profile.svg"
+            IsVisible="{Binding IsUserLoggedIn}"
             ContentTemplate="{DataTemplate views:UserPage}"/>
     </TabBar>
 

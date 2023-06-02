@@ -275,7 +275,7 @@
                      Grid.Column="1"/>
             <Label Grid.Row="1"
                    Grid.Column="1"
-                   Text="{Binding ClaimForm.Image2}"
+                   Text="image.jpg"
                    HorizontalOptions="Start"
                    VerticalOptions="EndAndExpand" />
         </Grid>

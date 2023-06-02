@@ -1,13 +1,22 @@
-﻿namespace ZLMClaims;
+﻿using ZLMClaims.Auth0;
+using ZLMClaims.Views;
+
+namespace ZLMClaims;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
+	public AppShell(Auth0Client auth0Client)
 	{
-		InitializeComponent();
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] Voor InitializeComponent()");
+        InitializeComponent();
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] Na InitializeComponent()");
+        var loginPage = new LoginPage(auth0Client);
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage instantiaed");
+        loginPage.LoginStatusChanged += OnLoginStatusChanged;
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] Na LoginStatusChanged");
 
-		// The localizationResourceManager uses binding, so the context needs to be set
-		BindingContext = this;
+        // The localizationResourceManager uses binding, so the context needs to be set
+        BindingContext = this;
 
         // register route to details page
         Routing.RegisterRoute(nameof(Views.RepairCompanyPage), typeof(Views.RepairCompanyPage));
@@ -20,6 +29,15 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(Views.AllClaimsPage), typeof(Views.AllClaimsPage));
     }
 
-	public LocalizationResourceManager LocalizationResourceManager 
+private void OnLoginStatusChanged(object sender, bool isLoggedIn)
+{
+    IsUserLoggedIn = isLoggedIn;
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] isLoggedIn: " + isLoggedIn);
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] IsUserLoggedIn: " + IsUserLoggedIn);
+    }
+
+    public LocalizationResourceManager LocalizationResourceManager 
 		=> LocalizationResourceManager.Instance;
+
+    public bool IsUserLoggedIn { get; set; } = true;
 }

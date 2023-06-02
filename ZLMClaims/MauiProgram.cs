@@ -73,10 +73,11 @@ public static class MauiProgram
             Domain = "dev-ajcve7wvqiq10doi.eu.auth0.com",
             ClientId = "kgYGjeSFKI7GczXNx335myCMXbdwx6UG",
             Scope = "openid profile",
-            #if WINDOWS
+            Audience = "https://zlmclaim-api.com",
+#if WINDOWS
             RedirectUri = "https://localhost:7040/callback"
-            #else
-                  RedirectUri = "myapp://callback"
+#else
+            RedirectUri = "myapp://callback"
             #endif
         }));
 

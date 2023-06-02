@@ -78,5 +78,35 @@ namespace ZLMClaims.Services
 			}
 ]";
         }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] Get user with id " + email);
+            Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] voor de call");
+
+            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Users/email/{email}");
+            Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync]  response: " + response);
+            Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] StatusCode response: " + response.StatusCode);
+            Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] ReasonPhrase response: " + response.ReasonPhrase);
+            Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] RequestMessage response: " + response.RequestMessage);
+            var responseContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] reponsecontent: " + responseContent);
+
+            User user = null;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] StatuscodeSucces is all good! Return response");
+                //return JsonSerializer.Deserialize<User>(responseContent); 
+                user = JsonSerializer.Deserialize<User>(responseContent);
+                Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] deserialized user: " + user);
+                Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] deserialized user email: " + user.Email);
+                return user;
+            }
+            else
+            {
+                Console.WriteLine(DateTime.Now + "[..............] [UserService] [GetUserByEmailAsync] Errortje getting user with id {id} ");
+                throw new HttpRequestException($"Error getting user with email {email}: {response.ReasonPhrase}");
+            }
+        }
     }
 }

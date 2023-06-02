@@ -26,14 +26,28 @@ public partial class ClaimFormStep4ViewModel : BaseViewModel
     [ObservableProperty]
     public string imageFileName;
 
+    //[ObservableProperty]
+    //public string base64Image;
+
     public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
+
+    private string _base64EncodedImage;
+    public string Base64EncodedImage
+    {
+        get { return _base64EncodedImage; }
+        set
+        {
+            _base64EncodedImage = value;
+            OnPropertyChanged(nameof(Base64EncodedImage));
+        }
+    }
 
     [RelayCommand]
     async Task Next()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4ViewModel] [constructor] imageFileName " + imageFileName);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4ViewModel] [constructor] ImageFileName " + ImageFileName);
         ClaimForm.Image1 = ImageFileName; // Update the ClaimForm with the selected cause of damage
+        ClaimForm.Image2 = _base64EncodedImage;
         await Shell.Current.GoToAsync(nameof(ClaimFormStep5Page), true, new Dictionary<string, object>
     {
         {nameof(ClaimForm), ClaimForm}
