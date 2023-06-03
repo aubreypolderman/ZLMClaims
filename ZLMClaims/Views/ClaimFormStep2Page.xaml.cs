@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Globalization;
 using ZLMClaims.Models;
 using ZLMClaims.ViewModels;
+using System.ComponentModel;
 
 namespace ZLMClaims.Views;
 
@@ -15,9 +16,10 @@ public partial class ClaimFormStep2Page : ContentPage
     {
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [ClaimFormStep2ViewModel] viewmodel injected");
         BindingContext = vm;
-        _viewModel = vm;
+        _viewModel = vm;        
         InitializeComponent();
         LoadLocationAsync();
+
     }
 
     // Show current geo location of the user, with span of 5 miles
@@ -26,7 +28,7 @@ public partial class ClaimFormStep2Page : ContentPage
         (double currentLatitude, double currentLongitude) = await _viewModel.GetCurrentLocation();
         Device.BeginInvokeOnMainThread(() =>
         {
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(currentLatitude, currentLongitude), Distance.FromMiles(5)));
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(currentLatitude, currentLongitude), Distance.FromMiles(1)));
         });
     }
 
@@ -57,6 +59,14 @@ public partial class ClaimFormStep2Page : ContentPage
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] placePostalCode " + placePostalCode);
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] placeCity " + placeCity);
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] placeCountryName " + placeCountryName);
+
+            // Voeg een nieuwe pin toe aan de kaart op de geklikte locatie
+            map.Pins.Add(new Pin
+            {
+                Location = new Location(e.Location.Latitude, e.Location.Longitude),
+                Label = $"{placeStreet} {placeHouseNumber} {placePostalCode} {placeCity}",
+                Type = PinType.Generic
+            });
 
             _viewModel.ClaimForm.Street = placeStreet;
             _viewModel.ClaimForm.Suite = placeHouseNumber;

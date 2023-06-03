@@ -24,6 +24,8 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
     {
         this.navigationService = navigationService;
         this.dialogService = dialogService;
+        _positions = new ObservableCollection<Position>();
+        // setPinAccidentLocation();
     }
 
     [ObservableProperty]
@@ -66,6 +68,7 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
                 { "SubThoroughfare", placemark.SubThoroughfare },
                 { "Thoroughfare", placemark.Thoroughfare }
             };
+
             return addressData;
         }
 
@@ -124,5 +127,16 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
     {
         if (_isCheckingLocation && _cancelTokenSource != null && _cancelTokenSource.IsCancellationRequested == false)
             _cancelTokenSource.Cancel();
+    }
+
+    public void setPinAccidentLocation()
+    {
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [setPinAccidentLocation] Start");
+        double latitude = (double)(ClaimForm?.Latitude);
+        double longitude = (double)(ClaimForm?.Longitude);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [setPinAccidentLocation] Latitude " + latitude);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [setPinAccidentLocation] Longitude " + longitude);
+        var position = new Position(ClaimForm.Street, ClaimForm.Suite, new Location(latitude, longitude));
+        _positions.Add(position);
     }
 }
