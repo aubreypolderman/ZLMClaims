@@ -67,6 +67,16 @@
                                 <Label FontSize="10" TextColor="Silver">
                                     <Label.FormattedText>
                                         <FormattedString>
+                                            <Span Text="{local:Translate ClaimId}" />
+                                            <Span Text=": " />
+                                            <Span Text="{Binding Id}" />
+                                            <Span Text=" " />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>                                
+                                <Label FontSize="10" TextColor="Silver">
+                                    <Label.FormattedText>
+                                        <FormattedString>
                                             <Span Text="{local:Translate DateOfOccurence}" />
                                             <Span Text=": " />
                                             <Span Text="{Binding DateOfOccurence}" />

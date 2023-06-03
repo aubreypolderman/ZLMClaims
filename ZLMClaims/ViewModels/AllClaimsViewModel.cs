@@ -27,12 +27,14 @@ namespace ZLMClaims.ViewModels
             this.claimFormService = claimFormService;
             this.dialogService = dialogService;
             this.connectivityService = connectivityService;
+            Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [Constructor] init");
         }
 
         [RelayCommand]
         public async Task GetAllClaims()
-        {            
+        {
 
+            Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] init");
             // retrieve the userid from the preference set        
             int userId = Preferences.Default.Get("userId", -1);
 
@@ -52,13 +54,12 @@ namespace ZLMClaims.ViewModels
 
                 if (ClaimForms.Any()) ClaimForms.Clear();
                 var claimForms = await claimFormService.GetAllClaimFormsByPersonIdAsync(userId);
-                Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim response:" + claimForms.ToString());
 
                 foreach (var claimForm in claimForms)
                 {
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim id:" + claimForm.Id);
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Claim date:" + claimForm.DateOfOccurence);
-                    //Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Contract id:" + claimForm.Contract.Id);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Contract id:" + claimForm.Contract.Id);
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Produkt:" + claimForm.Contract.Product);
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Licenseplate:" + claimForm.Contract.LicensePlate);
                     Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] Cause of damage:" + claimForm.QCauseOfDamage);

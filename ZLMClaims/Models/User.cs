@@ -24,7 +24,7 @@ namespace ZLMClaims.Models
         [JsonPropertyName("street")]
         public string Street { get; set; }
 
-        [JsonPropertyName("housenumber")]
+        [JsonPropertyName("houseNumber")]
         public string Housenumber { get; set; }
 
         [JsonPropertyName("city")]

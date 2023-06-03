@@ -43,6 +43,9 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
 
     [RelayCommand]
     async Task Next() {
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Contract id " + ClaimForm.Contract.Id);
+        // Saving the contractId
+        Preferences.Default.Set("contractId", ClaimForm.Contract.Id);
         ClaimForm.QCauseOfDamage = SelectedOption; // Update the ClaimForm with the selected cause of damage
         await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
         {

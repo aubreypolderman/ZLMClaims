@@ -20,8 +20,10 @@ public partial class App : Application
     {
         InitializeComponent();
 
+        Console.WriteLine(DateTime.Now + "[..............] [App] [Constructor] Na InitializeComponent");
         MainPage = new AppShell(auth0Clientauth0Client);
-        
+        Console.WriteLine(DateTime.Now + "[..............] [App] [Constructor] Na uitvoer new AppShell(auth0Clientauth0Client)");
+
 
     }
 }

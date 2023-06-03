@@ -10,7 +10,7 @@ namespace ZLMClaims.ViewModels
     public partial class ContractViewModel : BaseViewModel   
     {
         private Contract _contract;
-        private bool isUpdate;
+        private bool isUpdate = true;
         INavigationService navigationService;
         IUserService userService;
         public ContractViewModel(INavigationService navigationService, IUserService userService)

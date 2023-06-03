@@ -21,10 +21,12 @@ namespace ZLMClaims.Services
                 Console.WriteLine(DateTime.Now + "[..............] [UserService] [constructor] httpclient debug -> use handler ");
                 HttpsClientHandlerService handler = new HttpsClientHandlerService();
                 _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); // Assign the value to the class-level field
-            #else
+            Console.WriteLine(DateTime.Now + "[..............] [UserService] [constructor] httpclient debug ->na uitvoer van use handler ");
+#else
                 Console.WriteLine(DateTime.Now + "[..............] [UserService] [constructor] ELSE new httpclient ");            
                 _httpClient = new HttpClient();
-            #endif
+#endif
+            Console.WriteLine(DateTime.Now + "[..............] [UserService] [constructor] httpclient debug ->klaar ");
         }
 
         public async Task<User> GetUserByIdAsync(int id)

@@ -27,11 +27,12 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(Views.ClaimFormStep5Page), typeof(Views.ClaimFormStep5Page));
         Routing.RegisterRoute(nameof(Views.ContractPage), typeof(Views.ContractPage));
         Routing.RegisterRoute(nameof(Views.AllClaimsPage), typeof(Views.AllClaimsPage));
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] All routes registered");
     }
 
-private void OnLoginStatusChanged(object sender, bool isLoggedIn)
-{
-    IsUserLoggedIn = isLoggedIn;
+    private void OnLoginStatusChanged(object sender, bool isLoggedIn)
+    {   
+        IsUserLoggedIn = isLoggedIn;
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] isLoggedIn: " + isLoggedIn);
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] IsUserLoggedIn: " + IsUserLoggedIn);
     }

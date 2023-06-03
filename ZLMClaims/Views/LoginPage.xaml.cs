@@ -14,14 +14,17 @@ public partial class LoginPage : ContentPage
     private UserService userService;
     public LoginPage(Auth0Client client)
 	{
-		InitializeComponent();
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [Constructor] init");
+        InitializeComponent();
         auth0Client = client;
 
 #if WINDOWS
         auth0Client.Browser = new WebViewBrowserAuthenticator(WebViewInstance);
 #endif
 
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [Constructor] before invoke UserService");
         userService = new UserService(new HttpClient());
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [Constructor] after invoke UserService");
     }
 
 
@@ -31,6 +34,7 @@ public partial class LoginPage : ContentPage
     // Auth0 login button
     private async void OnLoginClicked(object sender, EventArgs e)
     {
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] init");
         var loginResult = await auth0Client.LoginAsync();
         Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] na uitvoer LoginAsync met result: " + loginResult.ToString());
 
@@ -69,6 +73,7 @@ public partial class LoginPage : ContentPage
     // Auth0 logout button 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLogoutClicked] init");
         var logoutResult = await auth0Client.LogoutAsync();
 
         if (!logoutResult.IsError)
@@ -84,7 +89,9 @@ public partial class LoginPage : ContentPage
 
     private async void OnLoaded(object sender, EventArgs e)
     {
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoaded] init");
         var user = await auth0Client.GetAuthenticatedUser();
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoaded] after invoke auth0Client.GetAuthenticatedUser");
 
         if (user != null)
         {            

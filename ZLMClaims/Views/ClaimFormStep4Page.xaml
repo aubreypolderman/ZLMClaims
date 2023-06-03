@@ -7,35 +7,37 @@
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
              Title="{local:Translate ClaimFormPageTitle}"
              x:DataType="viewmodels:ClaimFormStep4ViewModel">
-
+    <ScrollView>
     <VerticalStackLayout Spacing="10" Margin="5">
 
-        <Image
-                x:Name="base64DecodedImage"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="3*" />
+            </Grid.RowDefinitions>
 
-        <Label
-                x:Name="base64EncodedImage"
-                FontSize="18"
-                HorizontalOptions="Center" />
+            <BoxView Grid.Row="0" BackgroundColor="Transparent" />
+            <!-- Lege rij om ruimte boven de afbeelding te creëren -->
 
-        <!-- Select images from filesystem using FilePicker-->
-        <Image
-            x:Name="myImage"
-            Source="image.webp"
-            SemanticProperties.Description="Image taken from camera"            
-            HeightRequest="200"
-            HorizontalOptions="Center" />
+            <Image
+                x:Name="myImage"
+                Source="image.webp"
+                SemanticProperties.Description="Image taken from camera"
+                Aspect="AspectFill"
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand"
+                Grid.Row="1" />
 
-        <ImageButton
+            <ImageButton
             x:Name="TakePhoto"
             Source="camera.png"            
             SemanticProperties.Description="Camera"
             HeightRequest="50"
             Clicked="OnTakePhotoBtnClicked"
             HorizontalOptions="Center" />
-
+        </Grid>
+        
         <!-- previous and next page-->
         <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
             <Button 
@@ -57,4 +59,5 @@
         </Grid>
 
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -34,7 +34,7 @@ public class Contract
     [JsonPropertyName("annualPolicyPremium")]
     public double AnnualPolicyPremium { get; set; }
 
-    public User User { get; set; }
+    public User User { get; set; } = new User();
 
     // Add method to determine icon?
 }

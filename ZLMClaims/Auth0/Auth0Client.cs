@@ -38,6 +38,7 @@ public class Auth0Client
 
     public async Task<LoginResult> LoginAsync()
     {
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] init");
         LoginRequest loginRequest = null;
 
         if (!string.IsNullOrEmpty(audience))
@@ -73,6 +74,7 @@ public class Auth0Client
     // logout
     public async Task<BrowserResult> LogoutAsync()
     {
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LogoutAsync] init");
         var logoutParameters = new Dictionary<string, string>
         {
             {"client_id", oidcClient.Options.ClientId },
@@ -97,14 +99,19 @@ public class Auth0Client
 
     public async Task<ClaimsPrincipal> GetAuthenticatedUser()
     {
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] init");
         ClaimsPrincipal user = null;
 
-        var idToken = await SecureStorage.Default.GetAsync("id_token");
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] Get idToken of SecureStorage");
+        var idToken = await SecureStorage.Default.GetAsync("id_token");        
 
         if (idToken != null)
         {
+            Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] Retrieved idToken " + idToken);
             var doc = await new HttpClient().GetDiscoveryDocumentAsync(oidcClient.Options.Authority);
+            Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] doc GetDiscoveryDocumentAsync " + doc);
             var validator = new JwtHandlerIdentityTokenValidator();
+            Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] validator JwtHandlerIdentityTokenValidator " + validator);
             var options = new OidcClientOptions
             {
                 ClientId = oidcClient.Options.ClientId,
@@ -114,12 +121,13 @@ public class Auth0Client
                     KeySet = doc.KeySet
                 }
             };
-
+            Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] before validation of idToken iwth options " + options);
             var validationResult = await validator.ValidateAsync(idToken, options);
+            Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] after validation with result " + validationResult);
 
             if (!validationResult.IsError) user = validationResult.User;
         }
-
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] Return user");
         return user;
     }
 }

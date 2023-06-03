@@ -147,6 +147,9 @@
   <data name="ClaimFormPageTitle" xml:space="preserve">
     <value>Schadeformulier</value>
   </data>
+  <data name="ClaimId" xml:space="preserve">
+    <value>Schadenummer</value>
+  </data>
   <data name="DamageDetails" xml:space="preserve">
     <value>1. Schadedetails</value>
   </data>

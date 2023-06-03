@@ -36,11 +36,13 @@ namespace ZLMClaims.ViewModels
             this.navigationService = navigationService;
             this.contractService = contractService;            
             this.dialogService = dialogService;
-            this.connectivity = connectivity;            
+            this.connectivity = connectivity;
+            Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [Constructor] init");
         }
 
         public async Task GetAllContracts()
         {
+            Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] init");
             // retrieve the userid from the preference set        
             int userId = Preferences.Default.Get("userId", -1);
 

@@ -14,7 +14,7 @@
                 x:Name="LoginView">
                 <Button 
                     x:Name="LoginBtn"
-                    Text="Log Floor In"
+                    Text="Log In"
                     SemanticProperties.Hint="Click to log in"
                     Clicked="OnLoginClicked"
                     HorizontalOptions="Center" />
@@ -38,9 +38,9 @@
                 HorizontalOptions="Center" />
 
                 <Label
-                Text="Welcome to .NET Multi-platform App UI"
+                Text="Welcome to ZLMClaims"
                 SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                SemanticProperties.Description="Welcome to ZLMClaims"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
