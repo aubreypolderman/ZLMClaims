@@ -9,7 +9,7 @@ using ZLMClaims.Views;
 namespace ZLMClaims.ViewModels;
 
 [QueryProperty(nameof(ClaimForm), "ClaimForm")]
-public partial class ClaimFormStep1ViewModel : BaseViewModel   
+public partial class ClaimFormStep1ViewModel : BaseViewModel
 {
     private ClaimForm _claimForm;
     private string _qCauseOfDamage;
@@ -31,18 +31,19 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     public DateTime MinDate => DateTime.Now.AddMonths(-3);
 
     INavigationService navigationService;
-    public ClaimFormStep1ViewModel(INavigationService navigationService ) 
+    public ClaimFormStep1ViewModel(INavigationService navigationService)
     {
         this.navigationService = navigationService;
     }
 
     [ObservableProperty]
-    ClaimForm claimForm;    
+    ClaimForm claimForm;
 
     public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
 
     [RelayCommand]
-    async Task Next() {
+    async Task Next()
+    {
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Contract id " + ClaimForm.Contract.Id);
         // Saving the contractId
         Preferences.Default.Set("contractId", ClaimForm.Contract.Id);
@@ -54,7 +55,7 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task Previous() => 
+    async Task Previous() =>
         await navigationService.GoBackAsync();
 
 }

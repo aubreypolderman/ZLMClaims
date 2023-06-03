@@ -6,30 +6,30 @@ public class ClaimForm
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }
-    public int ContractId { get; set; }
+    public int? ContractId { get; set; }
     [JsonPropertyName("dateOfOccurence")]
-    public DateTime DateOfOccurence { get; set; }
+    public DateTime? DateOfOccurence { get; set; }
     [JsonPropertyName("QCauseOfDamage")]
-    public string QCauseOfDamage { get; set; }
-    public string QWhatHappened { get; set; }
-    public string QWhereDamaged { get; set; }
-    public string QWhatIsDamaged { get; set; }
+    public string? QCauseOfDamage { get; set; }
+    public string? QWhatHappened { get; set; }
+    public string? QWhereDamaged { get; set; }
+    public string? QWhatIsDamaged { get; set; }
     [JsonPropertyName("image1")]
-    public string Image1 { get; set; }
+    public string? Image1 { get; set; }
     [JsonPropertyName("image2")]
-    public string Image2 { get; set; }
+    public string? Image2 { get; set; }
     [JsonPropertyName("street")]
-    public string Street { get; set; }
+    public string? Street { get; set; }
     [JsonPropertyName("suite")]
-    public string Suite { get; set; }
+    public string? Suite { get; set; }
     [JsonPropertyName("city")]
-    public string City { get; set; }
+    public string? City { get; set; }
     [JsonPropertyName("zipcode")]
-    public string ZipCode { get; set; }
+    public string? ZipCode { get; set; }
     [JsonPropertyName("latitude")]
-    public double Latitude { get; set; }
+    public double? Latitude { get; set; }
     [JsonPropertyName("longitude")]
-    public double Longitude { get; set; }
+    public double? Longitude { get; set; }
     [JsonPropertyName("contract")]
     public Contract Contract { get; set; } = new Contract(); // Initialize Contract property
     public User User { get; set; } // Gebruik de bestaande User-klasse

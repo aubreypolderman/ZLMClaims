@@ -23,6 +23,7 @@
             <Label Style="{StaticResource LargeLabel}" Text="{Binding ClaimForm.Contract.Product}" />
             <Label Style="{StaticResource MediumLabel}" Text="{Binding ClaimForm.Contract.Make}" />
             <Label Style="{StaticResource MediumLabel}" Text="{Binding ClaimForm.Contract.Model}" />
+            
         </HorizontalStackLayout>
         <HorizontalStackLayout Padding="0" Spacing="5">
             <Label Style="{StaticResource LargeLabel}" Text="{Binding ClaimForm.Contract.LicensePlate}" />

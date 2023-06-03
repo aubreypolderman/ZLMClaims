@@ -40,24 +40,28 @@ public partial class ClaimFormStep2Page : ContentPage
         // Convert latitude and longitude to an address
         double latitude = e.Location.Latitude;
         double longitude = e.Location.Longitude;
-        string geocodeData = await _viewModel.GetGeocodeReverseData(latitude, longitude);
-        Console.WriteLine(geocodeData );
+        Dictionary<string, string> addressData = await _viewModel.GetGeocodeReverseData(latitude, longitude);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] geocodeData " + addressData);
 
-        // Dit gaat fout
-        // Claim.Address address = JsonConvert.DeserializeObject<Claim.Address>(geocodeData);
-        //Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [address] " + address);
+        if (addressData != null)
+        {
+            // Read result from Dictionary
+            string placeStreet = addressData["Thoroughfare"];
+            string placeHouseNumber = addressData["SubThoroughfare"];
+            string placePostalCode = addressData["PostalCode"];
+            string placeCity = addressData["Locality"];
+            string placeCountryName = addressData["CountryName"];
 
-        // Vul de velden in het Address object in
-        /*
-        _viewModel.Claim.AccidentAddress.Street = address.Street;
-        _viewModel.Claim.AccidentAddress.Suite = address.Suite;
-        _viewModel.Claim.AccidentAddress.City = address.City;
-        _viewModel.Claim.AccidentAddress.Zipcode = address.Zipcode;
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] placeStreet " + placeStreet);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] placeHouseNumber " + placeHouseNumber);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] placePostalCode " + placePostalCode);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] placeCity " + placeCity);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] placeCountryName " + placeCountryName);
 
-        // Optioneel: Als de geocoderingsgegevens ook latitude en longitude bevatten, kun je die ook instellen
-        _viewModel.Claim.AccidentAddress.Geo.Latitude = latitude;
-        _viewModel.Claim.AccidentAddress.Geo.Longitude = longitude;
-        */
+            _viewModel.ClaimForm.Street = placeStreet;
+            _viewModel.ClaimForm.Suite = placeHouseNumber;
+            _viewModel.ClaimForm.ZipCode = placePostalCode;
+            _viewModel.ClaimForm.City = placeCity;
+        }
     }
-
 }

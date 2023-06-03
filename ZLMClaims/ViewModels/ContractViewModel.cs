@@ -10,7 +10,7 @@ namespace ZLMClaims.ViewModels
     public partial class ContractViewModel : BaseViewModel   
     {
         private Contract _contract;
-        private bool isUpdate = true;
+        private bool isUpdate = false;
         INavigationService navigationService;
         IUserService userService;
         public ContractViewModel(INavigationService navigationService, IUserService userService)
@@ -26,21 +26,22 @@ namespace ZLMClaims.ViewModels
         [RelayCommand]
         async Task Claim()
         {
+            Preferences.Default.Set("contractId", Contract.Id);
             var claimForm = new ClaimForm();
             //var userObject = new User();
             //var userContract = new Contract();
             
             // Get user object
-            //int userId = Preferences.Default.Get("userId", -1);
-            //var user = await userService.GetUserByIdAsync(userId);
-            // Assign the retrieved user data to the User property
-            //userObject = user;
-            //userContract = Contract;
+            int userId = Preferences.Default.Get("userId", -1);
+            var user = await userService.GetUserByIdAsync(userId);            
             
-            //claimForm.Contract = Contract; // Add Contract-object to ClaimForm
+            // Add Contract-object to ClaimForm
             claimForm.Contract = Contract;
+            claimForm.Contract.User = user;
+            claimForm.ContractId = Contract.Id;
+            claimForm.DateOfOccurence = DateTime.Now;
 
-            // Sla het ClaimForm-object op in de ClaimDataStorage samen met de informatie over de oorsprong
+            // Save the ClaimForm-object in ClaimDataStorage, together with indication that the claim is new (since we are making a new claim)
             ClaimDataStorage.ClaimForm = claimForm;
             ClaimDataStorage.IsUpdate = isUpdate;
 

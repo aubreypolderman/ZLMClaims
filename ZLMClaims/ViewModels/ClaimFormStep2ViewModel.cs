@@ -44,7 +44,8 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
     async Task Previous() =>
         await navigationService.GoBackAsync();
 
-    public async Task<string> GetGeocodeReverseData(double latitude, double longitude)
+    //public async Task<string> GetGeocodeReverseData(double latitude, double longitude)
+    public async Task<Dictionary<string, string>> GetGeocodeReverseData(double latitude, double longitude)
     {
         IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
 
@@ -52,21 +53,23 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
 
         if (placemark != null)
         {
-            return
-                $"AdminArea:       {placemark.AdminArea}\n" +
-                $"CountryCode:     {placemark.CountryCode}\n" +
-                $"CountryName:     {placemark.CountryName}\n" +
-                $"FeatureName:     {placemark.FeatureName}\n" +
-                $"Locality:        {placemark.Locality}\n" +
-                $"PostalCode:      {placemark.PostalCode}\n" +
-                $"SubAdminArea:    {placemark.SubAdminArea}\n" +
-                $"SubLocality:     {placemark.SubLocality}\n" +
-                $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
-                $"Thoroughfare:    {placemark.Thoroughfare}\n";
-
+            Dictionary<string, string> addressData = new Dictionary<string, string>
+            {
+                { "AdminArea", placemark.AdminArea },
+                { "CountryCode", placemark.CountryCode },
+                { "CountryName", placemark.CountryName },
+                { "FeatureName", placemark.FeatureName },
+                { "Locality", placemark.Locality },
+                { "PostalCode", placemark.PostalCode },
+                { "SubAdminArea", placemark.SubAdminArea },
+                { "SubLocality", placemark.SubLocality },
+                { "SubThoroughfare", placemark.SubThoroughfare },
+                { "Thoroughfare", placemark.Thoroughfare }
+            };
+            return addressData;
         }
 
-        return "";
+        return null;
     }
 
     public string CalculateDistanceInKm(double currentLongitude, double currentLatitude, double selectedLongitude, double selectedLatitude)
