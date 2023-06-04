@@ -7,13 +7,12 @@ public partial class AppShell : Shell
 {
 	public AppShell(Auth0Client auth0Client)
 	{
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] Voor InitializeComponent()");
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] init");
         InitializeComponent();
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] Na InitializeComponent()");
         var loginPage = new LoginPage(auth0Client);
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage instantiaed");
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage instantiated");
         loginPage.LoginStatusChanged += OnLoginStatusChanged;
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] Na LoginStatusChanged");
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage.LoginStatusChanged invoked");
 
         // The localizationResourceManager uses binding, so the context needs to be set
         BindingContext = this;
@@ -27,6 +26,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(Views.ClaimFormStep5Page), typeof(Views.ClaimFormStep5Page));
         Routing.RegisterRoute(nameof(Views.ContractPage), typeof(Views.ContractPage));
         Routing.RegisterRoute(nameof(Views.AllClaimsPage), typeof(Views.AllClaimsPage));
+        Routing.RegisterRoute(nameof(Views.AllContractsPage), typeof(Views.AllContractsPage));
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] All routes registered");
     }
 

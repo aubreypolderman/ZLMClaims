@@ -42,7 +42,7 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] Product => " + ClaimForm.Contract.Product);        
 
         // Get User
-        int userId = Preferences.Default.Get("userId", -1);
+        int userId = Preferences.Default.Get("userId", 1);
         var user = await userService.GetUserByIdAsync(userId);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] Id: " + user.Id);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] Name: " + user.Name);
@@ -56,7 +56,7 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] Longitude: " + user.Longitude);
 
         // Get Contract
-        int contractId = Preferences.Default.Get("contractId", -1);
+        int contractId = Preferences.Default.Get("contractId", 1);
         var contract = await contractService.GetContractByIdAsync(contractId);
 
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract] Id: " + contract.Id);

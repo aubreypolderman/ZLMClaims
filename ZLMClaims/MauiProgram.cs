@@ -75,9 +75,9 @@ public static class MauiProgram
             Scope = "openid profile",
             Audience = "https://zlmclaim-api.com",
 #if WINDOWS
-            RedirectUri = "https://localhost:7040/callback"
+            RedirectUri = "https://localhost/callback"
 #else
-            RedirectUri = " http://localhost:7040/callback"
+            RedirectUri = "zlmclaims://callback"
 #endif
         }));
 

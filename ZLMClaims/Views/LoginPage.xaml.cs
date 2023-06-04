@@ -78,6 +78,7 @@ public partial class LoginPage : ContentPage
 
         if (!logoutResult.IsError)
         {
+            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLogoutClicked] Set LoginVoew.IsVisible to true");
             HomeView.IsVisible = false;
             LoginView.IsVisible = true;
         }
@@ -100,6 +101,7 @@ public partial class LoginPage : ContentPage
 
             LoginView.IsVisible = false;
             HomeView.IsVisible = true;
+            LoginStatusChanged?.Invoke(this, true); // Geef aan dat de gebruiker is ingelogd  
         }
     }
 }

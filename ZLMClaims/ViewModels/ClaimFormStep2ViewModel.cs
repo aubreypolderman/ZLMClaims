@@ -49,12 +49,15 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
     //public async Task<string> GetGeocodeReverseData(double latitude, double longitude)
     public async Task<Dictionary<string, string>> GetGeocodeReverseData(double latitude, double longitude)
     {
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "latitude: " + latitude + " longitude: " + longitude);
         IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
-
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "plaxemarks: " + placemarks );
         Placemark placemark = placemarks?.FirstOrDefault();
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "placemark: " + placemark);
 
         if (placemark != null)
         {
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "placemark not null");
             Dictionary<string, string> addressData = new Dictionary<string, string>
             {
                 { "AdminArea", placemark.AdminArea },
@@ -68,10 +71,10 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
                 { "SubThoroughfare", placemark.SubThoroughfare },
                 { "Thoroughfare", placemark.Thoroughfare }
             };
-
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "return addressData: " + addressData);
             return addressData;
         }
-
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "return null" );
         return null;
     }
 

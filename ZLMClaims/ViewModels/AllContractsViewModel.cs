@@ -44,7 +44,7 @@ namespace ZLMClaims.ViewModels
         {
             Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] init");
             // retrieve the userid from the preference set        
-            int userId = Preferences.Default.Get("userId", -1);
+            int userId = Preferences.Default.Get("userId", 1);
 
             // if (IsLoading) return;
             try

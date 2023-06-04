@@ -31,9 +31,13 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     public DateTime MinDate => DateTime.Now.AddMonths(-3);
 
     INavigationService navigationService;
-    public ClaimFormStep1ViewModel(INavigationService navigationService)
+    IContractService contractService;
+    IUserService userService;
+    public ClaimFormStep1ViewModel(INavigationService navigationService, IContractService contractService, IUserService userService)
     {
         this.navigationService = navigationService;
+        this.contractService = contractService;
+        this.userService = userService; 
     }
 
     [ObservableProperty]
@@ -42,7 +46,7 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
 
     [RelayCommand]
-    async Task Next()
+    async Task Next2()
     {
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Contract id " + ClaimForm.Contract.Id);
         // Saving the contractId
@@ -52,6 +56,42 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
         {
             {nameof(ClaimForm), ClaimForm}
         });
+    }
+
+    [RelayCommand]
+    async Task Next()
+    {
+        int contractId = 1;
+        var contractClaim = await contractService.GetContractByIdAsync(contractId);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] User instantiated");
+
+        // new        
+        var claimForm = new ClaimForm
+        {
+            Id = 99999,
+            ContractId = 1,
+            DateOfOccurence = DateTime.Now,
+            QCauseOfDamage = "cause",
+            QWhatHappened = "what",
+            QWhereDamaged = "where",
+            QWhatIsDamaged = "damaged",
+            Image1 = "",
+            Image2 = "",
+            Street = "",
+            Suite = "",
+            City = "",
+            ZipCode = "",
+            Latitude = 0,
+            Longitude = 0,
+            Contract = contractClaim
+        };
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] ClaimForm instantiated");
+        // EINDE NEW
+
+        await navigationService.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
+            {
+                { nameof(ClaimForm), claimForm }
+            });
     }
 
     [RelayCommand]

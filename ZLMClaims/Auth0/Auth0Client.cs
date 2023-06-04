@@ -12,6 +12,7 @@ public class Auth0Client
 
     public Auth0Client(Auth0ClientOptions options)
     {
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [Constructor] init");
         oidcClient = new OidcClient(new OidcClientOptions
         {
             Authority = $"https://{options.Domain}",
