@@ -7,11 +7,8 @@
     xmlns:views="clr-namespace:ZLMClaims.Views"
     xmlns:lang="clr-namespace:ZLMClaims.Resources.Languages"
     Shell.FlyoutBehavior="Disabled">
-
+    
     <TabBar>
-        <ShellContent
-            Route="MainPage"
-            ContentTemplate="{DataTemplate views:LoginPage}"/>
 
         <ShellContent
             Title="{local:Translate TabItemHome}"
@@ -37,7 +34,7 @@
         <ShellContent 
             Title="{local:Translate TabItemProfile}"
             Icon="profile.svg"
-            IsVisible="{Binding IsUserLoggedIn}"
+            IsVisible="false"
             ContentTemplate="{DataTemplate views:UserPage}"/>
     </TabBar>
 

@@ -184,9 +184,10 @@ public class Auth0Client
                 Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] Token is expired or invalid 22");
                 // Token is expired
                 // Clear token data and show an error message to the user
-                await SecureStorage.Default.SetAsync("id_token", string.Empty);
-                await SecureStorage.Default.SetAsync("access_token", string.Empty);
+                //await SecureStorage.Default.SetAsync("id_token", string.Empty);
+                //await SecureStorage.Default.SetAsync("access_token", string.Empty);
                 Console.WriteLine("Token is expired. User needs to log in again.");
+                LogoutAsync();
             }
             catch (Exception ex)
             {

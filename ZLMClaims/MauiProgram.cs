@@ -77,8 +77,8 @@ public static class MauiProgram
 #if WINDOWS
             RedirectUri = "https://localhost:7040/callback"
 #else
-            RedirectUri = "myapp://callback"
-            #endif
+            RedirectUri = " http://localhost:7040/callback"
+#endif
         }));
 
         return builder.Build();

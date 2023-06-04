@@ -12,5 +12,5 @@ namespace ZLMClaims;
               DataScheme = CALLBACK_SCHEME)]
 public class WebAuthenticationCallbackActivity : Microsoft.Maui.Authentication.WebAuthenticatorCallbackActivity
 {
-    const string CALLBACK_SCHEME = "myapp";
+    const string CALLBACK_SCHEME = "https://localhost:7040";
 }
