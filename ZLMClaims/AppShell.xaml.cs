@@ -5,14 +5,19 @@ namespace ZLMClaims;
 
 public partial class AppShell : Shell
 {
-	public AppShell(Auth0Client auth0Client)
+    public bool IsLoginVisible { get; set; }
+
+    public AppShell(Auth0Client auth0Client)
 	{
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] init");
+        IsLoginVisible = true;
+        IsVisible = false;
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] init IsLoginVisible=true and IsVisible=false");
         InitializeComponent();
         var loginPage = new LoginPage(auth0Client);
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage instantiated");
         loginPage.LoginStatusChanged += OnLoginStatusChanged;
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage.LoginStatusChanged invoked");
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage.LoginStatusChanged invoked"); 
 
         // The localizationResourceManager uses binding, so the context needs to be set
         BindingContext = this;
@@ -30,15 +35,16 @@ public partial class AppShell : Shell
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] All routes registered");
     }
 
-    private void OnLoginStatusChanged(object sender, bool isLoggedIn)
-    {   
-        IsUserLoggedIn = isLoggedIn;
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] isLoggedIn: " + isLoggedIn);
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] IsUserLoggedIn: " + IsUserLoggedIn);
+    private void OnLoginStatusChanged(object sender, bool isVisible)
+    {
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] init");
+        IsVisible = isVisible;
+        if (IsVisible) { IsLoginVisible = false; }
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] isLoggedIn: " + isVisible);
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] IsUserLoggedIn: " + IsLoginVisible);
     }
 
     public LocalizationResourceManager LocalizationResourceManager 
 		=> LocalizationResourceManager.Instance;
 
-    public bool IsUserLoggedIn { get; set; } = true;
 }
