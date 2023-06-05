@@ -18,7 +18,7 @@
         <Grid>
             <!-- Short notation is also possible: Grid.RowDefinitions="1.5*,1.5*,auto,2" -->
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="1.5*"/>

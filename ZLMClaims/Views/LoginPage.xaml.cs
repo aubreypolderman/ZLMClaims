@@ -10,7 +10,6 @@ public partial class LoginPage : ContentPage
 {
 	int count = 0;
     private readonly Auth0Client auth0Client;
-    private string accessToken;
     private UserService userService;
     public LoginPage(Auth0Client client)
 	{
@@ -46,7 +45,7 @@ public partial class LoginPage : ContentPage
             UsernameLbl.Text = loginResult.User.Identity.Name;
             LoginView.IsVisible = false;
             HomeView.IsVisible = true;
-            accessToken = loginResult.AccessToken;
+            TokenHolder.AccessToken = loginResult.AccessToken;
 
             // Retrieve userId of the user given the emailaddress / username
             User user = await userService.GetUserByEmailAsync(loginResult.User.Identity.Name);            

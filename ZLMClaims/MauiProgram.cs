@@ -81,6 +81,14 @@ public static class MauiProgram
 #endif
         }));
 
+        builder.Services.AddSingleton<TokenHandler>();
+        builder.Services.AddHttpClient("ClaimApi",
+                client => client.BaseAddress = new Uri("https://localhost:7040")
+            ).AddHttpMessageHandler<TokenHandler>();
+        builder.Services.AddTransient(
+            sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("ClaimApi")
+        );
+
         return builder.Build();
 	}
 }

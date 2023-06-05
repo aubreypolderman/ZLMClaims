@@ -46,7 +46,7 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
 
     [RelayCommand]
-    async Task Next2()
+    async Task Next()
     {
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Contract id " + ClaimForm.Contract.Id);
         // Saving the contractId
@@ -59,7 +59,7 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task Next()
+    async Task NextOld()
     {
         int contractId = 1;
         var contractClaim = await contractService.GetContractByIdAsync(contractId);

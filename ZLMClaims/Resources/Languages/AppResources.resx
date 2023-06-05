@@ -144,6 +144,12 @@
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
+  <data name="ClaimAddress" xml:space="preserve">
+    <value>Claim address</value>
+  </data>
+  <data name="ClaimDetails" xml:space="preserve">
+    <value>Claim details</value>
+  </data>
   <data name="ClaimFormPageTitle" xml:space="preserve">
     <value>Claimform</value>
   </data>

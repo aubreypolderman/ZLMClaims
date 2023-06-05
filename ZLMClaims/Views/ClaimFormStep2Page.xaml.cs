@@ -28,7 +28,7 @@ public partial class ClaimFormStep2Page : ContentPage
         (double currentLatitude, double currentLongitude) = await _viewModel.GetCurrentLocation();
         Device.BeginInvokeOnMainThread(() =>
         {
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(currentLatitude, currentLongitude), Distance.FromMiles(1)));
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(currentLatitude, currentLongitude), Distance.FromMiles(0.5)));
         });
     }
 
@@ -61,17 +61,25 @@ public partial class ClaimFormStep2Page : ContentPage
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] placeCountryName " + placeCountryName);
 
             // Voeg een nieuwe pin toe aan de kaart op de geklikte locatie
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] invoke setPinAcidentLocation");
+            _viewModel.setPinAccidentLocation();
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] before map.Pins.Add");
             map.Pins.Add(new Pin
             {
                 Location = new Location(e.Location.Latitude, e.Location.Longitude),
                 Label = $"{placeStreet} {placeHouseNumber} {placePostalCode} {placeCity}",
                 Type = PinType.Generic
             });
-
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] na map.Pins.Add");
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] update viewModel with placemark");
             _viewModel.ClaimForm.Street = placeStreet;
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placeStreet");
             _viewModel.ClaimForm.Suite = placeHouseNumber;
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placeHouseNumber");
             _viewModel.ClaimForm.ZipCode = placePostalCode;
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placePostalCode");
             _viewModel.ClaimForm.City = placeCity;
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placeCity");
         }
     }
 }

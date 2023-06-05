@@ -11,19 +11,23 @@
     <VerticalStackLayout Spacing="10" Margin="5">
        
         <!-- Accident address-->
-        <Label Text="Street" TextColor="{StaticResource Primary}"/>
+        <Label Text="{local:Translate Street}" 
+               TextColor="{StaticResource Primary}"/>
         <Editor 
             Text="{Binding ClaimForm.Street}"                  
             x:Name="Street"/>
-        <Label Text="Number" TextColor="{StaticResource Primary}"/>
+        <Label Text="{local:Translate HouseNumber}"
+               TextColor="{StaticResource Primary}"/>
         <Editor 
             Text="{Binding ClaimForm.Suite}"      
             x:Name="Suite"/>
-        <Label Text="Zipcode" TextColor="{StaticResource Primary}"/>
+        <Label Text="{local:Translate ZipCode}"
+               TextColor="{StaticResource Primary}"/>
         <Editor 
             Text="{Binding ClaimForm.ZipCode}"      
             x:Name="ZipCode"/>
-        <Label Text="City" TextColor="{StaticResource Primary}"/>
+        <Label Text="{local:Translate City}"
+               TextColor="{StaticResource Primary}"/>
         <Editor 
             Text="{Binding ClaimForm.City}"      
             x:Name="City"/>
