@@ -149,9 +149,11 @@
                     Toggled="OnThemeSwitchToggled"/>
 
             <!-- E-mail confirmation -->
+            <!-- Text="{local:Translate UserSwitchEmailConfirmation}" -->
             <BoxView Grid.Row="2"/>
             <Label Grid.Row="2"
-                   Text="{local:Translate UserSwitchEmailConfirmation}"
+                   x:Name="labelMail"
+                   Text="Email"
                    FontAttributes="Bold"
                    HorizontalOptions="Start"
                    VerticalOptions="Center" />
