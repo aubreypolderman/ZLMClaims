@@ -40,7 +40,7 @@
         <ShellContent 
             Title="{local:Translate TabItemProfile}"
             Icon="profile.svg"
-            IsVisible="{Binding IsLoginVisible}"
+            IsVisible="{Binding IsVisible}"
             ContentTemplate="{DataTemplate views:UserPage}"/>
     </TabBar>
 

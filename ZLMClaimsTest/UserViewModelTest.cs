@@ -9,13 +9,13 @@ namespace ZLMClaimsTest
             // arrange
             var userService = Substitute.For<IUserService>();
             var navigationService = Substitute.For<INavigationService>();
-            var viewModel = new UserViewModel(navigationService, userService);
+            var sut = new UserViewModel(navigationService, userService);
 
             // act
-            viewModel.switchToggleEmailConfirmation = true;
+            sut.switchToggleEmailConfirmation = true;
 
             // assert
-            viewModel.switchToggleEmailConfirmation.Should().BeTrue();
+            sut.switchToggleEmailConfirmation.Should().BeTrue();
         }
 
         [Fact]

@@ -15,7 +15,9 @@ public partial class LoginPage : ContentPage
 	{
         Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [Constructor] init");
         InitializeComponent();
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [Constructor] before auth0Client = client");
         auth0Client = client;
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [Constructor] after auth0Client = client");
 
 #if WINDOWS
         auth0Client.Browser = new WebViewBrowserAuthenticator(WebViewInstance);
@@ -45,7 +47,9 @@ public partial class LoginPage : ContentPage
             UsernameLbl.Text = loginResult.User.Identity.Name;
             LoginView.IsVisible = false;
             HomeView.IsVisible = true;
+            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] Succces, loginResult.AccessToken: " + loginResult.AccessToken);
             TokenHolder.AccessToken = loginResult.AccessToken;
+            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] Succces, TokenHolder.AccessToken: " + TokenHolder.AccessToken);
 
             // Retrieve userId of the user given the emailaddress / username
             User user = await userService.GetUserByEmailAsync(loginResult.User.Identity.Name);            
@@ -53,6 +57,9 @@ public partial class LoginPage : ContentPage
             Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] invoke LoginStatusChanged met true");
             LoginStatusChanged?.Invoke(this, true); // Geef aan dat de gebruiker is ingelogd
             Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] na invoke LoginStatusChanged met true");
+
+
+
 
             // Saving the userid
             Preferences.Default.Set("userId", user.Id);

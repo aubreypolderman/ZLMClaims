@@ -1,4 +1,6 @@
-﻿using ZLMClaims.Models;
+﻿using System.Net.Http.Headers;
+using ZLMClaims.Auth0;
+using ZLMClaims.Models;
 using ZLMClaims.Services;
 
 namespace ZLMClaims.Services;
@@ -11,13 +13,15 @@ public class ContractService : IContractService
         // check to see if _httpClient instance is not null
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [constructor] httpclient injected ");
         //_httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-#if DEBUG
-        Console.WriteLine(DateTime.Now + "[..............] [ContractService" +
-            "] [constructor] httpclient debug -> use handler ");
+#if DEBUG        
+        Console.WriteLine(DateTime.Now + "[..............] [ContractService] [Constructor] DEBUG with TokenHolder.AccessToken = " + TokenHolder.AccessToken);
         HttpsClientHandlerService handler = new HttpsClientHandlerService();
         _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); // Assign the value to the class-level field
+        _httpClient.DefaultRequestHeaders.Authorization
+ = new AuthenticationHeaderValue("Bearer", TokenHolder.AccessToken);
 #else
-            Console.WriteLine(DateTime.Now + "[..............] [UserService] [constructor] ELSE new httpclient ");            
+            Console.WriteLine(DateTime.Now + "[..............] [ContractService] [Constructor] ELSE with TokenHolder.AccessToken = " + TokenHolder.AccessToken);
+            Console.WriteLine(DateTime.Now + "[..............] [ContractService] [Constructor] ELSE " + _httpClient.DefaultRequestHeaders.Authorization);
             _httpClient = new HttpClient();
 #endif
     }

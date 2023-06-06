@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ZLMClaims.Auth0;
 using ZLMClaims.Models;
 
 namespace ZLMClaims.Services
@@ -15,9 +17,14 @@ namespace ZLMClaims.Services
         public RepairCompanyService(HttpClient httpClient)
         {
 #if DEBUG
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [Constructor] DEBUG with TokenHolder.AccessToken = " + TokenHolder.AccessToken);
             HttpsClientHandlerService handler = new HttpsClientHandlerService();
             _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); // Assign the value to the class-level field
-#else                        
+            _httpClient.DefaultRequestHeaders.Authorization
+     = new AuthenticationHeaderValue("Bearer", TokenHolder.AccessToken);
+#else
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [Constructor] ELSE with TokenHolder.AccessToken = " + TokenHolder.AccessToken);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [Constructor] ELSE " + _httpClient.DefaultRequestHeaders.Authorization);
             _httpClient = new HttpClient();
 #endif
         }

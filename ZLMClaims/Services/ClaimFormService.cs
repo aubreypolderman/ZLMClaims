@@ -3,26 +3,32 @@ using SQLite;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection.Emit;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using ZLMClaims.Auth0;
 using ZLMClaims.Models;
 
 namespace ZLMClaims.Services
 {
     public class ClaimFormService : IClaimFormService
     {
-        private readonly HttpClient _httpClient;
+        private readonly HttpClient _httpClient;        
         public string errorMessage;
 
         public ClaimFormService(HttpClient httpClient )
         {
 
 #if DEBUG
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimService] [Constructor] DEBUG");
             HttpsClientHandlerService handler = new HttpsClientHandlerService();
             _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); // Assign the value to the class-level field
+            _httpClient.DefaultRequestHeaders.Authorization
+             = new AuthenticationHeaderValue("Bearer", TokenHolder.AccessToken);
 #else           
+             Console.WriteLine(DateTime.Now + "[..............] [ClaimService] [Constructor] ELSE " + _httpClient.DefaultRequestHeaders.Authorization);
             _httpClient = new HttpClient();
 #endif
         }

@@ -21,8 +21,10 @@ public class Auth0Client
             RedirectUri = options.RedirectUri,
             Browser = options.Browser
         });
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [Constructor] oidcClient instantiated");
 
         audience = options.Audience;
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [Constructor] audience = " + audience);
     }
 
     public IdentityModel.OidcClient.Browser.IBrowser Browser
@@ -50,8 +52,7 @@ public class Auth0Client
             {
               {"audience", audience}
             })
-            };
-
+            };            
             Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] na invoke oidcClient.LoginAsync met result " + loginRequest);
             Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] na invoke oidcClient.LoginAsync AccessToken " + loginRequest.ToString());
         }
@@ -65,10 +66,12 @@ public class Auth0Client
 
         if (!loginResult.IsError)
         {
+            Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] !loginResult.IsError = " + loginResult.IsError);
+            Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] SecureStorage for access_token and id_token");
             await SecureStorage.Default.SetAsync("access_token", loginResult.AccessToken);
             await SecureStorage.Default.SetAsync("id_token", loginResult.IdentityToken);
         }
-
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LoginAsync] Return loginResult + " + loginResult);
         return loginResult;        
     }
 
@@ -92,9 +95,9 @@ public class Auth0Client
         };
 
         var browserResult = await oidcClient.Options.Browser.InvokeAsync(browserOptions);
-
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LogoutAsync] Remove all SecureStorage" );
         SecureStorage.Default.RemoveAll();
-
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [LogoutAsync] Return browserResult => " + browserResult);
         return browserResult;
     }
 
@@ -128,7 +131,7 @@ public class Auth0Client
 
             if (!validationResult.IsError) user = validationResult.User;
         }
-        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] Return user");
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] Return user => " + user);
         return user;
     }
 
@@ -168,6 +171,8 @@ public class Auth0Client
                 {
                     Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] !validationResult.IsError");
                     user = validationResult.User;
+                    // Save AccessToken 
+                    TokenHolder.AccessToken = idToken;
                 }
                 else
                 {
@@ -196,7 +201,7 @@ public class Auth0Client
                 Console.WriteLine("An error occurred during token validation: " + ex.Message);
             }
         }
-        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] Return user");
+        Console.WriteLine(DateTime.Now + "[..............] [Auth0Client] [GetAuthenticatedUser] Return user => " + user);
         return user;
     }
 

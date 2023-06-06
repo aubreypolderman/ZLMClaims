@@ -1,4 +1,6 @@
-﻿using ZLMClaims.Auth0;
+﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Internals;
+using ZLMClaims.Auth0;
 using ZLMClaims.Views;
 
 namespace ZLMClaims;
@@ -6,18 +8,21 @@ namespace ZLMClaims;
 public partial class AppShell : Shell
 {
     public bool IsLoginVisible { get; set; }
+    public event EventHandler<bool> LoginStatusChanged;
 
     public AppShell(Auth0Client auth0Client)
 	{
+        // todo: set by method
         IsLoginVisible = true;
-        IsVisible = false;
+        IsVisible = true;
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] init IsLoginVisible=true and IsVisible=false");
         InitializeComponent();
         var loginPage = new LoginPage(auth0Client);
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage instantiated");
         loginPage.LoginStatusChanged += OnLoginStatusChanged;
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage.LoginStatusChanged invoked");
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage.LoginStatusChanged invoked"); 
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] LoginStatusChanged => " + LoginStatusChanged);
+       
 
         // The localizationResourceManager uses binding, so the context needs to be set
         BindingContext = this;
@@ -42,6 +47,56 @@ public partial class AppShell : Shell
         if (IsVisible) { IsLoginVisible = false; }
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] isLoggedIn: " + isVisible);
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] IsUserLoggedIn: " + IsLoginVisible);
+
+        // nieuwe code
+        if (IsVisible)
+        {
+            // 
+            IsLoginVisible = false;
+            // De gebruiker is ingelogd, bottombar navigatie zichtbaar maken
+            foreach (var item in Items)
+            {
+                if (item is ShellItem shellItem)
+                {
+                    foreach (var section in shellItem.Items)
+                    {
+                        if (section is ShellSection shellSection)
+                        {
+                            foreach (var content in shellSection.Items)
+                            {
+                                if (content is ShellContent shellContent)
+                                {
+                                    shellContent.IsVisible = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            // De gebruiker is uitgelogd, bottombar navigatie verbergen
+            foreach (var item in Items)
+            {
+                if (item is ShellItem shellItem)
+                {
+                    foreach (var section in shellItem.Items)
+                    {
+                        if (section is ShellSection shellSection)
+                        {
+                            foreach (var content in shellSection.Items)
+                            {
+                                if (content is ShellContent shellContent)
+                                {
+                                    shellContent.IsVisible = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public LocalizationResourceManager LocalizationResourceManager 
