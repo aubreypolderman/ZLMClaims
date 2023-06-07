@@ -2,6 +2,7 @@
 using SQLite;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection.Emit;
@@ -53,34 +54,49 @@ namespace ZLMClaims.Services
             }
             else
             {
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimService] [GetAllContractsByPersonIdAsync] Errort getting contract for user with id {id} ");
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimService] [GetAllContractsByPersonIdAsync] Errort getting contract for user with id " + userId);
                 throw new HttpRequestException($"Error getting user with id {userId}: {response.ReasonPhrase}");
             }
         }
 
         public async Task<ClaimForm> GetClaimFormAsync(int id)
         {
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] Invoke api for claim with id = " + id);
-            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/ClaimForms/{id}");
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] response: " + response);
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] StatusCode response: " + response.StatusCode);
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] ReasonPhrase response: " + response.ReasonPhrase);
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] RequestMessage response: " + response.RequestMessage);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] reponsecontent: " + responseContent);
-            //var json = LoadData();
+            try
+            {
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] Invoke api for claim with id = " + id);
+                var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/ClaimForms/{id}");
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] response: " + response);
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] StatusCode response: " + response.StatusCode);
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] ReasonPhrase response: " + response.ReasonPhrase);
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] RequestMessage response: " + response.RequestMessage);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] responsecontent: " + responseContent);
 
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] StatuscodeSucces is all good! Return response");
-                return System.Text.Json.JsonSerializer.Deserialize<ClaimForm>(responseContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] StatuscodeSucces is all good! Return response");
+                    return System.Text.Json.JsonSerializer.Deserialize<ClaimForm>(responseContent);
+                }
+                else if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] Claim form with id {id} not found");
+                    return null;
+                }
+                else
+                {
+                    Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] Error getting claim form with id {id}");
+                    Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] StatusCode: " + response.StatusCode);
+                    throw new HttpRequestException($"Error getting claim form with id {id}: {response.ReasonPhrase}");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] Errort getting claimform with id {id} ");
-                throw new HttpRequestException($"Error getting user with id {id}: {response.ReasonPhrase}");
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] Exception: " + ex.Message);
+                // Voer hier eventuele andere afhandeling uit voor de uitzondering
+                throw; // Gooi de uitzondering opnieuw om deze door te geven aan de aanroepende code
             }
         }
+
 
         public async Task<bool> SaveClaimFormAsync(ClaimForm claimForm)
         {
@@ -88,7 +104,7 @@ namespace ZLMClaims.Services
             try
             {
                 Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [SaveClaimFormAsync] Invoke GetClaimFormAsync with claim id " + claimForm.Id);
-                var existingClaim = await GetClaimFormAsync(claimForm.Id);
+                var existingClaim = await GetClaimFormAsync((int)claimForm.Id);
                 Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [SaveClaimFormAsync] After invoke GetClaimFormAsync with claim id " + claimForm.Id);
 
                 if (existingClaim != null)
@@ -142,12 +158,13 @@ namespace ZLMClaims.Services
         public async Task CreateClaimFormAsync(ClaimForm claimForm)
         {
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] Start ");
-
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] Serialize object to json");
             var json = System.Text.Json.JsonSerializer.Serialize(claimForm); // Serialize the claimForm object to JSON
-
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] json => " + json);
             var content = new StringContent(json, Encoding.UTF8, "application/json"); // Create the HTTP request content with JSON body
-
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] content => " + content);
             var response = await _httpClient.PostAsync("https://10.0.2.2:7040/api/ClaimForms", content); // Make the POST request to create the claimForm
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] response => " + response);
 
             var responseContent = await response.Content.ReadAsStringAsync();
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] responseContent: " + responseContent);

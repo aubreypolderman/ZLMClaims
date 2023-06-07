@@ -59,42 +59,6 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    async Task NextOld()
-    {
-        int contractId = 1;
-        var contractClaim = await contractService.GetContractByIdAsync(contractId);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] User instantiated");
-
-        // new        
-        var claimForm = new ClaimForm
-        {
-            Id = 99999,
-            ContractId = 1,
-            DateOfOccurence = DateTime.Now,
-            QCauseOfDamage = "cause",
-            QWhatHappened = "what",
-            QWhereDamaged = "where",
-            QWhatIsDamaged = "damaged",
-            Image1 = "",
-            Image2 = "",
-            Street = "",
-            Suite = "",
-            City = "",
-            ZipCode = "",
-            Latitude = 0,
-            Longitude = 0,
-            Contract = contractClaim
-        };
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] ClaimForm instantiated");
-        // EINDE NEW
-
-        await navigationService.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
-            {
-                { nameof(ClaimForm), claimForm }
-            });
-    }
-
-    [RelayCommand]
     async Task Previous() =>
         await navigationService.GoBackAsync();
 

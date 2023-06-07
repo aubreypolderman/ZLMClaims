@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Security.Claims;
 using System.Windows.Input;
 using ZLMClaims.Models;
 using ZLMClaims.Services;
@@ -36,13 +37,13 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
     [RelayCommand]
     async Task Send()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] ClaimId => " + ClaimForm.Id);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] QWhatHappened => " + ClaimForm.QWhatHappened);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] QWhereDamaged => " + ClaimForm.QWhereDamaged);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] Product => " + ClaimForm.Contract.Product);        
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] ClaimId => " + ClaimForm.Id);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] QWhatHappened => " + ClaimForm.QWhatHappened);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] QWhereDamaged => " + ClaimForm.QWhereDamaged);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] Product => " + ClaimForm.Contract.Product);        
 
         // Get User
-        int userId = Preferences.Default.Get("userId", 1);
+        int userId = Preferences.Default.Get("userId", -1);
         var user = await userService.GetUserByIdAsync(userId);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] Id: " + user.Id);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] Name: " + user.Name);
@@ -52,11 +53,11 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] Housenumber: " + user.Housenumber);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] City: " + user.City);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] Phone: " + user.Phone);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] IdLatitude " + user.Latitude);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] Latitude " + user.Latitude);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [User] Longitude: " + user.Longitude);
 
         // Get Contract
-        int contractId = Preferences.Default.Get("contractId", 1);
+        int contractId = Preferences.Default.Get("contractId", -1);
         var contract = await contractService.GetContractByIdAsync(contractId);
 
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract] Id: " + contract.Id);
@@ -69,24 +70,10 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract] EndDate: " + contract.EndDate);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract] LicensePlate: " + contract.LicensePlate);
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract] UserId: " + contract.UserId);
-        /*
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] Id: " + contract.User.Id);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] Name: " + contract.User.Name);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] Username " + contract.User.Username);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] Email: " + contract.User.Email);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] Street: " + contract.User.Street);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] Housenumber: " + contract.User.Housenumber);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] City: " + contract.User.City);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] Phone: " + contract.User.Phone);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] IdLatitude " + contract.User.Latitude);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Contract][User] Longitude: " + contract.User.Longitude);
-        */
 
-        // Add user to the contract
-        // Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] User instantiated");
         var contractClaim = new Contract
         {
-            Id = contract.Id, // ClaimForm.ContractId, -> werkt niet op de een of andere manier
+            Id = contract.Id, 
             Product = contract.Product,
             Make = contract.Make,
             Model = contract.Model,
@@ -98,11 +85,10 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
             UserId = userId,
             User = user
         };
-        // Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] Contract instantiated");
 
         var claimForm = new ClaimForm
         {
-            Id = ClaimForm.Id,
+            // Id = ClaimForm.Id,
             ContractId = contract.Id, //ClaimForm.ContractId,
             DateOfOccurence = ClaimForm.DateOfOccurence,
             QCauseOfDamage = ClaimForm.QCauseOfDamage,
@@ -122,17 +108,17 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] ClaimForm instantiated for claim with id = " + ClaimForm.Id);
 
         // Save the claimform        
-        bool isNewClaim = await claimFormService.SaveClaimFormAsync(claimForm);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] Result saveClaimFormAsync => " + isNewClaim);
+        bool isSuccess = await claimFormService.SaveClaimFormAsync(claimForm);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Next] Result saveClaimFormAsync => " + isSuccess);
 
-        if (isNewClaim)
+        if (isSuccess)
         {
             await dialogService.DisplayAlertAsync("Success", "Claim form has been successfully sent to ZLM", "OK");
             await Shell.Current.GoToAsync(nameof(AllClaimsPage));
         }
         else
         {
-            await dialogService.DisplayAlertAsync("Error", "Error when sending ClaimForm to ZLM", "OK");
+            await dialogService.DisplayAlertAsync("Error", "Error when sending ClaimForm to ZLM. You will be redirected to Home", "OK");
         }
 
     }
