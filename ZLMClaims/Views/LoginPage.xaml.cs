@@ -48,8 +48,9 @@ public partial class LoginPage : ContentPage
             LoginView.IsVisible = false;
             HomeView.IsVisible = true;
             Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] Succces, loginResult.AccessToken: " + loginResult.AccessToken);
+            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] Succces, saving token in TokenHandler.AccessToken");
             TokenHolder.AccessToken = loginResult.AccessToken;
-            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] Succces, TokenHolder.AccessToken: " + TokenHolder.AccessToken);
+            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] Succces, Verify TokenHolder.AccessToken: " + TokenHolder.AccessToken);
 
             // Retrieve userId of the user given the emailaddress / username
             User user = await userService.GetUserByEmailAsync(loginResult.User.Identity.Name);            
@@ -57,9 +58,6 @@ public partial class LoginPage : ContentPage
             Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] invoke LoginStatusChanged met true");
             LoginStatusChanged?.Invoke(this, true); // Geef aan dat de gebruiker is ingelogd
             Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] na invoke LoginStatusChanged met true");
-
-
-
 
             // Saving the userid
             Preferences.Default.Set("userId", user.Id);
@@ -74,6 +72,7 @@ public partial class LoginPage : ContentPage
             await DisplayAlert("Error", loginResult.ErrorDescription, "OK");
             Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] invoke LoginStatusChanged na false");
         }
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] End");
     }
 
     // Auth0 logout button 
@@ -92,6 +91,7 @@ public partial class LoginPage : ContentPage
         {
             await DisplayAlert("Error", logoutResult.ErrorDescription, "OK");
         }
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLogoutClicked] End");
     }
 
     private async void OnLoaded(object sender, EventArgs e)
@@ -109,6 +109,7 @@ public partial class LoginPage : ContentPage
             HomeView.IsVisible = true;
             LoginStatusChanged?.Invoke(this, true); // Geef aan dat de gebruiker is ingelogd  
         }
+        Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoaded] End");
     }
 }
 

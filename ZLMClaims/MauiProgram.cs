@@ -15,6 +15,7 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
+        Console.WriteLine(DateTime.Now + "[..............] [MauiProgram] [CreateMauiApp] DI container");
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
@@ -68,6 +69,7 @@ public static class MauiProgram
         builder.Services.AddTransient<UserPage>();
 
         // Auth0 registration
+        Console.WriteLine(DateTime.Now + "[..............] [MauiProgram] [CreateMauiApp] Register Auth0Client");
         builder.Services.AddSingleton(new Auth0Client(new()
         {                      
             Domain = "dev-ajcve7wvqiq10doi.eu.auth0.com",
@@ -80,13 +82,15 @@ public static class MauiProgram
             RedirectUri = "zlmclaims://callback"
 #endif
         }));
-
+        // builder.Services.AddHttpClient("ZLMClaims",                
+        // // client => client.BaseAddress = new Uri("https://localhost:7040")
+        Console.WriteLine(DateTime.Now + "[..............] [MauiProgram] [CreateMauiApp] Register TokenHandler");
         builder.Services.AddSingleton<TokenHandler>();
-        builder.Services.AddHttpClient("ClaimApi",
-                client => client.BaseAddress = new Uri("https://localhost:7040")
+        builder.Services.AddHttpClient("ZLMClaims",                
+                client => client.BaseAddress = new Uri("https://10.0.2.2:7040 ")
             ).AddHttpMessageHandler<TokenHandler>();
         builder.Services.AddTransient(
-            sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("ClaimApi")
+            sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("ZLMClaims")
         );
 
         return builder.Build();

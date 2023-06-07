@@ -18,35 +18,66 @@ namespace ZLMClaims.Services
         {
 #if DEBUG
             Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [Constructor] DEBUG with TokenHolder.AccessToken = " + TokenHolder.AccessToken);
+            _httpClient = httpClient; //👈 new code
             HttpsClientHandlerService handler = new HttpsClientHandlerService();
             _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); // Assign the value to the class-level field
+
+            // new use TokenHandler.AccessToken
             _httpClient.DefaultRequestHeaders.Authorization
-     = new AuthenticationHeaderValue("Bearer", TokenHolder.AccessToken);
+             = new AuthenticationHeaderValue("Bearer", TokenHolder.AccessToken);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [Constructor] TokenHolder.AccessToken = " + TokenHolder.AccessToken);
+
 #else
             Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [Constructor] ELSE with TokenHolder.AccessToken = " + TokenHolder.AccessToken);
             Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [Constructor] ELSE " + _httpClient.DefaultRequestHeaders.Authorization);
             _httpClient = new HttpClient();
 #endif
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [Constructor] End ");
         }
 
         public async Task<IEnumerable<RepairCompany>> GetRepairCompaniesAsync()
         {
                     
             Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Get all repaircompanies ");
+            // var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/RepairCompanies");            
+            string ApiUrl = "https://10.0.2.2:7040/api/RepairCompanies";
 
-            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/RepairCompanies");            
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] AccessToken: " + TokenHolder.AccessToken);
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] httpClient.DefaultRequestHeaders.Authorization: " + _httpClient.DefaultRequestHeaders.Authorization);
+            //try
+            //{
+                Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync]");
+                HttpResponseMessage response = await _httpClient.GetAsync(ApiUrl);
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Return content: " + content);
+                    return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<RepairCompany>>(content);
+                }                
+                
+            //}
+            //catch (Exception ex)
+            //{
+            //}
+        }
+
+        public async Task<IEnumerable<RepairCompany>> GetRepairCompaniesAsyncOld()
+        {
+
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Get all repaircompanies ");
+
+            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/RepairCompanies");
             Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] response: " + response);
             Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] StatusCode response: " + response.IsSuccessStatusCode);
-            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] ReasonPhrase response: " + response.ReasonPhrase);;
+            Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] ReasonPhrase response: " + response.ReasonPhrase); ;
             var responseContent = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-               // responseContent = LoadData();  
+                // responseContent = LoadData();  
                 return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<RepairCompany>>(responseContent);
             }
             else
             {
-                Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Errort getting repaircompanies");
+                Console.WriteLine(DateTime.Now + "[..............] [RepairCompanyService] [GetRepairCompaniesAsync] Error getting repaircompanies");
                 throw new HttpRequestException($"Error getting repaircompanies: {response.ReasonPhrase}");
             }
         }
