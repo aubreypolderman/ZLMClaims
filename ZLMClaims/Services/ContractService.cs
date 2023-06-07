@@ -10,20 +10,23 @@ public class ContractService : IContractService
 
     public ContractService(HttpClient httpClient)
     {
-        // check to see if _httpClient instance is not null
-        Console.WriteLine(DateTime.Now + "[..............] [ContractService] [constructor] httpclient injected ");
-        //_httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-#if DEBUG        
+#if DEBUG
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [Constructor] DEBUG with TokenHolder.AccessToken = " + TokenHolder.AccessToken);
+        _httpClient = httpClient; //👈 new code
         HttpsClientHandlerService handler = new HttpsClientHandlerService();
         _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); // Assign the value to the class-level field
+
+        // new use TokenHandler.AccessToken
         _httpClient.DefaultRequestHeaders.Authorization
- = new AuthenticationHeaderValue("Bearer", TokenHolder.AccessToken);
+         = new AuthenticationHeaderValue("Bearer", TokenHolder.AccessToken);
+        Console.WriteLine(DateTime.Now + "[..............] [ContractService] [Constructor] TokenHolder.AccessToken = " + TokenHolder.AccessToken);
+
 #else
             Console.WriteLine(DateTime.Now + "[..............] [ContractService] [Constructor] ELSE with TokenHolder.AccessToken = " + TokenHolder.AccessToken);
             Console.WriteLine(DateTime.Now + "[..............] [ContractService] [Constructor] ELSE " + _httpClient.DefaultRequestHeaders.Authorization);
             _httpClient = new HttpClient();
 #endif
+        Console.WriteLine(DateTime.Now + "[..............] [ContractService] [Constructor] End ");
     }
 
     public async Task<IEnumerable<Contract>> GetAllContractsByPersonIdAsync(int userId)
@@ -31,7 +34,10 @@ public class ContractService : IContractService
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] Get all contracts for user with id " + userId);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] voor de call");
 
-        var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts/user/{userId}");
+        //var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts/user/{userId}");
+        string ApiUrl = "https://10.0.2.2:7040/api/Contracts/user/" + userId;
+        HttpResponseMessage response = await _httpClient.GetAsync(ApiUrl);
+
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] response: " + response);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatusCode response: " + response.StatusCode);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] ReasonPhrase response: " + response.ReasonPhrase);
@@ -56,7 +62,9 @@ public class ContractService : IContractService
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] Get contract with id " + Id);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] voor de call");
 
-        var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts/{Id}");
+        // var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Contracts/{Id}");
+        string ApiUrl = "https://10.0.2.2:7040/api/Contracts/" + Id;
+        HttpResponseMessage response = await _httpClient.GetAsync(ApiUrl);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync]  response: " + response);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatusCode response: " + response.StatusCode);
         Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] ReasonPhrase response: " + response.ReasonPhrase);
