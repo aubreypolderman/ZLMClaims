@@ -53,6 +53,8 @@ public partial class LoginPage : ContentPage
             Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] Succces, Verify TokenHolder.AccessToken: " + TokenHolder.AccessToken);
 
             // Retrieve userId of the user given the emailaddress / username
+            await Task.Delay(2000); // Vertraging van 2 seconden
+            Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] Succces, Retrieve user information of user with email " + loginResult.User.Identity.Name);
             User user = await userService.GetUserByEmailAsync(loginResult.User.Identity.Name);            
 
             Console.WriteLine(DateTime.Now + "[..............] [LoginPage] [OnLoginClicked] invoke LoginStatusChanged met true");
