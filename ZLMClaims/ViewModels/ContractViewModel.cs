@@ -22,20 +22,7 @@ namespace ZLMClaims.ViewModels
         }
 
         [ObservableProperty]
-        Contract contract;
-
-
-        [RelayCommand]
-        async Task Claim()
-        {
-            var claimForm = new ClaimForm();
-            await navigationService.GoToAsync(nameof(ClaimFormStep1Page), true, new Dictionary<string, object>
-            {
-                { nameof(ClaimForm), claimForm }
-            });
-        }
-        //async Task Claim() =>
-        // await navigationService.GoToAsync(nameof(ClaimFormStep1Page));
+        Contract contract;        
 
     }
 
