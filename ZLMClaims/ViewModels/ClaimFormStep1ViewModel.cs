@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using ZLMClaims.Models;
 using ZLMClaims.Services;
@@ -33,9 +34,23 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     {
         this.navigationService = navigationService;
         this.contractService = contractService;
-        this.userService = userService; 
-    }
+        this.userService = userService;
 
+        PropertyChanged += ClaimFormStep1ViewModel_PropertyChanged;
+
+    }
+    private void ClaimFormStep1ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [ClaimFormStep1ViewModel_PropertyChanged] Start");
+        if (e.PropertyName == nameof(ClaimForm))
+        {
+            if (ClaimForm != null && ClaimForm.DateOfOccurence.HasValue)
+            {
+                SelectedTime = ClaimForm.DateOfOccurence.Value.TimeOfDay;
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [ClaimFormStep1ViewModel_PropertyChanged] SelectedTime: " + SelectedTime);
+            }
+        }
+    }
     [ObservableProperty]
     ClaimForm claimForm;
 
@@ -45,7 +60,8 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     public TimeSpan SelectedTime
     {
         get { return selectedTime; }
-        set { SetProperty(ref selectedTime, value); }
+        set { SetProperty(ref selectedTime, value);
+        }
     }
 
     [RelayCommand]
