@@ -52,13 +52,13 @@
                 TextColor="{StaticResource Primary}"
                 VerticalOptions="Center" />
             <DatePicker 
-                Date="{Binding ClaimForm.DateOfOccurence}"
+                Date="{Binding ClaimForm.DateOfOccurence, Mode=TwoWay}"
                 MinimumDate="{Binding MinDate}"
                 MaximumDate="{Binding MaxDate}"
                 Format="dd/MM/yyyy"
                 Margin="10,0,0,0"/>
             <TimePicker 
-                Time="{Binding ClaimForm.DateOfOccurence}"
+                Time="{Binding SelectedTime, Mode=TwoWay}"
                 Format="HH:mm"
                 Margin="10,0,0,0" />
         </StackLayout>

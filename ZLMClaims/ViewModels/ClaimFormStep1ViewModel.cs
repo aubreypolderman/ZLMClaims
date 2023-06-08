@@ -41,12 +41,26 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
 
     public ObservableCollection<ClaimForm> ClaimForms { get; private set; } = new();
 
+    private TimeSpan selectedTime;
+    public TimeSpan SelectedTime
+    {
+        get { return selectedTime; }
+        set { SetProperty(ref selectedTime, value); }
+    }
+
     [RelayCommand]
     async Task Next()
     {
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Contract id " + ClaimForm.Contract.Id);
         // Saving the contractId
         Preferences.Default.Set("contractId", ClaimForm.Contract.Id);
+        DateTime selectedDateTime = ClaimForm.DateOfOccurence.Value.Date + SelectedTime;        
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] combinedDateTime: " + selectedDateTime);
+
+        // Saving combined DateTime values in DateOfOccurrence
+        ClaimForm.DateOfOccurence = selectedDateTime;
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] ClaimForm.DateOfOccurence: " + ClaimForm.DateOfOccurence);
+
         await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
         {
             {nameof(ClaimForm), ClaimForm}
