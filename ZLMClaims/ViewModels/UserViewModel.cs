@@ -41,7 +41,7 @@ public partial class UserViewModel : BaseViewModel
     public async Task LoadDataAsync()
     {
         // retrieve the userid from the preference set        
-        int userId = Preferences.Default.Get("userId", 1);
+        int userId = Preferences.Default.Get("userId", -1);
         Console.WriteLine(DateTime.Now + "[..............] [UserViewModel] [LoadDataAsync] retrieved user id: " + userId);
         var user = await userService.GetUserByIdAsync(userId);
         // Assign the retrieved user data to the User property

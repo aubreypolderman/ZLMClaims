@@ -12,7 +12,6 @@ namespace ZLMClaims.ViewModels;
 public partial class ClaimFormStep1ViewModel : BaseViewModel
 {
     private ClaimForm _claimForm;
-    private string _qCauseOfDamage;
 
     public List<string> Options { get; } = new List<string>
     {
@@ -22,9 +21,6 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
         "Ruitschade",
         "Andere oorzaak"
     };
-
-    [ObservableProperty]
-    public string selectedOption;
 
     // Maximum date can't be beyond current date, and Minimum date is current date - 3 months. 
     public DateTime MaxDate => DateTime.Now;
@@ -51,7 +47,6 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Contract id " + ClaimForm.Contract.Id);
         // Saving the contractId
         Preferences.Default.Set("contractId", ClaimForm.Contract.Id);
-        ClaimForm.QCauseOfDamage = SelectedOption; // Update the ClaimForm with the selected cause of damage
         await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
         {
             {nameof(ClaimForm), ClaimForm}

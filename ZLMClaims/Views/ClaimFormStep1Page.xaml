@@ -40,7 +40,7 @@
         <Picker 
             Title = "- select Cause of damage -"
             ItemsSource="{Binding Options}" 
-            SelectedItem="{Binding SelectedOption}">
+            SelectedItem="{Binding ClaimForm.QCauseOfDamage}">
         </Picker>
 
         <Label/>

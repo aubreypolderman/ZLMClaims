@@ -37,10 +37,17 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
     [RelayCommand]
     async Task Send()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] ClaimId => " + ClaimForm.Id);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] QWhatHappened => " + ClaimForm.QWhatHappened);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] QWhereDamaged => " + ClaimForm.QWhereDamaged);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] Product => " + ClaimForm.Contract.Product);        
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] ClaimId => " + ClaimForm?.Id);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] DateOfOccurence => " + ClaimForm?.DateOfOccurence);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] QWhatHappened => " + ClaimForm?.QWhatHappened);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] QWhereDamaged => " + ClaimForm?.QWhereDamaged);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] QCauseOfDamage => " + ClaimForm?.QCauseOfDamage);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] Street => " + ClaimForm?.Street);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] Suite => " + ClaimForm?.Suite);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] ZipCode => " + ClaimForm?.ZipCode);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] City => " + ClaimForm?.City);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] Latitude => " + ClaimForm?.Latitude);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep5ViewModel] [Claim] Longitude => " + ClaimForm.Longitude);
 
         // Get User
         int userId = Preferences.Default.Get("userId", -1);
@@ -88,7 +95,7 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
 
         var claimForm = new ClaimForm
         {
-            // Id = ClaimForm.Id,
+            Id = ClaimForm.Id,
             ContractId = contract.Id, //ClaimForm.ContractId,
             DateOfOccurence = ClaimForm.DateOfOccurence,
             QCauseOfDamage = ClaimForm.QCauseOfDamage,

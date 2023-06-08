@@ -36,7 +36,7 @@ namespace ZLMClaims.ViewModels
 
             Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] init");
             // retrieve the userid from the preference set        
-            int userId = Preferences.Default.Get("userId", 1);
+            int userId = Preferences.Default.Get("userId", -1);
 
             // Check WiFi connection
             IEnumerable<ConnectionProfile> profiles = connectivityService.ConnectionProfiles;
