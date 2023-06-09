@@ -42,6 +42,11 @@ public partial class ClaimFormStep4ViewModel : BaseViewModel
         }
     }
 
+    public void SetBase64EncodedImage(string base64EncodedImage)
+    {
+        Base64EncodedImage = base64EncodedImage;
+    }
+
     [RelayCommand]
     async Task Next()
     {

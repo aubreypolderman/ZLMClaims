@@ -9,11 +9,11 @@ public partial class ClaimFormStep4Page : ContentPage
 {
     private readonly ClaimFormStep4ViewModel _viewModel;
     public ClaimFormStep4Page(ClaimFormStep4ViewModel vm)
-	{
+    {
         BindingContext = vm;
         _viewModel = vm;
         InitializeComponent();
-	}
+    }
 
     private async Task<string> ConvertImageToBase64(ImageSource imageSource)
     {
@@ -31,6 +31,19 @@ public partial class ClaimFormStep4Page : ContentPage
         return null;
     }
 
+    private async Task<string> ConvertBase64ToImage(String base64EncodedImage)
+    {
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [ConvertBase64ToImage] start");
+        if (!string.IsNullOrEmpty(base64EncodedImage))
+        {
+            byte[] imageBytes = Convert.FromBase64String(base64EncodedImage);
+            MemoryStream imageDecodeStream = new MemoryStream(imageBytes);
+            myImage.Source = ImageSource.FromStream(() => imageDecodeStream);  
+        }
+
+        return null;
+    }
+
     public async void OnTakePhotoBtnClicked(object sender, EventArgs e)
     {
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] START ");
@@ -42,7 +55,7 @@ public partial class ClaimFormStep4Page : ContentPage
             {
                 // save the file into local storage
                 string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] Photo.FileName => " + photo.FileName);                
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] Photo.FileName => " + photo.FileName);
                 Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] localFilePath => " + localFilePath);
 
                 using Stream sourceStream = await photo.OpenReadAsync();
@@ -58,7 +71,7 @@ public partial class ClaimFormStep4Page : ContentPage
                 using var imageEncodeStream = await photo.OpenReadAsync();
                 using var memoryStream = new MemoryStream();
                 imageEncodeStream.CopyTo(memoryStream);
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] before ase64-encode image");
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] before base64-encode image");
                 var base64EncodedImage = Convert.ToBase64String(memoryStream.ToArray());
                 Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] base64EncodedImage => " + base64EncodedImage);
 
@@ -69,5 +82,12 @@ public partial class ClaimFormStep4Page : ContentPage
             }
         }
     }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
 
+        // Convert base64-encoded string to image        
+        _viewModel.SetBase64EncodedImage(_viewModel.ClaimForm.Image2);      
+        await ConvertBase64ToImage(_viewModel.Base64EncodedImage);
+    }
 }
