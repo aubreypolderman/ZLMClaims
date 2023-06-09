@@ -73,6 +73,7 @@
             x:Name="QWhatHappened"
             Placeholder="{local:Translate Q_WhatHappened}"
             VerticalOptions="StartAndExpand" />
+        <Label x:Name="QWhatHappenedErrorLabel" TextColor="Red" />
 
         <!-- Where's the damage-->
         <Label Text="{local:Translate Q_WhereDamaged}" TextColor="{StaticResource Primary}"/>

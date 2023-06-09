@@ -32,11 +32,13 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     IUserService userService;
     public ClaimFormStep1ViewModel(INavigationService navigationService, IContractService contractService, IUserService userService)
     {
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Constructor] Start");
         this.navigationService = navigationService;
         this.contractService = contractService;
         this.userService = userService;
-
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Constructor] Before ClaimFormStep1ViewModel_PropertyChanged");
         PropertyChanged += ClaimFormStep1ViewModel_PropertyChanged;
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Constructor] After ClaimFormStep1ViewModel_PropertyChanged");
 
     }
     private void ClaimFormStep1ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
