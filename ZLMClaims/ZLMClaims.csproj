@@ -55,6 +55,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\bestelauto.jpg" />
 	  <None Remove="Resources\Images\camera.png" />
+	  <None Remove="Resources\Images\carcrash.png" />
 	  <None Remove="Resources\Images\claim.svg" />
 	  <None Remove="Resources\Images\contracts.svg" />
 	  <None Remove="Resources\Images\home.svg" />
