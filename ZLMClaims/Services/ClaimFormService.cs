@@ -50,7 +50,7 @@ namespace ZLMClaims.Services
             {
                 Console.WriteLine(DateTime.Now + "[..............] [ClaimService] [GetAllClaimFormsByPersonIdAsync] StatuscodeSucces is all good! Return response");
                 // Deserialize json response to Claim object
-                return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<ClaimForm>>(responseContent);
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<ClaimForm>>(responseContent);
             }
             else
             {
@@ -75,7 +75,8 @@ namespace ZLMClaims.Services
                 if (response.IsSuccessStatusCode)
                 {
                     Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [GetClaimFormAsync] StatuscodeSucces is all good! Return response");
-                    return System.Text.Json.JsonSerializer.Deserialize<ClaimForm>(responseContent);
+                    return Newtonsoft.Json.JsonConvert.DeserializeObject<ClaimForm>(responseContent);
+                    
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                 {
@@ -118,6 +119,7 @@ namespace ZLMClaims.Services
                     // Claim does not exist, so create a new ClaimForm
                     Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [SaveClaimFormAsync] Claim does not exists. Invoke CreateClaimFormAsync() ");
                     await CreateClaimFormAsync(claimForm);
+                    Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [SaveClaimFormAsync] After invoke of CreateClaimFormAsync() ");
                 }
 
                 return true; 
@@ -136,7 +138,7 @@ namespace ZLMClaims.Services
             var json = System.Text.Json.JsonSerializer.Serialize(claimForm); // Serialize the claimForm object to JSON
 
             var content = new StringContent(json, Encoding.UTF8, "application/json"); // Create the HTTP request content with JSON body
-
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [UpdateClaimFormAsync] content => " + content);
             var response = await _httpClient.PutAsync($"https://10.0.2.2:7040/api/ClaimForms/{claimForm.Id}", content); // Make the PUT request to update the claimForm
 
             var responseContent = await response.Content.ReadAsStringAsync();
@@ -162,7 +164,7 @@ namespace ZLMClaims.Services
             var json = System.Text.Json.JsonSerializer.Serialize(claimForm); // Serialize the claimForm object to JSON
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] json => " + json);
             var content = new StringContent(json, Encoding.UTF8, "application/json"); // Create the HTTP request content with JSON body
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] content => " + content);
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] content => " + content.ReadAsStringAsync());
             var response = await _httpClient.PostAsync("https://10.0.2.2:7040/api/ClaimForms", content); // Make the POST request to create the claimForm
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormService] [CreateClaimFormAsync] response => " + response);
 
