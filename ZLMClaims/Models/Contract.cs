@@ -35,6 +35,7 @@ public class Contract
     public double AnnualPolicyPremium { get; set; }
 
     public User User { get; set; } = new User();
+    
 
     // Add method to determine icon?
 }

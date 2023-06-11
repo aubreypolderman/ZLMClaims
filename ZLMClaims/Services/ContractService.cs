@@ -48,7 +48,9 @@ public class ContractService : IContractService
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatuscodeSucces is all good! Return response");
-            return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Contract>>(responseContent);
+            //return System.Text.Json.JsonSerializer.Deserialize<IEnumerable<Contract>>(responseContent);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<Contract>>(responseContent);
+
         }
         else
         {
@@ -75,7 +77,9 @@ public class ContractService : IContractService
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine(DateTime.Now + "[..............] [ContractService] [GetAllContractsByPersonIdAsync] StatuscodeSucces is all good! Return response");
-            return System.Text.Json.JsonSerializer.Deserialize<Contract>(responseContent);
+            //return System.Text.Json.JsonSerializer.Deserialize<Contract>(responseContent);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Contract>(responseContent);
+
         }
         else
         {

@@ -57,6 +57,7 @@ namespace ZLMClaims.ViewModels
                 foreach (var contract in contracts)
                 {
                     Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] contract:" + contract.Product + " with licenseplate " + contract.LicensePlate);
+                    Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] user on contract:" + contract.User.Name + " with userid " + contract.User.Id);
                     Contracts.Add(contract);
                 }
 
