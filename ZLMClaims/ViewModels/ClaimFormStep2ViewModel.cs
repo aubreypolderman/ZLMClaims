@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Devices.Sensors;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -103,6 +104,7 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
 
             if (location != null)
             {
+                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetCurrentLocation] " + "Return latitude " + location.Latitude + " and longitude " + location.Longitude);
                 return (location.Latitude, location.Longitude);
             }
         }
@@ -122,6 +124,7 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
         }
 
         // Return default values if location cannot be obtained
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetCurrentLocation] " + "No location obtained. Return 0,0" );
         return (0, 0);
     }
 
@@ -134,6 +137,7 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
 
     public void setPinAccidentLocation()
     {
+        
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [setPinAccidentLocation] Start");
         double latitude = (double)(ClaimForm?.Latitude);
         double longitude = (double)(ClaimForm?.Longitude);
@@ -141,5 +145,15 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
         Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [setPinAccidentLocation] Longitude " + longitude);
         var position = new Position(ClaimForm.Street, ClaimForm.Suite, new Location(latitude, longitude));
         _positions.Add(position);
+        
+    }
+
+    public async Task GetAcciddentAddressLocation()
+    {        
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetAcciddentAddressLocation] Start");
+        var position = new Position(ClaimForm.Street + " " + ClaimForm.Suite, ClaimForm.ZipCode + " " + ClaimForm.City, new Location((double)ClaimForm.Latitude, (double)ClaimForm.Longitude));
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetAcciddentAddressLocation] Position " + position + " set for address " + ClaimForm.Street + " " + ClaimForm.Suite);
+        _positions.Add(position);
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetAcciddentAddressLocation] Position " + position + " added");
     }
 }

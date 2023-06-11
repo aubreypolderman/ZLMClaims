@@ -18,7 +18,6 @@ public partial class ClaimFormStep2Page : ContentPage
         BindingContext = vm;
         _viewModel = vm;        
         InitializeComponent();
-        LoadLocationAsync();
 
     }
 
@@ -26,15 +25,34 @@ public partial class ClaimFormStep2Page : ContentPage
     private async void LoadLocationAsync()
     {
         (double currentLatitude, double currentLongitude) = await _viewModel.GetCurrentLocation();
-        Device.BeginInvokeOnMainThread(() =>
-        {
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(currentLatitude, currentLongitude), Distance.FromMiles(0.5)));
-        });
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [LoadLocationAsync] currentLatude = " + currentLatitude + " and currentLongitude = " + currentLongitude);
+        Action action = () =>
+                {
+                    map.MoveToRegion(MapSpan.FromCenterAndRadius(new Location(currentLatitude, currentLongitude), Distance.FromMiles(0.5)));
+                };
+        Device.BeginInvokeOnMainThread(action);
     }
 
-    protected override void OnAppearing()
+    private async void AddPinToAccidentLocation()
+    {
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnAppearing] Invoke GetAcciddentAddressLocation()");
+        await _viewModel.GetAcciddentAddressLocation();
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnAppearing] Add new pin voor addreess " + _viewModel.ClaimForm.Street + " " + _viewModel.ClaimForm.Suite);
+        map.Pins.Add(new Pin
+        {
+            Location = new Location((double)_viewModel.ClaimForm.Latitude, (double)_viewModel.ClaimForm.Longitude),
+            Label = $"{_viewModel.ClaimForm.Street} {_viewModel.ClaimForm.Suite} {_viewModel.ClaimForm.ZipCode} {_viewModel.ClaimForm.City}",
+            Type = PinType.Generic
+        });
+        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnAppearing] Pin added?");
+
+    }
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
+
+        LoadLocationAsync();
+        AddPinToAccidentLocation();
     }
 
     async void OnMapClicked(object sender, MapClickedEventArgs e)
@@ -73,13 +91,13 @@ public partial class ClaimFormStep2Page : ContentPage
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] na map.Pins.Add");
             Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] update viewModel with placemark");
             _viewModel.ClaimForm.Street = placeStreet;
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placeStreet");
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placeStreet " + _viewModel.ClaimForm.Street);
             _viewModel.ClaimForm.Suite = placeHouseNumber;
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placeHouseNumber");
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placeHouseNumber "  + _viewModel.ClaimForm.Suite);
             _viewModel.ClaimForm.ZipCode = placePostalCode;
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placePostalCode");
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placePostalCode" + _viewModel.ClaimForm.ZipCode);
             _viewModel.ClaimForm.City = placeCity;
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placeCity");
+            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2Page] [OnMapClicked] viewmodel updated with placeCity " + _viewModel.ClaimForm.City);
         }
     }
 }

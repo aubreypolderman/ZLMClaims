@@ -125,7 +125,7 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
         }
         else
         {
-            await dialogService.DisplayAlertAsync("Error", "Error when sending ClaimForm to ZLM. You will be redirected to Home", "OK");
+            await dialogService.DisplayAlertAsync("Error", "Error sending ClaimForm to ZLM. You will be redirected to Home", "OK");
         }
 
     }

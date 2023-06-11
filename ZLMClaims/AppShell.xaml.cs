@@ -15,12 +15,12 @@ public partial class AppShell : Shell
         // todo: set by method
         IsLoginVisible = true;
         IsVisible = true;
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] init IsLoginVisible=true and IsVisible=false");
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] init Set IsLoginVisible=true and IsVisible=true");
         InitializeComponent();
         var loginPage = new LoginPage(auth0Client);
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage instantiated");
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] LoginPage instantiated");
         loginPage.LoginStatusChanged += OnLoginStatusChanged;
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] loginPage.LoginStatusChanged invoked");
+        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] LoginPage.LoginStatusChanged invoked");
         Console.WriteLine(DateTime.Now + "[..............] [AppShell] [Constructor] LoginStatusChanged => " + LoginStatusChanged);
        
 

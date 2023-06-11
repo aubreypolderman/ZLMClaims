@@ -172,6 +172,5 @@
         </Grid>
 
         <Button Text="Claim" Clicked="OnButtonClaimClicked" BackgroundColor="#d8172a"/>
-        <Button Text="Calculate" BackgroundColor="#d8172a"/>
     </VerticalStackLayout>
 </ContentPage>
