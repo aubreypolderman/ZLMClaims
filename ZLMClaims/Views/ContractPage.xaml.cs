@@ -37,10 +37,10 @@ public partial class ContractPage : ContentPage
             Latitude = 0,
             Longitude = 0,
             Contract = _viewModel.Contract
-        };
+        };        
         Shell.Current.GoToAsync(nameof(ClaimFormStep1Page), true, new Dictionary<string, object>
         {
             {nameof(ClaimForm), claimForm}
-        });
+        });        
     }
 }
