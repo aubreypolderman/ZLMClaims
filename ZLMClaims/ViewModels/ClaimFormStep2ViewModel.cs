@@ -50,15 +50,11 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
     //public async Task<string> GetGeocodeReverseData(double latitude, double longitude)
     public async Task<Dictionary<string, string>> GetGeocodeReverseData(double latitude, double longitude)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "latitude: " + latitude + " longitude: " + longitude);
         IEnumerable<Placemark> placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "plaxemarks: " + placemarks );
         Placemark placemark = placemarks?.FirstOrDefault();
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "placemark: " + placemark);
 
         if (placemark != null)
         {
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "placemark not null");
             Dictionary<string, string> addressData = new Dictionary<string, string>
             {
                 { "AdminArea", placemark.AdminArea },
@@ -72,10 +68,8 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
                 { "SubThoroughfare", placemark.SubThoroughfare },
                 { "Thoroughfare", placemark.Thoroughfare }
             };
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "return addressData: " + addressData);
             return addressData;
         }
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetGeocodeReverseData] " + "return null" );
         return null;
     }
 
@@ -95,16 +89,12 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
         try
         {
             _isCheckingLocation = true;
-
             GeolocationRequest request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
-
             _cancelTokenSource = new CancellationTokenSource();
-
             Location location = await Geolocation.Default.GetLocationAsync(request, _cancelTokenSource.Token);
-
+         
             if (location != null)
-            {
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetCurrentLocation] " + "Return latitude " + location.Latitude + " and longitude " + location.Longitude);
+            {                
                 return (location.Latitude, location.Longitude);
             }
         }
@@ -115,7 +105,6 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
         catch (Exception ex)
         {
             // Unable to get location
-            Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetCurrentLocation] " + "Failed to retrieve current location. ERROR message: " + ex.Message);
             await dialogService.DisplayAlertAsync("Error", "Failed to retrieve current location", "OK");
         }
         finally
@@ -124,7 +113,6 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
         }
 
         // Return default values if location cannot be obtained
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetCurrentLocation] " + "No location obtained. Return 0,0" );
         return (0, 0);
     }
 
@@ -135,25 +123,18 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
             _cancelTokenSource.Cancel();
     }
 
-    public void setPinAccidentLocation()
-    {
-        
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [setPinAccidentLocation] Start");
-        double latitude = (double)(ClaimForm?.Latitude);
-        double longitude = (double)(ClaimForm?.Longitude);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [setPinAccidentLocation] Latitude " + latitude);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [setPinAccidentLocation] Longitude " + longitude);
+    public void setPinAccidentLocation(double latitude, double longitude)
+    {       
         var position = new Position(ClaimForm.Street, ClaimForm.Suite, new Location(latitude, longitude));
         _positions.Add(position);
+        ClaimForm.Latitude = latitude;
+        ClaimForm.Longitude = longitude;    
         
     }
 
     public async Task GetAcciddentAddressLocation()
     {        
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetAcciddentAddressLocation] Start");
         var position = new Position(ClaimForm.Street + " " + ClaimForm.Suite, ClaimForm.ZipCode + " " + ClaimForm.City, new Location((double)ClaimForm.Latitude, (double)ClaimForm.Longitude));
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetAcciddentAddressLocation] Position " + position + " set for address " + ClaimForm.Street + " " + ClaimForm.Suite);
-        _positions.Add(position);
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep2ViewModel] [GetAcciddentAddressLocation] Position " + position + " added");
+        _positions.Add(position);        
     }
 }

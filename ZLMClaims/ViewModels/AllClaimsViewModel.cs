@@ -36,13 +36,6 @@ namespace ZLMClaims.ViewModels
             // retrieve the userid from the preference set        
             int userId = Preferences.Default.Get("userId", -1);
 
-            // Check WiFi connection
-            IEnumerable<ConnectionProfile> profiles = connectivityService.ConnectionProfiles;
-            if (profiles.Contains(ConnectionProfile.WiFi))
-            {
-                Console.WriteLine(DateTime.Now + "[..............] [AllClaimsViewModel] [GetAllClaims] WiFi connection is available");
-            }
-
             // Check internet connection
             NetworkAccess accessType = connectivityService.NetworkAccess;
             if (accessType == NetworkAccess.Internet)

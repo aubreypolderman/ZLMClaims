@@ -7,13 +7,11 @@ public class WebViewBrowserAuthenticator : IdentityModel.OidcClient.Browser.IBro
 
     public WebViewBrowserAuthenticator(WebView webView)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [WebViewBrowserAuthenticator] [Constructor] init");
         _webView = webView;
     }
 
     public async Task<BrowserResult> InvokeAsync(BrowserOptions options, CancellationToken cancellationToken = default)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [WebViewBrowserAuthenticator] [InvokeAsync] init");
         var tcs = new TaskCompletionSource<BrowserResult>();
 
         _webView.Navigated += (sender, e) =>
@@ -37,7 +35,6 @@ public class WebViewBrowserAuthenticator : IdentityModel.OidcClient.Browser.IBro
         _webView.WidthRequest = 600;
         _webView.HeightRequest = 600;
         _webView.Source = new UrlWebViewSource { Url = options.StartUrl };
-        Console.WriteLine(DateTime.Now + "[..............] [WebViewBrowserAuthenticator] [InvokeAsync] Return tcs.Task => " + tcs.Task);
         return await tcs.Task;
     }
 }

@@ -20,7 +20,6 @@ public partial class AppShell : Shell
         BindingContext = this;
 
         // register route to details page
-        Routing.RegisterRoute(nameof(Views.RepairCompanyPage), typeof(Views.RepairCompanyPage));
         Routing.RegisterRoute(nameof(Views.ClaimFormStep1Page), typeof(Views.ClaimFormStep1Page));
         Routing.RegisterRoute(nameof(Views.ClaimFormStep2Page), typeof(Views.ClaimFormStep2Page));
         Routing.RegisterRoute(nameof(Views.ClaimFormStep3Page), typeof(Views.ClaimFormStep3Page));
@@ -35,7 +34,6 @@ public partial class AppShell : Shell
     {
         IsVisible = isVisible;
         IsVisible = true;
-        Console.WriteLine(DateTime.Now + "[..............] [AppShell] [OnLoginStatusChanged] isLoggedIn: " + isVisible);       
     }
 
     public LocalizationResourceManager LocalizationResourceManager 

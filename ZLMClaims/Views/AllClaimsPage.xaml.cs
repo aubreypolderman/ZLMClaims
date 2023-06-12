@@ -11,7 +11,6 @@ public partial class AllClaimsPage : ContentPage
         _viewModel = vm;
         BindingContext = vm;
         InitializeComponent();
-        Console.WriteLine(DateTime.Now + "[..............] [AllClaimsPage] [Constructor] init");
     }
 
     private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -31,7 +30,6 @@ public partial class AllClaimsPage : ContentPage
 
     protected override async void OnAppearing()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [AllClaimsPage] [OnAppearing] init");
         base.OnAppearing();
         await _viewModel.GetAllClaims().ConfigureAwait(false);
     }

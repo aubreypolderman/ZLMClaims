@@ -15,7 +15,6 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [MauiProgram] [CreateMauiApp] DI container");
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
@@ -29,7 +28,6 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-        builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<LoginPage>();
 
         // Register all with the Dependency Injection container
@@ -41,8 +39,6 @@ public static class MauiProgram
         builder.Services.AddHttpClient<IRepairCompanyService, RepairCompanyService>();
         builder.Services.AddSingleton<AllRepairCompaniesViewModel>();
         builder.Services.AddTransient<AllRepairCompaniesPage>();
-        builder.Services.AddTransient<RepairCompanyViewModel>();
-        builder.Services.AddTransient<RepairCompanyPage>();
 
         builder.Services.AddHttpClient<IContractService, ContractService>();
         builder.Services.AddSingleton<AllContractsViewModel>();
@@ -69,7 +65,6 @@ public static class MauiProgram
         builder.Services.AddTransient<UserPage>();
 
         // Auth0 registration
-        Console.WriteLine(DateTime.Now + "[..............] [MauiProgram] [CreateMauiApp] Register Auth0Client");
         builder.Services.AddSingleton(new Auth0Client(new()
         {                      
             Domain = "dev-ajcve7wvqiq10doi.eu.auth0.com",
@@ -82,9 +77,6 @@ public static class MauiProgram
             RedirectUri = "zlmclaims://callback"
 #endif
         }));
-        // builder.Services.AddHttpClient("ZLMClaims",                
-        // // client => client.BaseAddress = new Uri("https://localhost:7040")
-        Console.WriteLine(DateTime.Now + "[..............] [MauiProgram] [CreateMauiApp] Register TokenHandler");
         builder.Services.AddSingleton<TokenHandler>();
         builder.Services.AddHttpClient("ZLMClaims",                
                 client => client.BaseAddress = new Uri("https://10.0.2.2:7040 ")

@@ -4,7 +4,6 @@ public class Auth0ClientOptions
 {
     public Auth0ClientOptions()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [Auth0ClientOptions] [Constructor] init");
         Scope = "openid";
         RedirectUri = "zlmclaims://callback";
         Browser = new WebBrowserAuthenticator();

@@ -32,24 +32,19 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     IUserService userService;
     public ClaimFormStep1ViewModel(INavigationService navigationService, IContractService contractService, IUserService userService)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Constructor] Start");
         this.navigationService = navigationService;
         this.contractService = contractService;
         this.userService = userService;
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Constructor] Before ClaimFormStep1ViewModel_PropertyChanged");
         PropertyChanged += ClaimFormStep1ViewModel_PropertyChanged;
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Constructor] After ClaimFormStep1ViewModel_PropertyChanged");
 
     }
     private void ClaimFormStep1ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [ClaimFormStep1ViewModel_PropertyChanged] Start");
         if (e.PropertyName == nameof(ClaimForm))
         {
             if (ClaimForm != null && ClaimForm.DateOfOccurence.HasValue)
             {
-                SelectedTime = ClaimForm.DateOfOccurence.Value.TimeOfDay;
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [ClaimFormStep1ViewModel_PropertyChanged] SelectedTime: " + SelectedTime);
+                SelectedTime = ClaimForm.DateOfOccurence.Value.TimeOfDay;     
             }
         }
     }
@@ -69,15 +64,12 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     [RelayCommand]
     async Task Next()
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] Contract id " + ClaimForm.Contract.Id);
         // Saving the contractId
         Preferences.Default.Set("contractId", ClaimForm.Contract.Id);
         DateTime selectedDateTime = ClaimForm.DateOfOccurence.Value.Date + SelectedTime;        
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] combinedDateTime: " + selectedDateTime);
 
         // Saving combined DateTime values in DateOfOccurrence
         ClaimForm.DateOfOccurence = selectedDateTime;
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep1ViewModel] [Next] ClaimForm.DateOfOccurence: " + ClaimForm.DateOfOccurence);
 
         await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
         {

@@ -148,22 +148,6 @@
                     x:Name="themeSwitch" 
                     Toggled="OnThemeSwitchToggled"/>
 
-            <!-- E-mail confirmation -->
-            <!-- Text="{local:Translate UserSwitchEmailConfirmation}" -->
-            <BoxView Grid.Row="2"/>
-            <Label Grid.Row="2"
-                   x:Name="labelMail"
-                   Text="Email"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center" />
-            <BoxView Grid.Row="2"
-                     Grid.Column="1"/>
-            <Switch Grid.Row="2" 
-                    Grid.Column="1" 
-                    x:Name="EmailConfirmationSwitch" 
-                    Toggled="OnEmailConfirmationSwitchToggled"/>
-
         </Grid>
 
     </VerticalStackLayout>

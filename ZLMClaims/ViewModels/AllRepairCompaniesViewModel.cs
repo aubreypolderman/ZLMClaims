@@ -64,7 +64,6 @@ public class AllRepairCompaniesViewModel : BaseViewModel
                     (double currentLatitude, double currentLongitude) = await GetCurrentLocation();
 
                     string formattedDistance = CalculateDistanceInKm(currentLatitude, currentLongitude, repaircompany.Latitude, repaircompany.Longitude);
-                    Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + repaircompany.Name  + " - distance: " + formattedDistance + " km");
 
                     // Make a pin for every repaircompany
                     var position = new Position("distance: " + formattedDistance + " km", repaircompany.Name,  new Location(repaircompany.Latitude, repaircompany.Longitude));
@@ -74,8 +73,6 @@ public class AllRepairCompaniesViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
-
-            Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] " + "Failed to retrieve list. ERROR message: " + ex.Message);
             await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Repaircompanies", "OK");
         }
         finally
@@ -122,7 +119,6 @@ public class AllRepairCompaniesViewModel : BaseViewModel
         catch (Exception ex)
         {
             // Unable to get location
-            Console.WriteLine(DateTime.Now + "[..............] [AllRepairCompaniesViewModel] [GetCurrentLocation] " + "Failed to retrieve current location. ERROR message: " + ex.Message);
             await dialogService.DisplayAlertAsync("Error", "Failed to get current location", "OK");
         }
         finally

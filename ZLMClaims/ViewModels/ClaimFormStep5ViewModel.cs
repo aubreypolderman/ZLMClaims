@@ -87,11 +87,16 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
 
         if (isSuccess)
         {
-            await Shell.Current.GoToAsync(nameof(AllClaimsPage));
+            //await Shell.Current.GoToAsync(nameof(AllClaimsPage));
+            await Shell.Current.GoToAsync("///AllClaimsPage");
+            await Shell.Current.Navigation.PopToRootAsync();
         }
         else
         {
-            await Shell.Current.GoToAsync(nameof(AllClaimsPage));
+            //await Shell.Current.GoToAsync(nameof(AllClaimsPage));
+            await Shell.Current.GoToAsync("///AllClaimsPage");
+            await Shell.Current.Navigation.PopToRootAsync();
+            //await Shell.Current.GoToAsync("///AllClaimsPage");
         }
 
     }

@@ -9,7 +9,6 @@ public class WebBrowserAuthenticator : IdentityModel.OidcClient.Browser.IBrowser
 {
     public async Task<BrowserResult> InvokeAsync(BrowserOptions options, CancellationToken cancellationToken = default)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [WebBrowserAuthenticator] [InvokeAsync] init");
         try
         {
             WebAuthenticatorResult result = await WebAuthenticator.Default.AuthenticateAsync(

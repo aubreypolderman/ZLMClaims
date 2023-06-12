@@ -33,7 +33,6 @@ public partial class ClaimFormStep4Page : ContentPage
 
     private async Task<string> ConvertBase64ToImage(String base64EncodedImage)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [ConvertBase64ToImage] start");
         if (!string.IsNullOrEmpty(base64EncodedImage))
         {
             byte[] imageBytes = Convert.FromBase64String(base64EncodedImage);
@@ -46,7 +45,6 @@ public partial class ClaimFormStep4Page : ContentPage
 
     public async void OnTakePhotoBtnClicked(object sender, EventArgs e)
     {
-        Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] START ");
         if (MediaPicker.Default.IsCaptureSupported)
         {
             FileResult photo = await MediaPicker.Default.CapturePhotoAsync();
@@ -55,8 +53,6 @@ public partial class ClaimFormStep4Page : ContentPage
             {
                 // save the file into local storage
                 string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] Photo.FileName => " + photo.FileName);
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] localFilePath => " + localFilePath);
 
                 using Stream sourceStream = await photo.OpenReadAsync();
                 using FileStream localFileStream = File.OpenWrite(localFilePath);
@@ -71,14 +67,11 @@ public partial class ClaimFormStep4Page : ContentPage
                 using var imageEncodeStream = await photo.OpenReadAsync();
                 using var memoryStream = new MemoryStream();
                 imageEncodeStream.CopyTo(memoryStream);
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] before base64-encode image");
                 var base64EncodedImage = Convert.ToBase64String(memoryStream.ToArray());
-                Console.WriteLine(DateTime.Now + "[..............] [ClaimFormStep4Page] [OnTakePhotoBtnClicked] base64EncodedImage => " + base64EncodedImage);
 
                 // Update the ImageFile property in the viewmodel
                 _viewModel.ImageFileName = photo.FileName;
                 _viewModel.Base64EncodedImage = base64EncodedImage;
-
             }
         }
     }

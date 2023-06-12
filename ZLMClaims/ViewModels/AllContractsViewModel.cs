@@ -37,42 +37,28 @@ namespace ZLMClaims.ViewModels
             this.contractService = contractService;            
             this.dialogService = dialogService;
             this.connectivity = connectivity;
-            Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [Constructor] init");
         }
 
         public async Task GetAllContracts()
         {
-            Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] init");
             // retrieve the userid from the preference set        
             int userId = Preferences.Default.Get("userId", -1);
 
-            // if (IsLoading) return;
             try
             {
-                //    IsBusy = true;
                 if (Contracts.Any()) Contracts.Clear();
                 
                 var contracts = await contractService.GetAllContractsByPersonIdAsync(userId);
-                Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] contractService invoked for userId " + userId);
                 foreach (var contract in contracts)
                 {
-                    Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] contract:" + contract.Product + " with licenseplate " + contract.LicensePlate);
-                    Console.WriteLine(DateTime.Now + "[..............] [AllContractsViewModel] [GetAllContracts] user on contract:" + contract.User.Name + " with userid " + contract.User.Id);
                     Contracts.Add(contract);
                 }
 
             }
             catch (Exception ex) 
             {
-                Console.WriteLine($"Unable to get Contracts: {ex.Message}");
                 await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Contracts", "OK");
-            }
-            finally
-            {
-                //IsBusy = false;
-                //isRefreshing = false;
-            }
-            
+            }            
         }
 
     }
