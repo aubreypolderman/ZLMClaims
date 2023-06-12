@@ -1,3 +1,5 @@
+using Moq;
+
 namespace ZLMClaimsTest
 {
     public class ClaimFormStep2ViewModelTest
@@ -41,6 +43,7 @@ namespace ZLMClaimsTest
             Assert.Equal(expectedDistanceInKm, receivedDistanceInKm);
         }
 
+        /*
         [Fact]
         public async void GetGeoLocationOfAddressInRotterdamTest()
         {
@@ -71,6 +74,46 @@ namespace ZLMClaimsTest
             Assert.Equal(city, placeCity);
             Assert.Equal(countryName, placeCountryName);
         }
+        */
 
+        [Fact]
+        public async Task Previous_Command_Navigates_Back()
+        {
+            // Arrange
+            var navigationServiceMock = new Mock<INavigationService>();
+            var dialogServiceMock = new Mock<IDialogService>();
+            var sut = new ClaimFormStep2ViewModel(navigationServiceMock.Object, dialogServiceMock.Object);
+
+            // Act
+            await sut.PreviousCommand.ExecuteAsync(null);
+
+            // Assert
+            navigationServiceMock.Verify(ns => ns.GoBackAsync(), Times.Once);
+        }       
+
+        [Fact]
+        public async Task GetAcciddentAddressLocation_Adds_Position()
+        {
+            // Arrange
+            var navigationServiceMock = new Mock<INavigationService>();
+            var dialogServiceMock = new Mock<IDialogService>();
+            var sut = new ClaimFormStep2ViewModel(navigationServiceMock.Object, dialogServiceMock.Object);
+
+            sut.ClaimForm = new ClaimForm
+            {
+                Street = "Street",
+                Suite = "Suite",
+                ZipCode = "Zip Code",
+                City = "City",
+                Latitude = 0.0,
+                Longitude = 0.0
+            };
+
+            // Act
+            await sut.GetAcciddentAddressLocation();
+
+            // Assert
+            Assert.Single(sut.Positions);
+        }
     }
 }

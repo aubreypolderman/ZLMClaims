@@ -22,7 +22,7 @@ public partial class UserViewModel : BaseViewModel
     public int personId; 
 
     public bool switchToggleDarkTheme = false;
-    public bool switchToggleEmailConfirmation = false;
+    public bool switchToggleLanguage = false;    
 
     [ObservableProperty]
     User user;
@@ -65,11 +65,7 @@ public partial class UserViewModel : BaseViewModel
             new CultureInfo("en-US") : new CultureInfo("nl-NL");
 
         LocalizationResourceManager.Instance.SetCulture(switchToCulture);
+        switchToggleLanguage = true;
 
-    }
-
-    public async void OnEmailConfirmationSwitchToggled()
-    {
-        if (switchToggleEmailConfirmation ? false: true);
     }
 }

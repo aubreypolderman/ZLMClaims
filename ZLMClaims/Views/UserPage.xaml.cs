@@ -28,11 +28,6 @@ public partial class UserPage : ContentPage
         _viewModel.OnThemeSwitchToggled();
     }
 
-    private async void OnEmailConfirmationSwitchToggled(object sender, ToggledEventArgs e)
-    {
-        _viewModel.OnEmailConfirmationSwitchToggled();
-    }
-
     protected override async void OnAppearing()
     {
         base.OnAppearing();
