@@ -9,39 +9,27 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
+        <Tab Title="Login"
+             Icon="home.svg">
+            <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}"/>
+       </Tab>
+        <Tab Title="{local:Translate TabItemContract}"
+             Icon="contracts.svg">
+            <ShellContent Route="AllContractsPage" IsVisible="{Binding IsVisible}" ContentTemplate="{DataTemplate views:AllContractsPage}"/>
+       </Tab>
+        <Tab Title="{local:Translate TabItemClaim}"
+             Icon="claim.svg">
+            <ShellContent Route="AllClaimsPage" IsVisible="{Binding IsVisible}" ContentTemplate="{DataTemplate views:AllClaimsPage}"/>
+       </Tab>
+        <Tab Title="{local:Translate TabItemNearBy}"
+             Icon="contracts.svg">
+            <ShellContent Route="AllRepairCompaniesPage" IsVisible="{Binding IsVisible}" ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
+       </Tab>
+        <Tab Title="{local:Translate TabItemProfile}"
+             Icon="profile.svg">
+            <ShellContent IsVisible="{Binding IsVisible}" ContentTemplate="{DataTemplate views:UserPage}"/>
+        </Tab>
 
-        <ShellContent
-            Title="Login"
-            Icon="home.svg"
-            Route="LoginPage"
-            IsVisible="{Binding IsLoginVisible}"
-            ContentTemplate="{DataTemplate views:LoginPage}"/>
-        <ShellContent
-            Title="{local:Translate TabItemContract}"
-            Icon="contracts.svg"
-            Route="AllContractsPage"
-            IsVisible="{Binding IsVisible}"
-            ContentTemplate="{DataTemplate views:AllContractsPage}"/>
-
-        <ShellContent 
-            Title="{local:Translate TabItemClaim}"
-            Icon="claim.svg"
-            Route="AllClaimsPage"
-            IsVisible="{Binding IsVisible}"
-            ContentTemplate="{DataTemplate views:AllClaimsPage}"/>
-
-        <ShellContent  
-            Title="{local:Translate TabItemNearBy}"
-            Icon="location.svg"
-            Route="AllRepairCompaniesPage"
-            IsVisible="{Binding IsVisible}"
-            ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
-
-        <ShellContent 
-            Title="{local:Translate TabItemProfile}"
-            Icon="profile.svg"
-            IsVisible="{Binding IsVisible}"
-            ContentTemplate="{DataTemplate views:UserPage}"/>
     </TabBar>
 
 </Shell>
