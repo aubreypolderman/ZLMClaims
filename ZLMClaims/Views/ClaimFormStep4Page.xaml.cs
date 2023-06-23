@@ -10,8 +10,8 @@ public partial class ClaimFormStep4Page : ContentPage
     private readonly ClaimFormStep4ViewModel _viewModel;
     public ClaimFormStep4Page(ClaimFormStep4ViewModel vm)
     {
-        BindingContext = vm;
         _viewModel = vm;
+        BindingContext = _viewModel;
         InitializeComponent();
     }
 
@@ -31,13 +31,13 @@ public partial class ClaimFormStep4Page : ContentPage
         return null;
     }
 
-    private async Task<string> ConvertBase64ToImage(String base64EncodedImage)
+    private string ConvertBase64ToImage(String base64EncodedImage)
     {
         if (!string.IsNullOrEmpty(base64EncodedImage))
         {
             byte[] imageBytes = Convert.FromBase64String(base64EncodedImage);
             MemoryStream imageDecodeStream = new MemoryStream(imageBytes);
-            myImage.Source = ImageSource.FromStream(() => imageDecodeStream);  
+            myImage.Source = ImageSource.FromStream(() => imageDecodeStream);
         }
 
         return null;
@@ -75,12 +75,12 @@ public partial class ClaimFormStep4Page : ContentPage
             }
         }
     }
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
 
         // Convert base64-encoded string to image        
-        _viewModel.SetBase64EncodedImage(_viewModel.ClaimForm.Image2);      
-        await ConvertBase64ToImage(_viewModel.Base64EncodedImage);
+        _viewModel.SetBase64EncodedImage(_viewModel.ClaimForm.Image2);
+        ConvertBase64ToImage(_viewModel.Base64EncodedImage);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Security.Claims;
 using System.Windows.Input;
@@ -38,14 +39,20 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
     [RelayCommand]
     async Task Send()
     {
-        
-        // Get User
-        int userId = Preferences.Default.Get("userId", -1);
-        var user = await userService.GetUserByIdAsync(userId);        
 
-        // Get Contract
-        int contractId = Preferences.Default.Get("contractId", -1);
+        // Get User by retrieving the userid from the SecureStorage 
+        string userIdString = await SecureStorage.GetAsync("userId");
+        int userId = userIdString != null ? int.Parse(userIdString) : -1;
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep5ViewModel] [Send] userId: " + userId);
+        var user = await userService.GetUserByIdAsync(userId);
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep5ViewModel] [Send] user: " + user);
+
+        // Get Contract by retrieving the contractid from the SecureStorage 
+        string contractIdString = await SecureStorage.GetAsync("contractId");
+        int contractId = contractIdString != null ? int.Parse(contractIdString) : -1;
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep5ViewModel] [Send] contractId: " + contractId);
         var contract = await contractService.GetContractByIdAsync(contractId);
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep5ViewModel] [Send] contract: " + contract);
 
         var contractClaim = new Models.Contract
         {
@@ -83,20 +90,22 @@ public partial class ClaimFormStep5ViewModel : BaseViewModel
         };
 
         // Save the claimform        
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep5ViewModel] [Send] claimForm: " + claimForm);
         bool isSuccess = await claimFormService.SaveClaimFormAsync(claimForm);
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep5ViewModel] [Send] isSuccess: " + isSuccess);
 
         if (isSuccess)
         {
-            //await Shell.Current.GoToAsync(nameof(AllClaimsPage));
             await Shell.Current.Navigation.PopToRootAsync();
-            await Shell.Current.GoToAsync("///AllClaimsPage");
-            
+            //await Shell.Current.GoToAsync(nameof(AllClaimsPage));
+            await Shell.Current.GoToAsync($"//{nameof(AllClaimsPage)}");
+
         }
         else
         {
-            //await Shell.Current.GoToAsync(nameof(AllClaimsPage));
             await Shell.Current.Navigation.PopToRootAsync();
-            await Shell.Current.GoToAsync("///AllClaimsPage");           
+            await Shell.Current.GoToAsync(nameof(AllClaimsPage));
+            //await Shell.Current.GoToAsync($"//{nameof(AllClaimsPage)}"); 
         }
 
     }

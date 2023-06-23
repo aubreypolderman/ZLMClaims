@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             xmlns:models="clr-namespace:ZLMClaims.Models"
              x:Class="ZLMClaims.Views.ClaimFormStep3Page"
              xmlns:local="clr-namespace:ZLMClaims"
-             xmlns:view="clr-namespace:ZLMClaims.Views"
-             xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
              Title="{local:Translate ClaimFormPageTitle}"
+             xmlns:view="clr-namespace:ZLMClaims.Views"                          
              x:DataType="viewmodels:ClaimFormStep3ViewModel">
 
     <VerticalStackLayout Spacing="10" Margin="5">

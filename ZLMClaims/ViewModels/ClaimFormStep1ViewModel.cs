@@ -13,20 +13,6 @@ namespace ZLMClaims.ViewModels;
 public partial class ClaimFormStep1ViewModel : BaseViewModel
 {
     private ClaimForm _claimForm;
-
-    public List<string> Options { get; } = new List<string>
-    {
-        "Aanrijding met een vast object",
-        "Aanrijding zonder tegenpartij",
-        "Diefstal of inbraak",
-        "Ruitschade",
-        "Andere oorzaak"
-    };
-
-    // Maximum date can't be beyond current date, and Minimum date is current date - 3 months. 
-    public DateTime MaxDate => DateTime.Now;
-    public DateTime MinDate => DateTime.Now.AddMonths(-3);
-
     INavigationService navigationService;
     IContractService contractService;
     IUserService userService;
@@ -38,6 +24,18 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
         PropertyChanged += ClaimFormStep1ViewModel_PropertyChanged;
 
     }
+    // Maximum date can't be beyond current date, and Minimum date is current date - 12 months. 
+    public DateTime MaxDate => DateTime.Now;
+    public DateTime MinDate => DateTime.Now.AddMonths(-12);
+    public List<string> Options { get; } = new List<string>
+    {
+        "Aanrijding met een vast object",
+        "Aanrijding zonder tegenpartij",
+        "Diefstal of inbraak",
+        "Ruitschade",
+        "Andere oorzaak"
+    };
+
     private void ClaimFormStep1ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(ClaimForm))
@@ -46,8 +44,14 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
             {
                 SelectedTime = ClaimForm.DateOfOccurence.Value.TimeOfDay;     
             }
+            {
+                // Assign a default value to DateOfOccurence if needed
+               // _claimForm.DateOfOccurence = DateTime.Today;
+                SelectedTime = DateTime.Now.TimeOfDay;
+            }
         }
     }
+
     [ObservableProperty]
     ClaimForm claimForm;
 
@@ -65,11 +69,15 @@ public partial class ClaimFormStep1ViewModel : BaseViewModel
     async Task Next()
     {
         // Saving the contractId
-        Preferences.Default.Set("contractId", ClaimForm.Contract.Id);
-        DateTime selectedDateTime = ClaimForm.DateOfOccurence.Value.Date + SelectedTime;        
+        await SecureStorage.SetAsync("contractId", ClaimForm.Contract.Id.ToString());
+        DateTime selectedDateTime = ClaimForm.DateOfOccurence.Value.Date + SelectedTime;
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep1ViewModel] [Next] ClaimForm.DateOfOccurence.Value.Date: " + ClaimForm.DateOfOccurence.Value.Date);
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep1ViewModel] [Next] SelectedTime : " + SelectedTime);
 
         // Saving combined DateTime values in DateOfOccurrence
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep1ViewModel] [Next] selectedDateTime: " + selectedDateTime);
         ClaimForm.DateOfOccurence = selectedDateTime;
+        Debug.WriteLine(DateTime.Now + "[.........][ClaimFormStep1ViewModel] [Next] ClaimForm.DateOfOccurence: " + ClaimForm.DateOfOccurence);
 
         await Shell.Current.GoToAsync(nameof(ClaimFormStep2Page), true, new Dictionary<string, object>
         {

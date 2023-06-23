@@ -6,11 +6,12 @@ namespace ZLMClaims.Views;
 
 public partial class ClaimFormStep3Page : ContentPage
 {
-
+    private readonly ClaimFormStep3ViewModel _viewModel;
     public ClaimFormStep3Page(ClaimFormStep3ViewModel vm)
 
     {
-        BindingContext = vm;
+        _viewModel = vm;
+        BindingContext = _viewModel;
         InitializeComponent();
     }
 

@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:ZLMClaims.ViewModels"
+             xmlns:models="clr-namespace:ZLMClaims.Models"
              x:Class="ZLMClaims.Views.ClaimFormStep5Page"
              xmlns:local="clr-namespace:ZLMClaims"
              Title="{local:Translate ClaimFormPageTitle}"
+             xmlns:view="clr-namespace:ZLMClaims.Views"                          
              x:DataType="viewmodels:ClaimFormStep5ViewModel">
     <ScrollView>
         <VerticalStackLayout Spacing="10" Margin="5">

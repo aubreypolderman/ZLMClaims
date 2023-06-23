@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Devices.Sensors;
 using System.Collections;
 using System.Collections.ObjectModel;
@@ -17,6 +18,8 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
     private CancellationTokenSource _cancelTokenSource;
     private bool _isCheckingLocation;
     readonly ObservableCollection<Position> _positions;
+    private Pin _currentPin;
+
     public IEnumerable Positions => _positions;
 
     INavigationService navigationService;
@@ -132,9 +135,9 @@ public partial class ClaimFormStep2ViewModel : BaseViewModel
         
     }
 
-    public async Task GetAcciddentAddressLocation()
-    {        
+    public void GetAcciddentAddressLocation()
+    {
         var position = new Position(ClaimForm.Street + " " + ClaimForm.Suite, ClaimForm.ZipCode + " " + ClaimForm.City, new Location((double)ClaimForm.Latitude, (double)ClaimForm.Longitude));
-        _positions.Add(position);        
+        _positions.Add(position);
     }
 }
