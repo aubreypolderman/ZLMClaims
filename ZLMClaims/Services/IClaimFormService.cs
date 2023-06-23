@@ -8,7 +8,8 @@ namespace ZLMClaims.Services
         Task<bool> SaveClaimFormAsync(ClaimForm claimForm);
         Task UpdateClaimFormAsync(ClaimForm claimForm);
         Task CreateClaimFormAsync(ClaimForm claimForm);
-        
+        Task DeleteClaimFormAsync(int id);
+
 
     }
 }

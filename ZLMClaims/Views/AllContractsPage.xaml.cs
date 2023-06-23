@@ -30,6 +30,10 @@ public partial class AllContractsPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await _viewModel.GetAllContracts();
+        // retrieve the userid from the SecureStorage 
+        string userIdString = await SecureStorage.GetAsync("userId");
+        int userId = userIdString != null ? int.Parse(userIdString) : -1;
+
+        await _viewModel.GetAllContracts(userId);
     }
 }

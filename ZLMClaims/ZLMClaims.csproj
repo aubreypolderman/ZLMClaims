@@ -57,6 +57,8 @@
 	  <None Remove="Resources\Images\carcrash.png" />
 	  <None Remove="Resources\Images\claim.svg" />
 	  <None Remove="Resources\Images\contracts.svg" />
+	  <None Remove="Resources\Images\delete.png" />
+	  <None Remove="Resources\Images\delete.svg" />
 	  <None Remove="Resources\Images\home.svg" />
 	  <None Remove="Resources\Images\image.webp" />
 	  <None Remove="Resources\Images\location.svg" />

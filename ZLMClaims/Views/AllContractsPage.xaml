@@ -17,7 +17,7 @@
 
         <!-- Designate how the collection of items are laid out -->
         <CollectionView.ItemsLayout>
-       <!--     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" /> -->
+            <!--     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" /> -->
             <GridItemsLayout Orientation="Vertical"
                              HorizontalItemSpacing="10"
                              VerticalItemSpacing="10"
@@ -31,18 +31,16 @@
                     <Frame BorderColor="{StaticResource Primary}" 
                            CornerRadius="10"
                            Padding="15">
-                        
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Frame.GestureRecognizers>
 
                         <StackLayout Orientation="Horizontal">
-                            
+
                             <Image Source="personenauto2.png"
                                    Aspect="AspectFill"
                                    WidthRequest="50" 
                                    HeightRequest="50">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                                    <!-- Command="{Binding Path=BindingContext.TapCommand, Source = {x:Reference repairCompaniesCollection}}" CommandParameter="{Binding}" /> -->
-                                </Image.GestureRecognizers>
                             </Image>
                             <Label>
                                 <Label.FormattedText>
@@ -65,8 +63,8 @@
                                     </Label.FormattedText>
                                 </Label>
                                 <Label></Label>
-                                    <Label FontSize="10" TextColor="Silver">
-                                        <Label.FormattedText>
+                                <Label FontSize="10" TextColor="Silver">
+                                    <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="{local:Translate StartingDate}" />
                                             <Span Text=": " />
@@ -101,7 +99,7 @@
                 </SwipeView>
             </DataTemplate>
         </CollectionView.ItemTemplate>
-        
+
     </CollectionView>
 
 </ContentPage>

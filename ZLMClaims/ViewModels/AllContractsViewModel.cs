@@ -25,9 +25,9 @@ namespace ZLMClaims.ViewModels
         IDialogService dialogService;
         IConnectivity connectivity;
 
-        // Todo activate so one can refresh the page by pulling doin
-        //[ObservableProperty]
-        //bool isBusy;
+        // Refresh the page by pulling doin
+        [ObservableProperty]
+        bool isBusy;
 
         public ObservableCollection<Contract> Contracts { get; private set; } = new();
 
@@ -38,33 +38,31 @@ namespace ZLMClaims.ViewModels
             this.dialogService = dialogService;
             this.connectivity = connectivity;
         }
-
-        public async Task GetAllContracts()
+        public async Task GetAllContracts(int userId)
         {
-            // Get User by retrieving the userid from the SecureStorage 
-            string userIdString = await SecureStorage.GetAsync("userId");
-            int userId = userIdString != null ? int.Parse(userIdString) : -1;
-            Debug.WriteLine(DateTime.Now + "[..........] [AllContractsViewModel] [GetAllContracts] userId = " + userId);
-
+            if (IsBusy) return;
             try
             {
+                IsBusy = true;
                 if (Contracts.Any()) Contracts.Clear();
-                
+
                 var contracts = await contractService.GetAllContractsByPersonIdAsync(userId);
-                Debug.WriteLine(DateTime.Now + "[..........] [AllContractsViewModel] [GetAllContracts] Nr. of contracts received: " + contracts.Count());
                 foreach (var contract in contracts)
                 {
                     Contracts.Add(contract);
                 }
 
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                Debug.WriteLine(DateTime.Now + "[..........] [AllContractsViewModel] [GetAllContracts] Exception = " + ex);
-                Debug.WriteLine(DateTime.Now + "[..........] [AllContractsViewModel] [GetAllContracts] Exception message = " + ex.Message);
-                await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Contracts", "OK");
-            }            
+                Debug.WriteLine(DateTime.Now + "[.........][AllContractsViewModel] [GetAllContracts] Exception: " + ex.Message);
+                await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of contracts", "OK");
+            }
+            finally
+            {
+                IsBusy = false;
+                //isRefreshing = false;
+            }
         }
-
     }
 }

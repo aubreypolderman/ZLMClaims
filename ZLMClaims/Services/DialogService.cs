@@ -21,5 +21,15 @@
 
             return Shell.Current.DisplayAlert(title, message, accept, cancel);
         }
+
+        public Task<bool> DisplayConfirmationAlertAsync(string title, string message, string accept, string cancel)
+        {
+            if (Shell.Current is null)
+            {
+                throw new NotSupportedException($"This method is currently supported only with a Shell-enabled application.");
+            }
+
+            return Shell.Current.DisplayAlert(title, message, accept, cancel);
+        }
     }
 }

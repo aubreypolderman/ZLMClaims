@@ -30,14 +30,8 @@ namespace ZLMClaims.ViewModels
         }
 
         [RelayCommand]
-        public async Task GetAllClaims()
+        public async Task GetAllClaims(int userId)
         {
-
-            // Get User by retrieving the userid from the SecureStorage 
-            string userIdString = await SecureStorage.GetAsync("userId");
-            int userId = userIdString != null ? int.Parse(userIdString) : -1;
-            Debug.WriteLine(DateTime.Now + "[..........] [AllClaimsViewModel] [GetAllClaims] userId = " + userId );
-
             // Check internet connection
             NetworkAccess accessType = connectivityService.NetworkAccess;
             if (accessType == NetworkAccess.Internet)
@@ -61,5 +55,24 @@ namespace ZLMClaims.ViewModels
 
         }
 
+        [RelayCommand]
+        public async Task DeleteAsync(ClaimForm claimForm)
+        {
+            bool confirmed = await dialogService.DisplayConfirmationAlertAsync("Confirmation", "Are you sure you want to delete this claim form?", "Yes", "No");
+            if (confirmed)
+            {
+                try
+                {
+                    await claimFormService.DeleteClaimFormAsync(claimForm.Id);
+                    ClaimForms.Remove(claimForm);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(DateTime.Now + "[.........][AllClaimsViewModel] DeleteAsync: Failed to delete claimform with id " + claimForm.Id + "Error: " + ex.Message);
+                    await dialogService.DisplayAlertAsync("Error", $"Failed to delete claim form: {ex.Message}", "OK");
+                }
+            }
+            Debug.WriteLine(DateTime.Now + "[.........][AllClaimsViewModel] DeleteAsync: Claimform with id " + claimForm.Id + " deleted!");
+        }
     }
 }

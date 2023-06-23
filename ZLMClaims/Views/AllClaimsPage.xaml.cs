@@ -1,10 +1,11 @@
+using System.Diagnostics;
 using ZLMClaims.Models;
 using ZLMClaims.ViewModels;
+
 namespace ZLMClaims.Views;
 
 public partial class AllClaimsPage : ContentPage
-{
-    
+{    
     private readonly AllClaimsViewModel _viewModel;
     public AllClaimsPage(AllClaimsViewModel vm)
 	{
@@ -22,6 +23,7 @@ public partial class AllClaimsPage : ContentPage
         }
 
         // Navigate to detail page of the claim
+        Debug.WriteLine(DateTime.Now + "[.........][AllClaimsPage] TapGestureRecognizer_Tapped: navigate to claimForm with id " + claimForm.Id);
         await Shell.Current.GoToAsync(nameof(ClaimFormStep1Page), true, new Dictionary<string, object>
         {
             {nameof(ClaimForm), claimForm}
@@ -31,6 +33,11 @@ public partial class AllClaimsPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await _viewModel.GetAllClaims().ConfigureAwait(false);
+
+        // retrieve the userid from the SecureStorage 
+        string userIdString = await SecureStorage.GetAsync("userId");
+        int userId = userIdString != null ? int.Parse(userIdString) : -1;
+
+        await _viewModel.GetAllClaims(userId);
     }
 }
