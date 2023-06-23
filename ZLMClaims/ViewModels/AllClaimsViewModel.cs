@@ -33,8 +33,10 @@ namespace ZLMClaims.ViewModels
         public async Task GetAllClaims()
         {
 
-            // retrieve the userid from the preference set        
-            int userId = Preferences.Default.Get("userId", -1);
+            // Get User by retrieving the userid from the SecureStorage 
+            string userIdString = await SecureStorage.GetAsync("userId");
+            int userId = userIdString != null ? int.Parse(userIdString) : -1;
+            Debug.WriteLine(DateTime.Now + "[..........] [AllClaimsViewModel] [GetAllClaims] userId = " + userId );
 
             // Check internet connection
             NetworkAccess accessType = connectivityService.NetworkAccess;
@@ -43,6 +45,7 @@ namespace ZLMClaims.ViewModels
                 // Connection to internet is available
                 if (ClaimForms.Any()) ClaimForms.Clear();
                 var claimForms = await claimFormService.GetAllClaimFormsByPersonIdAsync(userId);
+                Debug.WriteLine(DateTime.Now + "[..........] [AllClaimsViewModel] [GetAllClaims] Nr. of claims received: " + claimForms.Count());
 
                 foreach (var claimForm in claimForms)
                 {
@@ -52,6 +55,7 @@ namespace ZLMClaims.ViewModels
             }
             else
             {
+                Debug.WriteLine(DateTime.Now + "[..........] [AllClaimsViewModel] [GetAllClaims] No internet connection available");
                 await dialogService.DisplayAlertAsync("Error", "Internet connection is NOT available!", "OK");
             }
 

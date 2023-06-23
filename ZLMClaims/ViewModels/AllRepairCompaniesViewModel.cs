@@ -54,6 +54,7 @@ public class AllRepairCompaniesViewModel : BaseViewModel
             if (RepairCompanies.Any()) RepairCompanies.Clear();
 
             var repaircompanies = await repairCompanyService.GetRepairCompaniesAsync();
+            Debug.WriteLine(DateTime.Now + "[..........] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] Nr. of repaircompanies received: " + repaircompanies.Count());
             foreach (var repaircompany in repaircompanies)
             {
                 if (repaircompany != null)
@@ -73,6 +74,8 @@ public class AllRepairCompaniesViewModel : BaseViewModel
         }
         catch (Exception ex)
         {
+            Debug.WriteLine(DateTime.Now + "[..........] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] Exception " + ex);
+            Debug.WriteLine(DateTime.Now + "[..........] [AllRepairCompaniesViewModel] [GetAllRepairCompanies] Exception " + ex.Message);
             await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Repaircompanies", "OK");
         }
         finally

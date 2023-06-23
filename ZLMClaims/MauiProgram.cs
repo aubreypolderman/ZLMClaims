@@ -8,6 +8,7 @@ using ZLMClaims.Views;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Devices.Sensors;
+using CommunityToolkit.Maui;
 
 namespace ZLMClaims;
 
@@ -18,12 +19,13 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             })
-            .UseMauiMaps();
+            .UseMauiMaps(); // Google maps
 
 #if DEBUG
         builder.Logging.AddDebug();

@@ -8,7 +8,6 @@ namespace ZLMClaims.Services
     public interface IRepairCompanyService
     {
         Task<IEnumerable<RepairCompany>> GetRepairCompaniesAsync();
-        Task<RepairCompany> GetRepairCompanyByIdAsync(int id);
 
     }
 }

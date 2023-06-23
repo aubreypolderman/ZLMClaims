@@ -8,39 +8,49 @@
     xmlns:lang="clr-namespace:ZLMClaims.Resources.Languages"
     Shell.FlyoutBehavior="Disabled">
 
+    <!--Loading Page-->
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate views:LoadingPage}"
+        Route="loading" />
+
+    <!--Login Page-->
+    <ShellContent 
+        Title="Login" 
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="login"/>
+
+    <!--Main app-->
     <TabBar>
+        <Tab Title="Home" Icon="home.svg">
+            <ShellContent
+            ContentTemplate="{DataTemplate views:LoginPage}"
+            Route="home" />
+        </Tab>
 
-        <ShellContent
-            Title="Login"
-            Icon="home.svg"
-            Route="LoginPage"
-            ContentTemplate="{DataTemplate views:LoginPage}"/>
-        <ShellContent
-            Title="{local:Translate TabItemContract}"
-            Icon="contracts.svg"
-            Route="AllContractsPage"
-            IsVisible="{Binding IsVisible}"
-            ContentTemplate="{DataTemplate views:AllContractsPage}"/>
+        <Tab Title="{local:Translate TabItemContract}" Icon="contracts.svg">
+            <ShellContent
+            ContentTemplate="{DataTemplate views:AllContractsPage}"
+            Route="AllContractsPage"/>
+        </Tab>
 
-        <ShellContent 
-            Title="{local:Translate TabItemClaim}"
-            Icon="claim.svg"
-            Route="AllClaimsPage"
-            IsVisible="{Binding IsVisible}"
-            ContentTemplate="{DataTemplate views:AllClaimsPage}"/>
+        <Tab Title="{local:Translate TabItemClaim}" Icon="claim.svg">
+            <ShellContent
+            ContentTemplate="{DataTemplate views:AllClaimsPage}"
+           Route="AllClaimsPage"/>
+        </Tab>
 
-        <ShellContent  
-            Title="{local:Translate TabItemNearBy}"
-            Icon="location.svg"
-            Route="AllRepairCompaniesPage"
-            IsVisible="{Binding IsVisible}"
-            ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"/>
+        <Tab  Title="{local:Translate TabItemNearBy}" Icon="search.svg">
+            <ShellContent
+            ContentTemplate="{DataTemplate views:AllRepairCompaniesPage}"
+            Route="AllRepairCompaniesPage"/>
+        </Tab>
 
-        <ShellContent 
-            Title="{local:Translate TabItemProfile}"
-            Icon="profile.svg"
-            IsVisible="{Binding IsVisible}"
-            ContentTemplate="{DataTemplate views:UserPage}"/>
+        <Tab Title="{local:Translate TabItemProfile}" Icon="profile.svg">
+            <ShellContent
+            ContentTemplate="{DataTemplate views:UserPage}"
+            Route="UserPage"/>
+        </Tab>
     </TabBar>
 
 </Shell>

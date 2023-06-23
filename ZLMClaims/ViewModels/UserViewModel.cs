@@ -38,8 +38,10 @@ public partial class UserViewModel : BaseViewModel
 
     public async Task LoadDataAsync()
     {
-        // retrieve the userid from the preference set        
-        int userId = Preferences.Default.Get("userId", -1);
+        // Get User by retrieving the userid from the SecureStorage 
+        string userIdString = await SecureStorage.GetAsync("userId");
+        int userId = userIdString != null ? int.Parse(userIdString) : -1;
+        Debug.WriteLine(DateTime.Now + "[..........] [UserViewModel] [LoadDataAsync] userId = " + userId);
         var user = await userService.GetUserByIdAsync(userId);
         // Assign the retrieved user data to the User property
         User = user; 

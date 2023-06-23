@@ -13,12 +13,12 @@ namespace ZLMClaims.ViewModels
     public partial class BaseViewModel : ObservableObject
     {
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(IsNotLoading))]
-        bool isLoading;
+        [NotifyPropertyChangedFor(nameof(IsNotBusy))]
+        bool isBusy;
 
         [ObservableProperty]
         string title;
 
-        public bool IsNotLoading => !isLoading;
+        public bool IsNotBusy => !IsBusy;
     }
 }

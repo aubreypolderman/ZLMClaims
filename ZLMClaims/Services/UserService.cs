@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using IdentityModel;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection.Emit;
@@ -13,6 +14,7 @@ namespace ZLMClaims.Services
     public class UserService : IUserService
     {
         private readonly HttpClient _httpClient;
+        private readonly string baseUrl = ApiUrlHelper.GetBaseApiUrl();
 
         public UserService(HttpClient httpClient)
         {            
@@ -28,7 +30,8 @@ namespace ZLMClaims.Services
 
         public async Task<User> GetUserByIdAsync(int id)
         {
-            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Users/{id}");            
+            string apiUrl = $"{baseUrl}/api/Users/{id}";
+            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             User user = null;
@@ -46,7 +49,8 @@ namespace ZLMClaims.Services
         public async Task<User> GetUserByEmailAsync(string email)
         {
 
-            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/Users/email/{email}");
+            string apiUrl = $"{baseUrl}/api/Users/email/{email}";
+            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             User user = null;

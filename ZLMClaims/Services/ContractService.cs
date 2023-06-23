@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using IdentityModel;
+using System.Net.Http.Headers;
 using ZLMClaims.Auth0;
 using ZLMClaims.Models;
 using ZLMClaims.Services;
@@ -7,6 +8,7 @@ namespace ZLMClaims.Services;
 public class ContractService : IContractService
 {
     private readonly HttpClient _httpClient;
+    private readonly string baseUrl = ApiUrlHelper.GetBaseApiUrl();
 
     public ContractService(HttpClient httpClient)
     {
@@ -25,9 +27,8 @@ public class ContractService : IContractService
 
     public async Task<IEnumerable<Contract>> GetAllContractsByPersonIdAsync(int userId)
     {
-        string ApiUrl = "https://10.0.2.2:7040/api/Contracts/user/" + userId;
-        HttpResponseMessage response = await _httpClient.GetAsync(ApiUrl);
-
+        string apiUrl = $"{baseUrl}/api/Contracts/user/{userId}";
+        HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
         var responseContent = await response.Content.ReadAsStringAsync();
 
         if (response.IsSuccessStatusCode)
@@ -43,9 +44,8 @@ public class ContractService : IContractService
 
     public async Task<Contract> GetContractByIdAsync(int Id)
     {
-
-        string ApiUrl = "https://10.0.2.2:7040/api/Contracts/" + Id;
-        HttpResponseMessage response = await _httpClient.GetAsync(ApiUrl);
+        string apiUrl = $"{baseUrl}/api/Contracts/{Id}";
+        HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
         var responseContent = await response.Content.ReadAsStringAsync();
 
         if (response.IsSuccessStatusCode)

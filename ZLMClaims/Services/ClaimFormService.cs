@@ -1,14 +1,10 @@
 ﻿using Newtonsoft.Json;
-using SQLite;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Reflection.Emit;
 using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using ZLMClaims.Auth0;
 using ZLMClaims.Models;
 
@@ -16,7 +12,8 @@ namespace ZLMClaims.Services
 {
     public class ClaimFormService : IClaimFormService
     {
-        private readonly HttpClient _httpClient;        
+        private readonly HttpClient _httpClient;
+        private readonly string baseUrl = ApiUrlHelper.GetBaseApiUrl();
         public string errorMessage;
 
         public ClaimFormService(HttpClient httpClient )
@@ -34,7 +31,8 @@ namespace ZLMClaims.Services
 
         public async Task<IEnumerable<ClaimForm>> GetAllClaimFormsByPersonIdAsync(int userId)
         {
-            var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/ClaimForms/user/{userId}");         
+            string apiUrl = $"{baseUrl}/api/ClaimForms/user/{userId}";
+            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);      
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
@@ -52,7 +50,8 @@ namespace ZLMClaims.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"https://10.0.2.2:7040/api/ClaimForms/{id}");             
+                string apiUrl = $"{baseUrl}/api/ClaimForms/{id}";
+                HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
                 var responseContent = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
@@ -105,9 +104,9 @@ namespace ZLMClaims.Services
         public async Task UpdateClaimFormAsync(ClaimForm claimForm)
         {
             var json = System.Text.Json.JsonSerializer.Serialize(claimForm); // Serialize the claimForm object to JSON
-
-            var content = new StringContent(json, Encoding.UTF8, "application/json"); // Create the HTTP request content with JSON body
-            var response = await _httpClient.PutAsync($"https://10.0.2.2:7040/api/ClaimForms/{claimForm.Id}", content); // Make the PUT request to update the claimForm
+            string apiUrl = $"{baseUrl}/api/ClaimForms/{claimForm.Id}";            
+            var content = new StringContent(json, Encoding.UTF8, "application/json"); // Create the HTTP request content with JSON body            
+            HttpResponseMessage response = await _httpClient.PutAsync(apiUrl, content);
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
@@ -124,7 +123,7 @@ namespace ZLMClaims.Services
         {
             var json = System.Text.Json.JsonSerializer.Serialize(claimForm); // Serialize the claimForm object to JSON
             var content = new StringContent(json, Encoding.UTF8, "application/json"); // Create the HTTP request content with JSON body
-            var response = await _httpClient.PostAsync("https://10.0.2.2:7040/api/ClaimForms", content); // Make the POST request to create the claimForm
+            var response = await _httpClient.PostAsync("http://10.0.2.2:7040/api/ClaimForms", content); // Make the POST request to create the claimForm
             var responseContent = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)

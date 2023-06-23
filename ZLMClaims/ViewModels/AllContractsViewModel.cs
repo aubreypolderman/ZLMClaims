@@ -41,14 +41,17 @@ namespace ZLMClaims.ViewModels
 
         public async Task GetAllContracts()
         {
-            // retrieve the userid from the preference set        
-            int userId = Preferences.Default.Get("userId", -1);
+            // Get User by retrieving the userid from the SecureStorage 
+            string userIdString = await SecureStorage.GetAsync("userId");
+            int userId = userIdString != null ? int.Parse(userIdString) : -1;
+            Debug.WriteLine(DateTime.Now + "[..........] [AllContractsViewModel] [GetAllContracts] userId = " + userId);
 
             try
             {
                 if (Contracts.Any()) Contracts.Clear();
                 
                 var contracts = await contractService.GetAllContractsByPersonIdAsync(userId);
+                Debug.WriteLine(DateTime.Now + "[..........] [AllContractsViewModel] [GetAllContracts] Nr. of contracts received: " + contracts.Count());
                 foreach (var contract in contracts)
                 {
                     Contracts.Add(contract);
@@ -57,6 +60,8 @@ namespace ZLMClaims.ViewModels
             }
             catch (Exception ex) 
             {
+                Debug.WriteLine(DateTime.Now + "[..........] [AllContractsViewModel] [GetAllContracts] Exception = " + ex);
+                Debug.WriteLine(DateTime.Now + "[..........] [AllContractsViewModel] [GetAllContracts] Exception message = " + ex.Message);
                 await dialogService.DisplayAlertAsync("Error", "Failed to retrieve list of Contracts", "OK");
             }            
         }
