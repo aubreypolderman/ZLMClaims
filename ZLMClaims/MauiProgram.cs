@@ -74,14 +74,14 @@ public static class MauiProgram
             Scope = "openid profile",
             Audience = "https://zlmclaim-api.com",
 #if WINDOWS
-            RedirectUri = "https://localhost/callback"
+            RedirectUri = "http://localhost/callback"
 #else
             RedirectUri = "zlmclaims://callback"
 #endif
         }));
         builder.Services.AddSingleton<TokenHandler>();
         builder.Services.AddHttpClient("ZLMClaims",                
-                client => client.BaseAddress = new Uri("https://10.0.2.2:7040 ")
+                client => client.BaseAddress = new Uri("http://10.0.2.2:7040 ")
             ).AddHttpMessageHandler<TokenHandler>();
         builder.Services.AddTransient(
             sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("ZLMClaims")

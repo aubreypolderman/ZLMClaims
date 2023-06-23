@@ -12,17 +12,9 @@ public class ContractService : IContractService
 
     public ContractService(HttpClient httpClient)
     {
-#if DEBUG
-        _httpClient = httpClient; 
-        HttpsClientHandlerService handler = new HttpsClientHandlerService();
-        _httpClient = new HttpClient(handler.GetPlatformMessageHandler()); 
-
-        // new use TokenHandler.AccessToken
+        _httpClient = httpClient;
         _httpClient.DefaultRequestHeaders.Authorization
-         = new AuthenticationHeaderValue("Bearer", TokenHolder.AccessToken);
-#else
-            _httpClient = new HttpClient();
-#endif
+                     = new AuthenticationHeaderValue("Bearer", TokenHolder.AccessToken);
     }
 
     public async Task<IEnumerable<Contract>> GetAllContractsByPersonIdAsync(int userId)

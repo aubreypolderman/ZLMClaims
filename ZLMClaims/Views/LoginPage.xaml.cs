@@ -1,4 +1,5 @@
-﻿using ZLMClaims.Auth0;    // 👈 new code
+﻿using IdentityModel.OidcClient;
+using ZLMClaims.Auth0;    // 👈 new code
 using ZLMClaims.Models;
 using ZLMClaims.Services;
 
@@ -46,7 +47,7 @@ public partial class LoginPage : ContentPage
         }
         else
         {
-            await DisplayAlert("Error", loginResult.ErrorDescription, "OK");
+            await DisplayAlert("Error", "An exception occurred while logging in: " + loginResult.ErrorDescription, "OK");
         }
     }
 
@@ -64,7 +65,7 @@ public partial class LoginPage : ContentPage
         }
         else
         {
-            await DisplayAlert("Error", logoutResult.ErrorDescription, "OK");
+            await DisplayAlert("Error", "An exception occurred while logging out: " + logoutResult.ErrorDescription, "OK");
         }
     }
 }
